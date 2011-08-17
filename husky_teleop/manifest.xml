@@ -1,0 +1,13 @@
+<package>
+  <description brief="husky_teleop">
+    This package contains launch files which enable teleoperation
+    of the Clearpath Robotics Husky.
+  </description>
+  <author>Mike Purvis</author>
+  <license>BSD</license>
+  <review status="unreviewed" notes=""/>
+  <url>http://ros.org/wiki/husky_teleop</url>
+
+</package>
+
+

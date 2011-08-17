@@ -1,0 +1,22 @@
+<package>
+  <description brief="husky_bringup">
+
+     This package provides a launch file to bring up the Husky
+     hardware interface in a way that will be accessible and
+     usable by the other software in husky_teleop and husky_kinect.
+
+     In the future, a script will be provided to allow this to
+     be controlled by the service command and launched on startup
+     of your machine.
+
+  </description>
+  <author>Mike Purvis</author>
+  <license>BSD</license>
+  <review status="unreviewed" notes=""/>
+  <url>http://ros.org/wiki/husky_bringup</url>
+  <depend package="clearpath_bringup"/>
+  <depend package="clearpath_base"/>
+
+</package>
+
+

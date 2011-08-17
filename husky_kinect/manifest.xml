@@ -1,0 +1,13 @@
+<package>
+  <description brief="husky_kinect">
+    This package contains launch files which run some of the demos
+    from the clearpath_kinect stack on the Husky platform.
+  </description>
+  <author>Mike Purvis</author>
+  <license>BSD</license>
+  <review status="unreviewed" notes=""/>
+  <url>http://ros.org/wiki/husky_kinect</url>
+  <depends stack="clearpath_kinect" />
+</package>
+
+

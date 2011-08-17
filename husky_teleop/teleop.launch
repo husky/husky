@@ -1,0 +1,10 @@
+<launch>
+  <group ns="/clearpath/robots/default">
+    <include file="$(find husky_bringup)/minimal.launch" />
+
+    <include file="$(find clearpath_teleop)/teleop.launch">
+      <arg name="drive_speed" default="1.0" />
+      <arg name="turn_speed" default="1.0" />
+    </include>
+  </group>
+</launch>
