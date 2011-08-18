@@ -1,7 +1,7 @@
 <package>
   <description brief="husky_localization">
 
-     husky_localization
+     The husky_localization package contains method for providing your Clearpath Robotics Husky with localization given a few possible sensor arrangements.
 
   </description>
   <author>Mike Purvis</author>

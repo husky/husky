@@ -3,20 +3,6 @@
     The clearpath_husky stack provides a central repository of software
     and launch files intended for deployment on the Clearpath Robotics
     Husky A100 and A200 robots.
-
-    With a joystick, try running:
-
-      roslaunch husky_teleop teleop.launch
-
-    With a Kinect, try exploring or following people:
-
-      roslaunch husky_kinect explore.launch
-      roslaunch husky_kinect track_person.launch
-
-    The kinect demos will require installation of the openni_kinect stack:
-
-      sudo apt-get install ros-diamondback-openni-kinect
-
   </description>
   <author>Maintained by Clearpath Robotics</author>
   <license></license>  
