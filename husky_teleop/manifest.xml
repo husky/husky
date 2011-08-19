@@ -8,6 +8,9 @@
   <review status="unreviewed" notes=""/>
   <url>http://ros.org/wiki/husky_teleop</url>
 
+  <depend package="husky_bringup"/>
+  <depend package="clearpath_teleop"/>
+
 </package>
 
 

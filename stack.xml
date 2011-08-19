@@ -4,11 +4,15 @@
     and launch files intended for deployment on the Clearpath Robotics
     Husky A100 and A200 robots.
   </description>
-  <author>Maintained by Clearpath Robotics</author>
-  <license></license>  
+  <author>Maintained by Mike Purvis</author>
+  <license>BSD</license>  
   <review status="unreviewed" notes=""/>
   <url>http://ros.org/wiki/clearpath_husky</url>
+  <depend stack="clearpath_common" /> <!-- clearpath_bringup, clearpath_teleop, clearpath_base -->
+  <depend stack="clearpath_kinect" /> <!-- clearpath_tools, clearpath_kinect_demo -->
+  <depend stack="common_msgs" /> <!-- geometry_msgs -->
+  <depend stack="openni_kinect" /> <!-- openni_camera -->
   <depend stack="ros" />
-  <depend stack="clearpath_common" />
-  <depend stack="clearpath_kinect" />
+  <depend stack="ros_comm" /> <!-- rospy -->
+
 </stack>

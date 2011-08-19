@@ -7,7 +7,12 @@
   <license>BSD</license>
   <review status="unreviewed" notes=""/>
   <url>http://ros.org/wiki/husky_kinect</url>
-  <depends stack="clearpath_kinect" />
+
+  <depend package="husky_bringup" />
+  <depend package="openni_camera" />
+  <depend package="clearpath_tools" />
+  <depend package="clearpath_kinect_demo" />
+
 </package>
 
 
