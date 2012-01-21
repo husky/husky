@@ -12,7 +12,11 @@
   <depend stack="clearpath_kinect" /> <!-- clearpath_tools, clearpath_kinect_demo -->
   <depend stack="common_msgs" /> <!-- geometry_msgs -->
   <depend stack="openni_kinect" /> <!-- openni_camera -->
+  <depend stack="robot_model" /> <!-- robot_state_publisher, urdf -->
+  <depend stack="robot_model_visualization" /> <!-- joint_state_publisher -->
   <depend stack="ros" />
-  <depend stack="ros_comm" /> <!-- rospy -->
+  <depend stack="ros_comm" /> <!-- rospy, std_msgs, roscpp -->
+  <depend stack="simulator_gazebo" /> <!-- gazebo_tools, gazebo, gazebo_plugins, gazebo_worlds -->
+  <depend stack="xacro" /> <!-- xacro -->
 
 </stack>

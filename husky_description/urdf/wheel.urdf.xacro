@@ -1,0 +1,113 @@
+<?xml version="1.0"?>
+<!--
+Copyright (c) 2012, Siddhant Ahuja (Sid)
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are met:
+    * Redistributions of source code must retain the above copyright
+      notice, this list of conditions and the following disclaimer.
+    * Redistributions in binary form must reproduce the above copyright
+      notice, this list of conditions and the following disclaimer in the
+      documentation and/or other materials provided with the distribution.
+    * Neither the name of Clearpath Robotics nor the
+      names of its contributors may be used to endorse or promote products
+      derived from this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDERS BE LIABLE FOR ANY
+DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+This program contains the description of the robot wheel model for Clearpath Husky A200
+-->
+<robot xmlns:sensor="http://playerstage.sourceforge.net/gazebo/xmlschema/#sensor"
+	xmlns:controller="http://playerstage.sourceforge.net/gazebo/xmlschema/#controller"
+	xmlns:interface="http://playerstage.sourceforge.net/gazebo/xmlschema/#interface"
+	xmlns:xacro="http://ros.org/wiki/xacro" name="husky_wheel">
+	
+	<property name="M_PI" value="3.14159"/>
+	
+	<!-- Wheel -->
+	
+	<property name="wheel_x_com" value="0.00000000" /> <!-- com : center of mass -->
+	<property name="wheel_y_com" value="0.00000000" /> <!-- com : center of mass -->
+	<property name="wheel_z_com" value="0.00019000" /> <!-- com : center of mass -->
+	
+	<property name="wheel_x_size" value="0.35550000" /> 
+	<property name="wheel_y_size" value="0.35550000" /> 
+	<property name="wheel_z_size" value="0.11430000" />
+	
+	<property name="wheel_mass" value="2.63657000" /> <!-- in kg-->
+	
+	<property name="wheel_ixx_com_cs" value="0.02466885" /> <!-- at center of mass aligned with coordinate system, kg*m^2-->
+	<property name="wheel_ixy_com_cs" value="0.00000000" /> <!-- at center of mass aligned with coordinate system, kg*m^2-->
+	<property name="wheel_ixz_com_cs" value="0.00000000" /> <!-- at center of mass aligned with coordinate system, kg*m^2-->
+	<property name="wheel_iyy_com_cs" value="0.02466885" /> <!-- at center of mass aligned with coordinate system, kg*m^2-->
+	<property name="wheel_iyz_com_cs" value="0.00000000" /> <!-- at center of mass aligned with coordinate system, kg*m^2-->
+	<property name="wheel_izz_com_cs" value="0.04410576" /> <!-- at center of mass aligned with coordinate system, kg*m^2-->
+	
+	<property name="base_x_origin_to_wheel_origin" value="0.25600006" />
+	<property name="base_y_origin_to_wheel_origin" value="0.285475" />
+	<property name="base_z_origin_to_wheel_origin" value="0.03282508" />
+	
+	<property name="base_z_origin_offset" value="0.00317500" /> <!-- origin is offset in + z direction by 3.175mm, so need to bring it back down for visual and collision-->
+
+	<xacro:macro name="husky_wheel" params="fb lr parent translateX translateY flipY"> <!--fb : front, back ; lr: left, right -->
+		<link name="${fb}_${lr}_wheel">
+			<inertial>
+				<mass value="${wheel_mass}" />
+				<origin xyz="${wheel_x_com} ${wheel_y_com} ${wheel_z_com}" />
+				<inertia  ixx="${wheel_ixx_com_cs}" ixy="${wheel_ixy_com_cs}" ixz="${wheel_ixz_com_cs}"
+					iyy="${wheel_iyy_com_cs}" iyz="${wheel_iyz_com_cs}" izz="${wheel_izz_com_cs}" />
+			</inertial>
+			<visual>
+				<origin xyz="0 0 0" rpy="${flipY*M_PI} 0 0" /> 
+				<geometry>
+					<mesh filename="package://husky_description/Media/models/wheel.stl" />
+				</geometry>
+				<material name="DarkGray" />
+			</visual>
+			<collision>
+				<origin xyz="0 0 0" rpy="${flipY*M_PI} 0 0" />
+				<geometry>
+					<mesh filename="package://husky_description/Media/models/wheel.stl" />
+				</geometry>
+			</collision>
+		</link>
+		
+		<gazebo reference="${fb}_${lr}_wheel">
+			<mu1 value="75.0"/>
+			<mu2 value="1.5"/>
+			<kp  value="1000000.0" />
+			<kd  value="1.0" />
+			<fdir1 value="1 0 0"/>
+			<material>Gazebo/Grey</material>
+			<turnGravityOff>false</turnGravityOff>
+		</gazebo>
+
+		<joint name="joint_${fb}_${lr}_wheel" type="continuous">
+			<parent link="${parent}"/>
+			<child link="${fb}_${lr}_wheel"/>
+			<origin xyz="${translateX * base_x_origin_to_wheel_origin} ${translateY * base_y_origin_to_wheel_origin} ${base_z_origin_to_wheel_origin}" rpy="0 0 0" /> 
+			<axis xyz="0 1 0" rpy="0 0 0" />
+			<limit effort="100" velocity="100"/>
+			<joint_properties damping="0.0" friction="0.0"/>
+		</joint>
+
+		<!-- Transmission is important to link the joints and the controller -->
+		<transmission name="joint_${fb}_${lr}_wheel_trans" type="SimpleTransmission">
+			<actuator name="joint_${fb}_${lr}_wheel_motor" />
+			<joint name="joint_${fb}_${lr}_wheel" />
+			<mechanicalReduction>1</mechanicalReduction>
+			<motorTorqueConstant>1</motorTorqueConstant>
+		</transmission>
+   
+  	</xacro:macro>
+</robot>

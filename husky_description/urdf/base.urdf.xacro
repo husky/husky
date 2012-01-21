@@ -1,0 +1,235 @@
+<?xml version="1.0"?>
+<!--
+Copyright (c) 2012, Siddhant Ahuja (Sid), Ryan Gariepy
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are met:
+    * Redistributions of source code must retain the above copyright
+      notice, this list of conditions and the following disclaimer.
+    * Redistributions in binary form must reproduce the above copyright
+      notice, this list of conditions and the following disclaimer in the
+      documentation and/or other materials provided with the distribution.
+    * Neither the name of Clearpath Robotics nor the
+      names of its contributors may be used to endorse or promote products
+      derived from this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDERS BE LIABLE FOR ANY
+DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+This program contains the description of the robot base model for the Clearpath 
+Husky A200
+-->
+
+<robot 
+	xmlns:xi="http://www.w3.org/2001/XInclude"
+	xmlns:gazebo="http://playerstage.sourceforge.net/gazebo/xmlschema/#gz"
+    xmlns:model="http://playerstage.sourceforge.net/gazebo/xmlschema/#model"
+	xmlns:sensor="http://playerstage.sourceforge.net/gazebo/xmlschema/#sensor"
+	xmlns:body="http://playerstage.sourceforge.net/gazebo/xmlschema/#body"
+    xmlns:geom="http://playerstage.sourceforge.net/gazebo/xmlschema/#geom"
+    xmlns:joint="http://playerstage.sourceforge.net/gazebo/xmlschema/#joint"
+	xmlns:controller="http://playerstage.sourceforge.net/gazebo/xmlschema/#controller"
+	xmlns:interface="http://playerstage.sourceforge.net/gazebo/xmlschema/#interface"
+	xmlns:rendering="http://playerstage.sourceforge.net/gazebo/xmlschema/#rendering"
+    xmlns:renderable="http://playerstage.sourceforge.net/gazebo/xmlschema/#renderable"
+    xmlns:physics="http://playerstage.sourceforge.net/gazebo/xmlschema/#physics"
+	xmlns:xacro="http://ros.org/wiki/xacro" name="husky">
+       
+	<!-- Included URDF/XACRO Files -->
+    <include filename="$(find husky_description)/urdf/materials.urdf.xacro" />
+    <include filename="$(find husky_description)/urdf/wheel.urdf.xacro" />
+    <include filename="$(find husky_description)/urdf/parts.urdf.xacro" />
+    
+	<!-- DATA SOURCES -->
+	<!-- All link offsets, CG, limits are obtained from spreadsheet Clearpath_Husky_A200_spec_sheet.xlsx unless stated otherwise -->
+	<!-- All simplified collision geometry are hand approximated from CAD model, sometimes from respective bounding boxes -->
+
+	<!-- PROPERTY LIST -->
+    <!--All units in m-kg-s-radians unit system -->
+    <property name="M_PI" value="3.1415926535897931" />
+
+    <!-- Main Body-base-->
+    <!-- Location of com : center of mass -->
+    <property name="base_x_com" value="-0.08748000" />
+    <property name="base_y_com" value="-0.00085000" />
+    <property name="base_z_com" value="0.09947000" />
+
+    <!-- Size of the base-->
+    <property name="base_x_size" value="0.98740000" /> 
+    <property name="base_y_size" value="0.57090000" /> 
+    <property name="base_z_size" value="0.24750000" />
+
+    <!--Weight of the base-->
+    <property name="base_mass" value="33.45489000" /> <!-- in kg-->
+
+    <!--Inertial values for the base at center of mass, aligned with coordinate system. Units are kg*m^2-->
+    <property name="base_ixx_com_cs" value="0.60216370" />
+    <property name="base_ixy_com_cs" value="-0.02364198" />
+    <property name="base_ixz_com_cs" value="-0.11972132" />
+    <property name="base_iyy_com_cs" value="1.73859574" />
+    <property name="base_iyz_com_cs" value="-0.00154437" />
+    <property name="base_izz_com_cs" value="2.02955229" />
+
+<!-- BASE-FOOTPRINT -->
+    <!-- base_footprint is a fictitious link(frame) that is on the ground right below base_link origin, navigation stack depends on this frame -->
+    <link name="base_footprint">
+        <inertial>
+            <mass value="0.0001" />
+            <origin xyz="0 0 0" />
+            <inertia ixx="0.0001" ixy="0.0" ixz="0.0"
+                iyy="0.0001" iyz="0.0" 
+                izz="0.0001" />
+        </inertial>
+
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <box size="0.001 0.001 0.001" />
+            </geometry>
+        </visual>
+
+        <collision>
+            <origin xyz="0 0 0.0" rpy="0 0 0" /> 
+            <geometry>
+                <box size="0.001 0.001 0.001" />
+            </geometry>
+        </collision>
+    </link>
+
+    <gazebo reference="base_footprint">
+        <material>Gazebo/Green</material>
+        <turnGravityOff>false</turnGravityOff>
+    </gazebo>
+
+    <joint name="base_footprint_joint" type="fixed">
+        <!--NB: While you would think this would make it go up, it is oddly reversed. This moves the joint to 0,0,0 where we want it for rviz, etc. -->
+		<origin xyz="0 0 ${wheel_x_size/2 - base_z_origin_to_wheel_origin - base_z_origin_offset - base_z_origin_offset}" rpy="0 0 0" />
+        <parent link="base_footprint"/>
+        <child link="base_link" />
+    </joint>
+
+<!-- BASE-LINK -->
+    <!--Actual body/chassis of the robot-->
+    <link name="base_link">
+        <inertial>
+            <mass value="${base_mass}" />
+            <!--This is the pose of the inertial reference frame, relative to the link reference frame. The origin of the inertial reference frame needs to be at the center of gravity. The axes of the inertial reference frame do not need to be aligned with the principal axes of the inertia.-->
+            <origin xyz="${base_x_com} ${base_y_com} ${base_z_com}" />
+            <!--The 3x3 rotational inertia matrix. Because the rotational inertia matrix is symmetric, only 6 above-diagonal elements of this matrix are specified here, using the attributes ixx, ixy, ixz, iyy, iyz, izz.-->
+            <inertia ixx="${base_ixx_com_cs}" ixy="${base_ixy_com_cs}" ixz="${base_ixz_com_cs}"
+                iyy="${base_iyy_com_cs}" iyz="${base_iyz_com_cs}" izz="${base_izz_com_cs}" /> 
+        </inertial>
+        
+        <visual>
+            <origin xyz="0 0 ${base_z_origin_offset}" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://husky_description/Media/models/base_link.stl" />
+            </geometry>
+            <material name="Black" />
+        </visual>
+    
+		<collision>
+			<origin xyz="0 0 ${wheel_x_size/2 - base_z_origin_to_wheel_origin - 0.02}" rpy="0 0 0 " />
+			<geometry>
+				<box size = "${base_x_size+0.02} ${base_y_size} ${base_z_size + 0.02}"/> <!--making it slightly bigger in x and z direction-->
+			</geometry>
+		</collision>     
+    </link>
+    <gazebo reference="base_link">
+        <material>Gazebo/FlatBlack</material>
+        <turnGravityOff>false</turnGravityOff>
+    </gazebo>
+    
+
+    <!-- WHEEL macros -->
+	<husky_wheel fb="back" lr="left" parent="base_link" translateX="-1" translateY="1" flipY="-1"/>
+	<husky_wheel fb="back" lr="right" parent="base_link" translateX="-1" translateY="-1" flipY="-1"/>
+	<husky_wheel fb="front" lr="left" parent="base_link" translateX="1" translateY="1" flipY="-1"/>
+	<husky_wheel fb="front" lr="right" parent="base_link" translateX="1" translateY="-1" flipY="-1"/>
+
+
+    <!-- DECORATIONS -->
+    <!-- Top Plate -->
+    <husky_part parent="base_link" name="top_plate" mesh="top_plate" 
+          colour="Yellow"
+          translateX="0.0" translateY="0.0" translateZ="0.005" 
+          rotateX="0.0" rotateY="0.0" rotateZ="0.0"/>
+    <gazebo reference="base_link_top_plate_part">
+        <material>Gazebo/Yellow</material>
+    </gazebo>
+    <!-- User Rail -->
+    <husky_part parent="base_link" name="user_rail" mesh="user_rail"
+          colour="DarkGray"
+          translateX="0.272" translateY="0.0" translateZ="0.245" 
+          rotateX="0.0" rotateY="0.0" rotateZ="0.0"/>
+    <gazebo reference="base_link_user_rail_part">
+        <material>Gazebo/Grey</material>
+    </gazebo>
+    <!-- Front Bumper -->
+    <husky_part parent="base_link" name="front_bumper" mesh="bumper" 
+          colour="DarkGray"
+          translateX="0.490" translateY="0.0" translateZ="0.091" 
+          rotateX="0.0" rotateY="0.0" rotateZ="0.0"/>
+    <gazebo reference="base_link_front_bumper_part">
+        <material>Gazebo/FlatBlack</material>
+    </gazebo>
+    <!-- Rear Bumper -->
+    <husky_part parent="base_link" name="rear_bumper" mesh="bumper"
+          colour="DarkGray"
+          translateX="-0.48" translateY="0.0" translateZ="0.091" 
+          rotateX="0.0" rotateY="0.0" rotateZ="3.14"/>
+    <gazebo reference="base_link_rear_bumper_part">
+        <material>Gazebo/FlatBlack</material>
+    </gazebo>
+	
+	<!-- CONTROLLERS -->
+	<!-- Gazebo controllers -->
+	<gazebo>            	
+
+		<controller:husky_controller name="husky_diff_controller" plugin="libhusky_description.so">
+		        <alwaysOn>true</alwaysOn>
+		        <update>100</update>
+		        <updateRate>100.0</updateRate>
+		        <backLeftJoint>joint_back_right_wheel</backLeftJoint>
+		        <backRightJoint>joint_back_left_wheel</backRightJoint>
+		        <frontLeftJoint>joint_front_right_wheel</frontLeftJoint>
+		        <frontRightJoint>joint_front_left_wheel</frontRightJoint>
+		        <wheelSeparation>${base_y_size}</wheelSeparation>
+		        <wheelDiameter>${wheel_x_size}</wheelDiameter>
+		        <torque>40</torque>
+		        <interface:position name="position_iface_0"/>
+		        <topicName>cmd_vel</topicName>
+        </controller:husky_controller>
+
+        <controller:gazebo_ros_p3d name="p3d_base_controller" plugin="libgazebo_ros_p3d.so">
+            <alwaysOn>true</alwaysOn>
+            <updateRate>100.0</updateRate>
+            <bodyName>base_link</bodyName>
+            <topicName>base_pose_ground_truth</topicName>
+            <gaussianNoise>0.01</gaussianNoise>
+            <frameName>map</frameName>
+            <xyzOffsets>0 0 0</xyzOffsets> 
+            <rpyOffsets>0 0 0</rpyOffsets>
+            <interface:position name="p3d_base_position"/>
+        </controller:gazebo_ros_p3d>
+
+        <canonicalBody>base_footprint</canonicalBody>
+            
+		<!--GazeboRosTime plugin publishes simulation time as the global ROS time over the /clock topic.-->
+		<controller:gazebo_ros_time name="gazebo_ros_time" plugin="libgazebo_ros_time.so">
+			<alwaysOn>true</alwaysOn>
+			<updateRate>1000.0</updateRate>
+			<interface:audio name="dummy_gazebo_ros_time_iface_should_not_be_here"/>
+		</controller:gazebo_ros_time>
+	</gazebo>
+        
+</robot>

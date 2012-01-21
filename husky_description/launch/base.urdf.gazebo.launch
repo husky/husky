@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<!--
+Copyright (c) 2011, Siddhant Ahuja (Sid)
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are met:
+    * Redistributions of source code must retain the above copyright
+      notice, this list of conditions and the following disclaimer.
+    * Redistributions in binary form must reproduce the above copyright
+      notice, this list of conditions and the following disclaimer in the
+      documentation and/or other materials provided with the distribution.
+    * Neither the name of Clearpath Robotics nor the
+      names of its contributors may be used to endorse or promote products
+      derived from this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDERS BE LIABLE FOR ANY
+DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+This program contains the launch file for viewing the Clearpath Husky A200 
+Robot Model in Gazebo
+-->
+<launch>
+
+	<param name="use_sim_time" value="true" />
+
+	<!-- Send the Husky A200 Robot URDF/XACRO to param server -->
+	<param name="robot_description" command="$(find xacro)/xacro.py '$(find husky_description)/urdf/base.urdf.xacro'" />
+
+	<!-- push robot_description to factory and spawn robot in gazebo -->
+	<node name="spawn_robot" pkg="gazebo" type="spawn_model"
+		args="-param robot_description
+		-urdf
+		-z 0
+		-model robot_description"
+		respawn="false" output="screen" />
+
+	<!-- start robot state publisher -->
+	<node pkg="robot_state_publisher" type="state_publisher" name="robot_state_publisher" output="screen" >
+		<param name="publish_frequency" type="double" value="50.0" />
+		<param name="tf_prefix" type="string" value="" />
+	</node>
+
+</launch>

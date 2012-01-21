@@ -1,0 +1,87 @@
+<?xml version="1.0"?>
+<!--
+Copyright (c) 2012, Ryan Gariepy
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are met:
+    * Redistributions of source code must retain the above copyright
+      notice, this list of conditions and the following disclaimer.
+    * Redistributions in binary form must reproduce the above copyright
+      notice, this list of conditions and the following disclaimer in the
+      documentation and/or other materials provided with the distribution.
+    * Neither the name of Clearpath Robotics nor the
+      names of its contributors may be used to endorse or promote products
+      derived from this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDERS BE LIABLE FOR ANY
+DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+This program is a macro for adding decorative parts to the Clearpath Husky A200 model. 
+It is assumed that such parts are fixed to others, and those other parts' inertial 
+parameters account for the decorative parts. Decorative parts currently do not 
+incorporate collision.
+-->
+
+<robot xmlns:sensor="http://playerstage.sourceforge.net/gazebo/xmlschema/#sensor"
+	xmlns:controller="http://playerstage.sourceforge.net/gazebo/xmlschema/#controller"
+	xmlns:interface="http://playerstage.sourceforge.net/gazebo/xmlschema/#interface"
+	xmlns:xacro="http://ros.org/wiki/xacro" name="husky_part">
+	
+	<property name="x_com" value="0.00000000" /> <!-- com : center of mass -->
+	<property name="y_com" value="0.00000000" /> <!-- com : center of mass -->
+	<property name="z_com" value="0.00000000" /> <!-- com : center of mass -->
+	
+	<property name="x_size" value="1.0" /> 
+	<property name="y_size" value="1.0" /> 
+	<property name="z_size" value="1.0" />
+	
+	<property name="mass" value="0.1" /> <!-- in kg-->
+	
+	<property name="ixx_com_cs" value="0.01" /> <!-- at center of mass aligned with coordinate system, kg*m^2-->
+	<property name="ixy_com_cs" value="0.0" /> <!-- at center of mass aligned with coordinate system, kg*m^2-->
+	<property name="ixz_com_cs" value="0.0" /> <!-- at center of mass aligned with coordinate system, kg*m^2-->
+	<property name="iyy_com_cs" value="0.01" /> <!-- at center of mass aligned with coordinate system, kg*m^2-->
+	<property name="iyz_com_cs" value="0.00" /> <!-- at center of mass aligned with coordinate system, kg*m^2-->
+	<property name="izz_com_cs" value="0.01" /> <!-- at center of mass aligned with coordinate system, kg*m^2-->
+	
+	<xacro:macro name="husky_part" params="parent name mesh colour translateX translateY translateZ rotateX rotateY rotateZ">
+		<joint name="${parent}_${name}_joint" type="fixed">
+		    <origin xyz="${translateX} ${translateY} ${translateZ}" 
+		            rpy="${rotateX} ${rotateY} ${rotateZ}" />
+		    <parent link="${parent}" />
+		    <child link="${parent}_${name}_part" />
+		</joint>
+		
+		<link name="${parent}_${name}_part">
+			<inertial>
+				<mass value="${mass}" />
+				<origin xyz="${x_com} ${y_com} ${z_com}" />
+				<inertia ixx="${ixx_com_cs}" ixy="${ixy_com_cs}" ixz="${ixz_com_cs}"
+					iyy="${iyy_com_cs}" iyz="${iyz_com_cs}" izz="${izz_com_cs}" />
+			</inertial>
+			<visual>
+				<origin xyz="0 0 0" rpy="0 0 0" />
+				<geometry>
+					<mesh filename="package://husky_description/Media/models/${mesh}.stl" />
+				</geometry>
+				<material name="${colour}" />
+			</visual>
+			<collision>
+				<origin xyz="0 0 0" rpy="0 0 0"/>
+				<geometry>
+					<box size="0.001 0.001 0.001" /> <!--the collision boundary for parts are taken into account by collision boundary of the base_link-->
+				</geometry>
+			</collision>
+		</link>
+		
+  	</xacro:macro>
+</robot>
