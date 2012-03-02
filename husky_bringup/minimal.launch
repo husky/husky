@@ -1,9 +1,7 @@
 <launch>
+  <arg name="port" default="/dev/clearpath" />
   <node pkg="clearpath_base" type="kinematic.py" name="clearpath_base" ns="husky">
-    <!-- Uncomment the following line to manually specify serial device, rather
-         than autodetecting between available /dev/ttyUSB and /dev/ttyS devices.
-    -->
-    <param name="port" value="/dev/clearpath-serial" />
+    <param name="port" value="$(arg port)" />
     <param name="cmd_fill" value="True" />
 
     <param name="data/system_status" value="10" />
