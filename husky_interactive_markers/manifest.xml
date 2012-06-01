@@ -1,0 +1,18 @@
+<package>
+  <description brief="Interactive control for the Husky.">
+
+    A package that allows controlling a Husky from rviz using interactive markers. 
+
+  </description>
+  <author>Ryan Gariepy</author>
+  <license>BSD</license>
+  <review status="unreviewed" notes=""/>
+  <url>http://ros.org/wiki/husky_interactive_markers</url>
+ 
+  <depend package="roscpp"/>
+  <depend package="visualization_msgs"/>
+  <depend package="interactive_markers"/>
+
+</package>
+
+
