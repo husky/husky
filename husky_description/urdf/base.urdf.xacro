@@ -195,6 +195,7 @@ Husky A200
 	<!-- Gazebo controllers -->
 	<gazebo>            	
 
+	<!--
 		<controller:husky_controller name="husky_diff_controller" plugin="libhusky_description.so">
 		        <alwaysOn>true</alwaysOn>
 		        <update>100</update>
@@ -209,6 +210,7 @@ Husky A200
 		        <interface:position name="position_iface_0"/>
 		        <topicName>cmd_vel</topicName>
         </controller:husky_controller>
+	-->
 
         <controller:gazebo_ros_p3d name="p3d_base_controller" plugin="libgazebo_ros_p3d.so">
             <alwaysOn>true</alwaysOn>
