@@ -1,0 +1,15 @@
+<package>
+  <description brief="husky_navigation">
+
+     husky_navigation
+
+  </description>
+  <author>Ryan Gariepy</author>
+  <license>BSD</license>
+  <review status="unreviewed" notes=""/>
+  <url>http://ros.org/wiki/husky_navigation</url>
+  <depend package="move_base"/>
+  <depend package="gmapping"/>
+</package>
+
+

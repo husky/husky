@@ -1,0 +1,9 @@
+<launch>
+
+  <!--- Run gmapping -->
+  <include file="$(find husky_navigation)/config/gmapping_husky.launch" />
+
+  <!--- Run Move Base -->
+  <include file="$(find husky_navigation)/config/move_base_husky.launch" />
+
+</launch>
