@@ -18,5 +18,7 @@
   <depend stack="ros_comm" /> <!-- rospy, std_msgs, roscpp -->
   <depend stack="simulator_gazebo" /> <!-- gazebo_tools, gazebo, gazebo_plugins, gazebo_worlds -->
   <depend stack="xacro" /> <!-- xacro -->
+  <depend stack="navigation" /> <!-- move_base -->
+  <depend stack="slam_gmapping" /> <!-- gmapping -->
 
 </stack>
