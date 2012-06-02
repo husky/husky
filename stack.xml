@@ -20,5 +20,6 @@
   <depend stack="xacro" /> <!-- xacro -->
   <depend stack="navigation" /> <!-- move_base -->
   <depend stack="slam_gmapping" /> <!-- gmapping -->
+  <depend stack="visualization" /> <!-- interactive_markers -->
 
 </stack>
