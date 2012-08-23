@@ -1,7 +1,7 @@
 <package>
   <description brief="Interactive control for the Husky.">
 
-    A package that allows controlling a Husky from rviz using interactive markers. 
+    An interactive markers package for Husky.
 
   </description>
   <author>Ryan Gariepy</author>

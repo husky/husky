@@ -1,0 +1,8 @@
+pub_rate: 1.0 # Optional
+base_path: '' # Optional, prepended to all diagnostic output
+analyzers:
+  uptime:
+    type: GenericAnalyzer
+    path: 'Uptime'
+    timeout: 5.0
+    startswith: ['Uptime']

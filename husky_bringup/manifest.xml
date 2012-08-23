@@ -10,12 +10,19 @@
      of your machine.
 
   </description>
-  <author>Mike Purvis</author>
+  <author>Mike Purvis, Ryan Gariepy</author>
   <license>BSD</license>
   <review status="unreviewed" notes=""/>
   <url>http://ros.org/wiki/husky_bringup</url>
+  <depend package="rospy"/>
+  <depend package="sensor_msgs"/>
+  <depend package="nav_msgs"/>
+  <depend package="geometry_msgs"/>
   <depend package="clearpath_bringup"/>
   <depend package="clearpath_base"/>
+  <depend package="kdl"/>
+  <depend package="dynamic_reconfigure"/>
+  <depend package="diagnostic_msgs"/>
 
 </package>
 
