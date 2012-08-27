@@ -187,6 +187,8 @@ Husky A200
 		        <wheelSeparation>${base_y_size}</wheelSeparation>
 		        <wheelDiameter>${wheel_x_size}</wheelDiameter>
 		        <torque>35</torque>
+		        <topicName>cmd_vel</topicName>
+		        <interface:position name="position_iface_0"/>
         </controller:husky_plugin>
 	</gazebo>
         

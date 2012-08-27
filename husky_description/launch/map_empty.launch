@@ -1,7 +1,6 @@
 <?xml version="1.0"?>
-<!--
-Copyright (c) 2011, Siddhant Ahuja (Sid)
-All rights reserved.
+<!-- Copyright (c) 2012, Clearpath Robotics, Inc. 
+     All rights reserved.  
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are met:
@@ -25,13 +24,13 @@ ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-This program contains the launch file for viewing the Empty ground plane in Gazebo
+This program contains the launch file for viewing an empty ground plane in Gazebo
 -->
 <launch>
-	<!-- Start the world-->
+	<!-- Start the simulator -->
 	<node name="gazebo" pkg="gazebo" type="gazebo" args="$(find husky_description)/worlds/empty.world" output="screen" respawn="false" />
+
+	<!-- Start the GUI -->
+	<node name="gazebo_gui" pkg="gazebo" type="gui" output="screen" respawn="false" />
 	
-	<!-- Ground Plane-->
-	<param name="g_plane_description"      textfile="$(find husky_description)/Media/models/g_plane.model" />
-	<node name="spawn_g_plane" pkg="gazebo" type="spawn_model" args="-gazebo -param g_plane_description -x 0 -y 0  -z 0 -R 0 -P 0 -Y 0 -model g_plane" respawn="false" output="screen" />
 </launch>

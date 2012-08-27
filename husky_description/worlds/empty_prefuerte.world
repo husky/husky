@@ -1,0 +1,114 @@
+<?xml version="1.0"?>
+<!--
+Copyright (c) 2011, Siddhant Ahuja (Sid)
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are met:
+    * Redistributions of source code must retain the above copyright
+      notice, this list of conditions and the following disclaimer.
+    * Redistributions in binary form must reproduce the above copyright
+      notice, this list of conditions and the following disclaimer in the
+      documentation and/or other materials provided with the distribution.
+    * Neither the name of Clearpath Robotics nor the
+      names of its contributors may be used to endorse or promote products
+      derived from this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDERS BE LIABLE FOR ANY
+DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+This is a Gazebo v0.9 empty world file modified for better view of the 
+robot in the simulation environment
+-->
+
+<gazebo:world 
+  xmlns:xi="http://www.w3.org/2001/XInclude"
+  xmlns:gazebo="http://playerstage.sourceforge.net/gazebo/xmlschema/#gz" 
+  xmlns:model="http://playerstage.sourceforge.net/gazebo/xmlschema/#model" 
+  xmlns:sensor="http://playerstage.sourceforge.net/gazebo/xmlschema/#sensor" 
+  xmlns:window="http://playerstage.sourceforge.net/gazebo/xmlschema/#window" 
+  xmlns:param="http://playerstage.sourceforge.net/gazebo/xmlschema/#param" 
+  xmlns:body="http://playerstage.sourceforge.net/gazebo/xmlschema/#body" 
+  xmlns:geo="http://willowgarage.com/xmlschema/#geo" 
+  xmlns:geom="http://playerstage.sourceforge.net/gazebo/xmlschema/#geom" 
+  xmlns:joint="http://playerstage.sourceforge.net/gazebo/xmlschema/#joint" 
+  xmlns:interface="http://playerstage.sourceforge.net/gazebo/xmlschema/#interface" 
+  xmlns:ui="http://playerstage.sourceforge.net/gazebo/xmlschema/#ui"
+  xmlns:rendering="http://playerstage.sourceforge.net/gazebo/xmlschema/#rendering" 
+  xmlns:renderable="http://playerstage.sourceforge.net/gazebo/xmlschema/#renderable" 
+  xmlns:controller="http://playerstage.sourceforge.net/gazebo/xmlschema/#controller"
+  xmlns:physics="http://playerstage.sourceforge.net/gazebo/xmlschema/#physics" >
+
+  <thread>4</thread>
+  <verbosity>5</verbosity>
+
+  <!-- Physics Engine: ODE parameters -->
+  <!-- cfm is 1e-5 for single precision -->
+  <!-- here's the global contact cfm/erp -->
+  <physics:ode>
+    <stepTime>0.001</stepTime> <!--time duration between simulation steps-->
+    <gravity>0 0 -9.8</gravity> <!--global gravitational acceleration (X Y Z)-->
+    <cfm>0.0000000001</cfm> <!--constraint force mixing, Increasing CFM, especially the global CFM, can reduce the numerical errors in the simulation.-->
+    <erp>0.2</erp> <!-- error reduction parameter, value between 0 and 1, during each simulation step each joint applies a special force to bring its bodies back into correct alignment. A value of ERP=0.1 to 0.8 is recommended (0.2 is the default)-->
+    <quickStep>true</quickStep> <!--Step the world. This uses an iterative method that takes time on the order of m*N and memory on the order of m, where m is the total number of constraint rows and N is the number of iterations.-->
+    <quickStepIters>20</quickStepIters> <!--number of iterations that the QuickStep method performs per step. More iterations will give a more accurate solution, but will take longer to compute. The default is 20 iterations.-->
+    <quickStepW>1.3</quickStepW>
+    <contactMaxCorrectingVel>100.0</contactMaxCorrectingVel> <!--maximum correcting velocity that contacts are allowed to generate. The default value is infinity (i.e. no limit). Reducing this value can help prevent "popping" of deeply embedded objects-->
+    <contactSurfaceLayer>0.001</contactSurfaceLayer> <!--depth of the surface layer around all geometry objects. Contacts are allowed to sink into the surface layer up to the given depth before coming to rest. The default value is zero. Increasing this to some small value (e.g. 0.001) can help prevent jittering problems due to contacts being repeatedly made and broken.-->
+  </physics:ode>
+
+  <geo:origin>
+    <lat>37.4270909558</lat><lon>-122.077919338</lon>
+  </geo:origin>
+
+  <rendering:gui>
+    <type>fltk</type>
+    <size>480 320</size>
+    <pos>0 0</pos>
+    <frames>
+      <row height="100%">
+        <camera width="100%">
+          <xyz>0.3 0 3</xyz>
+         <!-- <xyz>4 0.9 1.3</xyz>-->
+          <rpy>0 90 90</rpy>
+          <!--<rpy>0 27.10 -95</rpy>-->
+        </camera>
+      </row>
+    </frames>
+  </rendering:gui>
+
+
+  <rendering:ogre>
+    <ambient>0.5 0.5 0.5 0.5</ambient>
+    <sky>
+      <material>Gazebo/CloudySky</material>
+    </sky>
+    <grid>false</grid>
+    <maxUpdateRate>10.</maxUpdateRate>
+    <shadowTechnique>none</shadowTechnique>
+    <shadows>false</shadows>
+  </rendering:ogre>
+
+
+  
+  <!-- White Point light -->
+  <model:renderable name="white_point_light">
+    <xyz>0.0 0.0 30.0</xyz>
+    <enableGravity>false</enableGravity>
+    <light>
+      <type>point</type>
+      <diffuseColor>1 1 1</diffuseColor>
+      <specularColor>0 0 0</specularColor>
+      <attenuation>0.001 0.001 0.001</attenuation>
+      <range>30</range>
+    </light>
+  </model:renderable>
+</gazebo:world>

@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <!--
-Copyright (c) 2011, Siddhant Ahuja (Sid)
+Copyright (c) 2012, Clearpath Robotics
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without
@@ -25,9 +25,10 @@ ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-This program contains the launch file for viewing the Clearpath Husky A200 
-Robot Model in Gazebo
+This program is a launch file for spawning the Clearpath Husky A200 
+robot model in Gazebo
 -->
+
 <launch>
 
 	<param name="use_sim_time" value="true" />

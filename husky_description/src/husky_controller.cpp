@@ -20,7 +20,7 @@
  */
 /*
  * Desc: ROS interface to a Position controller for a Differential drive Husky Robot
- * Author: Siddhant Ahuja (adapted from Daniel Hewlett)
+ * Author: Siddhant Ahuja/Ryan Gariepy (adapted from Daniel Hewlett)
  */
 
 #include <algorithm>
@@ -49,7 +49,7 @@
 
 using namespace gazebo;
 
-GZ_REGISTER_DYNAMIC_CONTROLLER("husky_controller", DiffDrivePlugin); 
+GZ_REGISTER_DYNAMIC_CONTROLLER("husky_plugin", DiffDrivePlugin); 
 
 enum
 {
@@ -237,7 +237,7 @@ void DiffDrivePlugin::UpdateChild()
 	d_avg_right = (d4 + d2) / 2 ;
 	
 	dr = (d_avg_left + d_avg_right) / 2;
-	da = (d_avg_left - d_avg_right) / ws;
+	da = (d_avg_right - d_avg_left) / ws;
 
 	// Compute odometric pose
 	odomPose[0] += dr * cos(odomPose[2]);
@@ -291,28 +291,22 @@ void DiffDrivePlugin::GetPositionCmd()
 
 	double vr, va;
 
-	vr = x_; //myIface->data->cmdVelocity.pos.x;
-	va = rot_; //myIface->data->cmdVelocity.yaw;
-
-	//std::cout << "X: [" << x_ << "] ROT: [" << rot_ << "]" << std::endl;
+	vr = x_; 
+	va = rot_; 
 
 	// Changed motors to be always on, which is probably what we want anyway
-	enableMotors = true; //myIface->data->cmdEnableMotors > 0;
+	enableMotors = true; 
 
-	//std::cout << enableMotors << std::endl;
-
-	wheelSpeed[BACKLEFT] = vr + va * **(wheelSepP) / 2;
-	wheelSpeed[BACKRIGHT] = vr - va * **(wheelSepP) / 2;
-	wheelSpeed[FRONTLEFT] = vr + va * **(wheelSepP) / 2;
-	wheelSpeed[FRONTRIGHT] = vr - va * **(wheelSepP) / 2;
-	lock.unlock();
+	wheelSpeed[BACKLEFT] = vr - va * **(wheelSepP) / 2;
+	wheelSpeed[BACKRIGHT] = vr + va * **(wheelSepP) / 2;
+	wheelSpeed[FRONTLEFT] = vr - va * **(wheelSepP) / 2;
+    wheelSpeed[FRONTRIGHT] = vr + va * **(wheelSepP) / 2;
+    lock.unlock();
 }
 
-// NEW: Store the velocities from the ROS message
+// Store the velocities from the ROS message
 void DiffDrivePlugin::cmdVelCallback(const geometry_msgs::Twist::ConstPtr& cmd_msg)
 {
-	//std::cout << "BEGIN CALLBACK\n";
-
 	lock.lock();
 
 	x_ = cmd_msg->linear.x;
@@ -320,7 +314,6 @@ void DiffDrivePlugin::cmdVelCallback(const geometry_msgs::Twist::ConstPtr& cmd_m
 
 	lock.unlock();
 
-	//std::cout << "END CALLBACK\n";
 }
 
 // NEW: custom callback queue thread
@@ -330,12 +323,11 @@ void DiffDrivePlugin::QueueThread()
 
 	while (alive_ && rosnode_->ok())
 	{
-		//    std::cout << "CALLING STUFF\n";
 		queue_.callAvailable(ros::WallDuration(timeout));
 	}
 }
 
-// NEW: Update this to publish odometry topic
+// Publish odometry topic
 void DiffDrivePlugin::publish_odometry()
 {
 	// get current time
@@ -343,7 +335,6 @@ void DiffDrivePlugin::publish_odometry()
 
 	// getting data for base_footprint to odom transform
 	btQuaternion qt;
-	// TODO: Is there something wrong here? RVIZ has a problem?
 	qt.setEulerZYX(pos_iface_->data->pose.yaw, pos_iface_->data->pose.pitch, pos_iface_->data->pose.roll);
 	btVector3 vt(pos_iface_->data->pose.pos.x, pos_iface_->data->pose.pos.y, pos_iface_->data->pose.pos.z);
 	tf::Transform base_footprint_to_odom(qt, vt);
@@ -372,7 +363,6 @@ void DiffDrivePlugin::publish_odometry()
 	odom_.header.frame_id = tf::resolve(tf_prefix_, "odom");
 	odom_.child_frame_id = "base_footprint";
 
-	//odom_.header.stamp = current_time_;
 	odom_.header.stamp.sec = (Simulator::Instance()->GetSimTime()).sec;
 	odom_.header.stamp.nsec = (Simulator::Instance()->GetSimTime()).nsec;
 
@@ -382,7 +372,6 @@ void DiffDrivePlugin::publish_odometry()
 // Update the data in the interface
 void DiffDrivePlugin::write_position_data()
 {
-	// TODO: Data timestamp
 	pos_iface_->data->head.time = Simulator::Instance()->GetSimTime().Double();
 
 	pos_iface_->data->pose.pos.x = odomPose[0];
