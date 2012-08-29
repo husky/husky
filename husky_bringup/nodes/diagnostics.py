@@ -34,6 +34,12 @@ class HuskyDiagnostics():
         rospy.Subscriber('husky/data/safety_status', SafetyStatus, self.HandleSafetyStatus)
         rospy.Subscriber('husky/data/power_status', PowerStatus, self.HandlePowerStatus)
 
+        self.stat_estop = [] 
+        self.stat_power = []
+        self.stat_voltage = []
+        self.stat_temp = []
+        self.stat_uptime = []
+
         # Should publish: Estop, charge, voltage, current, temperatures
 
     def _publish(self, time):
@@ -46,15 +52,20 @@ class HuskyDiagnostics():
         diag.header.stamp = time
 
         # E-Stop
-        diag.status.append(self.stat_estop)
+        if self.stat_estop:
+            diag.status.append(self.stat_estop)
         # Power
-        diag.status.append(self.stat_power)
+        if self.stat_power:
+            diag.status.append(self.stat_power)
         # Voltage
-        diag.status.append(self.stat_voltage)
+        if self.stat_voltage:
+            diag.status.append(self.stat_voltage)
         # Temperature
-        diag.status.append(self.stat_temp)
+        if self.stat_temp:
+            diag.status.append(self.stat_temp)
         # Uptime
-        diag.status.append(self.stat_uptime)
+        if self.stat_uptime:
+            diag.status.append(self.stat_uptime)
 
         # Publish
         print diag
