@@ -1,0 +1,1 @@
+SUBSYSTEMS=="usb", ATTRS{manufacturer}=="Hokuyo*", SYMLINK+="hokuyo hokuyo_$attr{devpath}", MODE="0666"
