@@ -11,6 +11,16 @@
         <param name="data/differential_output" value="10" />
         <param name="data/power_status" value="1" />
     </node>
+
+    <!-- Teleop -->
+    <include file="$(find clearpath_teleop)/teleop.launch">
+      <arg name="drive_speed" value="1.0" />
+      <arg name="turn_speed" value="1.0" />
+      <arg name="cmd_topic" value="husky/cmd_vel" />
+    </include>
+
+    <!-- Android app chooser -->
+    <include file="$(find husky_bringup)/app_manager.launch"/>
    
     <!-- Provide interactive markers capability --> 
     <node pkg="husky_interactive_markers" name="interactive_markers" type="husky_marker_server">
@@ -25,8 +35,9 @@
 		<param name="gyro_scale_correction" value="1.0" />
     </node>
 
-	<!-- send Husky urdf to param server -->
-   	<param name="robot_description" command="$(find xacro)/xacro.py '$(find husky_description)/urdf/base.urdf.xacro'" />
-	<node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher" />
-	<node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" />
+    <!-- send Husky urdf to param server -->
+    <param name="robot_description" command="$(find xacro)/xacro.py '$(find husky_description)/urdf/base.urdf.xacro'" />
+    <node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher" />
+    <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" />
+
 </launch>
