@@ -177,7 +177,7 @@ Husky A200
     </gazebo>
 
     <gazebo>
-		<controller:husky_plugin name="husky_diff_controller" plugin="libhusky_description.so">
+		<controller:husky_plugin name="husky_diff_controller" plugin="libhusky_gazebo_plugins.so">
 		        <alwaysOn>true</alwaysOn>
 		        <updateRate>100.0</updateRate>
 		        <backLeftJoint>joint_back_left_wheel</backLeftJoint>
