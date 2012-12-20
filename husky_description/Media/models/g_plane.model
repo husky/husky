@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <!--
-Copyright (c) 2012, Siddhant Ahuja/WAVELab, Ryan Gariepy/Clearpath Robotics
+Copyright (c) 2011, Siddhant Ahuja/WAVELab, Ryan Gariepy/Clearpath Robotics
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without
@@ -25,39 +25,27 @@ ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-This program contains the materials for the Clearpath Husky A200 model
+This program contains the model file for a ground plane in Gazebo
 -->
+ 
+ <!-- ground plane -->
+ <model:physical name="g_plane">
+    <xyz>0 0 0</xyz>	
+    <rpy>0 0 0</rpy>
+    <static>true</static>
 
-<robot>
-	<material name="Black">
-		<color rgba="0.0 0.0 0.0 1.0"/>
-	</material>
-
-	<material name="Blue">
-		<color rgba="0.0 0.0 0.8 1.0"/>
-	</material>
-
-	<material name="Green">
-		<color rgba="0.0 0.8 0.0 1.0"/>
-	</material>
-
-	<material name="Gray">
-		<color rgba="0.7 0.7 0.7 1.0"/>
-	</material>
-
-	<material name="DarkGray">
-		<color rgba="0.3 0.3 0.3 1.0"/>
-	</material>
-
-	<material name="Red">
-		<color rgba="0.8 0.0 0.0 1.0"/>
-	</material>
-
-	<material name="White">
-		<color rgba="1.0 1.0 1.0 1.0"/>
-	</material>
-	
-	<material name="Yellow">
-		<color rgba="0.8 0.8 0.0 1.0"/>
-	</material>
-</robot>
+    <body:plane name="plane">
+      <geom:plane name="plane">
+        <laserRetro>2000.0</laserRetro>
+        <mu1>50.0</mu1> <!--friction coeficients-->
+        <mu2>50.0</mu2> <!--friction coeficients-->
+        <kp>1000000000.0</kp> <!--contact spring coeficients-->
+        <kd>1.0</kd> <!--contact spring coeficients-->
+        <normal>0 0 1</normal>
+        <size>102.4 102.4</size>
+        <segments>10 10</segments>
+        <uvTile>100 100</uvTile>
+        <material>Gazebo/GrayGrid</material>
+      </geom:plane>
+    </body:plane>
+  </model:physical>
