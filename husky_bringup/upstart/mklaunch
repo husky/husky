@@ -1,0 +1,10 @@
+#!/bin/bash
+
+path=$1
+echo "<launch>"
+echo "    <!-- Generated from launch files in $path -->"
+for file in $path/*.launch
+do
+echo "    <include file=\"$file\" />"
+done
+echo "</launch>"
