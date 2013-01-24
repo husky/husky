@@ -1,0 +1,1 @@
+ATTRS{idProduct}=="6001", ATTRS{idVendor}=="0403", ATTRS{product}=="Clearpath*", MODE="0666", PROGRAM="/usr/sbin/clearpath-name '%s{product}'", SYMLINK+="%c"

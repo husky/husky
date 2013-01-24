@@ -1,6 +1,0 @@
-build
-lib
-bin
-pyc
-husky_bringup/cfg/*.cfgc
-husky_bringup/cfg/cpp
