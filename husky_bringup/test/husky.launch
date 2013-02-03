@@ -1,6 +1,6 @@
 <launch>
     <!-- Base driver -->
-    <arg name="port" default="/dev/ttyUSB0" />
+    <arg name="port" default="/dev/prolific" />
     <node pkg="clearpath_base" type="kinematic.py" name="clearpath_base" ns="husky">
         <param name="port" value="$(arg port)" />
         <param name="cmd_fill" value="True" />

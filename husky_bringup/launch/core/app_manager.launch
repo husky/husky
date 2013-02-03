@@ -1,4 +1,5 @@
 <launch>
+  <!-- App manager for Android devices -->
   <param name="robot/name" value="husky"/>
   <param name="robot/type" value="husky"/>
   <node pkg="app_manager" type="appmaster" name="appmaster" args="-p 11312"/>
