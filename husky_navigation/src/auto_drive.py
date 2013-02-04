@@ -46,8 +46,8 @@ class AutoDrive(object):
             self.enable = True
             rospy.loginfo('Autonomous On')
         else:
-            self.rospy.loginfo('Autonomous Off')
-            enable = False
+            rospy.loginfo('Autonomous Off')
+            self.enable = False
 
     def odom_callback(self,data):
         if self.received_first_odom:
@@ -68,9 +68,9 @@ class AutoDrive(object):
     def output_latest_command(self,event):
         if self.enable and self.watchdog:
             latest_twist = Twist()
-            x = curr_odom.pose.pose.position.x
-            y = curr_odom.pose.pose.position.y
-            quat = curr_odom.pose.pose.orientation
+            x = self.curr_odom.pose.pose.position.x
+            y = self.curr_odom.pose.pose.position.y
+            quat = self.curr_odom.pose.pose.orientation
             euler = euler_from_quaternion([quat.x,quat.y,quat.z,quat.w])
             yaw = euler[2]
 
@@ -86,12 +86,12 @@ class AutoDrive(object):
             e_yaw = math.asin(e_yaw)
 
             reqd_turn = self.ky * (e_yaw) + math.atan2(self.kc*e_ct,self.reqd_fwd)
-            rospy.loginfo("ct:%f,ey:%f",math.atan2(self.kc*e_ct,reqd_fwd),self.ky*e_yaw)
-            rospy.loginfo("control_output: %f",self.reqd_turn)
+            rospy.loginfo("ct:%f,ey:%f",math.atan2(self.kc*e_ct,self.reqd_fwd),self.ky*e_yaw)
+            rospy.loginfo("control_output: %f",reqd_turn)
             latest_twist.linear.x = self.reqd_fwd;
             latest_twist.angular.z = reqd_turn;
 
-            command_pub.publish(latest_twist)
+            self.command_pub.publish(latest_twist)
     	elif self.enable:
     		rospy.loginfo("No new position data :(");	
 
