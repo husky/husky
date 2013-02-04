@@ -18,13 +18,13 @@ from tf.transformations import euler_from_quaternion
 class AutoDrive(object):
     def __init__(self):
         rospy.init_node('auto_drive')
-        enable = False
-        watchdog = False
-        curr_odom = PoseWithCovarianceStamped()
-        first_odom = PoseWithCovarianceStamped()
-        received_odom = False
-        received_first_odom = False
-        command_pub = rospy.Publisher('husky/cmd_vel',Twist)
+        self.enable = False
+        self.watchdog = False
+        self.curr_odom = PoseWithCovarianceStamped()
+        self.first_odom = PoseWithCovarianceStamped()
+        self.received_odom = False
+        self.received_first_odom = False
+        self.command_pub = rospy.Publisher('husky/cmd_vel',Twist)
 
         joy_sub = rospy.Subscriber('teleop/joy',Joy,self.joy_callback)
         odom_sub = rospy.Subscriber('robot_pose_ekf/odom',PoseWithCovarianceStamped,self.odom_callback)
@@ -32,72 +32,71 @@ class AutoDrive(object):
         rospy.Timer(rospy.Duration(0.5), self.odom_watchdog)   
 
         #variables used for calculating trajectory controller
-        last_theta_meas = 0
-        curr_theta = 0
-        last_curr_theta = 0
-        curr_wrap_counter = 0
-        r = rospy.get_param('~radius',3)
-        ky = 0.5
-        kc = 0.1
-        reqd_fwd = rospy.get_param('~fwd_vel',0.5)
+        self.last_theta_meas = 0
+        self.curr_theta = 0
+        self.last_curr_theta = 0
+        self.curr_wrap_counter = 0
+        self.r = rospy.get_param('~radius',3)
+        self.ky = 0.5
+        self.kc = 0.1
+        self.reqd_fwd = rospy.get_param('~fwd_vel',0.5)
 
-    def joy_callback(data):
-	    if data.buttons[3] == 1:
-		    self.enable = True
-    		rospy.loginfo('Autonomous On')
-	    else:
-		    self.rospy.loginfo('Autonomous Off')
-    		enable = False
+    def joy_callback(self,data):
+        if data.buttons[3] == 1:
+            self.enable = True
+            rospy.loginfo('Autonomous On')
+        else:
+            self.rospy.loginfo('Autonomous Off')
+            enable = False
 
-    def odom_callback(data):
+    def odom_callback(self,data):
+        if self.received_first_odom:
+            self.received_odom = True
+            self.curr_odom = data
+        else:
+            self.first_odom = data
+            self.received_first_odom = True
 
-	    if self.received_first_odom:
-		    self.received_odom = True
-    		self.curr_odom = data
-    	else:
-    		self.first_odom = data
-		    self.received_first_odom = True
-
-    def odom_watchdog(event):
-    	if self.received_odom:
-	    	self.watchdog = True
-		    self.received_odom = False
-    	else:
-    		watchdog = False
+    def odom_watchdog(self,event):
+        if self.received_odom:
+            self.watchdog = True
+            self.received_odom = False
+        else:
+            watchdog = False
 			
 
-    def output_latest_command(event):
-	    if self.enable and self.watchdog:
-		    latest_twist = Twist()
-	    	x = curr_odom.pose.pose.position.x
-		    y = curr_odom.pose.pose.position.y
-    		quat = curr_odom.pose.pose.orientation
-	    	euler = euler_from_quaternion([quat.x,quat.y,quat.z,quat.w])
-		    yaw = euler[2]
-			
-    		rospy.loginfo("X:%f,Y:%f,yaw:%f",x,y,yaw)
-    
-	    	curr_theta = math.atan2(y,x);
-		
-		    goal_theta = curr_theta + (math.pi)/2
-		
-    		e_ct = -r + math.fabs(math.sqrt(x*x + y*y))
-	    	e_yaw = goal_theta - yaw
-		    e_yaw = math.sin(e_yaw)
-    		e_yaw = math.asin(e_yaw)
-		
-	    	reqd_turn = ky * (e_yaw) + math.atan2(kc*e_ct,reqd_fwd)
-		    rospy.loginfo("ct:%f,ey:%f",math.atan2(kc*e_ct,reqd_fwd),ky*e_yaw)
-    		rospy.loginfo("control_output: %f",reqd_turn)
-    		latest_twist.linear.x = reqd_fwd;
-	    	latest_twist.angular.z = reqd_turn;
+    def output_latest_command(self,event):
+        if self.enable and self.watchdog:
+            latest_twist = Twist()
+            x = curr_odom.pose.pose.position.x
+            y = curr_odom.pose.pose.position.y
+            quat = curr_odom.pose.pose.orientation
+            euler = euler_from_quaternion([quat.x,quat.y,quat.z,quat.w])
+            yaw = euler[2]
 
-	    	command_pub.publish(latest_twist)
+            rospy.loginfo("X:%f,Y:%f,yaw:%f",x,y,yaw)
+
+            self.curr_theta = math.atan2(y,x);
+
+            goal_theta = self.curr_theta + (math.pi)/2
+
+            e_ct = -self.r + math.fabs(math.sqrt(x*x + y*y))
+            e_yaw = goal_theta - yaw
+            e_yaw = math.sin(e_yaw)
+            e_yaw = math.asin(e_yaw)
+
+            reqd_turn = self.ky * (e_yaw) + math.atan2(self.kc*e_ct,self.reqd_fwd)
+            rospy.loginfo("ct:%f,ey:%f",math.atan2(self.kc*e_ct,reqd_fwd),self.ky*e_yaw)
+            rospy.loginfo("control_output: %f",self.reqd_turn)
+            latest_twist.linear.x = self.reqd_fwd;
+            latest_twist.angular.z = reqd_turn;
+
+            command_pub.publish(latest_twist)
     	elif self.enable:
     		rospy.loginfo("No new position data :(");	
 
 if __name__ == '__main__':
-    obj = AutoDrive
+    obj = AutoDrive()
     rospy.loginfo("Autonomous Drive Node On: Waiting for auto 'Y' button")
     try:
         rospy.spin()
