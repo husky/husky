@@ -23,6 +23,7 @@
   <depend package="kdl"/>
   <depend package="dynamic_reconfigure"/>
   <depend package="diagnostic_msgs"/>
+  <depend package="app_manager"/>
 
 </package>
 

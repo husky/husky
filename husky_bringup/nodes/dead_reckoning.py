@@ -85,10 +85,10 @@ class DeadReckoning(object):
         # Calculate deltas
         dr = ((data.encoders[0].travel - self.last_encoder.encoders[0].travel) +
               (data.encoders[1].travel - self.last_encoder.encoders[1].travel)) / 2;
-        da = ((data.encoders[0].travel - self.last_encoder.encoders[0].travel) - 
-              (data.encoders[1].travel - self.last_encoder.encoders[1].travel)) / self.width;
+        da = ((data.encoders[1].travel - self.last_encoder.encoders[1].travel) - 
+              (data.encoders[0].travel - self.last_encoder.encoders[0].travel)) / self.width;
         ddr = (data.encoders[0].speed + data.encoders[1].speed)/2;
-        dda = (data.encoders[0].speed - data.encoders[1].speed)/self.width;
+        dda = (data.encoders[1].speed - data.encoders[0].speed)/self.width;
         self.last_encoder = data
 
         # Update data

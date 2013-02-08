@@ -8,5 +8,7 @@
     version: master}
 - git: {local-name: clearpath_common, uri: 'https://github.com/clearpathrobotics/clearpath_common',
     version: master}
-- git: {local-name: clearpath_kinect, uri: 'https://github.com/clearpathrobotics/clearpath_kinect',
+- git: {local-name: husky_apps, uri: 'https://github.com/clearpathrobotics/husky_apps',
+    version: master}
+- git: {local-name: husky_simulator, uri: 'https://github.com/clearpathrobotics/husky_simulator',
     version: master}

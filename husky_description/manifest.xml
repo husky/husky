@@ -2,7 +2,7 @@
 	<description brief="husky_description">
 		Clearpath Husky A200 Robot Description
 	</description>
-	<author>Siddhant Ahuja/siddahuja@gmail.com/WAVELab, Ryan Gariepy/rgariepy@clearpathrobotics.com/Clearpath Robotics</author>
+	<author>Ryan Gariepy/Clearpath Robotics</author>
 	<license>BSD</license>
 	<review status="unreviewed" notes=""/>
 	<url>http://ros.org/wiki/husky_description</url>
@@ -13,20 +13,9 @@
 	<!--URDF specific-->
 	<depend package="urdf" />
 	<depend package="xacro" />
-	<!--Gazebo specific-->
-	<depend package="gazebo" />
-	<depend package="gazebo_tools" />
-	<depend package="gazebo_worlds"/>
-	<depend package="gazebo_plugins"/>
 
 	<depend package="robot_state_publisher"/>
 	<depend package="joint_state_publisher"/>
-	<export>
-        <gazebo plugin_path="${prefix}/lib" />
-	</export>
-	<export>
-		<gazebo gazebo_media_path="${prefix}" />
-	</export>
 </package>
 
 

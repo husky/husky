@@ -1,0 +1,3 @@
+apps:
+ - display: Android Teleop
+   app: husky_android_teleop/android_teleop
