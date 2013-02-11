@@ -20,5 +20,6 @@
   <depend stack="slam_gmapping" /> <!-- gmapping -->
   <depend stack="visualization" /> <!-- interactive_markers -->
   <depend stack="multimaster_experimental" /> <!-- app_manager -->
+  <depend stack="orocos_kinematics_dynamics" /> <!-- kdl -->
 
 </stack>
