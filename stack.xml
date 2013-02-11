@@ -10,7 +10,7 @@
   <url>http://ros.org/wiki/clearpath_husky</url>
   <depend stack="clearpath_common" /> <!-- clearpath_bringup, clearpath_teleop, clearpath_base -->
   <depend stack="common_msgs" /> <!-- geometry_msgs -->
-  <depend stack="openni_kinect" /> <!-- openni_camera -->
+  <depend stack="openni_camera" /> <!-- openni_camera -->
   <depend stack="robot_model" /> <!-- robot_state_publisher, urdf -->
   <depend stack="robot_model_visualization" /> <!-- joint_state_publisher -->
   <depend stack="ros" />
