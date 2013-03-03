@@ -94,7 +94,7 @@ void HuskyMarkerServer::createInteractiveMarkers()
   InteractiveMarker int_marker;
   int_marker.header.frame_id = link_name;
   int_marker.name = "husky_marker";
-  //int_marker.description = "Move the Husky";
+  //int_marker.description = "Move the Husky"; // This doesn't really look good in rviz
   
   InteractiveMarkerControl control;
 
@@ -114,18 +114,8 @@ void HuskyMarkerServer::createInteractiveMarkers()
   control.name = "rotate_z";
   
   control.interaction_mode = InteractiveMarkerControl::MOVE_ROTATE;
-  //control.interaction_mode = InteractiveMarkerControl::ROTATE_AXIS;
   int_marker.controls.push_back(control);
 
-  // Commented out for non-holonomic Husky. If holonomic, can move in y.
-  /*control.orientation.w = 1;
-  control.orientation.x = 0;
-  control.orientation.y = 0;
-  control.orientation.z = 1;
-  control.name = "move_y";
-  control.interaction_mode = InteractiveMarkerControl::MOVE_AXIS;
-  int_marker.controls.push_back(control);*/
-  
   server.insert(int_marker, boost::bind( &HuskyMarkerServer::processFeedback, this, _1 ));
   
   server.applyChanges();
