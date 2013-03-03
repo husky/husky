@@ -29,10 +29,11 @@ This program contains the launch file for viewing the Clearpath Husky A200 Robot
 -->
 <launch>
 	<arg name="gui" default="True" />
+	<arg name="rviz_config" default="$(find husky_description)/launch/urdf_view.rviz" />
 	<!-- send Husky urdf to param server -->
    	<param name="robot_description" command="$(find xacro)/xacro.py '$(find husky_description)/urdf/base.urdf.xacro'" />
 	<param name="use_gui" value="$(arg gui)"/>
 	<node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" />
 	<node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher" />
-	<node name="rviz" pkg="rviz" type="rviz" args="-d $(find husky_description)/urdf/urdf.vcg" />
+	<node name="rviz" pkg="rviz" type="rviz" args="-d $(arg rviz_config)" />
 </launch>
