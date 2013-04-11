@@ -4,6 +4,7 @@
 
 log_file=/tmp/robot-upstart.log
 DATE=`date`
+ROSLAUNCH_USERNAME=user
 
 echo "$DATE: robot job using setup file /etc/ros/setup.bash" >> $log_file
 source /etc/ros/setup.bash
@@ -13,6 +14,7 @@ echo "$DATE: robot job on interface interface0" >> $log_file
 export ROS_IP=`ifconfig interface0 | grep -o 'inet addr:[^ ]*' | cut -d: -f2`
 export ROS_MASTER_URI=http://$ROS_IP:portnum
 export ROS_LOG_DIR=/tmp
+export ROS_HOME=/home/${ROSLAUNCH_USERNAME}/.ros
 
 echo "$DATE: robot job launching with ROS_MASTER_URI=$ROS_MASTER_URI" >> $log_file
 
@@ -24,4 +26,4 @@ fi
 LAUNCH_FILENAME=/tmp/robot-job.launch
 /usr/sbin/mklaunch /etc/ros/release/robot/job.d > $LAUNCH_FILENAME
 
-setuidgid user roslaunch $LAUNCH_FILENAME
+setuidgid $ROSLAUNCH_USERNAME roslaunch $LAUNCH_FILENAME
