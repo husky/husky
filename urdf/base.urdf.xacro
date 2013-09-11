@@ -120,7 +120,7 @@ Husky A200
         <visual>
             <origin xyz="0 0 ${base_z_origin_offset}" rpy="0 0 0" />
             <geometry>
-                <mesh filename="package://husky_description/Media/models/base_link.stl" />
+                <mesh filename="package://husky_description/models/base_link.stl" />
             </geometry>
             <material name="Black" />
         </visual>
