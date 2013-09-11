@@ -1,7 +1,0 @@
-<launch>
-
-<include file="$(find husky_localization)/outdoor_ekf.launch"/>
-
-<node pkg="husky_navigation" type="auto_drive" name="auto_drive"/>`
-
-</launch>

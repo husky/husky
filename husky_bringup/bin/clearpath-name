@@ -1,4 +1,0 @@
-#!/usr/bin/python
-
-import sys
-print "clearpath/%s" % sys.argv[1].split('/', 2)[1]

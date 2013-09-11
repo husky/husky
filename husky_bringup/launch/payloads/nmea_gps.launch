@@ -1,7 +1,0 @@
-<launch>
-  <node ns="gps" pkg="nmea_gps_driver" type="nmea_gps_driver.py" name="nmea_gps" respawn="true">
-    <param name="port" value="/dev/clearpath/gps" />
-    <param name="baud" value="9600" />
-    <param name="useRMC" value="true" />
-  </node>
-</launch>

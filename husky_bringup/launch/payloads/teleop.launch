@@ -1,9 +1,0 @@
-<launch>
-  <group ns="teleop">
-    <include file="$(find clearpath_teleop)/teleop.launch">
-      <arg name="drive_speed" value="1.0" />
-      <arg name="turn_speed" value="1.0" />
-      <arg name="cmd_topic" value="/husky/cmd_vel" />
-    </include>
-  </group>
-</launch>
