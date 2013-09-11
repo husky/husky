@@ -45,9 +45,9 @@ Husky A200
 	xmlns:xacro="http://ros.org/wiki/xacro" name="husky">
        
 	<!-- Included URDF/XACRO Files -->
-    <include filename="$(find husky_description)/urdf/materials.urdf.xacro" />
-    <include filename="$(find husky_description)/urdf/wheel.urdf.xacro" />
-    <include filename="$(find husky_description)/urdf/parts.urdf.xacro" />
+    <xacro:include filename="$(find husky_description)/urdf/materials.urdf.xacro" />
+    <xacro:include filename="$(find husky_description)/urdf/wheel.urdf.xacro" />
+    <xacro:include filename="$(find husky_description)/urdf/parts.urdf.xacro" />
     
 	<!-- PROPERTY LIST -->
     <!--All units in m-kg-s-radians unit system -->
