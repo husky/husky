@@ -5,10 +5,10 @@
 - other: {local-name: /opt/ros/fuerte/stacks}
 - setup-file: {local-name: /opt/ros/fuerte/setup.sh}
 - git: {local-name: clearpath_husky, uri: 'https://github.com/clearpathrobotics/clearpath_husky',
-    version: master}
+    version: fuerte}
 - git: {local-name: clearpath_common, uri: 'https://github.com/clearpathrobotics/clearpath_common',
-    version: master}
+    version: fuerte}
 - git: {local-name: husky_apps, uri: 'https://github.com/clearpathrobotics/husky_apps',
-    version: master}
+    version: fuerte}
 - git: {local-name: husky_simulator, uri: 'https://github.com/clearpathrobotics/husky_simulator',
-    version: master}
+    version: fuerte}
