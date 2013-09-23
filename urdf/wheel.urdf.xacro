@@ -56,8 +56,7 @@ This program contains the description of the robot wheel model for Clearpath Hus
 	<property name="base_x_origin_to_wheel_origin" value="0.25600006" />
 	<property name="base_y_origin_to_wheel_origin" value="0.285475" />
 	<property name="base_z_origin_to_wheel_origin" value="0.03282508" />
-	
-	<property name="base_z_origin_offset" value="0.00317500" /> <!-- origin is offset in + z direction by 3.175mm, so need to bring it back down for visual and collision-->
+
 
 	<xacro:macro name="husky_wheel" params="fb lr parent translateX translateY flipY"> <!--fb : front, back ; lr: left, right -->
 		<link name="${fb}_${lr}_wheel">
@@ -70,7 +69,7 @@ This program contains the description of the robot wheel model for Clearpath Hus
 			<visual>
 				<origin xyz="0 0 0" rpy="${flipY*M_PI} 0 0" /> 
 				<geometry>
-					<mesh filename="package://husky_description/models/wheel.stl" />
+					<mesh filename="package://husky_description/meshes/wheel.stl" />
 				</geometry>
 				<material name="DarkGray" />
 			</visual>
@@ -78,9 +77,6 @@ This program contains the description of the robot wheel model for Clearpath Hus
 				<origin xyz="0 0 0" rpy="${flipY*M_PI/2} 0 0" />
 				<geometry>
 				    <cylinder length="${wheel_z_size}" radius="${wheel_x_size/2}" />
-				<!--
-					<mesh filename="package://husky_description/models/wheel.stl" />
-			    -->
 				</geometry>
 			</collision>
 		</link>
@@ -88,7 +84,7 @@ This program contains the description of the robot wheel model for Clearpath Hus
 		<gazebo reference="${fb}_${lr}_wheel">
 			<mu1 value="1.0"/>
 			<mu2 value="1.0"/>
-			<kp  value="100000.0" />
+			<kp  value="10000000.0" />
 			<kd  value="1.0" />
 			<fdir1 value="1 0 0"/>
 			<material>Gazebo/Grey</material>

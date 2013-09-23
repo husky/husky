@@ -54,12 +54,6 @@ incorporate collision.
 	<property name="izz_com_cs" value="0.01" /> <!-- at center of mass aligned with coordinate system, kg*m^2-->
 	
 	<xacro:macro name="husky_part" params="parent name mesh colour translateX translateY translateZ rotateX rotateY rotateZ">
-		<joint name="${parent}_${name}_joint" type="fixed">
-		    <origin xyz="${translateX} ${translateY} ${translateZ}" 
-		            rpy="${rotateX} ${rotateY} ${rotateZ}" />
-		    <parent link="${parent}" />
-		    <child link="${parent}_${name}_part" />
-		</joint>
 		
 		<link name="${parent}_${name}_part">
 			<inertial>
@@ -71,7 +65,7 @@ incorporate collision.
 			<visual>
 				<origin xyz="0 0 0" rpy="0 0 0" />
 				<geometry>
-					<mesh filename="package://husky_description/models/${mesh}.stl" />
+					<mesh filename="package://husky_description/meshes/${mesh}.stl" />
 				</geometry>
 				<material name="${colour}" />
 			</visual>
@@ -82,6 +76,12 @@ incorporate collision.
 				</geometry>
 			</collision>
 		</link>
+		<joint name="${parent}_${name}_joint" type="fixed">
+		    <origin xyz="${translateX} ${translateY} ${translateZ}" 
+		            rpy="${rotateX} ${rotateY} ${rotateZ}" />
+		    <parent link="${parent}" />
+		    <child link="${parent}_${name}_part" />
+		</joint>
 		
   	</xacro:macro>
 </robot>
