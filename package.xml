@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package>
   <name>husky_description</name>
-  <version>0.0.1</version>
+  <version>0.0.2</version>
   <description>URDF description for Husky</description>
 
   <maintainer email="mpurvis@clearpathrobotics.com">Mike Purvis</maintainer>
