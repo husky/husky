@@ -1,8 +1,0 @@
-<launch>
-<!--IMU -->
-<include file="$(find imu_um6)/launch/imu.launch" />
-
-<!--GPS-->
-<include file="$(find nmea_gps_driver)/launch/gps.launch"/>
-
-</launch>
