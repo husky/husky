@@ -2,6 +2,11 @@
 Changelog for package husky_navigation
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+0.0.3 (2013-10-04)
+------------------
+* Install the right things.
+* Remove urdf folder.
+
 0.0.2 (2013-10-04)
 ------------------
 * cleanup of odom_navigation file and adding tolerance parameters
