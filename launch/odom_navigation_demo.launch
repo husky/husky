@@ -1,0 +1,14 @@
+<launch>
+  <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
+    <remap from="/cmd_vel" to="/husky/cmd_vel" />
+    <rosparam file="$(find husky_navigation)/config/odom_nav_params/params_costmap2d.yaml" command="load" ns="global_costmap" />
+    <rosparam file="$(find husky_navigation)/config/odom_nav_params/params_costmap2d.yaml" command="load" ns="local_costmap" />
+    <rosparam file="$(find husky_navigation)/config/odom_nav_params/global_costmap_params.yaml" command="load" />
+    <rosparam file="$(find husky_navigation)/config/odom_nav_params/local_costmap_params.yaml" command="load" />
+    <rosparam>
+        TrajectoryPlannerROS:
+            xy_goal_tolerance: 0.5
+            yaw_goal_tolerance: 0.1
+    </rosparam>
+  </node>
+</launch>
