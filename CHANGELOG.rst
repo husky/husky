@@ -2,6 +2,11 @@
 Changelog for package husky_navigation
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+0.0.4 (2013-10-04)
+------------------
+* restructuring launch file locations, cleaning out redundant 'laser' folder
+* adding dependencies to the package and launch file test in CMake
+
 0.0.3 (2013-10-04)
 ------------------
 * Install the right things.
