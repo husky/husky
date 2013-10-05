@@ -8,7 +8,7 @@ catkin_package()
 roslaunch_add_file_check(launch)
 
 install(
-  DIRECTORY config laser launch maps
+  DIRECTORY config launch maps
   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
 )
 
