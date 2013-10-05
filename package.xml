@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package>
   <name>husky_navigation</name>
-  <version>0.0.5</version>
+  <version>0.0.6</version>
   <description>Launch files and code for autonomous navigation of the Husky A200</description>
 
   <maintainer email="pmukherj@clearpathrobotics.com">Prasenjit Mukherjee</maintainer>
