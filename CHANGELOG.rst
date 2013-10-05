@@ -2,6 +2,10 @@
 Changelog for package husky_navigation
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+0.0.5 (2013-10-05)
+------------------
+* Depend on roslaunch for the check macro.
+
 0.0.4 (2013-10-04)
 ------------------
 * restructuring launch file locations, cleaning out redundant 'laser' folder
