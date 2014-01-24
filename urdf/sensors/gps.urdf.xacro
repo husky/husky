@@ -35,17 +35,15 @@
             </collision>
         </link>
   
-   <xacro:macro name="gps_sensor" params="name gps_topic velocity_topic lat lon">
-    <gazebo reference="${name}_link">
-       <plugin name="gps_plugin" filename="libhusky_tudarmstadt_gps_plugin.so"> 
+    <gazebo>
+       <controller:husky_gps_plugin name="gps_plugin" filename="libhusky_tudarmstadt_gps_plugin.so"> 
 	<frameId>${name}_link</frameId>
 	<topicName>${gps_topic}</topicName>
 	<velocityTopicName>${velocity_topic}</velocityTopicName>
 	<referenceLatitude>${lat}</referenceLatitude>
 	<referenceLongitude>${lon}</referenceLongitude>
-      </plugin>
+      </controller:husky_gps_plugin>
     </gazebo>
-  </xacro:macro>
 
   </xacro:macro>
 </robot>

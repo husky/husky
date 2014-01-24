@@ -180,9 +180,25 @@
       </plugin>
     </gazebo>
 
+    <gazebo>
+       <plugin name="gps_plugin" filename="libhusky_tudarmstadt_gps_plugin.so">
+	    <alwaysOn>true</alwaysOn>
+            <updateRate>4.0</updateRate>
+            <bodyName>base_link</bodyName>
+            <topicName>fix</topicName>
+            <velocityTopicName>fix_velocity</velocityTopicName>
+            <drift>5.0 5.0 5.0</drift>
+            <gaussianNoise>0.1 0.1 0.1</gaussianNoise>
+            <velocityDrift>0 0 0</velocityDrift>
+            <velocityGaussianNoise>0.1 0.1 0.1</velocityGaussianNoise>
+	    <referenceLatitude>43.0</referenceLatitude>
+	    <referenceLongitude>-80.0</referenceLongitude>
+	</plugin> 
+    </gazebo>
 
-    <xacro:include filename="$(find husky_description)/urdf/sensors/gps.urdf.xacro" />
-    <novatel_gps_sensor name="gps" gps_topic="gps" velocity_topic="gps_vel" lat="48" lon="-8.0" />
+
+    <!--xacro:include filename="$(find husky_description)/urdf/sensors/gps.urdf.xacro" />
+    <novatel_gps_sensor name="gps" gps_topic="gps" velocity_topic="gps_vel" lat="48" lon="-8.0" / -->
 
     <!-- This adds the laser macro, including the scan for gazebo and link name -->
     <xacro:include filename="$(find husky_description)/urdf/sensors/sick_laser.urdf.xacro" />
