@@ -34,14 +34,14 @@
     <alwaysOn>true</alwaysOn>
         <updateRate>4.0</updateRate>
         <bodyName>base_link</bodyName>
-        <topicName>fix</topicName>
-        <velocityTopicName>fix_velocity</velocityTopicName>
+        <topicName>navsat/fix</topicName>
+        <velocityTopicName>navsat/fix_velocity</velocityTopicName>
         <drift>5.0 5.0 5.0</drift>
         <gaussianNoise>0.1 0.1 0.1</gaussianNoise>
         <velocityDrift>0 0 0</velocityDrift>
         <velocityGaussianNoise>0.1 0.1 0.1</velocityGaussianNoise>
-        <referenceLatitude>37.0003</referenceLatitude>
-        <referenceLongitude>-76.4107</referenceLongitude>
+        <referenceLatitude>43.409991</referenceLatitude>
+        <referenceLongitude>-80.448362</referenceLongitude>
     </plugin> 
   </gazebo>
 
