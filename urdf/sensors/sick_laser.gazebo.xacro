@@ -12,7 +12,7 @@
         <ray>
           <scan>
             <horizontal>
-              <samples>640</samples>
+              <samples>720</samples>
               <resolution>1</resolution>
               <min_angle>${min_angle}</min_angle>
               <max_angle>${max_angle}</max_angle>
@@ -20,7 +20,7 @@
           </scan>
           <range>
             <min>0.08</min>
-            <max>10.0</max>
+            <max>50.0</max>
             <resolution>0.01</resolution>
           </range>
         </ray>

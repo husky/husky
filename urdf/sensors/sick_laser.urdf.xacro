@@ -10,11 +10,11 @@
   <xacro:macro name="sick_laser_v0" params="name parent ros_topic update_rate min_angle max_angle">
         <!-- This adds a visual box to allow us to see the Hokuyo in rviz/gazebo -->
         <joint name="laser_scan_joint" type="fixed">
-          <origin xyz="0.43 0 0.2" rpy="0 0 0" />
+          <origin xyz="0.3 0 0.4" rpy="0 0 0" />
           <parent link="base_link" />
-          <child link="laser_scan_link"/>
+          <child link="${name}_link"/>
         </joint>
-       <link name="laser_scan_link">
+       <link name="${name}_link">
           <inertial>
             <mass value="0.01" />
             <origin xyz="0 0 0" />

@@ -49,7 +49,7 @@
   <!--novatel_gps_sensor name="gps" gps_topic="gps" velocity_topic="gps_vel" lat="48" lon="-8.0" /-->
 
   <!-- This adds the laser macro, including the scan for gazebo and link name -->
-  <sick_laser_v0 name="laser_scan" parent="base" ros_topic="scan"
+  <sick_laser_v0 name="laser" parent="base" ros_topic="scan"
     update_rate="20" min_angle="-1.57" max_angle="1.57" />
     
 </robot>
