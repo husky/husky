@@ -1,20 +1,8 @@
 <?xml version="1.0"?>
 <robot 
-	xmlns:xi="http://www.w3.org/2001/XInclude"
-	xmlns:gazebo="http://playerstage.sourceforge.net/gazebo/xmlschema/#gz"
-    xmlns:model="http://playerstage.sourceforge.net/gazebo/xmlschema/#model"
-	xmlns:sensor="http://playerstage.sourceforge.net/gazebo/xmlschema/#sensor"
-	xmlns:body="http://playerstage.sourceforge.net/gazebo/xmlschema/#body"
-    xmlns:geom="http://playerstage.sourceforge.net/gazebo/xmlschema/#geom"
-    xmlns:joint="http://playerstage.sourceforge.net/gazebo/xmlschema/#joint"
-	xmlns:controller="http://playerstage.sourceforge.net/gazebo/xmlschema/#controller"
-	xmlns:interface="http://playerstage.sourceforge.net/gazebo/xmlschema/#interface"
-	xmlns:rendering="http://playerstage.sourceforge.net/gazebo/xmlschema/#rendering"
-    xmlns:renderable="http://playerstage.sourceforge.net/gazebo/xmlschema/#renderable"
-    xmlns:physics="http://playerstage.sourceforge.net/gazebo/xmlschema/#physics"
-	xmlns:xacro="http://ros.org/wiki/xacro" name="husky">
+	xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:xacro="http://ros.org/wiki/xacro" name="husky">
        
-	<!-- Included URDF/XACRO Files -->
+    <!-- Included URDF/XACRO Files -->
     <xacro:include filename="$(find husky_description)/urdf/materials.urdf.xacro" />
     <xacro:include filename="$(find husky_description)/urdf/wheel.urdf.xacro" />
     <xacro:include filename="$(find husky_description)/urdf/parts.urdf.xacro" />
@@ -22,7 +10,7 @@
     <xacro:include filename="$(find husky_description)/urdf/sensors/gps.urdf.xacro" />
  
     
-	<!-- PROPERTY LIST -->
+  	<!-- PROPERTY LIST -->
     <!--All units in m-kg-s-radians unit system -->
     <property name="M_PI" value="3.1415926535897931" />
 
@@ -48,7 +36,7 @@
     <property name="base_iyz_com_cs" value="-0.00154437" />
     <property name="base_izz_com_cs" value="2.02955229" />
 
-<!-- BASE-FOOTPRINT -->
+    <!-- BASE-FOOTPRINT -->
     <!-- base_footprint is a fictitious link(frame) that is on the ground right below base_link origin, navigation stack depends on this frame -->
     <link name="base_footprint">
         <inertial>
@@ -202,9 +190,13 @@
     <gazebo reference="base_footprint_user_plate_part">
       <material>Gazebo/FlatBlack</material>
     </gazebo>
+
     <!-- This adds the laser macro, including the scan for gazebo and link name -->
   <sick_laser_v0 name="laser" parent="base" ros_topic="scan"
-    update_rate="20" min_angle="-1.57" max_angle="1.57" />
+    update_rate="20" min_angle="-1.57" max_angle="1.57" l_x="0.5" l_y="0.0" l_z="0.25" l_r="0.0" l_p="0.0" l_yaw="0.0"/>
+    <gazebo reference="laser_link">
+      <material>Gazebo/FlatBlack</material>
+    </gazebo>
   </xacro:if>
   
 </robot>
