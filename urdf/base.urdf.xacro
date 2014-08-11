@@ -88,7 +88,7 @@
 		<collision>
 			<origin xyz="0 0 ${wheel_x_size/2 - base_z_origin_to_wheel_origin - 0.02}" rpy="0 0 0 " />
 			<geometry>
-				<box size = "${base_x_size+0.02} ${base_y_size} ${base_z_size + 0.02}"/> <!--making it slightly bigger in x and z direction-->
+        <box size = "${base_x_size+0.02} ${base_y_size} ${base_z_size + 0.02}"/> <!--making it slightly bigger in x and z direction-->
 			</geometry>
 		</collision>     
     </link>
@@ -193,7 +193,7 @@
 
     <!-- This adds the laser macro, including the scan for gazebo and link name -->
   <sick_laser_v0 name="laser" parent="base" ros_topic="scan"
-    update_rate="20" min_angle="-1.57" max_angle="1.57" l_x="0.5" l_y="0.0" l_z="0.25" l_r="0.0" l_p="0.0" l_yaw="0.0"/>
+    update_rate="20" min_angle="-1.57" max_angle="1.57" l_x="0.5" l_y="0.0" l_z="0.3" l_r="0.0" l_p="0.0" l_yaw="0.0"/>
     <gazebo reference="laser_link">
       <material>Gazebo/FlatBlack</material>
     </gazebo>
