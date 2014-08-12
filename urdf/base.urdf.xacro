@@ -97,11 +97,11 @@
         <turnGravityOff>false</turnGravityOff>
     </gazebo>
 
-    <!-- WHEEL macros -->
-	<husky_wheel fb="back" lr="left" parent="base_link" translateX="-1" translateY="1" flipY="-1"/>
-	<husky_wheel fb="back" lr="right" parent="base_link" translateX="-1" translateY="-1" flipY="-1"/>
-	<husky_wheel fb="front" lr="left" parent="base_link" translateX="1" translateY="1" flipY="-1"/>
-	<husky_wheel fb="front" lr="right" parent="base_link" translateX="1" translateY="-1" flipY="-1"/>
+      <!-- WHEEL macros -->
+    <husky_wheel fb="back" lr="left" parent="base_link" translateX="-1" translateY="1" flipY="-1"/>
+    <husky_wheel fb="back" lr="right" parent="base_link" translateX="-1" translateY="-1" flipY="-1"/>
+    <husky_wheel fb="front" lr="left" parent="base_link" translateX="1" translateY="1" flipY="-1"/>
+    <husky_wheel fb="front" lr="right" parent="base_link" translateX="1" translateY="-1" flipY="-1"/>
 
     <!-- DECORATIONS -->
     <!-- Top Plate -->
@@ -123,13 +123,15 @@
     </gazebo>
 
     <!-- Bumpers -->
-    <husky_part parent="base_footprint" name="front_bumper" mesh="bumper" 
+    <husky_part parent="base_footprint" name="front_bumper" mesh="front_bumper" 
           colour="DarkGray"
-          translateX="0.490" translateY="0.0" translateZ="${0.091 + wheel_x_size/2 - base_z_origin_to_wheel_origin}" 
+          translateX="0.530" translateY="0.0" translateZ="${0.091 + wheel_x_size/2 - base_z_origin_to_wheel_origin}" 
           rotateX="0.0" rotateY="0.0" rotateZ="0.0"/>
     <gazebo reference="base_footprint_front_bumper_part">
         <material>Gazebo/FlatBlack</material>
-    </gazebo>
+      </gazebo>
+
+
     <husky_part parent="base_footprint" name="rear_bumper" mesh="bumper"
           colour="DarkGray"
           translateX="-0.48" translateY="0.0" translateZ="${0.091 + wheel_x_size/2 - base_z_origin_to_wheel_origin}" 
@@ -183,20 +185,20 @@
   </xacro:if>
 
   <xacro:if value="$(arg lidar_enabled)">
-    <husky_part parent="base_footprint" name="user_plate" mesh="user_plate"
+    <husky_part parent="base_footprint_front_bumper_part" name="sick_bracket" mesh="lidar_mount"
       colour="DarkGray"
-      translateX="-0.35" translateY="-0.325" translateZ="${0.165 + wheel_x_size/2 - base_z_origin_to_wheel_origin}" 
-      rotateX="1.5705" rotateY="0.0" rotateZ="1.5705"/>
-    <gazebo reference="base_footprint_user_plate_part">
+      translateX="-0.12" translateY="0" translateZ="0"
+      rotateX="0" rotateY="0.0" rotateZ="0"/>
+    <gazebo reference="lidar_mount_bracket_part">
       <material>Gazebo/FlatBlack</material>
     </gazebo>
 
     <!-- This adds the laser macro, including the scan for gazebo and link name -->
-  <sick_laser_v0 name="laser" parent="base" ros_topic="scan"
-    update_rate="20" min_angle="-1.57" max_angle="1.57" l_x="0.5" l_y="0.0" l_z="0.3" l_r="0.0" l_p="0.0" l_yaw="0.0"/>
-    <gazebo reference="laser_link">
-      <material>Gazebo/FlatBlack</material>
-    </gazebo>
+    <sick_laser_v0 name="laser" parent="base_footprint_front_bumper_part_sick_bracket_part" ros_topic="scan"
+      update_rate="20" min_angle="-1.57" max_angle="1.57" l_x="0.055" l_y="0.0" l_z="0.17" l_r="${M_PI}" l_p="0.0" l_yaw="0.0"/>
+      <gazebo reference="laser_link">
+        <material>Gazebo/White</material>
+      </gazebo>
   </xacro:if>
   
 </robot>

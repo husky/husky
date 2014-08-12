@@ -5,7 +5,7 @@
     <!-- This adds a visual box to allow us to see the Hokuyo in rviz/gazebo -->
     <joint name="laser_scan_joint" type="fixed">
       <origin xyz="${l_x} ${l_y} ${l_z}" rpy="${l_r} ${l_p} ${l_yaw}" />
-      <parent link="${parent}_link" />
+      <parent link="${parent}" />
       <child link="${name}_link"/>
     </joint>
     <link name="${name}_link">
@@ -17,13 +17,13 @@
             izz="0.001" />
       </inertial>
       <visual>
-          <origin xyz="0 0 0" rpy="1.5705 0 -1.5705"/>
+          <origin xyz="0 0 0.03" rpy="1.5705 0 -1.5705"/>
           <geometry>
               <mesh filename="package://husky_description/meshes/lidar.stl" />
           </geometry>
       </visual>
       <collision>
-          <origin xyz="0 0 0" rpy="1.5705 0 -1.5705"/>
+          <origin xyz="0 0 0.03" rpy="1.5705 0 -1.5705"/>
           <geometry>
             <mesh filename="package://husky_description/meshes/lidar.stl" />
           </geometry>
