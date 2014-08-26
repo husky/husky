@@ -2,12 +2,13 @@
   <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
     <remap from="/cmd_vel" to="/husky/cmd_vel" />
 
-    <!--Operate both the global and local costmaps without LIDAR scans. Pure blind roaming --> 
+    <!--Operate the global costmap without LIDAR scans or maps, purely in the odometry frame-->
     <rosparam file="$(find husky_navigation)/config/odom_nav_params/params_costmap2d.yaml" command="load" ns="global_costmap" />
-    <rosparam file="$(find husky_navigation)/config/odom_nav_params/params_costmap2d.yaml" command="load" ns="local_costmap" />
     <rosparam file="$(find husky_navigation)/config/odom_nav_params/global_costmap_params.yaml" command="load" />
-    <rosparam file="$(find husky_navigation)/config/odom_nav_params/local_costmap_params.yaml" command="load" />
 
+    <!--Operate the local costmap with LIDAR scans -->
+    <rosparam file="$(find husky_navigation)/config/costmap_common_params.yaml" command="load" ns="local_costmap" />
+    <rosparam file="$(find husky_navigation)/config/local_costmap_params.yaml" command="load" />
 
     <!--Parameters to easily tweak the goal conditions-->
     <rosparam>
@@ -15,5 +16,7 @@
             xy_goal_tolerance: 0.5
             yaw_goal_tolerance: 0.1
     </rosparam>
+
+
   </node>
 </launch>
