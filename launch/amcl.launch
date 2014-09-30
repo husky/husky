@@ -1,7 +1,7 @@
 <launch>
 
   <arg name="use_map_topic" default="false"/>
-  <arg name="scan_topic" default="narrow_scan" />
+  <arg name="scan_topic" default="scan" />
 
   <node pkg="amcl" type="amcl" name="amcl">
     <param name="use_map_topic" value="$(arg use_map_topic)"/>
