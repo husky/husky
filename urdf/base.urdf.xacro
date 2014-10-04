@@ -6,8 +6,10 @@
     <xacro:include filename="$(find husky_description)/urdf/materials.urdf.xacro" />
     <xacro:include filename="$(find husky_description)/urdf/wheel.urdf.xacro" />
     <xacro:include filename="$(find husky_description)/urdf/parts.urdf.xacro" />
-    <xacro:include filename="$(find husky_description)/urdf/sensors/sick_laser.urdf.xacro" />
+
     <xacro:include filename="$(find husky_description)/urdf/sensors/gps.urdf.xacro" />
+
+  <xacro:include filename="sensors/sick_lms100.urdf.xacro" />
  
     
   	<!-- PROPERTY LIST -->
@@ -154,37 +156,39 @@
         </plugin>
       </gazebo>
 
-  <xacro:if value="$(arg imu_enabled)">
-    <gazebo>
-      <plugin name="imu_plugin" filename="libgazebo_ros_imu.so">
-        <alwaysOn>true</alwaysOn>
-        <bodyName>base_link</bodyName>
-        <topicName>imu_data</topicName>
-        <serviceName>imu_service</serviceName>
-        <gaussianNoise>0.01</gaussianNoise>
-      </plugin>
-    </gazebo>
-  </xacro:if>
 
-  <xacro:if value="$(arg gps_enabled)">
-    <gazebo>
-      <plugin name="gps_plugin" filename="libhusky_tudarmstadt_gps_plugin.so">
-      <alwaysOn>true</alwaysOn>
-          <updateRate>4.0</updateRate>
-          <bodyName>base_link</bodyName>
-          <topicName>navsat/fix</topicName>
-          <velocityTopicName>navsat/fix_velocity</velocityTopicName>
-          <drift>0.1 0.1 0.1</drift>
-          <gaussianNoise>0.01 0.01 0.01</gaussianNoise>
-          <velocityDrift>0 0 0</velocityDrift>
-          <velocityGaussianNoise>0.1 0.1 0.1</velocityGaussianNoise>
-          <referenceLatitude>43.409991</referenceLatitude>
-          <referenceLongitude>-80.448362</referenceLongitude>
-      </plugin> 
-  </gazebo>
-  </xacro:if>
+	  <xacro:if value="$(arg imu_enabled)">
+	    <gazebo>
+	      <plugin name="imu_plugin" filename="libgazebo_ros_imu.so">
+		<alwaysOn>true</alwaysOn>
+		<bodyName>base_link</bodyName>
+		<topicName>imu_data</topicName>
+		<serviceName>imu_service</serviceName>
+		<gaussianNoise>0.01</gaussianNoise>
+	      </plugin>
+	    </gazebo>
+	  </xacro:if>
 
-  <xacro:if value="$(arg lidar_enabled)">
+	  <xacro:if value="$(arg gps_enabled)">
+	    <gazebo>
+	      <plugin name="gps_plugin" filename="libhusky_tudarmstadt_gps_plugin.so">
+	      <alwaysOn>true</alwaysOn>
+		  <updateRate>4.0</updateRate>
+		  <bodyName>base_link</bodyName>
+		  <topicName>navsat/fix</topicName>
+		  <velocityTopicName>navsat/fix_velocity</velocityTopicName>
+		  <drift>0.1 0.1 0.1</drift>
+		  <gaussianNoise>0.01 0.01 0.01</gaussianNoise>
+		  <velocityDrift>0 0 0</velocityDrift>
+		  <velocityGaussianNoise>0.1 0.1 0.1</velocityGaussianNoise>
+		  <referenceLatitude>43.409991</referenceLatitude>
+		  <referenceLongitude>-80.448362</referenceLongitude>
+	      </plugin> 
+	  </gazebo>
+	  </xacro:if>
+
+  <xacro:if value="$(arg front_laser)">
+
     <husky_part parent="base_footprint_front_bumper_part" name="sick_bracket" mesh="lidar_mount"
       colour="DarkGray"
       translateX="-0.12" translateY="0" translateZ="0"
@@ -193,12 +197,13 @@
       <material>Gazebo/FlatBlack</material>
     </gazebo>
 
-    <!-- This adds the laser macro, including the scan for gazebo and link name -->
-    <sick_laser_v0 name="laser" parent="base_footprint_front_bumper_part_sick_bracket_part" ros_topic="scan"
-      update_rate="20" min_angle="-1.57" max_angle="1.57" l_x="0.055" l_y="0.0" l_z="0.17" l_r="${M_PI}" l_p="0.0" l_yaw="0.0"/>
-      <gazebo reference="laser_link">
-        <material>Gazebo/White</material>
-      </gazebo>
-  </xacro:if>
+
+    <xacro:sick_lms100 prefix="front" />
+    <joint name="front_laser_joint" type="fixed">
+      <origin xyz="0.07 0 0.17" rpy="0 0 0" />
+      <parent link="base_footprint_front_bumper_part_sick_bracket_part" />
+      <child link="front_laser" />
+    </joint>
+ </xacro:if>
   
 </robot>
