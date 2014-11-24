@@ -1,5 +1,13 @@
 <?xml version="1.0"?>
 <launch>
-  <param name="robot_description" command="$(find xacro)/xacro.py '$(find husky_description)/urdf/base.urdf.xacro'" />
+  <arg name="front_laser" default="false" />
+  <arg name="imu_enabled" default="false" />
+  <arg name="gps_enabled" default="false" />
+
+  <param name="robot_description"
+         command="$(find xacro)/xacro.py '$(find husky_description)/urdf/base.urdf.xacro'
+                                         imu_enabled:=$(arg imu_enabled)
+                                         gps_enabled:=$(arg gps_enabled)
+                                         front_laser:=$(arg front_laser)" />
   <node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher" />
 </launch>
