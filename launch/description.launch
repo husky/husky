@@ -4,8 +4,10 @@
   <arg name="imu_enabled" default="false" />
   <arg name="gps_enabled" default="false" />
 
+  <arg name="base_urdf" default="$(find husky_description)/urdf/base.urdf.xacro" />
+
   <param name="robot_description"
-         command="$(find xacro)/xacro.py '$(find husky_description)/urdf/base.urdf.xacro'
+         command="$(find xacro)/xacro.py '$(arg base_urdf)'
                                          imu_enabled:=$(arg imu_enabled)
                                          gps_enabled:=$(arg gps_enabled)
                                          front_laser:=$(arg front_laser)" />
