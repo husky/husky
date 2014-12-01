@@ -11,7 +11,7 @@
   <xacro:include filename="$(find husky_description)/urdf/sensors/sick_lms100.urdf.xacro" />
 
   <!-- PROPERTY LIST -->
-  <property name="M_PI" value="3.1415926535897931" />
+  <!-- <property name="M_PI" value="3.1415926535897931" /> -->
 
   <!-- Location of center of mass. -->
   <property name="base_x_com" value="-0.08748000" />
@@ -59,11 +59,11 @@
       <!-- This is the pose of the inertial reference frame, relative to the link reference frame. The origin of the inertial reference frame needs to be at the center of gravity. The axes of the inertial reference frame do not need to be aligned with the principal axes of the inertia.-->
       <origin xyz="${base_x_com} ${base_y_com} ${base_z_com}" />
       <inertia ixx="${base_ixx_com_cs}" ixy="${base_ixy_com_cs}" ixz="${base_ixz_com_cs}"
-               iyy="${base_iyy_com_cs}" iyz="${base_iyz_com_cs}" izz="${base_izz_com_cs}" />
-    </inertial>
-  </link>
+       iyy="${base_iyy_com_cs}" iyz="${base_iyz_com_cs}" izz="${base_izz_com_cs}" />
+     </inertial>
+   </link>
 
-  <joint name="base_inertia_joint" type="fixed">
+   <joint name="base_inertia_joint" type="fixed">
     <origin xyz="0 0 0" rpy="0 0 0" />
     <parent link="base_link" />
     <child link="base_inertia" />
@@ -83,79 +83,80 @@
   <!-- DECORATIONS -->
   <!-- Top Plate -->
   <husky_part parent="base_link" name="top_plate" mesh="top_plate"
-        colour="Yellow"
-        translateX="0.0" translateY="0.0" translateZ="0.0"
-        rotateX="0.0" rotateY="0.0" rotateZ="0.0"/>
+    colour="Yellow"
+    translateX="0.0" translateY="0.0" translateZ="0.0"
+    rotateX="0.0" rotateY="0.0" rotateZ="0.0"/>
+
   <gazebo reference="base_link_top_plate_part">
     <material>Gazebo/Yellow</material>
   </gazebo>
 
   <!-- User Rail -->
   <husky_part parent="base_link" name="user_rail" mesh="user_rail"
-        colour="DarkGray"
-        translateX="0.272" translateY="0.0" translateZ="0.245"
-        rotateX="0.0" rotateY="0.0" rotateZ="0.0"/>
+    colour="DarkGray"
+    translateX="0.272" translateY="0.0" translateZ="0.245"
+    rotateX="0.0" rotateY="0.0" rotateZ="0.0"/>
+
   <gazebo reference="base_link_user_rail_part">
     <material>Gazebo/DarkGrey</material>
   </gazebo>
 
   <!-- Bumpers -->
   <husky_part parent="base_link" name="front_bumper" mesh="bumper"
-        colour="DarkGray"
-        translateX="0.48" translateY="0.0" translateZ="0.091"
-        rotateX="0.0" rotateY="0.0" rotateZ="0.0"/>
+    colour="DarkGray"
+    translateX="0.48" translateY="0.0" translateZ="0.091"
+    rotateX="0.0" rotateY="0.0" rotateZ="0.0"/>
+
   <gazebo reference="base_link_front_bumper_part">
     <material>Gazebo/DarkGrey</material>
   </gazebo>
 
   <husky_part parent="base_link" name="rear_bumper" mesh="bumper"
-        colour="DarkGray"
-        translateX="-0.48" translateY="0.0" translateZ="0.091"
-        rotateX="0.0" rotateY="0.0" rotateZ="3.14"/>
+    colour="DarkGray"
+    translateX="-0.48" translateY="0.0" translateZ="0.091"
+    rotateX="0.0" rotateY="0.0" rotateZ="3.14"/>
+
   <gazebo reference="base_link_rear_bumper_part">
     <material>Gazebo/DarkGrey</material>
   </gazebo>
 
   <gazebo>
-    <plugin name="husky_diff_controller" filename="libhusky_gazebo_plugins.so">
-      <alwaysOn>true</alwaysOn>
-      <updateRate>100.0</updateRate>
-      <backLeftJoint>joint_back_left_wheel</backLeftJoint>
-      <backRightJoint>joint_back_right_wheel</backRightJoint>
-      <frontLeftJoint>joint_front_left_wheel</frontLeftJoint>
-      <frontRightJoint>joint_front_right_wheel</frontRightJoint>
-      <wheelSeparation>${base_y_size}</wheelSeparation>
-      <wheelDiameter>${wheel_x_size}</wheelDiameter>
-      <torque>35</torque>	
+    <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+      <robotNamespace>/</robotNamespace>
     </plugin>
   </gazebo>
 
   <xacro:if value="$(arg imu_enabled)">
     <gazebo>
-      <plugin name="imu_plugin" filename="libgazebo_ros_imu.so">
-        <alwaysOn>true</alwaysOn>
+      <plugin name="imu_controller" filename="libhector_gazebo_ros_imu.so">
+        <robotNamespace>/</robotNamespace>
+        <updateRate>50.0</updateRate> 
         <bodyName>base_link</bodyName>
         <topicName>imu/data</topicName>
-        <serviceName>imu_service</serviceName>
-        <gaussianNoise>0.01</gaussianNoise>
+        <accelDrift>0.005 0.005 0.005</accelDrift>
+        <accelGaussianNoise>0.005 0.005 0.005</accelGaussianNoise>
+        <rateDrift>0.005 0.005 0.005 </rateDrift>
+        <rateGaussianNoise>0.005 0.005 0.005 </rateGaussianNoise>
+        <headingDrift>0.005</headingDrift>
+        <headingGaussianNoise>0.005</headingGaussianNoise>
       </plugin>
     </gazebo>
   </xacro:if>
 
   <xacro:if value="$(arg gps_enabled)">
     <gazebo>
-      <plugin name="gps_plugin" filename="libhusky_tudarmstadt_gps_plugin.so">
-        <alwaysOn>true</alwaysOn>
-        <updateRate>4.0</updateRate>
+      <plugin name="gps_controller" filename="libhector_gazebo_ros_gps.so">
+        <updateRate>40</updateRate>
+        <robotNamespace>/</robotNamespace>
         <bodyName>base_link</bodyName>
-        <topicName>navsat/fix</topicName>
-        <velocityTopicName>navsat/vel</velocityTopicName>
-        <drift>0.1 0.1 0.1</drift>
-        <gaussianNoise>0.01 0.01 0.01</gaussianNoise>
-        <velocityDrift>0 0 0</velocityDrift>
-        <velocityGaussianNoise>0.1 0.1 0.1</velocityGaussianNoise>
-        <referenceLatitude>43.409991</referenceLatitude>
-        <referenceLongitude>-80.448362</referenceLongitude>
+        <frameId>base_link</frameId>
+        <topicName>/navsat/fix</topicName>
+        <velocityTopicName>/navsat/vel</velocityTopicName>
+        <referenceLatitude>49.9</referenceLatitude>
+        <referenceLongitude>8.9</referenceLongitude>
+        <referenceHeading>0</referenceHeading>
+        <referenceAltitude>0</referenceAltitude>
+        <drift>0.0001 0.0001 0.0001</drift>
       </plugin>
     </gazebo>
   </xacro:if>
@@ -166,16 +167,16 @@
       translateX="-0.12" translateY="0" translateZ="0"
       rotateX="0" rotateY="0.0" rotateZ="0"/>
 
-    <gazebo reference="lidar_mount_bracket_part">
-      <material>Gazebo/DarkGrey</material>
-    </gazebo>
+      <gazebo reference="lidar_mount_bracket_part">
+        <material>Gazebo/DarkGrey</material>
+      </gazebo>
 
-    <xacro:sick_lms100 prefix="front" />
+      <xacro:sick_lms100 prefix="front" />
 
-    <joint name="front_laser_joint" type="fixed">
-      <origin xyz="0.07 0 0.17" rpy="0 0 0" />
-      <parent link="base_link_front_bumper_part_sick_bracket_part" />
-      <child link="front_laser" />
-    </joint>
-   </xacro:if>
-</robot>
+      <joint name="front_laser_joint" type="fixed">
+        <origin xyz="0.07 0 0.17" rpy="0 0 0" />
+        <parent link="base_link_front_bumper_part_sick_bracket_part" />
+        <child link="front_laser" />
+      </joint>
+    </xacro:if>
+  </robot>

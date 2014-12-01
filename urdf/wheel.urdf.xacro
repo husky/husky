@@ -99,13 +99,12 @@ This program contains the description of the robot wheel model for Clearpath Hus
 		<!-- Transmission is important to link the joints and the controller -->
 		<transmission name="joint_${fb}_${lr}_wheel_trans" type="SimpleTransmission">
 			<type>transmission_interface/SimpleTransmission</type>
-			<actuator name="joint_${fb}_${lr}_wheel_motor">
-				<hardwareInterface>EffortJointInterface</hardwareInterface>
-				<mechanicalReduction>1</mechanicalReduction>
+			<joint name="joint_${fb}_${lr}_wheel">
+				<hardwareInterface>VelocityJointInterface</hardwareInterface>
+			</joint>
+			<actuator name="joint_${fb}_${lr}_wheel_actuator">				
+				<mechanicalReduction>1</mechanicalReduction>				
 			</actuator>
-			<joint name="joint_${fb}_${lr}_wheel" />
-			<mechanicalReduction>1</mechanicalReduction>
-			<motorTorqueConstant>1</motorTorqueConstant>
 		</transmission>
    
   	</xacro:macro>
