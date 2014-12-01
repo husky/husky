@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<launch>
+	<rosparam command="load" file="$(find husky_control)/config/control.yaml" />
+
+	<node name="controller_spawner" pkg="controller_manager" type="spawner"
+		args="husky_joint_publisher husky_velocity_controller" />
+
+	<node pkg="robot_localization" type="ekf_localization_node" name="ekf_localization" /> 
+
+	<node pkg="robot_localization" type="navsat_transform_node" name="navsat_transform" >
+		<!-- <remap from="/odometry/filtered" to="/odometry/map" /> -->
+		<remap from="gps/fix" to="navsat/fix" />
+	</node>
+
+	<!-- TODO cmd_vel_mux or similar -->
+	<node pkg="topic_tools" type="relay" name="cmd_vel_relay"
+		args="cmd_vel husky_velocity_controller/cmd_vel" />
+
+</launch>
+
