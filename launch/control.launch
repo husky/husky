@@ -5,7 +5,7 @@
 	<node name="controller_spawner" pkg="controller_manager" type="spawner"
 		args="husky_joint_publisher husky_velocity_controller" />
 
-	<node pkg="robot_localization" type="ekf_localization_node" name="ekf_localization" /> 
+	<!-- <node pkg="robot_localization" type="ekf_localization_node" name="ekf_localization" />  -->
 
 	<node pkg="robot_localization" type="navsat_transform_node" name="navsat_transform" >
 		<!-- <remap from="/odometry/filtered" to="/odometry/map" /> -->
