@@ -1,81 +1,12 @@
-husky_joint_publisher:
-  type: "joint_state_controller/JointStateController"
-  publish_rate: 50
-
-husky_velocity_controller:
-  type: "diff_drive_controller/DiffDriveController"
-  #type: "jackal_diff_drive_controller/DiffDriveController"
-  left_wheel: ['joint_front_left_wheel', 'joint_back_left_wheel']
-  right_wheel: ['joint_front_right_wheel', 'joint_back_right_wheel']
-  publish_rate: 50
-  pose_covariance_diagonal: [0.001, 0.001, 1000000.0, 1000000.0, 1000000.0, 0.03]
-  twist_covariance_diagonal: [0.001, 0.001, 0.001, 1000000.0, 1000000.0, 0.03]
-  cmd_vel_timeout: 0.25
-
-  # Odometry fused with IMU is published by robot_localization, so
-  # no need to publish a TF based on encoders alone.
-  enable_odom_tf: true
-
-  # Wheel separation and radius multipliers
-  wheel_separation_multiplier: 1.5 # default: 1.0
-  wheel_radius_multiplier    : 1.0 # default: 1.0
-
-  # Velocity and acceleration limits
-  # Whenever a min_* is unspecified, default to -max_*
-  linear:
-    x:
-      has_velocity_limits    : true
-      max_velocity           : 1.0   # m/s
-      has_acceleration_limits: true
-      max_acceleration       : 3.0   # m/s^2
-  angular:
-    z:
-      has_velocity_limits    : true
-      max_velocity           : 2.0   # rad/s
-      has_acceleration_limits: true
-      max_acceleration       : 6.0   # rad/s^2
-
-ekf_localization:
-  frequency: 50
-  odom0: husky_velocity_controller/odom
-  odom0_config: [false, false, false,
-                 false, false, false,
-                 true, true, true,
-                 false, false, true]
-  odom0_differential: true
-
-  #TODO GPS
-  #odom1: /odometry/gps
-  #odom1_config: []
-
-  imu0: imu/data
-  imu0_config: [false, false, false,
-                true, true, true,
-                false, false, false,
-                true, true, true]
-  imu0_differential: false
-  odom_frame: odom
-  base_link_frame: base_link
-  world_frame: odom
-
-
-navsat_transform:
-
-    # Enter the magnetic declination for your location. If you don't
-    # know it, see http://www.ngdc.noaa.gov/geomag-web/ (make sure to
-    # convert the value to radians).
-    magnetic_declination_radians: 0
-    # On level ground, your IMU should read 0 for roll. If it doesn't,
-    # enter the offset here (desired_value = offset + sensor_raw_value). -->
-    roll_offset: 0
-    # On level ground, your IMU should read 0 for pitch. If it doesn't,
-    # enter the offset here (desired_value = offset + sensor_raw_value). -->
-    pitch_offset: 0
-    # Your IMU should read 0 for yaw at *magnetic* north. If it doesn't,
-    # enter the offset here (desired_value = offset + sensor_raw_value). -->
-    yaw_offset: 0
-    # If this is true, the altitude is set to 0 in the output odometry message -->
-    zero_altitude: false
-    # If this is true, the transform world_frame->utm transform is broadcast
-    # for use by other nodes. -->
-    broadcast_utm_transform: false
+bluetooth_teleop:
+  teleop_twist_joy:
+    axis_linear: 7
+    scale_linear: 0.5
+    scale_linear_turbo: 2.0
+    axis_angular: 3
+    scale_angular: 1.4
+    enable_button: 4
+    enable_turbo_button: 5
+  joy_node: 
+    deadzone: 0.1
+    autorepeat_rate: 20

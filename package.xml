@@ -8,7 +8,7 @@
   <license>BSD</license>
 
   <url type="website">http://wiki.ros.org/husky_control</url>
-  <author email="mpurvis@clearpathrobotics.com">Paul Bovbel</author>
+  <author email="pbovbel@clearpathrobotics.com">Paul Bovbel</author>
 
   <buildtool_depend>catkin</buildtool_depend>
   <build_depend>roslaunch</build_depend>
