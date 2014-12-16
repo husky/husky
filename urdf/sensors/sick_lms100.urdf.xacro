@@ -55,7 +55,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
         <geometry>
           <mesh filename="package://husky_description/meshes/sick_lms100.stl" />
         </geometry>
-        <material name="light_grey" />
+        <material name="Grey" />
       </visual>
       <collision>
         <origin xyz="0 0 -0.05" rpy="0 0 0" />

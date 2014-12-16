@@ -60,7 +60,7 @@ incorporate collision.
       <geometry>
         <mesh filename="package://husky_description/meshes/user_rail.stl" />
       </geometry>
-      <material name="DarkGray" />
+      <material name="DarkGrey" />
     </visual>
   </link>
   <joint name="user_rail" type="fixed">
@@ -69,7 +69,7 @@ incorporate collision.
     <child link="user_rail_link" />
   </joint>
   <gazebo reference="user_rail_link">
-    <material>Gazebo/DarkGray</material>
+    <material>Gazebo/DarkGrey</material>
   </gazebo>
 
   <link name="front_bumper_link">
@@ -77,7 +77,7 @@ incorporate collision.
       <geometry>
         <mesh filename="package://husky_description/meshes/bumper.stl" />
       </geometry>
-      <material name="DarkGray" />
+      <material name="DarkGrey" />
     </visual>
   </link>
   <joint name="front_bumper" type="fixed">
@@ -86,7 +86,7 @@ incorporate collision.
     <child link="front_bumper_link" />
   </joint>
   <gazebo reference="front_bumper_link">
-    <material>Gazebo/DarkGray</material>
+    <material>Gazebo/DarkGrey</material>
   </gazebo>
 
   <link name="rear_bumper_link">
@@ -94,7 +94,7 @@ incorporate collision.
       <geometry>
         <mesh filename="package://husky_description/meshes/bumper.stl" />
       </geometry>
-      <material name="DarkGray" />
+      <material name="DarkGrey" />
     </visual>
   </link>
   <joint name="rear_bumper" type="fixed">
@@ -103,7 +103,7 @@ incorporate collision.
     <child link="rear_bumper_link" />
   </joint>
   <gazebo reference="rear_bumper_link">
-    <material>Gazebo/DarkGray</material>
+    <material>Gazebo/DarkGrey</material>
   </gazebo>
 
   <gazebo>
@@ -154,7 +154,7 @@ incorporate collision.
         <geometry>
           <mesh filename="package://husky_description/meshes/lidar_mount.stl" />
         </geometry>
-        <material name="DarkGray" />
+        <material name="DarkGrey" />
       </visual>
     </link>
     <joint name="sick_bracket" type="fixed">
@@ -163,7 +163,7 @@ incorporate collision.
       <child link="sick_bracket_link" />
     </joint>
     <gazebo reference="sick_bracket_link">
-      <material>Gazebo/DarkGray</material>
+      <material>Gazebo/DarkGrey</material>
     </gazebo>
 
     <xacro:sick_lms100 prefix="front" />

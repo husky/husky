@@ -42,12 +42,12 @@ This program contains the description of the robot wheel model for Clearpath Hus
 				<geometry>
 					<mesh filename="package://husky_description/meshes/wheel.stl" />
 				</geometry>
-				<material name="DarkGray" />
+				<material name="DarkGrey" />
 			</visual>
 			<collision>
 				<origin xyz="0 0 0" rpy="${M_PI/2} 0 0" />
 				<geometry>
-				    <cylinder length="0.1143" radius="0.3555" />
+				    <cylinder length="0.1143" radius="0.17775" />
 				</geometry>
 			</collision>
 		</link>
