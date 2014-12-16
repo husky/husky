@@ -11,28 +11,18 @@
   <xacro:include filename="$(find husky_description)/urdf/sensors/sick_lms100.urdf.xacro" />
 
   <!-- PROPERTY LIST -->
-  <!-- <property name="M_PI" value="3.1415926535897931" /> -->
-
-  <!-- Location of center of mass. -->
-  <property name="base_x_com" value="-0.08748000" />
-  <property name="base_y_com" value="-0.00085000" />
-  <property name="base_z_com" value="0.09947000" />
+  <property name="M_PI" value="3.1415926535897931" />
 
   <!-- Size of the base. -->
   <property name="base_x_size" value="0.98740000" />
   <property name="base_y_size" value="0.57090000" />
   <property name="base_z_size" value="0.24750000" />
 
-  <!-- Weight of the base, kg. -->
-  <property name="base_mass" value="33.45489000" />
-
   <!-- Inertial values for the base at center of mass, aligned with coordinate system. Units are kg*m^2 -->
-  <property name="base_ixx_com_cs" value="0.60216370" />
-  <property name="base_ixy_com_cs" value="-0.02364198" />
-  <property name="base_ixz_com_cs" value="-0.11972132" />
-  <property name="base_iyy_com_cs" value="1.73859574" />
-  <property name="base_iyz_com_cs" value="-0.00154437" />
-  <property name="base_izz_com_cs" value="2.02955229" />
+
+  <xacro:property name="wheelbase" value="0.5120" />
+  <xacro:property name="track" value="0.5708" /> 
+  <xacro:property name="wheel_vertical_offset" value="0.03282" />
 
   <!-- Root node is the body of the robot. -->
   <link name="base_link">
@@ -44,7 +34,7 @@
       <material name="Black" />
     </visual>
     <collision>
-      <origin xyz="0 0 ${wheel_x_size/2 - base_z_origin_to_wheel_origin - 0.02}" rpy="0 0 0" />
+      <origin xyz="0 0 ${0.1578 - wheel_vertical_offset}" rpy="0 0 0" />
       <geometry>
         <!-- Make collision box slightly bigger in x and z directions. -->
         <box size = "${base_x_size+0.02} ${base_y_size} ${base_z_size + 0.02}"/>
@@ -52,14 +42,17 @@
     </collision>
   </link>
 
-  <!-- KDL can't have inertia on the base_link, so move it to this separate link. -->
+  <gazebo reference="base_link">
+    <material>Gazebo/DarkGrey</material>
+    <turnGravityOff>false</turnGravityOff>
+  </gazebo>
+
   <link name="base_inertia">
     <inertial>
-      <mass value="${base_mass}" />
-      <!-- This is the pose of the inertial reference frame, relative to the link reference frame. The origin of the inertial reference frame needs to be at the center of gravity. The axes of the inertial reference frame do not need to be aligned with the principal axes of the inertia.-->
-      <origin xyz="${base_x_com} ${base_y_com} ${base_z_com}" />
-      <inertia ixx="${base_ixx_com_cs}" ixy="${base_ixy_com_cs}" ixz="${base_ixz_com_cs}"
-       iyy="${base_iyy_com_cs}" iyz="${base_iyz_com_cs}" izz="${base_izz_com_cs}" />
+      <mass value="33.455" />
+      <origin xyz="-0.08748 -0.00085 0.09947" />
+      <inertia ixx="0.6022" ixy="-0.02364" ixz="-0.1197"
+       iyy="1.7386" iyz="-0.001544" izz="2.0296" />
      </inertial>
    </link>
 
@@ -69,114 +62,21 @@
     <child link="base_inertia" />
   </joint>
 
-  <gazebo reference="base_link">
-    <material>Gazebo/DarkGrey</material>
+  <gazebo reference="base_inertia">
     <turnGravityOff>false</turnGravityOff>
   </gazebo>
 
-  <!-- WHEEL macros -->
-  <husky_wheel fb="back" lr="left" parent="base_link" translateX="-1" translateY="1" flipY="-1"/>
-  <husky_wheel fb="back" lr="right" parent="base_link" translateX="-1" translateY="-1" flipY="-1"/>
-  <husky_wheel fb="front" lr="left" parent="base_link" translateX="1" translateY="1" flipY="-1"/>
-  <husky_wheel fb="front" lr="right" parent="base_link" translateX="1" translateY="-1" flipY="-1"/>
+  <xacro:husky_wheel prefix="front_left">
+    <origin xyz="${wheelbase/2} ${track/2} ${wheel_vertical_offset}" rpy="0 0 0" />
+  </xacro:husky_wheel>
+  <xacro:husky_wheel prefix="front_right">
+    <origin xyz="${wheelbase/2} ${-track/2} ${wheel_vertical_offset}" rpy="0 0 0" />
+  </xacro:husky_wheel>
+  <xacro:husky_wheel prefix="rear_left">
+    <origin xyz="${-wheelbase/2} ${track/2} ${wheel_vertical_offset}" rpy="0 0 0" />
+  </xacro:husky_wheel>
+  <xacro:husky_wheel prefix="rear_right">
+    <origin xyz="${-wheelbase/2} ${-track/2} ${wheel_vertical_offset}" rpy="0 0 0" />
+  </xacro:husky_wheel>
 
-  <!-- DECORATIONS -->
-  <!-- Top Plate -->
-  <husky_part parent="base_link" name="top_plate" mesh="top_plate"
-    colour="Yellow"
-    translateX="0.0" translateY="0.0" translateZ="0.0"
-    rotateX="0.0" rotateY="0.0" rotateZ="0.0"/>
-
-  <gazebo reference="base_link_top_plate_part">
-    <material>Gazebo/Yellow</material>
-  </gazebo>
-
-  <!-- User Rail -->
-  <husky_part parent="base_link" name="user_rail" mesh="user_rail"
-    colour="DarkGray"
-    translateX="0.272" translateY="0.0" translateZ="0.245"
-    rotateX="0.0" rotateY="0.0" rotateZ="0.0"/>
-
-  <gazebo reference="base_link_user_rail_part">
-    <material>Gazebo/DarkGrey</material>
-  </gazebo>
-
-  <!-- Bumpers -->
-  <husky_part parent="base_link" name="front_bumper" mesh="bumper"
-    colour="DarkGray"
-    translateX="0.48" translateY="0.0" translateZ="0.091"
-    rotateX="0.0" rotateY="0.0" rotateZ="0.0"/>
-
-  <gazebo reference="base_link_front_bumper_part">
-    <material>Gazebo/DarkGrey</material>
-  </gazebo>
-
-  <husky_part parent="base_link" name="rear_bumper" mesh="bumper"
-    colour="DarkGray"
-    translateX="-0.48" translateY="0.0" translateZ="0.091"
-    rotateX="0.0" rotateY="0.0" rotateZ="3.14"/>
-
-  <gazebo reference="base_link_rear_bumper_part">
-    <material>Gazebo/DarkGrey</material>
-  </gazebo>
-
-  <gazebo>
-    <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
-      <robotNamespace>/</robotNamespace>
-    </plugin>
-  </gazebo>
-
-  <xacro:if value="$(arg imu_enabled)">
-    <gazebo>
-      <plugin name="imu_controller" filename="libhector_gazebo_ros_imu.so">
-        <robotNamespace>/</robotNamespace>
-        <updateRate>50.0</updateRate> 
-        <bodyName>base_link</bodyName>
-        <topicName>imu/data</topicName>
-        <accelDrift>0.005 0.005 0.005</accelDrift>
-        <accelGaussianNoise>0.005 0.005 0.005</accelGaussianNoise>
-        <rateDrift>0.005 0.005 0.005 </rateDrift>
-        <rateGaussianNoise>0.005 0.005 0.005 </rateGaussianNoise>
-        <headingDrift>0.005</headingDrift>
-        <headingGaussianNoise>0.005</headingGaussianNoise>
-      </plugin>
-    </gazebo>
-  </xacro:if>
-
-  <xacro:if value="$(arg gps_enabled)">
-    <gazebo>
-      <plugin name="gps_controller" filename="libhector_gazebo_ros_gps.so">
-        <updateRate>40</updateRate>
-        <robotNamespace>/</robotNamespace>
-        <bodyName>base_link</bodyName>
-        <frameId>base_link</frameId>
-        <topicName>/navsat/fix</topicName>
-        <velocityTopicName>/navsat/vel</velocityTopicName>
-        <referenceLatitude>49.9</referenceLatitude>
-        <referenceLongitude>8.9</referenceLongitude>
-        <referenceHeading>0</referenceHeading>
-        <referenceAltitude>0</referenceAltitude>
-        <drift>0.0001 0.0001 0.0001</drift>
-      </plugin>
-    </gazebo>
-  </xacro:if>
-
-  <xacro:if value="$(arg front_laser)">
-    <husky_part parent="base_link_front_bumper_part" name="sick_bracket" mesh="lidar_mount"
-      colour="DarkGray"
-      translateX="-0.12" translateY="0" translateZ="0"
-      rotateX="0" rotateY="0.0" rotateZ="0"/>
-
-      <gazebo reference="lidar_mount_bracket_part">
-        <material>Gazebo/DarkGrey</material>
-      </gazebo>
-
-      <xacro:sick_lms100 prefix="front" />
-
-      <joint name="front_laser_joint" type="fixed">
-        <origin xyz="0.07 0 0.17" rpy="0 0 0" />
-        <parent link="base_link_front_bumper_part_sick_bracket_part" />
-        <child link="front_laser" />
-      </joint>
-    </xacro:if>
-  </robot>
+</robot>

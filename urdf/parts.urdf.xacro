@@ -36,52 +36,143 @@ incorporate collision.
 	xmlns:interface="http://playerstage.sourceforge.net/gazebo/xmlschema/#interface"
 	xmlns:xacro="http://ros.org/wiki/xacro" name="husky_part">
 	
-	<property name="x_com" value="0.00000000" /> <!-- com : center of mass -->
-	<property name="y_com" value="0.00000000" /> <!-- com : center of mass -->
-	<property name="z_com" value="0.00000000" /> <!-- com : center of mass -->
+<!-- DECORATIONS -->
+  <!-- Top Plate -->
+  <link name="top_plate_link">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://husky_description/meshes/top_plate.stl" />
+      </geometry>
+      <material name="Yellow" />
+    </visual>
+  </link>
+  <joint name="top_plate" type="fixed">
+    <parent link="base_link" />
+    <child link="top_plate_link" />
+  </joint>
+  <gazebo reference="top_plate_link">
+    <material>Gazebo/Yellow</material>
+  </gazebo>
+
+  <link name="user_rail_link">
+    <visual>
+      <geometry>
+        <mesh filename="package://husky_description/meshes/user_rail.stl" />
+      </geometry>
+      <material name="DarkGray" />
+    </visual>
+  </link>
+  <joint name="user_rail" type="fixed">
+    <origin xyz="0.272 0 0.245" rpy="0 0 0" />
+    <parent link="base_link" />
+    <child link="user_rail_link" />
+  </joint>
+  <gazebo reference="user_rail_link">
+    <material>Gazebo/DarkGray</material>
+  </gazebo>
+
+  <link name="front_bumper_link">
+    <visual>
+      <geometry>
+        <mesh filename="package://husky_description/meshes/bumper.stl" />
+      </geometry>
+      <material name="DarkGray" />
+    </visual>
+  </link>
+  <joint name="front_bumper" type="fixed">
+    <origin xyz="0.48 0 0.091" rpy="0 0 0" />
+    <parent link="base_link" />
+    <child link="front_bumper_link" />
+  </joint>
+  <gazebo reference="front_bumper_link">
+    <material>Gazebo/DarkGray</material>
+  </gazebo>
+
+  <link name="rear_bumper_link">
+    <visual>
+      <geometry>
+        <mesh filename="package://husky_description/meshes/bumper.stl" />
+      </geometry>
+      <material name="DarkGray" />
+    </visual>
+  </link>
+  <joint name="rear_bumper" type="fixed">
+    <origin xyz="-0.48 0 0.091" rpy="0 0 ${M_PI}" />
+    <parent link="base_link" />
+    <child link="rear_bumper_link" />
+  </joint>
+  <gazebo reference="rear_bumper_link">
+    <material>Gazebo/DarkGray</material>
+  </gazebo>
+
+  <gazebo>
+    <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+      <robotNamespace>/</robotNamespace>
+    </plugin>
+  </gazebo>
+
+  <xacro:if value="$(arg imu_enabled)">
+    <gazebo>
+      <plugin name="imu_controller" filename="libhector_gazebo_ros_imu.so">
+        <robotNamespace>/</robotNamespace>
+        <updateRate>50.0</updateRate> 
+        <bodyName>base_link</bodyName>
+        <topicName>imu/data</topicName>
+        <accelDrift>0.005 0.005 0.005</accelDrift>
+        <accelGaussianNoise>0.005 0.005 0.005</accelGaussianNoise>
+        <rateDrift>0.005 0.005 0.005 </rateDrift>
+        <rateGaussianNoise>0.005 0.005 0.005 </rateGaussianNoise>
+        <headingDrift>0.005</headingDrift>
+        <headingGaussianNoise>0.005</headingGaussianNoise>
+      </plugin>
+    </gazebo>
+  </xacro:if>
+
+  <xacro:if value="$(arg gps_enabled)">
+    <gazebo>
+      <plugin name="gps_controller" filename="libhector_gazebo_ros_gps.so">
+        <updateRate>40</updateRate>
+        <robotNamespace>/</robotNamespace>
+        <bodyName>base_link</bodyName>
+        <frameId>base_link</frameId>
+        <topicName>/navsat/fix</topicName>
+        <velocityTopicName>/navsat/vel</velocityTopicName>
+        <referenceLatitude>49.9</referenceLatitude>
+        <referenceLongitude>8.9</referenceLongitude>
+        <referenceHeading>0</referenceHeading>
+        <referenceAltitude>0</referenceAltitude>
+        <drift>0.0001 0.0001 0.0001</drift>
+      </plugin>
+    </gazebo>
+  </xacro:if>
+
+  <xacro:if value="$(arg front_laser)">
+
+    <link name="sick_bracket_link">
+      <visual>
+        <geometry>
+          <mesh filename="package://husky_description/meshes/lidar_mount.stl" />
+        </geometry>
+        <material name="DarkGray" />
+      </visual>
+    </link>
+    <joint name="sick_bracket" type="fixed">
+      <origin xyz="-0.12 0 0" rpy="0 0 0" />
+      <parent link="front_bumper_link" />
+      <child link="sick_bracket_link" />
+    </joint>
+    <gazebo reference="sick_bracket_link">
+      <material>Gazebo/DarkGray</material>
+    </gazebo>
+
+    <xacro:sick_lms100 prefix="front" />
+
+    <joint name="front_laser_joint" type="fixed">
+      <origin xyz="0.07 0 0.17" rpy="0 0 0" />
+      <parent link="sick_bracket_link" />
+      <child link="front_laser" />
+    </joint>
+  </xacro:if>
 	
-	<property name="x_size" value="1.0" /> 
-	<property name="y_size" value="1.0" /> 
-	<property name="z_size" value="1.0" />
-	
-	<property name="mass" value="0.1" /> <!-- in kg-->
-	
-	<property name="ixx_com_cs" value="0.01" /> <!-- at center of mass aligned with coordinate system, kg*m^2-->
-	<property name="ixy_com_cs" value="0.0" /> <!-- at center of mass aligned with coordinate system, kg*m^2-->
-	<property name="ixz_com_cs" value="0.0" /> <!-- at center of mass aligned with coordinate system, kg*m^2-->
-	<property name="iyy_com_cs" value="0.01" /> <!-- at center of mass aligned with coordinate system, kg*m^2-->
-	<property name="iyz_com_cs" value="0.00" /> <!-- at center of mass aligned with coordinate system, kg*m^2-->
-	<property name="izz_com_cs" value="0.01" /> <!-- at center of mass aligned with coordinate system, kg*m^2-->
-	
-	<xacro:macro name="husky_part" params="parent name mesh colour translateX translateY translateZ rotateX rotateY rotateZ">
-		
-		<link name="${parent}_${name}_part">
-			<inertial>
-				<mass value="${mass}" />
-				<origin xyz="${x_com} ${y_com} ${z_com}" />
-				<inertia ixx="${ixx_com_cs}" ixy="${ixy_com_cs}" ixz="${ixz_com_cs}"
-					iyy="${iyy_com_cs}" iyz="${iyz_com_cs}" izz="${izz_com_cs}" />
-			</inertial>
-			<visual>
-				<origin xyz="0 0 0" rpy="0 0 0" />
-				<geometry>
-					<mesh filename="package://husky_description/meshes/${mesh}.stl" />
-				</geometry>
-				<material name="${colour}" />
-			</visual>
-			<collision>
-				<origin xyz="0 0 0" rpy="0 0 0"/>
-				<geometry>
-					<box size="0.001 0.001 0.001" /> <!--the collision boundary for parts are taken into account by collision boundary of the base_link-->
-				</geometry>
-			</collision>
-		</link>
-		<joint name="${parent}_${name}_joint" type="fixed">
-		    <origin xyz="${translateX} ${translateY} ${translateZ}" 
-		            rpy="${rotateX} ${rotateY} ${rotateZ}" />
-		    <parent link="${parent}" />
-		    <child link="${parent}_${name}_part" />
-		</joint>
-		
-  	</xacro:macro>
 </robot>

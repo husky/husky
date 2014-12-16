@@ -30,82 +30,54 @@ This program contains the description of the robot wheel model for Clearpath Hus
 <robot xmlns:xacro="http://ros.org/wiki/xacro" name="husky_wheel">	
 	<property name="M_PI" value="3.14159"/>
 	
-	<!-- Wheel -->
-	
-	<property name="wheel_x_com" value="0.00000000" /> <!-- com : center of mass -->
-	<property name="wheel_y_com" value="0.00000000" /> <!-- com : center of mass -->
-	<property name="wheel_z_com" value="0.00019000" /> <!-- com : center of mass -->
-	
-	<property name="wheel_x_size" value="0.35550000" /> 
-	<property name="wheel_y_size" value="0.35550000" /> 
-	<property name="wheel_z_size" value="0.11430000" />
-	
-	<property name="wheel_mass" value="2.63657000" /> <!-- in kg-->
-	
-	<property name="wheel_ixx_com_cs" value="0.02466885" /> <!-- at center of mass aligned with coordinate system, kg*m^2-->
-	<property name="wheel_ixy_com_cs" value="0.00000000" /> <!-- at center of mass aligned with coordinate system, kg*m^2-->
-	<property name="wheel_ixz_com_cs" value="0.00000000" /> <!-- at center of mass aligned with coordinate system, kg*m^2-->
-	<property name="wheel_iyy_com_cs" value="0.02466885" /> <!-- at center of mass aligned with coordinate system, kg*m^2-->
-	<property name="wheel_iyz_com_cs" value="0.00000000" /> <!-- at center of mass aligned with coordinate system, kg*m^2-->
-	<property name="wheel_izz_com_cs" value="0.04410576" /> <!-- at center of mass aligned with coordinate system, kg*m^2-->
-	
-	<property name="base_x_origin_to_wheel_origin" value="0.25600006" />
-	<property name="base_y_origin_to_wheel_origin" value="0.285475" />
-	<property name="base_z_origin_to_wheel_origin" value="0.03282508" />
-
-
-	<xacro:macro name="husky_wheel" params="fb lr parent translateX translateY flipY"> <!--fb : front, back ; lr: left, right -->
-		<link name="${fb}_${lr}_wheel">
+	<xacro:macro name="husky_wheel" params="prefix *joint_pose">
+		<link name="${prefix}_wheel_link">
 			<inertial>
-				<mass value="${wheel_mass}" />
-				<origin xyz="${wheel_x_com} ${wheel_y_com} ${wheel_z_com}" />
-				<inertia  ixx="${wheel_ixx_com_cs}" ixy="${wheel_ixy_com_cs}" ixz="${wheel_ixz_com_cs}"
-					iyy="${wheel_iyy_com_cs}" iyz="${wheel_iyz_com_cs}" izz="${wheel_izz_com_cs}" />
+				<mass value="2.637" />
+				<origin xyz="0 0 0" />
+				<inertia  ixx="0.02467" ixy="0" ixz="0" iyy="0.02467" iyz="0" izz="0.04411" />
 			</inertial>
 			<visual>
-				<origin xyz="0 0 0" rpy="${flipY*M_PI} 0 0" /> 
+				<origin xyz="0 0 0" rpy="0 0 0" /> 
 				<geometry>
 					<mesh filename="package://husky_description/meshes/wheel.stl" />
 				</geometry>
 				<material name="DarkGray" />
 			</visual>
 			<collision>
-				<origin xyz="0 0 0" rpy="${flipY*M_PI/2} 0 0" />
+				<origin xyz="0 0 0" rpy="${M_PI/2} 0 0" />
 				<geometry>
-				    <cylinder length="${wheel_z_size}" radius="${wheel_x_size/2}" />
+				    <cylinder length="0.1143" radius="0.3555" />
 				</geometry>
 			</collision>
 		</link>
 		
-		<gazebo reference="${fb}_${lr}_wheel">
+		<gazebo reference="${prefix}_wheel_link">
 			<mu1 value="1.0"/>
 			<mu2 value="1.0"/>
-			<kp  value="10000000.0" />
-			<kd  value="1.0" />
+			<kp value="10000000.0" />
+			<kd value="1.0" />
 			<fdir1 value="1 0 0"/>
 			<material>Gazebo/Grey</material>
 			<turnGravityOff>false</turnGravityOff>
 		</gazebo>
 
-		<joint name="joint_${fb}_${lr}_wheel" type="continuous">
-			<parent link="${parent}"/>
-			<child link="${fb}_${lr}_wheel"/>
-			<origin xyz="${translateX * base_x_origin_to_wheel_origin} ${translateY * base_y_origin_to_wheel_origin} ${base_z_origin_to_wheel_origin}" rpy="0 0 0" /> 
+		<joint name="${prefix}_wheel" type="continuous">
+			<parent link="base_link"/>
+			<child link="${prefix}_wheel_link"/>
+			<xacro:insert_block name="joint_pose"/>
 			<axis xyz="0 1 0" rpy="0 0 0" />
-			<limit effort="100" velocity="100"/>
-			<joint_properties damping="0.0" friction="0.0"/>
 		</joint>
-
-		<!-- Transmission is important to link the joints and the controller -->
-		<transmission name="joint_${fb}_${lr}_wheel_trans" type="SimpleTransmission">
+   
+		<transmission name="${prefix}_wheel_trans" type="SimpleTransmission">
 			<type>transmission_interface/SimpleTransmission</type>
-			<joint name="joint_${fb}_${lr}_wheel">
+			<actuator name="${prefix}_wheel_motor">			
+				<mechanicalReduction>1</mechanicalReduction>
+			</actuator>
+			<joint name="${prefix}_wheel">
 				<hardwareInterface>VelocityJointInterface</hardwareInterface>
 			</joint>
-			<actuator name="joint_${fb}_${lr}_wheel_actuator">				
-				<mechanicalReduction>1</mechanicalReduction>				
-			</actuator>
 		</transmission>
-   
+
   	</xacro:macro>
 </robot>

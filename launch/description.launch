@@ -11,5 +11,5 @@
                                          imu_enabled:=$(arg imu_enabled)
                                          gps_enabled:=$(arg gps_enabled)
                                          front_laser:=$(arg front_laser)" />
-  <node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher" />
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
 </launch>
