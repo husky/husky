@@ -8,9 +8,7 @@ find_package(catkin REQUIRED COMPONENTS
 
 add_message_files(
   FILES
-  SystemStatus.msg
-  SafetyStatus.msg
-  PowerStatus.msg
+  HuskyStatus.msg
 )
 
 generate_messages(
