@@ -4,8 +4,9 @@ husky_joint_publisher:
 
 husky_velocity_controller:
   type: "diff_drive_controller/DiffDriveController"
-  left_wheel: ['front_left_wheel', 'rear_left_wheel']
-  right_wheel: ['front_right_wheel', 'rear_right_wheel']
+  #type: "jackal_diff_drive_controller/DiffDriveController"
+  left_wheel: ['joint_front_left_wheel', 'joint_back_left_wheel']
+  right_wheel: ['joint_front_right_wheel', 'joint_back_right_wheel']
   publish_rate: 50
   pose_covariance_diagonal: [0.001, 0.001, 1000000.0, 1000000.0, 1000000.0, 0.03]
   twist_covariance_diagonal: [0.001, 0.001, 0.001, 1000000.0, 1000000.0, 0.03]
@@ -13,7 +14,7 @@ husky_velocity_controller:
 
   # Odometry fused with IMU is published by robot_localization, so
   # no need to publish a TF based on encoders alone.
-  enable_odom_tf: false
+  enable_odom_tf: true
 
   # Wheel separation and radius multipliers
   wheel_separation_multiplier: 1.5 # default: 1.0
@@ -35,11 +36,7 @@ husky_velocity_controller:
       max_acceleration       : 6.0   # rad/s^2
 
 ekf_localization:
-  odom_frame: odom
-  base_link_frame: base_link
-  world_frame: odom
   frequency: 50
-
   odom0: husky_velocity_controller/odom
   odom0_config: [false, false, false,
                  false, false, false,
@@ -47,19 +44,20 @@ ekf_localization:
                  false, false, true]
   odom0_differential: true
 
-  odom1: /odometry/gps
-  odom1_config: [true, true, true,
-                 false, false, false,
-                 false, false, false,
-                 false, false, false]
-  odom1_differential: false
+  #TODO GPS
+  #odom1: /odometry/gps
+  #odom1_config: []
 
   imu0: imu/data
   imu0_config: [false, false, false,
                 true, true, true,
                 false, false, false,
                 true, true, true]
-  imu0_differential: true
+  imu0_differential: false
+  odom_frame: odom
+  base_link_frame: base_link
+  world_frame: odom
+
 
 navsat_transform:
 
