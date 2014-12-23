@@ -6,12 +6,7 @@
   <xacro:include filename="$(find husky_description)/urdf/wheel.urdf.xacro" />
   <xacro:include filename="$(find husky_description)/urdf/parts.urdf.xacro" />
 
-  <xacro:include filename="$(find husky_description)/urdf/sensors/gps.urdf.xacro" />
-
   <xacro:include filename="$(find husky_description)/urdf/sensors/sick_lms100.urdf.xacro" />
-
-  <!-- PROPERTY LIST -->
-  <property name="M_PI" value="3.1415926535897931" />
 
   <!-- Size of the base. -->
   <property name="base_x_size" value="0.98740000" />

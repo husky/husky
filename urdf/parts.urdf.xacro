@@ -36,76 +36,48 @@ incorporate collision.
 	xmlns:interface="http://playerstage.sourceforge.net/gazebo/xmlschema/#interface"
 	xmlns:xacro="http://ros.org/wiki/xacro" name="husky_part">
 	
-<!-- DECORATIONS -->
-  <!-- Top Plate -->
-  <link name="top_plate_link">
-    <visual>
-      <origin xyz="0 0 0" rpy="0 0 0" />
-      <geometry>
-        <mesh filename="package://husky_description/meshes/top_plate.stl" />
-      </geometry>
-      <material name="Yellow" />
-    </visual>
-  </link>
-  <joint name="top_plate" type="fixed">
+  <!-- PROPERTY LIST -->
+  <property name="M_PI" value="3.1415926535897931" />
+
+  <link name="imu_link"/>
+  <joint name="imu_joint" type="fixed">
+    <origin xyz="0 0 0" rpy="${M_PI/2} ${M_PI/2} 0" />
     <parent link="base_link" />
-    <child link="top_plate_link" />
+    <child link="imu_link" />
   </joint>
-  <gazebo reference="top_plate_link">
-    <material>Gazebo/Yellow</material>
+  <gazebo reference="imu_link">
+    <turnGravityOff>false</turnGravityOff>
   </gazebo>
 
-  <link name="user_rail_link">
-    <visual>
-      <geometry>
-        <mesh filename="package://husky_description/meshes/user_rail.stl" />
-      </geometry>
-      <material name="DarkGrey" />
-    </visual>
-  </link>
-  <joint name="user_rail" type="fixed">
-    <origin xyz="0.272 0 0.245" rpy="0 0 0" />
-    <parent link="base_link" />
-    <child link="user_rail_link" />
-  </joint>
-  <gazebo reference="user_rail_link">
-    <material>Gazebo/DarkGrey</material>
-  </gazebo>
+  <xacro:if value="$(arg front_laser)">
 
-  <link name="front_bumper_link">
-    <visual>
-      <geometry>
-        <mesh filename="package://husky_description/meshes/bumper.stl" />
-      </geometry>
-      <material name="DarkGrey" />
-    </visual>
-  </link>
-  <joint name="front_bumper" type="fixed">
-    <origin xyz="0.48 0 0.091" rpy="0 0 0" />
-    <parent link="base_link" />
-    <child link="front_bumper_link" />
-  </joint>
-  <gazebo reference="front_bumper_link">
-    <material>Gazebo/DarkGrey</material>
-  </gazebo>
+    <link name="sick_bracket_link">
+      <visual>
+        <geometry>
+          <mesh filename="package://husky_description/meshes/lidar_mount.stl" />
+        </geometry>
+        <material name="DarkGrey" />
+      </visual>
+    </link>
+    <joint name="sick_bracket" type="fixed">
+      <origin xyz="-0.12 0 0" rpy="0 0 0" />
+      <parent link="front_bumper_link" />
+      <child link="sick_bracket_link" />
+    </joint>
+    <gazebo reference="sick_bracket_link">
+      <material>Gazebo/DarkGrey</material>
+      <turnGravityOff>false</turnGravityOff>
+    </gazebo>
 
-  <link name="rear_bumper_link">
-    <visual>
-      <geometry>
-        <mesh filename="package://husky_description/meshes/bumper.stl" />
-      </geometry>
-      <material name="DarkGrey" />
-    </visual>
-  </link>
-  <joint name="rear_bumper" type="fixed">
-    <origin xyz="-0.48 0 0.091" rpy="0 0 ${M_PI}" />
-    <parent link="base_link" />
-    <child link="rear_bumper_link" />
-  </joint>
-  <gazebo reference="rear_bumper_link">
-    <material>Gazebo/DarkGrey</material>
-  </gazebo>
+    <xacro:sick_lms100 prefix="front" />
 
+    <joint name="front_laser_joint" type="fixed">
+      <origin xyz="0.07 0 0.17" rpy="0 0 0" />
+      <parent link="sick_bracket_link" />
+      <child link="front_laser" />
+    </joint>
+  </xacro:if>
+  
   <gazebo>
     <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
       <robotNamespace>/</robotNamespace>
@@ -147,32 +119,77 @@ incorporate collision.
     </gazebo>
   </xacro:if>
 
-  <xacro:if value="$(arg front_laser)">
+<!-- DECORATIONS -->
+  <link name="top_plate_link">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://husky_description/meshes/top_plate.stl" />
+      </geometry>
+      <material name="Yellow" />
+    </visual>
+  </link>
+  <joint name="top_plate" type="fixed">
+    <parent link="base_link" />
+    <child link="top_plate_link" />
+  </joint>
+  <gazebo reference="top_plate_link">
+    <material>Gazebo/Yellow</material>
+    <turnGravityOff>false</turnGravityOff>
+  </gazebo>
 
-    <link name="sick_bracket_link">
-      <visual>
-        <geometry>
-          <mesh filename="package://husky_description/meshes/lidar_mount.stl" />
-        </geometry>
-        <material name="DarkGrey" />
-      </visual>
-    </link>
-    <joint name="sick_bracket" type="fixed">
-      <origin xyz="-0.12 0 0" rpy="0 0 0" />
-      <parent link="front_bumper_link" />
-      <child link="sick_bracket_link" />
-    </joint>
-    <gazebo reference="sick_bracket_link">
-      <material>Gazebo/DarkGrey</material>
-    </gazebo>
+  <link name="user_rail_link">
+    <visual>
+      <geometry>
+        <mesh filename="package://husky_description/meshes/user_rail.stl" />
+      </geometry>
+      <material name="DarkGrey" />
+    </visual>
+  </link>
+  <joint name="user_rail" type="fixed">
+    <origin xyz="0.272 0 0.245" rpy="0 0 0" />
+    <parent link="base_link" />
+    <child link="user_rail_link" />
+  </joint>
+  <gazebo reference="user_rail_link">
+    <material>Gazebo/DarkGrey</material>
+    <turnGravityOff>false</turnGravityOff>
+  </gazebo>
 
-    <xacro:sick_lms100 prefix="front" />
+  <link name="front_bumper_link">
+    <visual>
+      <geometry>
+        <mesh filename="package://husky_description/meshes/bumper.stl" />
+      </geometry>
+      <material name="DarkGrey" />
+    </visual>
+  </link>
+  <joint name="front_bumper" type="fixed">
+    <origin xyz="0.48 0 0.091" rpy="0 0 0" />
+    <parent link="base_link" />
+    <child link="front_bumper_link" />
+  </joint>
+  <gazebo reference="front_bumper_link">
+    <material>Gazebo/DarkGrey</material>
+    <turnGravityOff>false</turnGravityOff>
+  </gazebo>
 
-    <joint name="front_laser_joint" type="fixed">
-      <origin xyz="0.07 0 0.17" rpy="0 0 0" />
-      <parent link="sick_bracket_link" />
-      <child link="front_laser" />
-    </joint>
-  </xacro:if>
-	
+  <link name="rear_bumper_link">
+    <visual>
+      <geometry>
+        <mesh filename="package://husky_description/meshes/bumper.stl" />
+      </geometry>
+      <material name="DarkGrey" />
+    </visual>
+  </link>
+  <joint name="rear_bumper" type="fixed">
+    <origin xyz="-0.48 0 0.091" rpy="0 0 ${M_PI}" />
+    <parent link="base_link" />
+    <child link="rear_bumper_link" />
+  </joint>
+  <gazebo reference="rear_bumper_link">
+    <material>Gazebo/DarkGrey</material>
+    <turnGravityOff>false</turnGravityOff>
+  </gazebo>
+
 </robot>
