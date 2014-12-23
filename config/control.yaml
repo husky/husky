@@ -38,6 +38,7 @@ ekf_localization:
   odom_frame: odom
   base_link_frame: base_link
   world_frame: odom
+
   frequency: 50
 
   odom0: husky_velocity_controller/odom
@@ -47,37 +48,18 @@ ekf_localization:
                  false, false, true]
   odom0_differential: true
 
-  odom1: /odometry/gps
-  odom1_config: [true, true, true,
-                 false, false, false,
-                 false, false, false,
-                 false, false, false]
-  odom1_differential: false
-
   imu0: imu/data
   imu0_config: [false, false, false,
                 true, true, true,
                 false, false, false,
                 true, true, true]
-  imu0_differential: true
+  imu0_differential: false
 
 navsat_transform:
 
-    # Enter the magnetic declination for your location. If you don't
-    # know it, see http://www.ngdc.noaa.gov/geomag-web/ (make sure to
-    # convert the value to radians).
     magnetic_declination_radians: 0
-    # On level ground, your IMU should read 0 for roll. If it doesn't,
-    # enter the offset here (desired_value = offset + sensor_raw_value). -->
     roll_offset: 0
-    # On level ground, your IMU should read 0 for pitch. If it doesn't,
-    # enter the offset here (desired_value = offset + sensor_raw_value). -->
     pitch_offset: 0
-    # Your IMU should read 0 for yaw at *magnetic* north. If it doesn't,
-    # enter the offset here (desired_value = offset + sensor_raw_value). -->
     yaw_offset: 0
-    # If this is true, the altitude is set to 0 in the output odometry message -->
     zero_altitude: false
-    # If this is true, the transform world_frame->utm transform is broadcast
-    # for use by other nodes. -->
     broadcast_utm_transform: false
