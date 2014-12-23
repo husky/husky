@@ -4,7 +4,6 @@
   <version>0.0.2</version>
   <description>URDF description for Husky</description>
 
-  <maintainer email="mpurvis@clearpathrobotics.com">Mike Purvis</maintainer>
   <maintainer email="pbovbel@clearpathrobotics.com">Paul Bovbel</maintainer>
   <author email="rgariepy@clearpathrobotics.com">Ryan Gariepy</author>
 
