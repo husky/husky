@@ -63,7 +63,7 @@ This program contains the description of the robot wheel model for Clearpath Hus
 		</gazebo>
 
 		<joint name="${prefix}_wheel" type="continuous">
-			<parent link="base_link"/>
+			<parent link="chassis_link"/>
 			<child link="${prefix}_wheel_link"/>
 			<xacro:insert_block name="joint_pose"/>
 			<axis xyz="0 1 0" rpy="0 0 0" />

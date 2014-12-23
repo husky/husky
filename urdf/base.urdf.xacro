@@ -16,11 +16,19 @@
   <!-- Inertial values for the base at center of mass, aligned with coordinate system. Units are kg*m^2 -->
 
   <xacro:property name="wheelbase" value="0.5120" />
+  <xacro:property name="wheelbase" value="0.5120" />
   <xacro:property name="track" value="0.5708" /> 
   <xacro:property name="wheel_vertical_offset" value="0.03282" />
 
   <!-- Root node is the body of the robot. -->
-  <link name="base_link">
+  <link name="base_link"/>
+
+  <gazebo reference="base_link">
+    <material>Gazebo/DarkGrey</material>
+    <turnGravityOff>false</turnGravityOff>
+  </gazebo>
+
+  <link name="chassis_link">
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
@@ -35,14 +43,6 @@
         <box size = "${base_x_size+0.02} ${base_y_size} ${base_z_size + 0.02}"/>
       </geometry>
     </collision>
-  </link>
-
-  <gazebo reference="base_link">
-    <material>Gazebo/DarkGrey</material>
-    <turnGravityOff>false</turnGravityOff>
-  </gazebo>
-
-  <link name="base_inertia">
     <inertial>
       <mass value="33.455" />
       <origin xyz="-0.08748 -0.00085 0.09947" />
@@ -51,13 +51,13 @@
      </inertial>
    </link>
 
-   <joint name="base_inertia_joint" type="fixed">
-    <origin xyz="0 0 0" rpy="0 0 0" />
+   <joint name="chassis_joint" type="fixed">
+    <origin xyz="0 0 ${0.17775 - wheel_vertical_offset}" rpy="0 0 0" />
     <parent link="base_link" />
-    <child link="base_inertia" />
+    <child link="chassis_link" />
   </joint>
 
-  <gazebo reference="base_inertia">
+  <gazebo reference="chassis_link">
     <turnGravityOff>false</turnGravityOff>
   </gazebo>
 

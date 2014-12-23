@@ -41,8 +41,8 @@ incorporate collision.
 
   <link name="imu_link"/>
   <joint name="imu_joint" type="fixed">
-    <origin xyz="0 0 0" rpy="${M_PI/2} ${M_PI/2} 0" />
-    <parent link="base_link" />
+    <origin xyz="$(optenv HUSKY_IMU_XYZ 0.25 0 0.0415)" rpy="$(optenv HUSKY_IMU_RPY 0 -1.57 0)" />
+    <parent link="chassis_link" />
     <child link="imu_link" />
   </joint>
   <gazebo reference="imu_link">
@@ -130,7 +130,7 @@ incorporate collision.
     </visual>
   </link>
   <joint name="top_plate" type="fixed">
-    <parent link="base_link" />
+    <parent link="chassis_link" />
     <child link="top_plate_link" />
   </joint>
   <gazebo reference="top_plate_link">
@@ -148,7 +148,7 @@ incorporate collision.
   </link>
   <joint name="user_rail" type="fixed">
     <origin xyz="0.272 0 0.245" rpy="0 0 0" />
-    <parent link="base_link" />
+    <parent link="chassis_link" />
     <child link="user_rail_link" />
   </joint>
   <gazebo reference="user_rail_link">
@@ -166,7 +166,7 @@ incorporate collision.
   </link>
   <joint name="front_bumper" type="fixed">
     <origin xyz="0.48 0 0.091" rpy="0 0 0" />
-    <parent link="base_link" />
+    <parent link="chassis_link" />
     <child link="front_bumper_link" />
   </joint>
   <gazebo reference="front_bumper_link">
@@ -184,7 +184,7 @@ incorporate collision.
   </link>
   <joint name="rear_bumper" type="fixed">
     <origin xyz="-0.48 0 0.091" rpy="0 0 ${M_PI}" />
-    <parent link="base_link" />
+    <parent link="chassis_link" />
     <child link="rear_bumper_link" />
   </joint>
   <gazebo reference="rear_bumper_link">
