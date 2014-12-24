@@ -54,12 +54,3 @@ ekf_localization:
                 false, false, false,
                 true, true, true]
   imu0_differential: false
-
-navsat_transform:
-
-    magnetic_declination_radians: 0
-    roll_offset: 0
-    pitch_offset: 0
-    yaw_offset: 0
-    zero_altitude: false
-    broadcast_utm_transform: false

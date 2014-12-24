@@ -2,7 +2,7 @@
 <package>
   <name>husky_control</name>
   <version>0.0.0</version>
-  <description>Controllers for Husky</description>
+  <description>Clearpath Husky controller configurations</description>
   <maintainer email="pbovbel@clearpathrobotics.com">Paul Bovbel</maintainer>
 
   <license>BSD</license>
