@@ -2,7 +2,7 @@
 <package>
   <name>husky_description</name>
   <version>0.0.2</version>
-  <description>URDF description for Husky</description>
+  <description>Clearpath Husky URDF description</description>
 
   <maintainer email="pbovbel@clearpathrobotics.com">Paul Bovbel</maintainer>
   <author email="rgariepy@clearpathrobotics.com">Ryan Gariepy</author>
