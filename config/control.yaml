@@ -7,8 +7,8 @@ husky_velocity_controller:
   left_wheel: ['front_left_wheel', 'rear_left_wheel']
   right_wheel: ['front_right_wheel', 'rear_right_wheel']
   publish_rate: 50
-  pose_covariance_diagonal: [0.001, 0.001, 1000000.0, 1000000.0, 1000000.0, 0.03]
-  twist_covariance_diagonal: [0.001, 0.001, 0.001, 1000000.0, 1000000.0, 0.03]
+  pose_covariance_diagonal: [0.001, 0.001, 0.001, 0.001, 0.001, 0.03]
+  twist_covariance_diagonal: [0.001, 0.001, 0.001, 0.001, 0.001, 0.03]
   cmd_vel_timeout: 0.25
 
   # Odometry fused with IMU is published by robot_localization, so
@@ -48,7 +48,7 @@ ekf_localization:
                  false, false, true]
   odom0_differential: true
 
-  imu0: imu/data
+  imu0: imu/data_compass
   imu0_config: [false, false, false,
                 true, true, true,
                 false, false, false,
