@@ -41,7 +41,7 @@ incorporate collision.
 
   <link name="imu_link"/>
   <joint name="imu_joint" type="fixed">
-    <origin xyz="$(optenv HUSKY_IMU_XYZ 0.25 0 0.0415)" rpy="$(optenv HUSKY_IMU_RPY 0 -1.57 0)" />
+    <origin xyz="$(optenv HUSKY_IMU_XYZ 0.25 0 0.0415)" rpy="$(optenv HUSKY_IMU_RPY 3.141 -1.5705 0)" />
     <parent link="chassis_link" />
     <child link="imu_link" />
   </joint>
