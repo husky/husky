@@ -54,3 +54,24 @@ ekf_localization:
                 false, false, false,
                 true, true, true]
   imu0_differential: true
+
+twist_mux:
+  topics:
+  - name    : bluetooth
+    topic   : bluetooth_teleop/cmd_vel
+    timeout : 0.5
+    priority: 100
+  - name    : interactive_marker
+    topic   : twist_marker_server/cmd_vel
+    timeout : 0.5
+    priority: 90
+  - name    : external
+    topic   : cmd_vel
+    timeout : 0.5
+    priority: 1
+
+  locks:
+  - name    : stop
+    topic   : stop
+    timeout : 0.0    
+    priority: 255

@@ -11,15 +11,8 @@
 			<param name="dev" value="$(arg joy_dev)" />
 		</node>
 
-		<node pkg="teleop_twist_joy" type="teleop_node" name="teleop_twist_joy">
-			<remap from="cmd_vel" to="/cmd_vel" />
-		</node>
+		<node pkg="teleop_twist_joy" type="teleop_node" name="teleop_twist_joy"/>
 	</group>
-
-	<!--TODO cmd_vel_mux or similar-->
-	<node pkg="interactive_marker_twist_server" type="marker_server" name="twist_marker_server">
-		<remap from="twist_marker_server/cmd_vel" to="/cmd_vel" />
-	</node>
 
 </launch>
 
