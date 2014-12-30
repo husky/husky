@@ -26,9 +26,6 @@ float64 right_motor_temp
 uint16 capacity_estimate
 float64 charge_estimate
 
-# Mapped to conditions below
-uint16 flags
-
 # Husky error/stop conditions
 bool timeout
 bool lockout
