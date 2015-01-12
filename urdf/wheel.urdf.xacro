@@ -47,7 +47,7 @@ This program contains the description of the robot wheel model for Clearpath Hus
 			<collision>
 				<origin xyz="0 0 0" rpy="${M_PI/2} 0 0" />
 				<geometry>
-				    <cylinder length="0.1143" radius="0.17775" />
+				    <cylinder length="${wheel_length}" radius="${wheel_radius}" />
 				</geometry>
 			</collision>
 		</link>

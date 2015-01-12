@@ -13,12 +13,12 @@
   <property name="base_y_size" value="0.57090000" />
   <property name="base_z_size" value="0.24750000" />
 
-  <!-- Inertial values for the base at center of mass, aligned with coordinate system. Units are kg*m^2 -->
-
-  <xacro:property name="wheelbase" value="0.5120" />
   <xacro:property name="wheelbase" value="0.5120" />
   <xacro:property name="track" value="0.5708" /> 
   <xacro:property name="wheel_vertical_offset" value="0.03282" />
+
+  <xacro:property name="wheel_length" value="0.1143" />
+  <xacro:property name="wheel_radius" value="0.17775" />
 
   <!-- Root node is the body of the robot. -->
   <link name="base_link"/>
@@ -52,7 +52,7 @@
    </link>
 
    <joint name="chassis_joint" type="fixed">
-    <origin xyz="0 0 ${0.17775 - wheel_vertical_offset}" rpy="0 0 0" />
+    <origin xyz="0 0 ${wheel_radius - wheel_vertical_offset}" rpy="0 0 0" />
     <parent link="base_link" />
     <child link="chassis_link" />
   </joint>
