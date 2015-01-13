@@ -2,8 +2,8 @@
 Changelog for package husky_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.1.0 (2015-01-13)
+------------------
 * Major refactor for indigo release:
   * base_link is now located on the ground plane, while chassis_link 
   * refactored joint names for consistency with Jackal and Grizzly for ros_control
