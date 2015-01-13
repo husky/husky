@@ -1,0 +1,119 @@
+<?xml version="1.0"?>
+<!--
+Software License Agreement (BSD)
+
+\file      husky.urdf.xacro
+\authors   Paul Bovbel <pbovbel@clearpathrobotics.com
+\copyright Copyright (c) 2015, Clearpath Robotics, Inc., All rights reserved.
+
+Redistribution and use in source and binary forms, with or without modification, are permitted provided that
+the following conditions are met:
+ * Redistributions of source code must retain the above copyright notice, this list of conditions and the
+   following disclaimer.
+ * Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the 
+   following disclaimer in the documentation and/or other materials provided with the distribution.
+ * Neither the name of Clearpath Robotics nor the names of its contributors may be used to endorse or promote
+   products derived from this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WAR-
+RANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, IN-
+DIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT
+OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+<robot name="husky_robot" xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <!-- Included URDF/XACRO Files -->
+  <xacro:include filename="$(find husky_description)/urdf/wheel.urdf.xacro" />
+  <xacro:include filename="$(find husky_description)/urdf/decorations.urdf.xacro" />
+
+  <property name="M_PI" value="3.14159"/>
+
+  <!-- Base Size -->
+  <property name="base_x_size" value="0.98740000" />
+  <property name="base_y_size" value="0.57090000" />
+  <property name="base_z_size" value="0.24750000" />
+
+  <!-- Wheel Mounting Positions -->
+  <xacro:property name="wheelbase" value="0.5120" />
+  <xacro:property name="track" value="0.5708" /> 
+  <xacro:property name="wheel_vertical_offset" value="0.03282" />
+
+  <!-- Wheel Properties -->
+  <xacro:property name="wheel_length" value="0.1143" />
+  <xacro:property name="wheel_radius" value="0.17775" />
+
+  <xacro:macro name="husky_robot" params="prefix">
+
+    <!-- Base link is on the ground under the robot -->
+    <link name="${prefix}base_link"/>
+    <gazebo reference="${prefix}base_link">
+      <material>Gazebo/DarkGrey</material>
+      <turnGravityOff>false</turnGravityOff>
+    </gazebo>
+
+    <joint name="${prefix}chassis_joint" type="fixed">
+      <origin xyz="0 0 ${wheel_radius - wheel_vertical_offset}" rpy="0 0 0" />
+      <parent link="${prefix}base_link" />
+      <child link="${prefix}chassis_link" />
+    </joint>
+
+    <!-- Chassis link is the center of the robot's bottom plate -->
+    <link name="${prefix}chassis_link">
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://husky_description/meshes/base_link.stl" />
+        </geometry>
+        <material name="Black" />
+      </visual>
+      <collision>
+        <origin xyz="0 0 ${0.1578 - wheel_vertical_offset}" rpy="0 0 0" />
+        <geometry>
+          <!-- Make collision box slightly bigger in x and z directions. -->
+          <box size = "${base_x_size+0.02} ${base_y_size} ${base_z_size + 0.02}"/>
+        </geometry>
+      </collision>
+      <inertial>
+        <mass value="33.455" />
+        <origin xyz="-0.08748 -0.00085 0.09947" />
+        <inertia ixx="0.6022" ixy="-0.02364" ixz="-0.1197"
+         iyy="1.7386" iyz="-0.001544" izz="2.0296" />
+       </inertial>
+     </link>
+     <gazebo reference="${prefix}chassis_link">
+      <turnGravityOff>false</turnGravityOff>
+    </gazebo>
+
+    <!-- IMU Link is the standard mounting position for the UM6 IMU.-->
+    <!-- Can be modified with environment variables in /etc/ros/setup.bash -->
+    <link name="${prefix}imu_link"/>
+    <joint name="${prefix}imu_joint" type="fixed">
+      <origin xyz="$(optenv HUSKY_IMU_XYZ 0.19 0 0.149)" rpy="$(optenv HUSKY_IMU_RPY 1.5708 0 -1.5708)" />
+      <parent link="${prefix}chassis_link" />
+      <child link="${prefix}imu_link" />
+    </joint>
+    <gazebo reference="${prefix}imu_link">
+      <turnGravityOff>false</turnGravityOff>
+    </gazebo>
+
+    <xacro:husky_wheel prefix="${prefix}" wheel_prefix="front_left">
+      <origin xyz="${wheelbase/2} ${track/2} ${wheel_vertical_offset}" rpy="0 0 0" />
+    </xacro:husky_wheel>
+    <xacro:husky_wheel wheel_prefix="front_right" prefix="${prefix}">
+      <origin xyz="${wheelbase/2} ${-track/2} ${wheel_vertical_offset}" rpy="0 0 0" />
+    </xacro:husky_wheel>
+    <xacro:husky_wheel wheel_prefix="rear_left" prefix="${prefix}">
+      <origin xyz="${-wheelbase/2} ${track/2} ${wheel_vertical_offset}" rpy="0 0 0" />
+    </xacro:husky_wheel>
+    <xacro:husky_wheel wheel_prefix="rear_right" prefix="${prefix}">
+      <origin xyz="${-wheelbase/2} ${-track/2} ${wheel_vertical_offset}" rpy="0 0 0" />
+    </xacro:husky_wheel>
+
+    <xacro:husky_decorate prefix="${prefix}"/>
+
+  </xacro:macro>
+
+</robot>

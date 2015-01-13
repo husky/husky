@@ -1,37 +1,32 @@
 <?xml version="1.0"?>
 <!--
-Copyright (c) 2012, Siddhant Ahuja/WAVELab, Ryan Gariepy/Clearpath Robotics
-All rights reserved.
+Software License Agreement (BSD)
 
-Redistribution and use in source and binary forms, with or without
-modification, are permitted provided that the following conditions are met:
-    * Redistributions of source code must retain the above copyright
-      notice, this list of conditions and the following disclaimer.
-    * Redistributions in binary form must reproduce the above copyright
-      notice, this list of conditions and the following disclaimer in the
-      documentation and/or other materials provided with the distribution.
-    * Neither the name of Clearpath Robotics nor the
-      names of its contributors may be used to endorse or promote products
-      derived from this software without specific prior written permission.
+\file      wheel.urdf.xacro
+\authors   Paul Bovbel <pbovbel@clearpathrobotics.com
+\copyright Copyright (c) 2015, Clearpath Robotics, Inc., All rights reserved.
 
-THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
-ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
-WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
-DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDERS BE LIABLE FOR ANY
-DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
-(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
-LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
-ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
-(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
-SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+Redistribution and use in source and binary forms, with or without modification, are permitted provided that
+the following conditions are met:
+ * Redistributions of source code must retain the above copyright notice, this list of conditions and the
+   following disclaimer.
+ * Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the 
+   following disclaimer in the documentation and/or other materials provided with the distribution.
+ * Neither the name of Clearpath Robotics nor the names of its contributors may be used to endorse or promote
+   products derived from this software without specific prior written permission.
 
-This program contains the description of the robot wheel model for Clearpath Husky A200
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WAR-
+RANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, IN-
+DIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT
+OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 <robot xmlns:xacro="http://ros.org/wiki/xacro" name="husky_wheel">	
-	<property name="M_PI" value="3.14159"/>
 	
-	<xacro:macro name="husky_wheel" params="prefix *joint_pose">
-		<link name="${prefix}_wheel_link">
+	<xacro:macro name="husky_wheel" params="prefix wheel_prefix *joint_pose">
+		<link name="${prefix}${wheel_prefix}_wheel_link">
 			<inertial>
 				<mass value="2.637" />
 				<origin xyz="0 0 0" />
@@ -47,12 +42,12 @@ This program contains the description of the robot wheel model for Clearpath Hus
 			<collision>
 				<origin xyz="0 0 0" rpy="${M_PI/2} 0 0" />
 				<geometry>
-				    <cylinder length="${wheel_length}" radius="${wheel_radius}" />
+					<cylinder length="${wheel_length}" radius="${wheel_radius}" />
 				</geometry>
 			</collision>
 		</link>
 		
-		<gazebo reference="${prefix}_wheel_link">
+		<gazebo reference="${prefix}${wheel_prefix}_wheel_link">
 			<mu1 value="1.0"/>
 			<mu2 value="1.0"/>
 			<kp value="10000000.0" />
@@ -62,22 +57,22 @@ This program contains the description of the robot wheel model for Clearpath Hus
 			<turnGravityOff>false</turnGravityOff>
 		</gazebo>
 
-		<joint name="${prefix}_wheel" type="continuous">
-			<parent link="chassis_link"/>
-			<child link="${prefix}_wheel_link"/>
+		<joint name="${prefix}${wheel_prefix}_wheel" type="continuous">
+			<parent link="${prefix}chassis_link"/>
+			<child link="${prefix}${wheel_prefix}_wheel_link"/>
 			<xacro:insert_block name="joint_pose"/>
 			<axis xyz="0 1 0" rpy="0 0 0" />
 		</joint>
-   
-		<transmission name="${prefix}_wheel_trans" type="SimpleTransmission">
+		
+		<transmission name="${prefix}${wheel_prefix}_wheel_trans" type="SimpleTransmission">
 			<type>transmission_interface/SimpleTransmission</type>
-			<actuator name="${prefix}_wheel_motor">			
+			<actuator name="${prefix}${wheel_prefix}_wheel_motor">			
 				<mechanicalReduction>1</mechanicalReduction>
 			</actuator>
-			<joint name="${prefix}_wheel">
+			<joint name="${prefix}${wheel_prefix}_wheel">
 				<hardwareInterface>VelocityJointInterface</hardwareInterface>
 			</joint>
 		</transmission>
 
-  	</xacro:macro>
+	</xacro:macro>
 </robot>
