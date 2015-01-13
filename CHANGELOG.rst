@@ -2,6 +2,15 @@
 Changelog for package husky_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Major refactor for indigo release:
+  * base_link is now located on the ground plane, while chassis_link 
+  * refactored joint names for consistency with Jackal and Grizzly for ros_control
+  * moved plugins requiring gazebo dependencies to husky_gazebo (imu, gps, lidar, ros_control)
+  * initial prefixing for multirobot
+* Contributors: Alex Bencz, James Servos, Mike Purvis, Paul Bovbel, Prasenjit Mukherjee, y22ma
+
 0.0.2 (2013-09-30)
 ------------------
 * Renamed /models folder to /meshes to follow the convention of other gazebo simulation packages.
