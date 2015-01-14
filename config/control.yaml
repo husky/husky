@@ -39,6 +39,8 @@ ekf_localization:
   base_link_frame: base_link
   world_frame: odom
 
+  two_d_mode: true
+
   frequency: 50
 
   odom0: husky_velocity_controller/odom
@@ -60,11 +62,15 @@ twist_mux:
   - name    : bluetooth
     topic   : bluetooth_teleop/cmd_vel
     timeout : 0.5
-    priority: 100
+    priority: 10
   - name    : interactive_marker
     topic   : twist_marker_server/cmd_vel
     timeout : 0.5
-    priority: 90
+    priority: 8
+  - name    : move_base
+    topic   : move_base/cmd_vel
+    timeout : 0.5
+    priority: 2
   - name    : external
     topic   : cmd_vel
     timeout : 0.5
