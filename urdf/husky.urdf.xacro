@@ -3,7 +3,7 @@
 Software License Agreement (BSD)
 
 \file      husky.urdf.xacro
-\authors   Paul Bovbel <pbovbel@clearpathrobotics.com
+\authors   Paul Bovbel <pbovbel@clearpathrobotics.com>
 \copyright Copyright (c) 2015, Clearpath Robotics, Inc., All rights reserved.
 
 Redistribution and use in source and binary forms, with or without modification, are permitted provided that
@@ -26,9 +26,9 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
 <robot name="husky_robot" xmlns:xacro="http://ros.org/wiki/xacro">
 
   <!-- Included URDF/XACRO Files -->
+  <xacro:include filename="$(find husky_description)/urdf/materials.urdf" />
   <xacro:include filename="$(find husky_description)/urdf/wheel.urdf.xacro" />
   <xacro:include filename="$(find husky_description)/urdf/decorations.urdf.xacro" />
-
   <property name="M_PI" value="3.14159"/>
 
   <!-- Base Size -->
@@ -45,23 +45,23 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
   <xacro:property name="wheel_length" value="0.1143" />
   <xacro:property name="wheel_radius" value="0.17775" />
 
-  <xacro:macro name="husky_robot" params="prefix">
+  <xacro:macro name="husky_robot">
 
     <!-- Base link is on the ground under the robot -->
-    <link name="${prefix}base_link"/>
-    <gazebo reference="${prefix}base_link">
+    <link name="base_link"/>
+    <gazebo reference="base_link">
       <material>Gazebo/DarkGrey</material>
       <turnGravityOff>false</turnGravityOff>
     </gazebo>
 
-    <joint name="${prefix}chassis_joint" type="fixed">
+    <joint name="chassis_joint" type="fixed">
       <origin xyz="0 0 ${wheel_radius - wheel_vertical_offset}" rpy="0 0 0" />
-      <parent link="${prefix}base_link" />
-      <child link="${prefix}chassis_link" />
+      <parent link="base_link" />
+      <child link="chassis_link" />
     </joint>
 
     <!-- Chassis link is the center of the robot's bottom plate -->
-    <link name="${prefix}chassis_link">
+    <link name="chassis_link">
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
@@ -83,36 +83,37 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
          iyy="1.7386" iyz="-0.001544" izz="2.0296" />
        </inertial>
      </link>
-     <gazebo reference="${prefix}chassis_link">
+     <gazebo reference="chassis_link">
       <turnGravityOff>false</turnGravityOff>
     </gazebo>
 
     <!-- IMU Link is the standard mounting position for the UM6 IMU.-->
     <!-- Can be modified with environment variables in /etc/ros/setup.bash -->
-    <link name="${prefix}imu_link"/>
-    <joint name="${prefix}imu_joint" type="fixed">
+    <link name="imu_link"/>
+    <joint name="imu_joint" type="fixed">
       <origin xyz="$(optenv HUSKY_IMU_XYZ 0.19 0 0.149)" rpy="$(optenv HUSKY_IMU_RPY 1.5708 0 -1.5708)" />
-      <parent link="${prefix}chassis_link" />
-      <child link="${prefix}imu_link" />
+      <parent link="chassis_link" />
+      <child link="imu_link" />
     </joint>
-    <gazebo reference="${prefix}imu_link">
+    <gazebo reference="imu_link">
       <turnGravityOff>false</turnGravityOff>
     </gazebo>
 
-    <xacro:husky_wheel prefix="${prefix}" wheel_prefix="front_left">
+    <!-- Husky wheel macros -->
+    <xacro:husky_wheel wheel_prefix="front_left">
       <origin xyz="${wheelbase/2} ${track/2} ${wheel_vertical_offset}" rpy="0 0 0" />
     </xacro:husky_wheel>
-    <xacro:husky_wheel wheel_prefix="front_right" prefix="${prefix}">
+    <xacro:husky_wheel wheel_prefix="front_right">
       <origin xyz="${wheelbase/2} ${-track/2} ${wheel_vertical_offset}" rpy="0 0 0" />
     </xacro:husky_wheel>
-    <xacro:husky_wheel wheel_prefix="rear_left" prefix="${prefix}">
+    <xacro:husky_wheel wheel_prefix="rear_left">
       <origin xyz="${-wheelbase/2} ${track/2} ${wheel_vertical_offset}" rpy="0 0 0" />
     </xacro:husky_wheel>
-    <xacro:husky_wheel wheel_prefix="rear_right" prefix="${prefix}">
+    <xacro:husky_wheel wheel_prefix="rear_right">
       <origin xyz="${-wheelbase/2} ${-track/2} ${wheel_vertical_offset}" rpy="0 0 0" />
     </xacro:husky_wheel>
 
-    <xacro:husky_decorate prefix="${prefix}"/>
+    <xacro:husky_decorate />
 
   </xacro:macro>
 

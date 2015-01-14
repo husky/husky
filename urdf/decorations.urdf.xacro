@@ -3,7 +3,7 @@
 Software License Agreement (BSD)
 
 \file      decorations.urdf.xacro
-\authors   Paul Bovbel <pbovbel@clearpathrobotics.com
+\authors   Paul Bovbel <pbovbel@clearpathrobotics.com>
 \copyright Copyright (c) 2015, Clearpath Robotics, Inc., All rights reserved.
 
 Redistribution and use in source and binary forms, with or without modification, are permitted provided that
@@ -25,41 +25,9 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
 -->
 <robot name="husky_decorations" xmlns:xacro="http://ros.org/wiki/xacro">
 
-  <material name="Black">
-    <color rgba="0.1 0.1 0.1 1.0"/>
-  </material>
+  <xacro:macro name="husky_decorate">
 
-  <material name="Blue">
-    <color rgba="0.0 0.0 0.8 1.0"/>
-  </material>
-
-  <material name="Green">
-    <color rgba="0.0 0.8 0.0 1.0"/>
-  </material>
-
-  <material name="Grey">
-    <color rgba="0.7 0.7 0.7 1.0"/>
-  </material>
-
-  <material name="DarkGrey">
-    <color rgba="0.3 0.3 0.3 1.0"/>
-  </material>
-
-  <material name="Red">
-    <color rgba="0.8 0.0 0.0 1.0"/>
-  </material>
-
-  <material name="White">
-    <color rgba="1.0 1.0 1.0 1.0"/>
-  </material>
-  
-  <material name="Yellow">
-    <color rgba="0.8 0.8 0.0 1.0"/>
-  </material>
-
-  <xacro:macro name="husky_decorate" params="prefix">
-
-    <link name="${prefix}top_plate_link">
+    <link name="top_plate_link">
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
@@ -68,16 +36,16 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
         <material name="Yellow" />
       </visual>
     </link>
-    <joint name="${prefix}top_plate" type="fixed">
-      <parent link="${prefix}chassis_link" />
-      <child link="${prefix}top_plate_link" />
+    <joint name="top_plate" type="fixed">
+      <parent link="chassis_link" />
+      <child link="top_plate_link" />
     </joint>
-    <gazebo reference="${prefix}top_plate_link">
+    <gazebo reference="top_plate_link">
       <material>Gazebo/Yellow</material>
       <turnGravityOff>false</turnGravityOff>
     </gazebo>
 
-    <link name="${prefix}user_rail_link">
+    <link name="user_rail_link">
       <visual>
         <geometry>
           <mesh filename="package://husky_description/meshes/user_rail.stl" />
@@ -85,17 +53,17 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
         <material name="DarkGrey" />
       </visual>
     </link>
-    <joint name="${prefix}user_rail" type="fixed">
+    <joint name="user_rail" type="fixed">
       <origin xyz="0.272 0 0.245" rpy="0 0 0" />
-      <parent link="${prefix}chassis_link" />
-      <child link="${prefix}user_rail_link" />
+      <parent link="chassis_link" />
+      <child link="user_rail_link" />
     </joint>
-    <gazebo reference="${prefix}user_rail_link">
+    <gazebo reference="user_rail_link">
       <material>Gazebo/DarkGrey</material>
       <turnGravityOff>false</turnGravityOff>
     </gazebo>
 
-    <link name="${prefix}front_bumper_link">
+    <link name="front_bumper_link">
       <visual>
         <geometry>
           <mesh filename="package://husky_description/meshes/bumper.stl" />
@@ -103,17 +71,17 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
         <material name="DarkGrey" />
       </visual>
     </link>
-    <joint name="${prefix}front_bumper" type="fixed">
+    <joint name="front_bumper" type="fixed">
       <origin xyz="0.48 0 0.091" rpy="0 0 0" />
-      <parent link="${prefix}chassis_link" />
-      <child link="${prefix}front_bumper_link" />
+      <parent link="chassis_link" />
+      <child link="front_bumper_link" />
     </joint>
-    <gazebo reference="${prefix}front_bumper_link">
+    <gazebo reference="front_bumper_link">
       <material>Gazebo/DarkGrey</material>
       <turnGravityOff>false</turnGravityOff>
     </gazebo>
 
-    <link name="${prefix}rear_bumper_link">
+    <link name="rear_bumper_link">
       <visual>
         <geometry>
           <mesh filename="package://husky_description/meshes/bumper.stl" />
@@ -121,12 +89,12 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
         <material name="DarkGrey" />
       </visual>
     </link>
-    <joint name="${prefix}rear_bumper" type="fixed">
+    <joint name="rear_bumper" type="fixed">
       <origin xyz="-0.48 0 0.091" rpy="0 0 ${M_PI}" />
-      <parent link="${prefix}chassis_link" />
-      <child link="${prefix}rear_bumper_link" />
+      <parent link="chassis_link" />
+      <child link="rear_bumper_link" />
     </joint>
-    <gazebo reference="${prefix}rear_bumper_link">
+    <gazebo reference="rear_bumper_link">
       <material>Gazebo/DarkGrey</material>
       <turnGravityOff>false</turnGravityOff>
     </gazebo>

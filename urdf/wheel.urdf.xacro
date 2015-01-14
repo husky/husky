@@ -3,7 +3,7 @@
 Software License Agreement (BSD)
 
 \file      wheel.urdf.xacro
-\authors   Paul Bovbel <pbovbel@clearpathrobotics.com
+\authors   Paul Bovbel <pbovbel@clearpathrobotics.com>
 \copyright Copyright (c) 2015, Clearpath Robotics, Inc., All rights reserved.
 
 Redistribution and use in source and binary forms, with or without modification, are permitted provided that
@@ -25,8 +25,8 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
 -->
 <robot xmlns:xacro="http://ros.org/wiki/xacro" name="husky_wheel">	
 	
-	<xacro:macro name="husky_wheel" params="prefix wheel_prefix *joint_pose">
-		<link name="${prefix}${wheel_prefix}_wheel_link">
+	<xacro:macro name="husky_wheel" params="wheel_prefix *joint_pose">
+		<link name="${wheel_prefix}_wheel_link">
 			<inertial>
 				<mass value="2.637" />
 				<origin xyz="0 0 0" />
@@ -47,7 +47,7 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
 			</collision>
 		</link>
 		
-		<gazebo reference="${prefix}${wheel_prefix}_wheel_link">
+		<gazebo reference="${wheel_prefix}_wheel_link">
 			<mu1 value="1.0"/>
 			<mu2 value="1.0"/>
 			<kp value="10000000.0" />
@@ -57,19 +57,19 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
 			<turnGravityOff>false</turnGravityOff>
 		</gazebo>
 
-		<joint name="${prefix}${wheel_prefix}_wheel" type="continuous">
-			<parent link="${prefix}chassis_link"/>
-			<child link="${prefix}${wheel_prefix}_wheel_link"/>
+		<joint name="${wheel_prefix}_wheel" type="continuous">
+			<parent link="chassis_link"/>
+			<child link="${wheel_prefix}_wheel_link"/>
 			<xacro:insert_block name="joint_pose"/>
 			<axis xyz="0 1 0" rpy="0 0 0" />
 		</joint>
 		
-		<transmission name="${prefix}${wheel_prefix}_wheel_trans" type="SimpleTransmission">
+		<transmission name="${wheel_prefix}_wheel_trans" type="SimpleTransmission">
 			<type>transmission_interface/SimpleTransmission</type>
-			<actuator name="${prefix}${wheel_prefix}_wheel_motor">			
+			<actuator name="${wheel_prefix}_wheel_motor">			
 				<mechanicalReduction>1</mechanicalReduction>
 			</actuator>
-			<joint name="${prefix}${wheel_prefix}_wheel">
+			<joint name="${wheel_prefix}_wheel">
 				<hardwareInterface>VelocityJointInterface</hardwareInterface>
 			</joint>
 		</transmission>
