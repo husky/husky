@@ -2,8 +2,8 @@
 Changelog for package husky_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.1.1 (2015-01-14)
+------------------
 * Remove multirobot changes, experiment later
 * Contributors: Paul Bovbel
 
