@@ -16,9 +16,6 @@
   <run_depend>gmapping</run_depend>
   <run_depend>map_server</run_depend>
   <run_depend>move_base</run_depend>
-  <run_depend>robot_state_publisher</run_depend>
-  <run_depend>urdf</run_depend>
-  <run_depend>xacro</run_depend>
 
   <export>
   </export>
