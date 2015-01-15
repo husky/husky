@@ -2,8 +2,8 @@
 Changelog for package husky_navigation
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.1.0 (2015-01-15)
+------------------
 * Add exploration demo
 * Indigo release refactor
 * adding prebuilt maps for playpen, slightly more representative map then willowgarage world
