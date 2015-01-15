@@ -2,6 +2,13 @@
 Changelog for package husky_navigation
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Add exploration demo
+* Indigo release refactor
+* adding prebuilt maps for playpen, slightly more representative map then willowgarage world
+* Contributors: Paul Bovbel, Prasenjit Mukherjee
+
 0.0.6 (2013-10-05)
 ------------------
 * Remove attempt to install now gone laser directory.
