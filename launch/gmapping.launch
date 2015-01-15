@@ -27,36 +27,46 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
 
   <arg name="scan_topic" default="scan" />
 
-  <node pkg="gmapping" type="slam_gmapping" name="slam_gmapping" output="screen">
-    <param name="odom_frame" value="odom"/>
-    <param name="map_update_interval" value="30.0"/>
-    <param name="maxUrange" value="16.0"/>
-    <param name="sigma" value="0.05"/>
-    <param name="kernelSize" value="1"/>
-    <param name="lstep" value="0.05"/>
-    <param name="astep" value="0.05"/>
-    <param name="iterations" value="5"/>
-    <param name="lsigma" value="0.075"/>
-    <param name="ogain" value="3.0"/>
-    <param name="lskip" value="0"/>
-    <param name="srr" value="0.01"/>
-    <param name="srt" value="0.02"/>
-    <param name="str" value="0.01"/>
-    <param name="stt" value="0.02"/>
-    <param name="linearUpdate" value="0.5"/>
-    <param name="angularUpdate" value="0.436"/>
-    <param name="temporalUpdate" value="-1.0"/>
-    <param name="resampleThreshold" value="0.5"/>
-    <param name="particles" value="80"/>
-    <param name="xmin" value="-50.0"/>
-    <param name="ymin" value="-50.0"/>
-    <param name="xmax" value="50.0"/>
-    <param name="ymax" value="50.0"/>
-    <param name="delta" value="0.05"/>
-    <param name="llsamplerange" value="0.01"/>
-    <param name="llsamplestep" value="0.01"/>
-    <param name="lasamplerange" value="0.005"/>
-    <param name="lasamplestep" value="0.005"/>
+  <node pkg="gmapping" type="slam_gmapping" name="slam_gmapping">
+    <rosparam>
+      odom_frame: odom
+      base_frame: base_link
+      map_frame: map
+
+      map_update_interval: 0.5 # Publish new map
+
+      maxUrange: 5.5 # Should be just less than sensor range
+      maxRange: 6.1 # Should be just greater than sensor range
+      particles: 100 # Increased from 80
+
+      # Update frequencies
+      linearUpdate: 0.3
+      angularUpdate: 0.5
+      temporalUpdate: 2.0
+      resampleThreshold: 0.5
+
+      # Initial Map Size
+      xmin: -100.0
+      ymin: -100.0
+      xmax: 100.0
+      ymax: 100.0
+      delta: 0.05
+
+      # All default
+      sigma: 0.05
+      kernelSize: 1
+      lstep: 0.05
+      astep: 0.05
+      iterations: 5
+      lsigma: 0.075
+      ogain: 3.0
+      lskip: 0
+      llsamplerange: 0.01
+      llsamplestep: 0.01
+      lasamplerange: 0.005
+      lasamplestep: 0.005
+
+    </rosparam>
     <remap from="scan" to="$(arg scan_topic)"/>
   </node>
 </launch>
