@@ -16,7 +16,7 @@ husky_velocity_controller:
   enable_odom_tf: false
 
   # Wheel separation and radius multipliers
-  wheel_separation_multiplier: 1.5 # default: 1.0
+  wheel_separation_multiplier: 1.875 # default: 1.0
   wheel_radius_multiplier    : 1.0 # default: 1.0
 
   # Velocity and acceleration limits
