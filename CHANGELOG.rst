@@ -2,8 +2,8 @@
 Changelog for package husky_control
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.0.2 (2015-01-16)
+------------------
 * Use odom position for ekf
 * Update wheel separation multiplier for slippage
 * Restore teleop twist joy
