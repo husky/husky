@@ -44,9 +44,9 @@ ekf_localization:
   frequency: 50
 
   odom0: husky_velocity_controller/odom
-  odom0_config: [false, false, false,
+  odom0_config: [true, true, true,
                  false, false, false,
-                 true, true, true,
+                 false, false, false,
                  false, false, true]
   odom0_differential: true
 
