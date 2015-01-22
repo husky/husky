@@ -1,5 +1,5 @@
 global_frame: odom
-rolling_window: false
+rolling_window: true
 track_unknown_space: true
 
 plugins:

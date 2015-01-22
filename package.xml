@@ -16,6 +16,9 @@
   <run_depend>gmapping</run_depend>
   <run_depend>map_server</run_depend>
   <run_depend>move_base</run_depend>
+  <run_depend>navfn</run_depend>
+  <run_depend>base_local_planner</run_depend>
+  <run_depend>dwa_local_planner</run_depend>
 
   <export>
   </export>
