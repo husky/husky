@@ -1,0 +1,21 @@
+odom_frame: odom
+base_link_frame: base_link
+world_frame: odom
+
+two_d_mode: false
+
+frequency: 50
+
+odom0: husky_velocity_controller/odom
+odom0_config: [true, true, true,
+               false, false, false,
+               false, false, false,
+               false, false, true]
+odom0_differential: true
+
+imu0: imu/data
+imu0_config: [false, false, false,
+              true, true, true,
+              false, false, false,
+              true, true, true]
+imu0_differential: true

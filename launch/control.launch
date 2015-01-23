@@ -1,13 +1,14 @@
 <?xml version="1.0"?>
 <launch>
-	<rosparam command="load" file="$(find husky_control)/config/control.yaml" />
+  <rosparam command="load" file="$(find husky_control)/config/control.yaml" />
+  <node name="controller_spawner" pkg="controller_manager" type="spawner" args="husky_joint_publisher husky_velocity_controller"/>
 
-	<node name="controller_spawner" pkg="controller_manager" type="spawner"
-		args="husky_joint_publisher husky_velocity_controller"/>
-
-	<node pkg="robot_localization" type="ekf_localization_node" name="ekf_localization" /> 
+  <node pkg="robot_localization" type="ekf_localization_node" name="ekf_localization"> 
+    <rosparam command="load" file="$(find husky_control)/config/localization.yaml" />
+  </node>
 
   <node pkg="twist_mux" type="twist_mux" name="twist_mux">
+    <rosparam command="load" file="$(find husky_control)/config/twist_mux.yaml" />
     <remap from="cmd_vel_out" to="husky_velocity_controller/cmd_vel"/>
   </node>
 
