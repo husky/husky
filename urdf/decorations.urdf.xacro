@@ -37,7 +37,7 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
       </visual>
     </link>
     <joint name="top_plate" type="fixed">
-      <parent link="chassis_link" />
+      <parent link="base_link" />
       <child link="top_plate_link" />
     </joint>
     <gazebo reference="top_plate_link">
@@ -54,7 +54,7 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
     </link>
     <joint name="user_rail" type="fixed">
       <origin xyz="0.272 0 0.245" rpy="0 0 0" />
-      <parent link="chassis_link" />
+      <parent link="base_link" />
       <child link="user_rail_link" />
     </joint>
     <gazebo reference="user_rail_link">
@@ -71,7 +71,7 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
     </link>
     <joint name="front_bumper" type="fixed">
       <origin xyz="0.48 0 0.091" rpy="0 0 0" />
-      <parent link="chassis_link" />
+      <parent link="base_link" />
       <child link="front_bumper_link" />
     </joint>
     <gazebo reference="front_bumper_link">
@@ -88,7 +88,7 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
     </link>
     <joint name="rear_bumper" type="fixed">
       <origin xyz="-0.48 0 0.091" rpy="0 0 ${M_PI}" />
-      <parent link="chassis_link" />
+      <parent link="base_link" />
       <child link="rear_bumper_link" />
     </joint>
     <gazebo reference="rear_bumper_link">
