@@ -2,7 +2,7 @@ odom_frame: odom
 base_link_frame: base_link
 world_frame: odom
 
-two_d_mode: false
+two_d_mode: true
 
 frequency: 50
 
@@ -17,5 +17,6 @@ imu0: imu/data
 imu0_config: [false, false, false,
               true, true, true,
               false, false, false,
-              true, true, true]
+              true, true, true
+              false, false, false]
 imu0_differential: true
