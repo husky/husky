@@ -11,6 +11,9 @@ husky_velocity_controller:
   twist_covariance_diagonal: [0.001, 0.001, 0.001, 0.001, 0.001, 0.03]
   cmd_vel_timeout: 0.25
 
+  # Base frame_id
+  base_frame_id: base_footprint
+
   # Odometry fused with IMU is published by robot_localization, so
   # no need to publish a TF based on encoders alone.
   enable_odom_tf: false

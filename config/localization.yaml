@@ -1,5 +1,5 @@
 odom_frame: odom
-base_link_frame: base_link
+base_link_frame: base_footprint
 world_frame: odom
 
 two_d_mode: true
