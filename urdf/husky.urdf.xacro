@@ -48,20 +48,19 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
   <xacro:macro name="husky_robot">
 
     <!-- Base link is on the ground under the robot -->
-    <link name="base_link"/>
-    <gazebo reference="base_link">
+    <link name="base_footprint"/>
+    <gazebo reference="base_footprint">
       <material>Gazebo/DarkGrey</material>
-      <turnGravityOff>false</turnGravityOff>
     </gazebo>
 
     <joint name="chassis_joint" type="fixed">
       <origin xyz="0 0 ${wheel_radius - wheel_vertical_offset}" rpy="0 0 0" />
-      <parent link="base_link" />
-      <child link="chassis_link" />
+      <parent link="base_footprint" />
+      <child link="base_link" />
     </joint>
 
     <!-- Chassis link is the center of the robot's bottom plate -->
-    <link name="chassis_link">
+    <link name="base_link">
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
@@ -83,8 +82,7 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
          iyy="1.7386" iyz="-0.001544" izz="2.0296" />
        </inertial>
      </link>
-     <gazebo reference="chassis_link">
-      <turnGravityOff>false</turnGravityOff>
+     <gazebo reference="base_link">
     </gazebo>
 
     <!-- IMU Link is the standard mounting position for the UM6 IMU.-->
@@ -92,11 +90,10 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
     <link name="imu_link"/>
     <joint name="imu_joint" type="fixed">
       <origin xyz="$(optenv HUSKY_IMU_XYZ 0.19 0 0.149)" rpy="$(optenv HUSKY_IMU_RPY 0 -1.5708 3.1416)" />
-      <parent link="chassis_link" />
+      <parent link="base_link" />
       <child link="imu_link" />
     </joint>
     <gazebo reference="imu_link">
-      <turnGravityOff>false</turnGravityOff>
     </gazebo>
 
     <!-- Husky wheel macros -->
