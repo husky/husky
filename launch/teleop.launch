@@ -4,12 +4,14 @@
 	<arg name="joy_dev" default="/dev/input/js0" />
 	<arg name="joystick" default="true" />
 
-	<rosparam command="load" file="$(find husky_control)/config/teleop.yaml" />
-
 	<group ns="bluetooth_teleop">
-		<node pkg="joy" type="joy_node" name="joy_node">
+		
+    <rosparam command="load" file="$(find husky_control)/config/teleop.yaml" />
+
+    <node pkg="joy" type="joy_node" name="joy_node">
 			<param name="dev" value="$(arg joy_dev)" />
-		</node>
+		</node>   
+    
     <node pkg="teleop_twist_joy" type="teleop_node" name="teleop_twist_joy"/>
 	</group>
 
