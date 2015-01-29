@@ -13,7 +13,7 @@ odom0_config: [true, true, true,
                false, false, true]
 odom0_differential: true
 
-imu0: imu/data
+imu0: imu_filtered/data
 imu0_config: [false, false, false,
               true, true, true,
               false, false, false,
