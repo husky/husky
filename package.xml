@@ -10,7 +10,9 @@
 
   <license>BSD</license>
 
-  <url type="website">http://wiki.ros.org/husky_control</url>
+  <url type="website">http://ros.org/wiki/husky_control</url>
+  <url type="bugtracker">https://github.com/husky/husky_control/issues</url>
+  <url type="repository">https://github.com/husly/husky_control</url>
 
   <buildtool_depend>catkin</buildtool_depend>
   <build_depend>roslaunch</build_depend>
