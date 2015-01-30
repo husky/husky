@@ -2,8 +2,8 @@
 Changelog for package husky_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.1.2 (2015-01-30)
+------------------
 * Update maintainers and description
 * Get rid of chassis_link, switch to base_footprint and base_link
 * Switch to NED orientation for UM6 standard package
