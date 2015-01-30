@@ -2,12 +2,18 @@
 <package>
   <name>husky_navigation</name>
   <version>0.1.0</version>
-  <description>Launch files and code for autonomous navigation of the Clearpath Husky A200</description>
+  <description>Autonomous mapping and navigation demos for the Clearpath Husky</description>
+
+  <author email="pmukherj@clearpathrobotics.com">Prasenjit Mukherjee</author>
+  <author email="pbovbel@clearpathrobotics.com">Paul Bovbel</author>
 
   <maintainer email="pbovbel@clearpathrobotics.com">Paul Bovbel</maintainer>
-  <author email="pmukherj@clearpathrobotics.com">Prasenjit Mukherjee</author>
 
   <license>BSD</license>
+
+  <url type="website">http://ros.org/wiki/husky_navigation</url>
+  <url type="bugtracker">https://github.com/husky/husky_navigation/issues</url>
+  <url type="repository">https://github.com/husly/husky_navigation</url>
 
   <buildtool_depend>catkin</buildtool_depend>
   <build_depend>roslaunch</build_depend>
