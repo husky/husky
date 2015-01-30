@@ -2,10 +2,18 @@
 <package>
   <name>husky_description</name>
   <version>0.1.1</version>
-  <description>URDF description for Clearpath Husky A200</description>
+  <description>Clearpath Husky URDF description</description>
+
+  <author email="rgariepy@clearpathrobotics.com">Ryan Gariepy</author>
+  <author email="pmukherj@clearpathrobotics.com">Prasenjit Mukherjee</author>
+  <author email="mpurvis@clearpathrobotics.com">Mike Purvis</author>
+  <author email="pbovbel@clearpathrobotics.com">Paul Bovbel</author>
 
   <maintainer email="pbovbel@clearpathrobotics.com">Paul Bovbel</maintainer>
-  <author email="rgariepy@clearpathrobotics.com">Ryan Gariepy</author>
+
+  <url type="website">http://ros.org/wiki/husky_description</url>
+  <url type="bugtracker">https://github.com/husky/husky_description/issues</url>
+  <url type="repository">https://github.com/husly/husky_description</url>
 
   <license>BSD</license>
 
