@@ -2,6 +2,13 @@
 Changelog for package husky_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Update maintainers and description
+* Get rid of chassis_link, switch to base_footprint and base_link
+* Switch to NED orientation for UM6 standard package
+* Contributors: Paul Bovbel
+
 0.1.1 (2015-01-14)
 ------------------
 * Remove multirobot changes, experiment later
