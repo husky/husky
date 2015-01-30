@@ -2,6 +2,16 @@
 Changelog for package husky_control
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Update website
+* Add author
+* Get rid of chassis_link, switch to base_footprint and base_link
+* Turn on 2d mode; future proof robot_localization parameters
+* Refactor configuration files into modules
+* Re-enable IMU orientation fusion
+* Contributors: Paul Bovbel
+
 0.0.2 (2015-01-16)
 ------------------
 * Use odom position for ekf
