@@ -2,8 +2,8 @@
 Changelog for package husky_navigation
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.1.1 (2015-01-30)
+------------------
 * Update web and maintainers
 * More meaningful name for mapless navigation demo
 * Add missing dependencies
