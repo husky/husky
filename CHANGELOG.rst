@@ -2,8 +2,6 @@
 Changelog for package husky_control
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
 * Update website
 * Add author
 * Get rid of chassis_link, switch to base_footprint and base_link
