@@ -8,15 +8,17 @@ frequency: 50
 
 odom0: husky_velocity_controller/odom
 odom0_config: [true, true, true,
+               false, false, true,
                false, false, false,
                false, false, false,
-               false, false, true]
+               false, false, false]
 odom0_differential: true
 
-imu0: imu_filtered/data
+imu0: imu/data
 imu0_config: [false, false, false,
               true, true, true,
               false, false, false,
               true, true, true,
               false, false, false]
 imu0_differential: true
+imu0_remove_gravitational_acceleration: true
