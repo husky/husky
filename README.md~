@@ -101,7 +101,7 @@ Start RViz which will provide an interface to move around the arm.
 
 Make sure you set the planning request to be: ur5_arm so you can control the arm. It will also have interactive markers around it. hit the "Plan and execute" button once you have selected a nice location for the arm, and by nice it means a place where there is no red. 
 
-It should have a response time of less than 0.5s.
+It should have a response time of less than 0.5s
 
 
 
