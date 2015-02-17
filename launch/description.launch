@@ -3,7 +3,7 @@
 Software License Agreement (BSD)
 
 \file      description.launch
-\authors   Paul Bovbel <pbovbel@clearpathrobotics.com>
+\authors   Paul Bovbel <pbovbel@clearpathrobotics.com>, Devon Ash <dash@clearpathrobotics.com>
 \copyright Copyright (c) 2015, Clearpath Robotics, Inc., All rights reserved.
 
 Redistribution and use in source and binary forms, with or without modification, are permitted provided that
@@ -25,8 +25,11 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
 -->
 <launch>
 
+  <arg name="ur5_enabled" default="false"/>
+
   <!-- Send the Husky A200 Robot URDF/XACRO to param server -->
-  <param name="robot_description" command="$(find xacro)/xacro.py '$(find husky_description)/urdf/description.xacro'" />
+  <param name="robot_description" command="$(find xacro)/xacro.py '$(find husky_description)/urdf/description.xacro' 
+               ur5_enabled:=$(arg ur5_enabled)" />
   
   <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
 

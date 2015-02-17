@@ -8,6 +8,7 @@
   <author email="pmukherj@clearpathrobotics.com">Prasenjit Mukherjee</author>
   <author email="mpurvis@clearpathrobotics.com">Mike Purvis</author>
   <author email="pbovbel@clearpathrobotics.com">Paul Bovbel</author>
+  <author email="dash@clearpathrobotics.com">Devon Ash</author>
 
   <maintainer email="pbovbel@clearpathrobotics.com">Paul Bovbel</maintainer>
 
@@ -22,6 +23,8 @@
   <run_depend>robot_state_publisher</run_depend>
   <run_depend>urdf</run_depend>
   <run_depend>xacro</run_depend>
+  <run_depend>ur_description</run_depend>
+
 
   <export>
   </export>
