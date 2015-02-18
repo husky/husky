@@ -3,12 +3,14 @@
 
   <arg name="ur5_enabled" default="false"/>
 
+  <rosparam command="load" file="$(find husky_control)/config/control.yaml" />
+  
   <!-- If we're using the ur5 arm -->
   <group if="$(arg ur5_enabled)">
        <!-- <node pkg="joint_state_publisher" type="joint_state_publisher" name="joint_state_publisher"/> -->
 
        <!-- Load UR5 controllers -->
-       <rosparam command="load" file="$(find husky_control)/config/control_with_ur5_arm.yaml" />
+       <rosparam command="load" file="$(find husky_control)/config/control_ur5.yaml" />
        <node name="controller_spawner" pkg="controller_manager" type="spawner" args="husky_joint_publisher husky_velocity_controller  arm_controller"/>
 
        <!-- Fake Calibration -->
@@ -21,7 +23,6 @@
 
   <!-- If not using UR5 arm -->
   <group unless="$(arg ur5_enabled)">
-        <rosparam command="load" file="$(find husky_control)/config/control.yaml" />
        <node name="controller_spawner" pkg="controller_manager" type="spawner" args="husky_joint_publisher husky_velocity_controller"/>
   </group>
 
