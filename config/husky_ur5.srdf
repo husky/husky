@@ -3,41 +3,18 @@
     This is a format for representing semantic information about the robot structure.
     A URDF file must exist for this robot as well, where the joints and the links that are referenced are defined
 -->
-<robot name="husky_ur5">
+<robot name="husky">
     <!--GROUPS: Representation of a set of joints and links. This can be useful for specifying DOF to plan for, defining arms, end effectors, etc-->
     <!--LINKS: When a link is specified, the parent joint of that link (if it exists) is automatically included-->
     <!--JOINTS: When a joint is specified, the child link of that joint (which will always exist) is automatically included-->
     <!--CHAINS: When a chain is specified, all the links along the chain (including endpoints) are included in the group. Additionally, all the joints that are parents to included links are also included. This means that joints along the chain and the parent joint of the base link are included in the group-->
     <!--SUBGROUPS: Groups can also be formed by referencing to already defined group names-->
     <group name="ur5_arm">
-        <chain base_link="top_plate_link" tip_link="ur5_arm_ee_link" />
+        <chain base_link="ur5_arm_base_link" tip_link="ur5_arm_ee_link" />
     </group>
-    <!--GROUP STATES: Purpose: Define a named state for a particular group, in terms of joint values. This is useful to define states like 'folded arms'-->
-    <group_state name="home" group="ur5_arm">
-        <joint name="ur5_arm_elbow_joint" value="1.9767" />
-        <joint name="ur5_arm_shoulder_lift_joint" value="-1.1648" />
-        <joint name="ur5_arm_shoulder_pan_joint" value="-1.6237" />
-        <joint name="ur5_arm_wrist_1_joint" value="2.1179" />
-        <joint name="ur5_arm_wrist_2_joint" value="-1.2354" />
-        <joint name="ur5_arm_wrist_3_joint" value="-0.9883" />
-    </group_state>
-    <group_state name="reach_the_sky" group="ur5_arm">
-        <joint name="ur5_arm_elbow_joint" value="-0.6707" />
-        <joint name="ur5_arm_shoulder_lift_joint" value="-1.0589" />
-        <joint name="ur5_arm_shoulder_pan_joint" value="-1.5178" />
-        <joint name="ur5_arm_wrist_1_joint" value="-2.5767" />
-        <joint name="ur5_arm_wrist_2_joint" value="-1.2354" />
-        <joint name="ur5_arm_wrist_3_joint" value="-0.9883" />
-    </group_state>
     <!--VIRTUAL JOINT: Purpose: this element defines a virtual joint between a robot link and an external frame of reference (considered fixed with respect to the robot)-->
     <virtual_joint name="virtual_joint" type="fixed" parent_frame="base_link" child_link="base_footprint" />
-    <!--PASSIVE JOINT: Purpose: this element is used to mark joints that are not actuated-->
-    <passive_joint name="front_left_wheel" />
-    <passive_joint name="front_right_wheel" />
-    <passive_joint name="rear_right_wheel" />
-    <passive_joint name="rear_left_wheel" />
     <!--DISABLE COLLISIONS: By default it is assumed that any link of the robot could potentially come into collision with any other link in the robot. This tag disables collision checking between a specified pair of links. -->
-    <disable_collisions link1="base_link" link2="ur5_arm_upper_arm_link" reason="Never"/>
     <disable_collisions link1="base_link" link2="front_left_wheel_link" reason="Adjacent" />
     <disable_collisions link1="base_link" link2="front_right_wheel_link" reason="Adjacent" />
     <disable_collisions link1="base_link" link2="rear_left_wheel_link" reason="Adjacent" />
@@ -56,8 +33,10 @@
     <disable_collisions link1="rear_left_wheel_link" link2="rear_right_wheel_link" reason="Never" />
     <disable_collisions link1="rear_left_wheel_link" link2="ur5_arm_base_link" reason="Never" />
     <disable_collisions link1="rear_left_wheel_link" link2="ur5_arm_shoulder_link" reason="Never" />
+    <disable_collisions link1="rear_left_wheel_link" link2="ur5_arm_upper_arm_link" reason="Never" />
     <disable_collisions link1="rear_right_wheel_link" link2="ur5_arm_base_link" reason="Never" />
     <disable_collisions link1="rear_right_wheel_link" link2="ur5_arm_shoulder_link" reason="Never" />
+    <disable_collisions link1="rear_right_wheel_link" link2="ur5_arm_upper_arm_link" reason="Never" />
     <disable_collisions link1="ur5_arm_base_link" link2="ur5_arm_shoulder_link" reason="Adjacent" />
     <disable_collisions link1="ur5_arm_ee_link" link2="ur5_arm_wrist_1_link" reason="Never" />
     <disable_collisions link1="ur5_arm_ee_link" link2="ur5_arm_wrist_2_link" reason="Never" />
