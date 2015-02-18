@@ -1,0 +1,68 @@
+husky_joint_publisher:
+  type: "joint_state_controller/JointStateController"
+  publish_rate: 50
+
+husky_velocity_controller:
+  type: "diff_drive_controller/DiffDriveController"
+  left_wheel: ['front_left_wheel', 'rear_left_wheel']
+  right_wheel: ['front_right_wheel', 'rear_right_wheel']
+  publish_rate: 50
+  pose_covariance_diagonal: [0.001, 0.001, 0.001, 0.001, 0.001, 0.03]
+  twist_covariance_diagonal: [0.001, 0.001, 0.001, 0.001, 0.001, 0.03]
+  cmd_vel_timeout: 0.25
+
+  # Base frame_id
+  base_frame_id: base_footprint
+
+  # Odometry fused with IMU is published by robot_localization, so
+  # no need to publish a TF based on encoders alone.
+  enable_odom_tf: false
+
+  # Wheel separation and radius multipliers
+  wheel_separation_multiplier: 1.875 # default: 1.0
+  wheel_radius_multiplier    : 1.0 # default: 1.0
+
+  # Velocity and acceleration limits
+  # Whenever a min_* is unspecified, default to -max_*
+  linear:
+    x:
+      has_velocity_limits    : true
+      max_velocity           : 1.0   # m/s
+      has_acceleration_limits: true
+      max_acceleration       : 3.0   # m/s^2
+  angular:
+    z:
+      has_velocity_limits    : true
+      max_velocity           : 2.0   # rad/s
+      has_acceleration_limits: true
+      max_acceleration       : 6.0   # rad/s^2
+
+ur5_arm_controller:
+  type: effort_controllers/JointTrajectoryController
+  topic: "test"
+  joints:
+     - ur5_arm_shoulder_pan_joint
+     - ur5_arm_shoulder_lift_joint
+     - ur5_arm_elbow_joint
+     - ur5_arm_wrist_1_joint
+     - ur5_arm_wrist_2_joint
+     - ur5_arm_wrist_3_joint
+  gains:
+     ur5_arm_shoulder_pan_joint: {p: 10000, i: 500.0, d: 100.0, i_clamp: 100.0}
+     ur5_arm_shoulder_lift_joint: {p: 10000, i: 500.0, d: 100.0, i_clamp: 100.0}
+     ur5_arm_elbow_joint: {p: 10000, i: 500.0, d: 100.0, i_clamp: 100.0}
+     ur5_arm_wrist_1_joint: {p: 10000.0, i: 0.0, d: 0.0, i_clamp: 0.0}
+     ur5_arm_wrist_2_joint: {p: 10000.0, i: 0.0, d: 0.0, i_clamp: 0.0}
+     ur5_arm_wrist_3_joint: {p: 10000.0, i: 0.0, d: 0.0, i_clamp: 0.0}
+  constraints:
+      goal_time: 0.6
+      stopped_velocity_tolerance: 0.5
+      ur5_arm_shoulder_pan_joint: {trajectory: 0.1, goal: 0.1}
+      ur5_arm_shoulder_lift_joint: {trajectory: 0.1, goal: 0.1}
+      ur5_arm_elbow_joint: {trajectory: 0.1, goal: 0.1}
+      ur5_arm_wrist_1_joint: {trajectory: 0.1, goal: 0.1}
+      ur5_arm_wrist_2_joint: {trajectory: 0.1, goal: 0.1}
+      ur5_arm_wrist_3_joint: {trajectory: 0.1, goal: 0.1}
+  stop_trajectory_duration: 0.5
+  state_publish_rate:  25
+  action_monitor_rate: 10

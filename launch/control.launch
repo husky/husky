@@ -1,7 +1,18 @@
 <?xml version="1.0"?>
 <launch>
-  <rosparam command="load" file="$(find husky_control)/config/control.yaml" />
-  <node name="controller_spawner" pkg="controller_manager" type="spawner" args="husky_joint_publisher husky_velocity_controller"/>
+
+  <arg name="ur5_enabled" default="false"/>
+
+  <!-- If we're using the ur5 arm -->
+  <group if="$(arg ur5_enabled)">
+       <rosparam command="load" file="$(find husky_control)/config/control_with_ur5_arm.yaml" />
+       <node name="controller_spawner" pkg="controller_manager" type="spawner" args="husky_joint_publisher husky_velocity_controller  ur5_arm_controller"/>
+  </group>
+
+  <group unless="$(arg ur5_enabled)">
+        <rosparam command="load" file="$(find husky_control)/config/control.yaml" />
+       <node name="controller_spawner" pkg="controller_manager" type="spawner" args="husky_joint_publisher husky_velocity_controller"/>
+  </group>
 
   <node pkg="robot_localization" type="ekf_localization_node" name="ekf_localization"> 
     <rosparam command="load" file="$(find husky_control)/config/localization.yaml" />
