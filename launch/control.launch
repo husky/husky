@@ -5,10 +5,22 @@
 
   <!-- If we're using the ur5 arm -->
   <group if="$(arg ur5_enabled)">
+       <!-- <node pkg="joint_state_publisher" type="joint_state_publisher" name="joint_state_publisher"/> -->
+
+       <!-- Load UR5 controllers -->
        <rosparam command="load" file="$(find husky_control)/config/control_with_ur5_arm.yaml" />
        <node name="controller_spawner" pkg="controller_manager" type="spawner" args="husky_joint_publisher husky_velocity_controller  ur5_arm_controller"/>
+
+       <!-- Fake Calibration -->
+  <node pkg="rostopic" type="rostopic" name="fake_joint_calibration"
+        args="pub /calibrated std_msgs/Bool true" />
+
+       <!-- Diagnostics -->
+       <node pkg="pr2_mechanism_diagnostics" type="pr2_mechanism_diagnostics" name="pr2_mechanism_diagnostics" />
+
   </group>
 
+  <!-- If not using UR5 arm -->
   <group unless="$(arg ur5_enabled)">
         <rosparam command="load" file="$(find husky_control)/config/control.yaml" />
        <node name="controller_spawner" pkg="controller_manager" type="spawner" args="husky_joint_publisher husky_velocity_controller"/>
