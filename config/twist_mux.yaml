@@ -1,6 +1,6 @@
 topics:
-- name    : bluetooth
-  topic   : bluetooth_teleop/cmd_vel
+- name    : joy
+  topic   : joy_teleop/cmd_vel
   timeout : 0.5
   priority: 10
 - name    : interactive_marker
