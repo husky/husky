@@ -16,14 +16,12 @@
 
   <buildtool_depend>catkin</buildtool_depend>
   <build_depend>roslaunch</build_depend>
-  <run_depend>controller_manager</run_depend>
   <run_depend>interactive_marker_twist_server</run_depend>
   <run_depend>diff_drive_controller</run_depend>
   <run_depend>joint_state_controller</run_depend>
   <run_depend>joy</run_depend>
   <run_depend>robot_localization</run_depend>
   <run_depend>teleop_twist_joy</run_depend>
-  <run_depend>topic_tools</run_depend>
   <run_depend>twist_mux</run_depend>
 
   <export>
