@@ -1,0 +1,8 @@
+sensors:
+- sensor_plugin: occupancy_map_monitor/PointCloudOctomapUpdater
+  point_cloud_topic: /grizzly_ur10_kinect/grizzly_ur10_kinect/depth/points
+  max_range: 5.0
+  frame_subsample: 1
+  point_subsample: 1
+  filtered_cloud_topic: output_cloud
+
