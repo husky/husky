@@ -29,6 +29,13 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
   <xacro:include filename="$(find husky_description)/urdf/materials.urdf" />
   <xacro:include filename="$(find husky_description)/urdf/wheel.urdf.xacro" />
   <xacro:include filename="$(find husky_description)/urdf/decorations.urdf.xacro" />
+
+  <xacro:include filename="$(find husky_description)/urdf/accessories/kinect_camera.urdf.xacro"/>  
+  <xacro:include filename="$(find husky_description)/urdf/accessories/sick_lms100.urdf.xacro"/>
+  <xacro:include filename="$(find husky_description)/urdf/accessories/sensor_arch.urdf.xacro"/>
+
+  <xacro:include filename="$(find ur_description)/urdf/ur5.urdf.xacro" />
+
   <property name="M_PI" value="3.14159"/>
 
   <!-- Base Size -->
@@ -83,12 +90,12 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
        </inertial>
      </link>
      <gazebo reference="base_link">
-    </gazebo>
+     </gazebo>
 
-    <!-- IMU Link is the standard mounting position for the UM6 IMU.-->
-    <!-- Can be modified with environment variables in /etc/ros/setup.bash -->
-    <link name="imu_link"/>
-    <joint name="imu_joint" type="fixed">
+     <!-- IMU Link is the standard mounting position for the UM6 IMU.-->
+     <!-- Can be modified with environment variables in /etc/ros/setup.bash -->
+     <link name="imu_link"/>
+     <joint name="imu_joint" type="fixed">
       <origin xyz="$(optenv HUSKY_IMU_XYZ 0.19 0 0.149)" rpy="$(optenv HUSKY_IMU_RPY 0 -1.5708 3.1416)" />
       <parent link="base_link" />
       <child link="imu_link" />
@@ -111,6 +118,59 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
     </xacro:husky_wheel>
 
     <xacro:husky_decorate />
+
+    <xacro:if value="$(arg ur5_enabled)">
+
+      <xacro:property name="reflect" value="-1" />
+
+      <!-- Spawn arm -->
+      <xacro:ur5_robot prefix="ur5_arm_" joint_limited="true"/>
+
+      <!-- Join arm -->
+      <joint name="ur5_arm_base" type="fixed">
+        <parent link="top_plate_link" />
+        <child link="ur5_arm_base_link" />
+        <origin xyz="0.3058 0 0.0065" rpy="0.0 0.0 0.0" />
+      </joint>
+
+    </xacro:if>
+
+    <xacro:if value="$(arg laser_enabled)">
+
+      <link name="base_laser_mount_link">
+        <visual>
+          <geometry>
+            <mesh filename="package://husky_description/meshes/accessories/lidar_mount.stl" />
+          </geometry>
+          <material name="DarkGrey" />
+        </visual>
+      </link>
+
+      <!-- TODO find better place for laser -->
+      <joint name="base_laser_mount" type="fixed">
+        <origin xyz="-0.12 0 0" rpy="0 0 0" />
+        <parent link="front_bumper_link" />
+        <child link="base_laser_mount_link" />
+      </joint>
+
+      <xacro:sick_lms100 prefix="base" />
+    </xacro:if>
+
+    <xacro:if value="$(arg kinect_enabled)">
+
+        <xacro:sensor_arch prefix="" parent="top_plate_link">
+            <origin xyz="-0.35 0 0.51" rpy="0 0 -3.14"/>
+        </xacro:sensor_arch>
+
+        <joint name="kinect_frame_joint" type="fixed">
+          <!-- TODO Fix x y z so kinect is not floating -->
+          <origin xyz="0 0 0" rpy="0 ${M_PI/8} ${M_PI}"/>
+          <parent link="sensor_arch_mount_link"/>
+          <child link="camera_link"/>
+        </joint>
+
+        <xacro:kinect_camera prefix="camera"/>
+    </xacro:if>
 
   </xacro:macro>
 

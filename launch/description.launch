@@ -25,11 +25,15 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
 -->
 <launch>
 
+  <arg name="laser_enabled" default="true"/>
   <arg name="ur5_enabled" default="false"/>
+  <arg name="kinect_enabled" default="false"/>
 
-  <!-- Send the Husky A200 Robot URDF/XACRO to param server -->
   <param name="robot_description" command="$(find xacro)/xacro.py '$(find husky_description)/urdf/description.xacro' 
-               ur5_enabled:=$(arg ur5_enabled)" />
+               laser_enabled:=$(arg laser_enabled)
+               ur5_enabled:=$(arg ur5_enabled)
+               kinect_enabled:=$(arg kinect_enabled)
+               " />
   
   <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
 
