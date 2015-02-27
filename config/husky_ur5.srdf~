@@ -15,6 +15,9 @@
     <!--VIRTUAL JOINT: Purpose: this element defines a virtual joint between a robot link and an external frame of reference (considered fixed with respect to the robot)-->
     <virtual_joint name="virtual_joint" type="fixed" parent_frame="base_link" child_link="base_footprint" />
     <!--DISABLE COLLISIONS: By default it is assumed that any link of the robot could potentially come into collision with any other link in the robot. This tag disables collision checking between a specified pair of links. -->
+    <disable_collisions link1="base_link" link2="base_laser" reason="Never"/>
+    <disable_collisions link1="base_link" link2="base_laser_mount_link" reason="Never"/>
+    <disable_collisions link1="base_link" link2="ur5_arm_upper_arm_link" reason="Never"/>
     <disable_collisions link1="base_link" link2="sensor_arch_mount_link" reason="Adjacent" />
     <disable_collisions link1="base_link" link2="front_left_wheel_link" reason="Adjacent" />
     <disable_collisions link1="base_link" link2="front_right_wheel_link" reason="Adjacent" />
