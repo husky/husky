@@ -148,7 +148,7 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
 
       <!-- TODO find better place for laser -->
       <joint name="base_laser_mount" type="fixed">
-        <origin xyz="-0.12 0 0" rpy="0 0 0" />
+        <origin xyz="0 0 -0.05" rpy="0 0 0" />
         <parent link="front_bumper_link" />
         <child link="base_laser_mount_link" />
       </joint>

@@ -21,7 +21,6 @@
              </collision>
         </link>
 
-        <!-- TODO move gazebo -->
         <gazebo reference="${prefix}sensor_arch_mount_link">
             <material>Gazebo/DarkGrey</material>
         </gazebo>

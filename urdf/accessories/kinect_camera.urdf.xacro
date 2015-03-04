@@ -43,7 +43,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
       <!-- TODO switch to box -->
       <collision>
         <geometry>
-          <mesh filename="package://husky_description/meshes/accessories/kinect.dae" />
+          <!-- <mesh filename="package://husky_description/meshes/accessories/kinect.dae" /> -->
+          <box size="0.07 0.3 0.09"/>
         </geometry>
       </collision>
     </link>

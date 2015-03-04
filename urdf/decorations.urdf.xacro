@@ -25,8 +25,6 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
 -->
 <robot name="husky_decorations" xmlns:xacro="http://ros.org/wiki/xacro">
 
-  <!-- TODO Move gazebo to husky_gazebo -->
-
   <xacro:macro name="husky_decorate">
 
     <!-- Spawn Husky chassis -->
