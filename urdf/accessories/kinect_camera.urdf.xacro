@@ -36,14 +36,12 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <visual>
         <origin xyz="0 0 0" rpy="0 0 ${M_PI/2}"/>
-        <geometry> 
+        <geometry>
           <mesh filename="package://husky_description/meshes/accessories/kinect.dae" />
         </geometry>
       </visual>
-      <!-- TODO switch to box -->
       <collision>
         <geometry>
-          <!-- <mesh filename="package://husky_description/meshes/accessories/kinect.dae" /> -->
           <box size="0.07 0.3 0.09"/>
         </geometry>
       </collision>

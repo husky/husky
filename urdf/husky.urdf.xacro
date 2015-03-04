@@ -10,7 +10,7 @@ Redistribution and use in source and binary forms, with or without modification,
 the following conditions are met:
  * Redistributions of source code must retain the above copyright notice, this list of conditions and the
    following disclaimer.
- * Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the 
+ * Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the
    following disclaimer in the documentation and/or other materials provided with the distribution.
  * Neither the name of Clearpath Robotics nor the names of its contributors may be used to endorse or promote
    products derived from this software without specific prior written permission.
@@ -30,7 +30,7 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
   <xacro:include filename="$(find husky_description)/urdf/wheel.urdf.xacro" />
   <xacro:include filename="$(find husky_description)/urdf/decorations.urdf.xacro" />
 
-  <xacro:include filename="$(find husky_description)/urdf/accessories/kinect_camera.urdf.xacro"/>  
+  <xacro:include filename="$(find husky_description)/urdf/accessories/kinect_camera.urdf.xacro"/>
   <xacro:include filename="$(find husky_description)/urdf/accessories/sick_lms100.urdf.xacro"/>
   <xacro:include filename="$(find husky_description)/urdf/accessories/sensor_arch.urdf.xacro"/>
   <xacro:include filename="$(find robotiq_c2_model_visualization)/urdf/robotiq_c2_model_macro.xacro"/>
@@ -45,7 +45,7 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
 
   <!-- Wheel Mounting Positions -->
   <xacro:property name="wheelbase" value="0.5120" />
-  <xacro:property name="track" value="0.5708" /> 
+  <xacro:property name="track" value="0.5708" />
   <xacro:property name="wheel_vertical_offset" value="0.03282" />
 
   <!-- Wheel Properties -->
@@ -76,10 +76,15 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
         <material name="Black" />
       </visual>
       <collision>
-        <origin xyz="0 0 ${0.1578 - wheel_vertical_offset}" rpy="0 0 0" />
+        <origin xyz="0 0 ${base_z_size/4}" rpy="0 0 0" />
         <geometry>
-          <!-- Make collision box slightly bigger in x and z directions. -->
-          <box size = "${base_x_size+0.02} ${base_y_size} ${base_z_size + 0.02}"/>
+          <box size="${base_x_size} ${base_y_size} ${base_z_size/2}"/>
+        </geometry>
+      </collision>
+      <collision>
+        <origin xyz="0 0 ${base_z_size*3/4}" rpy="0 0 0" />
+        <geometry>
+          <box size="${base_x_size*4/5} ${base_y_size} ${base_z_size/2}"/>
         </geometry>
       </collision>
       <inertial>
@@ -149,20 +154,10 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
 
     <xacro:if value="$(arg laser_enabled)">
 
-      <link name="base_laser_mount_link">
-        <visual>
-          <geometry>
-            <mesh filename="package://husky_description/meshes/accessories/lidar_mount.stl" />
-          </geometry>
-          <material name="DarkGrey" />
-        </visual>
-      </link>
-
-      <!-- TODO find better place for laser -->
       <joint name="base_laser_mount" type="fixed">
-        <origin xyz="0 0 -0.05" rpy="0 0 0" />
+        <origin xyz="-0.07 0 0.1" rpy="0 0 0" />
         <parent link="front_bumper_link" />
-        <child link="base_laser_mount_link" />
+        <child link="base_laser" />
       </joint>
 
       <xacro:sick_lms100 prefix="base" />
@@ -175,7 +170,6 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
         </xacro:sensor_arch>
 
         <joint name="kinect_frame_joint" type="fixed">
-          <!-- TODO Fix x y z so kinect is not floating -->
           <origin xyz="0 0 0" rpy="0 ${M_PI/8} ${M_PI}"/>
           <parent link="sensor_arch_mount_link"/>
           <child link="camera_link"/>

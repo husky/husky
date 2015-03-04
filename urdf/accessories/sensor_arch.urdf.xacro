@@ -12,7 +12,6 @@
                  </geometry>
                  <material name="Grey" />
              </visual>
-             <!--TODO collision box-->
              <collision>
                  <origin xyz="0 0 0" rpy="0 0 0"/>
                  <geometry>
