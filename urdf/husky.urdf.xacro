@@ -127,18 +127,6 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
 
     <xacro:husky_decorate />
 
-
-    <!-- <xacro:if value="$(arg gripper_enabled)">
-	    <xacro:robotiq_c2_model prefix=""/>
-
-	    <joint name="ur5_arm_ee_joint" type="fixed">
-	       <parent link="ur5_arm_ee_link"/>
-	       <child link="robotiq_85_adapter_link"/>
-	       <origin xyz="0 0 0" rpy="0 0 0"/>
-	    </joint>
-
-    </xacro:if> -->
-
     <xacro:if value="$(arg ur5_enabled)">
 
       <xacro:property name="reflect" value="-1" />
