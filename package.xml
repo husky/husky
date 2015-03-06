@@ -23,7 +23,7 @@
   <run_depend>joy</run_depend>
   <run_depend>robot_localization</run_depend>
   <run_depend>rostopic</run_depend>
-  <run_depend>pr2_mechanism_diagnostics</run_depend>
+  <run_depend>controller_manager</run_depend>
   <run_depend>teleop_twist_joy</run_depend>
   <run_depend>twist_mux</run_depend>
 
