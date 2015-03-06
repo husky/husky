@@ -17,10 +17,7 @@
    <!-- Fake Calibration -->
    <node pkg="rostopic" type="rostopic" name="fake_joint_calibration"
     args="pub /calibrated std_msgs/Bool true" />
-
-    <!-- Diagnostics -->
-    <node pkg="pr2_mechanism_diagnostics" type="pr2_mechanism_diagnostics" name="pr2_mechanism_diagnostics" />
-    
+ 
   </group>
 
   <node pkg="robot_localization" type="ekf_localization_node" name="ekf_localization"> 
