@@ -1,32 +1,11 @@
 <?xml version="1.0"?>
 <launch>
 
-  <arg name="ur5_enabled" default="false"/>
-
   <rosparam command="load" file="$(find husky_control)/config/control.yaml" />
-  
-  <!-- If we're using the ur5 arm -->
-  <group if="$(arg ur5_enabled)">
-       <!-- <node pkg="joint_state_publisher" type="joint_state_publisher" name="joint_state_publisher"/> -->
 
-       <!-- Load UR5 controllers -->
-       <rosparam command="load" file="$(find husky_control)/config/control_ur5.yaml" />
-       <node name="controller_spawner" pkg="controller_manager" type="spawner" args="husky_joint_publisher husky_velocity_controller  arm_controller"/>
+  <node name="base_controller_spawner" pkg="controller_manager" type="spawner" args="husky_joint_publisher husky_velocity_controller --shutdown-timeout 3"/>
 
-       <!-- Fake Calibration -->
-  <node pkg="rostopic" type="rostopic" name="fake_joint_calibration"
-        args="pub /calibrated std_msgs/Bool true" />
-
-       <!-- Diagnostics -->
-       <node pkg="pr2_mechanism_diagnostics" type="pr2_mechanism_diagnostics" name="pr2_mechanism_diagnostics" />
-  </group>
-
-  <!-- If not using UR5 arm -->
-  <group unless="$(arg ur5_enabled)">
-       <node name="controller_spawner" pkg="controller_manager" type="spawner" args="husky_joint_publisher husky_velocity_controller"/>
-  </group>
-
-  <node pkg="robot_localization" type="ekf_localization_node" name="ekf_localization"> 
+  <node pkg="robot_localization" type="ekf_localization_node" name="ekf_localization">
     <rosparam command="load" file="$(find husky_control)/config/localization.yaml" />
   </node>
 
