@@ -5,5 +5,7 @@ find_package(catkin REQUIRED)
 
 catkin_package()
 
+roslaunch_add_file_check(launch)
+
 install(DIRECTORY launch DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION})
 install(DIRECTORY config DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION})
