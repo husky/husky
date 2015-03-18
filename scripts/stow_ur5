@@ -10,7 +10,7 @@ JOINT_NAMES = ['ur5_arm_shoulder_pan_joint', 'ur5_arm_shoulder_lift_joint', 'ur5
 
 Q1 = [1.57,-1.57,0,-1.57,0,0]
 Q2 = [-1.57,-1.57,0,-1.57,0,0]
-Q3 = [-1.57,0,-2.79,-1.57,0,0]
+Q3 = [-1.57,-0.1745,-2.79,-1.57,0,0]
 
 client = None
 
