@@ -57,19 +57,7 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
 
   <xacro:macro name="husky_robot">
 
-    <!-- Base link is on the ground under the robot -->
-    <link name="base_footprint"/>
-    <gazebo reference="base_footprint">
-      <material>Gazebo/DarkGrey</material>
-    </gazebo>
-
-    <joint name="chassis_joint" type="fixed">
-      <origin xyz="0 0 ${wheel_radius - wheel_vertical_offset}" rpy="0 0 0" />
-      <parent link="base_footprint" />
-      <child link="base_link" />
-    </joint>
-
-    <!-- Chassis link is the center of the robot's bottom plate -->
+    <!-- Base link is the center of the robot's bottom plate -->
     <link name="base_link">
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0" />
@@ -90,14 +78,35 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
           <box size="${base_x_size*4/5} ${base_y_size} ${base_z_size/2}"/>
         </geometry>
       </collision>
+
+    </link>
+    <gazebo reference="base_link">
+      <material>Gazebo/DarkGrey</material>
+    </gazebo>
+
+    <!-- Base footprint is on the ground under the robot -->
+    <link name="base_footprint"/>
+
+    <joint name="base_footprint_joint" type="fixed">
+      <origin xyz="0 0 ${wheel_vertical_offset - wheel_radius}" rpy="0 0 0" />
+      <parent link="base_link" />
+      <child link="base_footprint" />
+    </joint>
+
+    <!-- Interial link stores the robot's inertial information -->
+    <link name="inertial_link">
       <inertial>
         <mass value="33.455" />
         <origin xyz="-0.08748 -0.00085 0.09947" />
         <inertia ixx="0.6022" ixy="-0.02364" ixz="-0.1197" iyy="1.7386" iyz="-0.001544" izz="2.0296" />
       </inertial>
     </link>
-    <gazebo reference="base_link">
-    </gazebo>
+
+    <joint name="inertial_joint" type="fixed">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <parent link="base_link" />
+      <child link="inertial_link" />
+    </joint>
 
     <!-- IMU Link is the standard mounting position for the UM6 IMU.-->
     <!-- Can be modified with environment variables in /etc/ros/setup.bash -->
