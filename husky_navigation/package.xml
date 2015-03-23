@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<package>
+  <name>husky_navigation</name>
+  <version>0.1.2</version>
+  <description>Autonomous mapping and navigation demos for the Clearpath Husky</description>
+
+  <author email="pmukherj@clearpathrobotics.com">Prasenjit Mukherjee</author>
+  <author email="pbovbel@clearpathrobotics.com">Paul Bovbel</author>
+
+  <maintainer email="pbovbel@clearpathrobotics.com">Paul Bovbel</maintainer>
+
+  <license>BSD</license>
+
+  <url type="website">http://ros.org/wiki/husky_navigation</url>
+  <url type="bugtracker">https://github.com/husky/husky_navigation/issues</url>
+  <url type="repository">https://github.com/husly/husky_navigation</url>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <build_depend>roslaunch</build_depend>
+  <run_depend>amcl</run_depend>
+  <run_depend>frontier_exploration</run_depend>
+  <run_depend>gmapping</run_depend>
+  <run_depend>map_server</run_depend>
+  <run_depend>move_base</run_depend>
+  <run_depend>navfn</run_depend>
+  <run_depend>base_local_planner</run_depend>
+  <run_depend>dwa_local_planner</run_depend>
+
+  <export>
+  </export>
+</package>
