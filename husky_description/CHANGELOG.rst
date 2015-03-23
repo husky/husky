@@ -2,6 +2,11 @@
 Changelog for package husky_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Add Kinect, UR5 peripherals
+* Contributors: Paul Bovbel, Devon Ash
+
 0.1.2 (2015-01-30)
 ------------------
 * Update maintainers and description
@@ -17,7 +22,7 @@ Changelog for package husky_description
 0.1.0 (2015-01-13)
 ------------------
 * Major refactor for indigo release:
-  * base_link is now located on the ground plane, while chassis_link 
+  * base_link is now located on the ground plane, while chassis_link
   * refactored joint names for consistency with Jackal and Grizzly for ros_control
   * moved plugins requiring gazebo dependencies to husky_gazebo (imu, gps, lidar, ros_control)
   * initial prefixing for multirobot

@@ -2,6 +2,9 @@
 Changelog for package husky_msgs
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+
 0.0.2 (2015-01-30)
 ------------------
 * Update description and maintainer
