@@ -2,6 +2,12 @@
 Changelog for package husky_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Port *.stl to *.dae format, removing material/gazebo colours
+* Make base_footprint a child of base_link
+* Contributors: Paul Bovbel
+
 0.2.0 (2015-03-23)
 ------------------
 * Add Kinect, UR5 peripherals

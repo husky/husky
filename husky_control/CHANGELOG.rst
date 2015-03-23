@@ -2,6 +2,11 @@
 Changelog for package husky_control
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Update control params with base_link
+* Contributors: Paul Bovbel
+
 0.2.0 (2015-03-23)
 ------------------
 * Add UR5 arm simulation control config
