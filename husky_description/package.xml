@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<package>
+  <name>husky_description</name>
+  <version>0.1.2</version>
+  <description>Clearpath Husky URDF description</description>
+
+  <author email="rgariepy@clearpathrobotics.com">Ryan Gariepy</author>
+  <author email="pmukherj@clearpathrobotics.com">Prasenjit Mukherjee</author>
+  <author email="mpurvis@clearpathrobotics.com">Mike Purvis</author>
+  <author email="pbovbel@clearpathrobotics.com">Paul Bovbel</author>
+  <author email="dash@clearpathrobotics.com">Devon Ash</author>
+
+  <maintainer email="pbovbel@clearpathrobotics.com">Paul Bovbel</maintainer>
+
+  <url type="website">http://ros.org/wiki/husky_description</url>
+  <url type="bugtracker">https://github.com/husky/husky_description/issues</url>
+  <url type="repository">https://github.com/husky/husky_description</url>
+
+  <license>BSD</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <build_depend>roslaunch</build_depend>
+  <run_depend>robot_state_publisher</run_depend>
+  <run_depend>urdf</run_depend>
+  <run_depend>xacro</run_depend>
+  <run_depend>ur_description</run_depend>
+
+
+  <export>
+  </export>
+</package>
