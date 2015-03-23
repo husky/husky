@@ -2,8 +2,8 @@
 Changelog for package husky_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.2.0 (2015-03-23)
+------------------
 * Add Kinect, UR5 peripherals
 * Contributors: Paul Bovbel, Devon Ash
 

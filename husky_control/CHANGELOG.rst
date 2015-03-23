@@ -2,8 +2,8 @@
 Changelog for package husky_control
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.2.0 (2015-03-23)
+------------------
 * Add UR5 arm simulation control config
 * Contributors: Paul Bovbel, Devon Ash
 
