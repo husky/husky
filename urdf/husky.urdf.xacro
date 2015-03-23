@@ -93,17 +93,16 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
       <inertial>
         <mass value="33.455" />
         <origin xyz="-0.08748 -0.00085 0.09947" />
-        <inertia ixx="0.6022" ixy="-0.02364" ixz="-0.1197"
-         iyy="1.7386" iyz="-0.001544" izz="2.0296" />
-       </inertial>
-     </link>
-     <gazebo reference="base_link">
-     </gazebo>
+        <inertia ixx="0.6022" ixy="-0.02364" ixz="-0.1197" iyy="1.7386" iyz="-0.001544" izz="2.0296" />
+      </inertial>
+    </link>
+    <gazebo reference="base_link">
+    </gazebo>
 
-     <!-- IMU Link is the standard mounting position for the UM6 IMU.-->
-     <!-- Can be modified with environment variables in /etc/ros/setup.bash -->
-     <link name="imu_link"/>
-     <joint name="imu_joint" type="fixed">
+    <!-- IMU Link is the standard mounting position for the UM6 IMU.-->
+    <!-- Can be modified with environment variables in /etc/ros/setup.bash -->
+    <link name="imu_link"/>
+    <joint name="imu_joint" type="fixed">
       <origin xyz="$(optenv HUSKY_IMU_XYZ 0.19 0 0.149)" rpy="$(optenv HUSKY_IMU_RPY 0 -1.5708 3.1416)" />
       <parent link="base_link" />
       <child link="imu_link" />
@@ -156,16 +155,16 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
 
     <xacro:if value="$(arg kinect_enabled)">
 
-        <xacro:sensor_arch prefix="" parent="top_plate_link">
-            <origin xyz="-0.35 0 0.51" rpy="0 0 -3.14"/>
-        </xacro:sensor_arch>
-        <joint name="kinect_frame_joint" type="fixed">
-          <origin xyz="$(optenv HUSKY_KINECT_XYZ 0 0 0)" rpy="$(optenv HUSKY_KINECT_RPY 0 0.3925 3.14)" />
-          <parent link="sensor_arch_mount_link"/>
-          <child link="camera_link"/>
-        </joint>
+      <xacro:sensor_arch prefix="" parent="top_plate_link">
+        <origin xyz="-0.35 0 0.51" rpy="0 0 -3.14"/>
+      </xacro:sensor_arch>
+      <joint name="kinect_frame_joint" type="fixed">
+        <origin xyz="$(optenv HUSKY_KINECT_XYZ 0 0 0)" rpy="$(optenv HUSKY_KINECT_RPY 0 0.3925 3.14)" />
+        <parent link="sensor_arch_mount_link"/>
+        <child link="camera_link"/>
+      </joint>
 
-        <xacro:kinect_camera prefix="camera"/>
+      <xacro:kinect_camera prefix="camera"/>
     </xacro:if>
 
   </xacro:macro>
