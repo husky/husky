@@ -35,9 +35,8 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
 			<visual>
 				<origin xyz="0 0 0" rpy="0 0 0" />
 				<geometry>
-					<mesh filename="package://husky_description/meshes/wheel.stl" />
+					<mesh filename="package://husky_description/meshes/wheel.dae" />
 				</geometry>
-				<material name="DarkGrey" />
 			</visual>
 			<collision>
 				<origin xyz="0 0 0" rpy="${M_PI/2} 0 0" />
@@ -53,8 +52,6 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
 			<kp value="10000000.0" />
 			<kd value="1.0" />
 			<fdir1 value="1 0 0"/>
-			<material>Gazebo/Grey</material>
-			<turnGravityOff>false</turnGravityOff>
 		</gazebo>
 
 		<joint name="${wheel_prefix}_wheel" type="continuous">
