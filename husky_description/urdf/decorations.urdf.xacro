@@ -32,16 +32,9 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
-          <mesh filename="package://husky_description/meshes/top_chassis.stl" />
+          <mesh filename="package://husky_description/meshes/top_chassis.dae" />
         </geometry>
-        <material name="Yellow" />
       </visual>
-      <collision>
-        <origin xyz="0 0 0" rpy="0 0 0"/>
-        <geometry>
-          <mesh filename="package://husky_description/meshes/top_chassis.stl" />
-        </geometry>
-      </collision>
     </link>
 
     <!-- Attach chassis to the robot -->
@@ -49,17 +42,13 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
       <parent link="base_link" />
       <child link="top_chassis_link" />
     </joint>
-    <gazebo reference="top_chassis_link">
-      <material>Gazebo/Yellow</material>
-    </gazebo>
 
     <!-- Spawn user rails -->
     <link name="user_rail_link">
       <visual>
         <geometry>
-          <mesh filename="package://husky_description/meshes/user_rail.stl" />
+          <mesh filename="package://husky_description/meshes/user_rail.dae" />
         </geometry>
-        <material name="DarkGrey" />
       </visual>
     </link>
 
@@ -69,17 +58,13 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
       <parent link="base_link" />
       <child link="user_rail_link" />
     </joint>
-    <gazebo reference="user_rail_link">
-      <material>Gazebo/DarkGrey</material>
-    </gazebo>
 
     <!-- Spawn front bumper link -->
     <link name="front_bumper_link">
       <visual>
         <geometry>
-          <mesh filename="package://husky_description/meshes/bumper.stl" />
+          <mesh filename="package://husky_description/meshes/bumper.dae" />
         </geometry>
-        <material name="DarkGrey" />
       </visual>
     </link>
 
@@ -89,17 +74,13 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
       <parent link="base_link" />
       <child link="front_bumper_link" />
     </joint>
-    <gazebo reference="front_bumper_link">
-      <material>Gazebo/DarkGrey</material>
-    </gazebo>
 
     <!-- Spawn rear bumper link -->
     <link name="rear_bumper_link">
       <visual>
         <geometry>
-          <mesh filename="package://husky_description/meshes/bumper.stl" />
+          <mesh filename="package://husky_description/meshes/bumper.dae" />
         </geometry>
-        <material name="DarkGrey" />
       </visual>
     </link>
 
@@ -109,23 +90,19 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
       <parent link="base_link" />
       <child link="rear_bumper_link" />
     </joint>
-    <gazebo reference="rear_bumper_link">
-      <material>Gazebo/DarkGrey</material>
-    </gazebo>
 
     <!-- Spawn the top plate -->
     <link name="top_plate_link">
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
-          <mesh filename="package://husky_description/meshes/top_plate.stl" />
+          <mesh filename="package://husky_description/meshes/top_plate.dae" />
         </geometry>
-        <material name="Black" />
       </visual>
       <collision>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-          <mesh filename="package://husky_description/meshes/top_plate.stl" />
+          <mesh filename="package://husky_description/meshes/top_plate.dae" />
         </geometry>
       </collision>
       <collision>
@@ -135,9 +112,6 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
         </geometry>
       </collision>
     </link>
-    <gazebo reference="top_plate_link">
-      <material>Gazebo/DarkGrey</material>
-    </gazebo>
 
     <!-- Attach top plate -->
     <joint name="top_plate_joint" type="fixed">

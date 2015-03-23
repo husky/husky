@@ -8,21 +8,16 @@
              <origin xyz="0 0 0" rpy="0 0 0"/>
              <visual>
                  <geometry>
-                     <mesh filename="package://husky_description/meshes/accessories/${size}_mm_sensor_arch.STL" />
+                     <mesh filename="package://husky_description/meshes/accessories/${size}_mm_sensor_arch.dae" />
                  </geometry>
-                 <material name="Grey" />
              </visual>
              <collision>
                  <origin xyz="0 0 0" rpy="0 0 0"/>
                  <geometry>
-                     <mesh filename="package://husky_description/meshes/accessories/${size}_mm_sensor_arch.STL" />
+                     <mesh filename="package://husky_description/meshes/accessories/${size}_mm_sensor_arch.dae" />
                  </geometry>
              </collision>
         </link>
-
-        <gazebo reference="${prefix}sensor_arch_mount_link">
-            <material>Gazebo/DarkGrey</material>
-        </gazebo>
 
         <!-- Attach the sensor arch to the top plate -->
         <joint name="${prefix}sensor_arch_mount" type="fixed">
