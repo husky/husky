@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<package>
+  <name>husky_control</name>
+  <version>0.0.4</version>
+  <description>Clearpath Husky controller configurations</description>
+  
+  <author email="pbovbel@clearpathrobotics.com">Paul Bovbel</author>
+
+  <maintainer email="pbovbel@clearpathrobotics.com">Paul Bovbel</maintainer>
+
+  <license>BSD</license>
+
+  <url type="website">http://ros.org/wiki/husky_control</url>
+  <url type="bugtracker">https://github.com/husky/husky_control/issues</url>
+  <url type="repository">https://github.com/husly/husky_control</url>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <build_depend>roslaunch</build_depend>
+  <run_depend>interactive_marker_twist_server</run_depend>
+  <run_depend>diff_drive_controller</run_depend>
+  <run_depend>joint_state_controller</run_depend>
+  <run_depend>joint_trajectory_controller</run_depend>
+  <run_depend>joy</run_depend>
+  <run_depend>robot_localization</run_depend>
+  <run_depend>rostopic</run_depend>
+  <run_depend>controller_manager</run_depend>
+  <run_depend>teleop_twist_joy</run_depend>
+  <run_depend>twist_mux</run_depend>
+
+  <export>
+  </export>
+</package>
