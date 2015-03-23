@@ -12,7 +12,7 @@ husky_velocity_controller:
   cmd_vel_timeout: 0.25
 
   # Base frame_id
-  base_frame_id: base_footprint
+  base_frame_id: base_link
 
   # Odometry fused with IMU is published by robot_localization, so
   # no need to publish a TF based on encoders alone.
