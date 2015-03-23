@@ -10,7 +10,7 @@ Redistribution and use in source and binary forms, with or without modification,
 the following conditions are met:
  * Redistributions of source code must retain the above copyright notice, this list of conditions and the
    following disclaimer.
- * Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the 
+ * Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the
    following disclaimer in the documentation and/or other materials provided with the distribution.
  * Neither the name of Clearpath Robotics nor the names of its contributors may be used to endorse or promote
    products derived from this software without specific prior written permission.
@@ -112,20 +112,26 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
     <gazebo reference="rear_bumper_link">
       <material>Gazebo/DarkGrey</material>
     </gazebo>
-    
+
     <!-- Spawn the top plate -->
     <link name="top_plate_link">
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0" />
-          <geometry>
-            <mesh filename="package://husky_description/meshes/top_plate.stl" />
-          </geometry>
+        <geometry>
+          <mesh filename="package://husky_description/meshes/top_plate.stl" />
+        </geometry>
         <material name="Black" />
       </visual>
       <collision>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
           <mesh filename="package://husky_description/meshes/top_plate.stl" />
+        </geometry>
+      </collision>
+      <collision>
+        <!-- Extra collision tag for widgets typically attached to top plate -->
+        <geometry>
+          <box size="0.32 0.41 0.09" rpy="0 0 0"/>
         </geometry>
       </collision>
     </link>
@@ -139,31 +145,6 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
       <child link="top_plate_link"/>
       <origin xyz="0.0812 0 0.245" rpy="0 0 0"/>
     </joint>
-
-    <!-- Spawn top plate widgets collision -->
-    <!-- Note this is so the UR5 arm does not collide with the top plate of the husky or plan through the widgets -->
-    <link name="top_plate_widgets">
-         <visual>
-         <origin xyz="0 0 0" rpy="0 0 0" />
-          <geometry>
-            <box size="0 0 0" rpy="0 0 0"/>
-          </geometry>
-        <material name="Black" />
-      </visual>
-      <collision>
-        <origin xyz="0 0 0" rpy="0 0 0"/>
-        <geometry>
-            <box size="0.32 0.41 0.09" rpy="0 0 0"/>
-          </geometry>
-      </collision>
-    </link>
-
-   <!-- Attach top plate widgets box -->
-   <joint name="top_plate_widgets_joint" type="fixed">
-       <parent link="top_plate_link" />
-      <child link="top_plate_widgets"/>
-      <origin xyz="0 0 0" rpy="0 0 0"/>
-   </joint>
 
   </xacro:macro>
 
