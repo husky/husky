@@ -2,6 +2,11 @@
 Changelog for package husky_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Fix package urls
+* Contributors: Paul Bovbel
+
 0.2.1 (2015-03-23)
 ------------------
 * Port *.stl to *.dae format, removing material/gazebo colours

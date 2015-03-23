@@ -2,6 +2,11 @@
 Changelog for package husky_control
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Fix package urls
+* Contributors: Paul Bovbel
+
 0.2.1 (2015-03-23)
 ------------------
 * Update control params with base_link
