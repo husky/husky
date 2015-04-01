@@ -2,6 +2,9 @@
 Changelog for package husky_control
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+
 0.2.2 (2015-03-23)
 ------------------
 * Fix package urls

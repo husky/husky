@@ -2,6 +2,12 @@
 Changelog for package husky_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Integrate husky_customization workflow
+* Disable all accessories by default
+* Contributors: Paul Bovbel
+
 0.2.2 (2015-03-23)
 ------------------
 * Fix package urls
