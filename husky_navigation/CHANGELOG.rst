@@ -4,6 +4,8 @@ Changelog for package husky_navigation
 
 Forthcoming
 -----------
+* Increase inflation radius
+* Contributors: Paul Bovbel
 
 0.2.2 (2015-03-23)
 ------------------
