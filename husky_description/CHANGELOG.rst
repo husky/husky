@@ -2,8 +2,8 @@
 Changelog for package husky_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.2.4 (2015-04-13)
+------------------
 * Add argument to enable/disable top plate
 * Fix sensor arch name
 * Fix conflict with underlay
