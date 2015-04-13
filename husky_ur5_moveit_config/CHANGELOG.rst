@@ -2,6 +2,9 @@
 Changelog for package husky_ur5_moveit_config
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+
 0.2.3 (2015-04-08)
 ------------------
 * Added collisions so the robot can plan

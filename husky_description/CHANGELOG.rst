@@ -2,6 +2,15 @@
 Changelog for package husky_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Add argument to enable/disable top plate
+* Fix sensor arch name
+* Fix conflict with underlay
+  When using -z check, underlayed instances of husky_gazebo would override overlays.
+* Update top plate model
+* Contributors: Paul Bovbel
+
 0.2.3 (2015-04-08)
 ------------------
 * Integrate husky_customization workflow
