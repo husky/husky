@@ -31,7 +31,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
   <xacro:property name="laser_x" value="0.11" />
   <xacro:property name="laser_y" value="0.11" />
-  <xacro:property name="laser_z" value="0.16" />
+  <xacro:property name="laser_z" value="0.2" />
   <xacro:property name="laser_mass" value="1.1" />
 
   <xacro:macro name="sick_lms100" params="prefix:=base">
