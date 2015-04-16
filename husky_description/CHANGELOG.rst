@@ -2,6 +2,11 @@
 Changelog for package husky_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Add standard mount for lms1xx
+* Contributors: Paul Bovbel
+
 0.2.4 (2015-04-13)
 ------------------
 * Add argument to enable/disable top plate

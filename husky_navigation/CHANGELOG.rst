@@ -2,6 +2,9 @@
 Changelog for package husky_navigation
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+
 0.2.4 (2015-04-13)
 ------------------
 
