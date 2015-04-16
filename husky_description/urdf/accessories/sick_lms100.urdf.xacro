@@ -29,9 +29,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 <robot xmlns:xacro="http://ros.org/wiki/xacro" name="sick_lms100">
 
-  <xacro:property name="laser_x" value="0.105" />
-  <xacro:property name="laser_y" value="0.102" />
-  <xacro:property name="laser_z" value="0.152" />
+  <xacro:property name="laser_x" value="0.11" />
+  <xacro:property name="laser_y" value="0.11" />
+  <xacro:property name="laser_z" value="0.2" />
   <xacro:property name="laser_mass" value="1.1" />
 
   <xacro:macro name="sick_lms100" params="prefix:=base">
