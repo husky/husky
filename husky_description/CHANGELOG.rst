@@ -2,8 +2,8 @@
 Changelog for package husky_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.2.5 (2015-04-16)
+------------------
 * Add standard mount for lms1xx
 * Contributors: Paul Bovbel
 
