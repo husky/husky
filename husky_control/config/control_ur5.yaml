@@ -1,5 +1,5 @@
 arm_controller:
-  type: effort_controllers/JointTrajectoryController
+  type: position_controllers/JointTrajectoryController
   topic: "test"
   joints:
      - ur5_arm_shoulder_pan_joint
@@ -8,13 +8,6 @@ arm_controller:
      - ur5_arm_wrist_1_joint
      - ur5_arm_wrist_2_joint
      - ur5_arm_wrist_3_joint
-  gains:
-     ur5_arm_shoulder_pan_joint: {p: 10000, i: 500.0, d: 100.0, i_clamp: 100.0}
-     ur5_arm_shoulder_lift_joint: {p: 10000, i: 500.0, d: 100.0, i_clamp: 100.0}
-     ur5_arm_elbow_joint: {p: 10000, i: 500.0, d: 100.0, i_clamp: 100.0}
-     ur5_arm_wrist_1_joint: {p: 10000.0, i: 0.0, d: 0.0, i_clamp: 0.0}
-     ur5_arm_wrist_2_joint: {p: 10000.0, i: 0.0, d: 0.0, i_clamp: 0.0}
-     ur5_arm_wrist_3_joint: {p: 10000.0, i: 0.0, d: 0.0, i_clamp: 0.0}
   constraints:
       goal_time: 0.6
       stopped_velocity_tolerance: 0.5
