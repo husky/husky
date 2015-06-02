@@ -15,6 +15,4 @@
     <node pkg="teleop_twist_joy" type="teleop_node" name="teleop_twist_joy"/>
   </group>
 
-  <node pkg="interactive_marker_twist_server" type="marker_server" name="twist_marker_server" output="screen"/>
-
 </launch>
