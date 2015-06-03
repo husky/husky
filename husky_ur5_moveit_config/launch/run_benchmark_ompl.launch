@@ -1,7 +1,7 @@
 <launch>
 
   <!-- This argument must specify the list of .cfg files to process for benchmarking -->
-  <arg name="cfg" />
+  <arg name="cfg" default=""/>
 
   <!-- Load URDF -->
   <include file="$(find husky_ur5_moveit_config)/launch/planning_context.launch">
