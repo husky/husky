@@ -1,7 +1,7 @@
 <launch>
   
   <!-- The path to the database must be specified -->
-  <arg name="moveit_warehouse_database_path" />
+  <arg name="moveit_warehouse_database_path" default=""/>
 
   <!-- Load warehouse parameters -->  
   <include file="$(find husky_ur5_moveit_config)/launch/warehouse_settings.launch.xml" />
