@@ -2,8 +2,8 @@
 Changelog for package husky_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.2.6 (2015-07-08)
+------------------
 * Adjust Kinect angle so it doesn't hit top plate
 * Contributors: Paul Bovbel
 
