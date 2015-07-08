@@ -2,6 +2,11 @@
 Changelog for package husky_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Adjust Kinect angle so it doesn't hit top plate
+* Contributors: Paul Bovbel
+
 0.2.5 (2015-04-16)
 ------------------
 * Add standard mount for lms1xx

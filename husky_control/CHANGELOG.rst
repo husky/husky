@@ -2,6 +2,13 @@
 Changelog for package husky_control
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Added angular_scale_turbo to teleop.config.
+* Move interactive marker launch from teleop into control launch file
+* Added fix for ur5 arm in gazebo
+* Contributors: Paul Bovbel, Devon Ash, Tony Baltovski
+
 0.2.5 (2015-04-16)
 ------------------
 
