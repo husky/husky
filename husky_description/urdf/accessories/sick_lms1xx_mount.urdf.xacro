@@ -31,7 +31,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
   <xacro:macro name="sick_lms1xx_mount" params="prefix topic">
 
-    <sick_lms1xx frame="${prefix}_laser" topic="${topic}" />
+  <sick_lms1xx frame="${prefix}_laser" topic="${topic}" />
 
     <link name="${prefix}_laser_mount">
       <visual>
