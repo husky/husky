@@ -1,9 +1,8 @@
 <?xml version="1.0"?>
 <!--
 Copyright (c) 2013, Goncalo Cabrita, ISR University of Coimbra
-Copyright (c) 2014, Clearpath Robotics
+Copyright (c) 2014, 2015 Clearpath Robotics
 All rights reserved.
-
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are met:
     * Redistributions of source code must retain the above copyright
@@ -14,7 +13,6 @@ modification, are permitted provided that the following conditions are met:
     * Neither the name of Clearpath Robotics nor the
       names of its contributors may be used to endorse or promote products
       derived from this software without specific prior written permission.
-
 THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
 ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
 WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
@@ -27,36 +25,37 @@ ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
-<robot xmlns:xacro="http://ros.org/wiki/xacro" name="sick_lms100">
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
 
-  <xacro:property name="laser_x" value="0.11" />
-  <xacro:property name="laser_y" value="0.11" />
-  <xacro:property name="laser_z" value="0.2" />
-  <xacro:property name="laser_mass" value="1.1" />
+  <xacro:include filename="$(find lms1xx)/urdf/sick_lms1xx.urdf.xacro" />
 
-  <xacro:macro name="sick_lms100" params="prefix:=base">
+  <xacro:macro name="sick_lms1xx_mount" params="prefix topic">
 
-    <link name="${prefix}_laser">
-      <inertial>
-        <mass value="${laser_mass}" />
-        <origin xyz="0 0 0" />
-        <inertia ixx="${0.0833333 * laser_mass * (laser_y*laser_y + laser_z*laser_z)}" ixy="0.0" ixz="0.0"
-          iyy="${0.0833333 * laser_mass * (laser_x*laser_x + laser_z*laser_z)}" iyz="0.0"
-          izz="${0.0833333 * laser_mass * (laser_x*laser_x + laser_y*laser_y)}" />
-      </inertial>
+  <sick_lms1xx frame="${prefix}_laser" topic="${topic}" />
+
+    <link name="${prefix}_laser_mount">
       <visual>
-        <origin xyz="0 0 0" rpy="0 0 0" />
+        <origin xyz="0 0 0" rpy="0 0 ${-M_PI/2}" />
         <geometry>
-          <mesh filename="package://husky_description/meshes/accessories/sick_lms100.dae" />
+          <!-- Origin of this mesh is the base of the bracket. -->
+          <mesh filename="package://husky_description/meshes/accessories/lms1xx_mount.dae" />
         </geometry>
       </visual>
       <collision>
-        <origin xyz="0 0 -0.05" rpy="0 0 0" />
+        <origin xyz="0 0 .0585" rpy="0 0 0" />
         <geometry>
-          <box size="${laser_x} ${laser_y} ${laser_z}" />
+          <box size=".1 .108 .117" />
         </geometry>
       </collision>
     </link>
 
+    <joint name="${prefix}_laser_joint" type="fixed">
+      <!-- This offset is from the base of the bracket to the LIDAR's focal point. -->
+      <origin xyz="0.0352 0 0.0566" rpy="${M_PI} 0 0" />
+      <parent link="${prefix}_laser_mount" />
+      <child link="${prefix}_laser" />
+    </joint>
+
   </xacro:macro>
+
 </robot>

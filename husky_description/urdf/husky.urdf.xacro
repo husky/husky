@@ -30,7 +30,7 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
   <xacro:include filename="$(find husky_description)/urdf/wheel.urdf.xacro" />
 
   <xacro:include filename="$(find husky_description)/urdf/accessories/kinect_camera.urdf.xacro"/>
-  <xacro:include filename="$(find husky_description)/urdf/accessories/sick_lms100.urdf.xacro"/>
+  <xacro:include filename="$(find husky_description)/urdf/accessories/sick_lms1xx_mount.urdf.xacro"/>
   <xacro:include filename="$(find husky_description)/urdf/accessories/sensor_arch.urdf.xacro"/>
   <xacro:include filename="$(find ur_description)/urdf/ur5.urdf.xacro" />
 
@@ -143,34 +143,15 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
 
     <xacro:if value="$(arg laser_enabled)">
 
+      <sick_lms1xx_mount prefix="base" topic="scan"/>
+
       <joint name="laser_mount_joint" type="fixed">
-        <origin xyz="$(optenv HUSKY_LMS1XX_XYZ 0.2206 0.0 0.00635)" rpy="$(optenv HUSKY_LMS1XX_RPY 0.0 0.0 0.0)" />
+        <origin xyz="$(optenv HUSKY_LMS1XX_XYZ 0.2206 0.0 0.00635)"
+                rpy="$(optenv HUSKY_LMS1XX_RPY 0.0 0.0 0.0)" />
         <parent link="top_plate_link" />
-        <child link="laser_mount_link" />
+        <child link="base_laser_mount" />
       </joint>
 
-      <link name="laser_mount_link">
-        <visual>
-          <origin xyz="0 0 0" rpy="0 0 ${-M_PI/2}" />
-          <geometry>
-            <mesh filename="package://husky_description/meshes/accessories/lms1xx_mount.dae" />
-          </geometry>
-        </visual>
-        <collision>
-          <origin xyz="0 0 .0585" rpy="0 0 0" />
-          <geometry>
-            <box size=".1 .108 .117" />
-          </geometry>
-        </collision>
-      </link>
-
-      <joint name="base_laser_joint" type="fixed">
-        <origin xyz="0.0352 0 0.0566" rpy="${M_PI} 0 0" />
-        <parent link="laser_mount_link" />
-        <child link="base_laser" />
-      </joint>
-
-      <xacro:sick_lms100 prefix="base" />
     </xacro:if>
 
     <xacro:if value="$(arg kinect_enabled)">
