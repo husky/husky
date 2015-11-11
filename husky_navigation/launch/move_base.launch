@@ -54,8 +54,8 @@ ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCL
     <param name="global_costmap/width" value="100.0" if="$(arg no_static_map)"/>
     <param name="global_costmap/height" value="100.0" if="$(arg no_static_map)"/>
 
-    <!-- Remap into namespace for cmd_vel_mux switching -->
-    <remap from="cmd_vel" to="~cmd_vel" />
+    <!-- Remap move_base cmd_vel so generic /cmd_vel can be used as a catchall in twist_mux -->
+    <remap from="cmd_vel" to="platform_control/cmd_vel" />
 
   </node>
 
