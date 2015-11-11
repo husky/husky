@@ -7,8 +7,8 @@ topics:
   topic   : twist_marker_server/cmd_vel
   timeout : 0.5
   priority: 8
-- name    : move_base
-  topic   : move_base/cmd_vel
+- name    : autonomy
+  topic   : platform_control/cmd_vel
   timeout : 0.5
   priority: 2
 - name    : external
