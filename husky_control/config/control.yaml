@@ -22,7 +22,7 @@ husky_velocity_controller:
   estimate_velocity_from_position: false
 
   # Wheel separation and radius multipliers
-  wheel_separation_multiplier: 1.875 # default: 1.0
+  wheel_separation_multiplier: 1.72 # default: 1.0
   wheel_radius_multiplier    : 1.0 # default: 1.0
 
   # Velocity and acceleration limits

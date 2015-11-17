@@ -43,12 +43,12 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
 
   <!-- Wheel Mounting Positions -->
   <xacro:property name="wheelbase" value="0.5120" />
-  <xacro:property name="track" value="0.5708" />
+  <xacro:property name="track" value="0.5603" />
   <xacro:property name="wheel_vertical_offset" value="0.03282" />
 
   <!-- Wheel Properties -->
   <xacro:property name="wheel_length" value="0.1143" />
-  <xacro:property name="wheel_radius" value="0.17775" />
+  <xacro:property name="wheel_radius" value="0.16" />
 
   <xacro:macro name="husky_robot">
 
@@ -102,7 +102,7 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
     <!-- Can be modified with environment variables in /etc/ros/setup.bash -->
     <link name="imu_link"/>
     <joint name="imu_joint" type="fixed">
-      <origin xyz="$(optenv HUSKY_IMU_XYZ 0.19 0 0.149)" rpy="$(optenv HUSKY_IMU_RPY 0 -1.5708 3.1416)" />
+      <origin xyz="$(optenv HUSKY_IMU_XYZ -0.2 0 0)" rpy="$(optenv HUSKY_IMU_RPY 3.14159 0 0)" />
       <parent link="base_link" />
       <child link="imu_link" />
     </joint>
