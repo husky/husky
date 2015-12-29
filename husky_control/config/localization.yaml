@@ -12,7 +12,7 @@ odom0_config: [false, false, false,
                true, true, true,
                false, false, true,
                false, false, false]
-odom0_differential: true
+odom0_differential: false
 odom0_queue_size: 10
 
 imu0: imu/data
