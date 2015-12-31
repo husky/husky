@@ -2,8 +2,8 @@
 Changelog for package husky_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.2.7 (2015-12-31)
+------------------
 * Fixed indent.
 * Added Sick LMS1XX URDF.
 * Contributors: Tony Baltovski

@@ -2,8 +2,8 @@
 Changelog for package husky_navigation
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.2.7 (2015-12-31)
+------------------
 * Removed move_base topic remap so it publishes to just cmd_vel to avoid confusion.
 * Remapping the move_base topic to be compatible with cpr autonomy core.
 * Contributors: Peiyi Chen

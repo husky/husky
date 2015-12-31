@@ -2,8 +2,8 @@
 Changelog for package husky_control
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.2.7 (2015-12-31)
+------------------
 * Update localization.yaml
 * Update localization.yaml
 * Remapping the move_base topic to be compatible with cpr autonomy core.
