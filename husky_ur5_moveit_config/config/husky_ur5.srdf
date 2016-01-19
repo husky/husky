@@ -21,6 +21,7 @@
     <!-- <disable_collisions link1="base_link" link2="sensor_arch_mount_link" reason="Adjacent" /> ONLY REQUIRED IF USING KINECT -->
 
     <disable_collisions link1="base_link" link2="base_laser" reason="Adjacent" />
+    <disable_collisions link1="base_link" link2="top_plate_link" reason="Adjacent" />
     <disable_collisions link1="base_laser" link2="front_bumper_link" reason="Adjacent" />
     <disable_collisions link1="base_laser" link2="top_chassis_link" reason="Adjacent" />
     <disable_collisions link1="base_laser" link2="top_plate_link" reason="Adjacent" />
@@ -63,6 +64,9 @@
     <disable_collisions link1="rear_right_wheel_link" link2="ur5_arm_base_link" reason="Never" />
     <disable_collisions link1="rear_right_wheel_link" link2="ur5_arm_shoulder_link" reason="Never" />
     <disable_collisions link1="rear_right_wheel_link" link2="ur5_arm_upper_arm_link" reason="Never" />
+    <disable_collisions link1="front_bumper_link" link2="ur5_arm_base_link" reason="Never" />
+    <disable_collisions link1="front_bumper_link" link2="ur5_arm_shoulder_link" reason="Never" />
+    <disable_collisions link1="front_bumper_link" link2="ur5_arm_upper_arm_link" reason="Never" />
     <disable_collisions link1="ur5_arm_base_link" link2="ur5_arm_shoulder_link" reason="Adjacent" />
     <disable_collisions link1="ur5_arm_ee_link" link2="ur5_arm_wrist_1_link" reason="Never" />
     <disable_collisions link1="ur5_arm_ee_link" link2="ur5_arm_wrist_2_link" reason="Never" />
@@ -73,4 +77,13 @@
     <disable_collisions link1="ur5_arm_wrist_1_link" link2="ur5_arm_wrist_2_link" reason="Adjacent" />
     <disable_collisions link1="ur5_arm_wrist_1_link" link2="ur5_arm_wrist_3_link" reason="Never" />
     <disable_collisions link1="ur5_arm_wrist_2_link" link2="ur5_arm_wrist_3_link" reason="Adjacent" />
+
+    <disable_collisions link1="r_gripper_l_finger_link" link2="r_gripper_l_finger_tip_link" reason="Adjacent" />
+    <disable_collisions link1="top_plate_link" link2="ur5_arm_forearm_link" reason="Never" />
+    <disable_collisions link1="ur5_arm_forearm_link" link2="user_rail_link" reason="Never" />
+    <disable_collisions link1="r_gripper_l_finger_link" link2="r_gripper_palm_link" reason="Adjacent" />
+    <disable_collisions link1="r_gripper_l_finger_tip_link" link2="r_gripper_r_finger_tip_link" reason="Adjacent" />
+    <disable_collisions link1="r_gripper_palm_link" link2="ur5_arm_wrist_3_link" reason="Adjacent" />
+    <disable_collisions link1="r_gripper_palm_link" link2="r_gripper_r_finger_link" reason="Adjacent" />
+    <disable_collisions link1="r_gripper_r_finger_link" link2="r_gripper_r_finger_tip_link" reason="Adjacent" />
 </robot>
