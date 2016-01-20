@@ -14,7 +14,7 @@
              <collision>
                  <origin xyz="0 0 0" rpy="0 0 0"/>
                  <geometry>
-                     <mesh filename="package://husky_description/meshes/accessories/${size}_mm_sensor_arch.dae" />
+                     <mesh filename="package://husky_description/meshes/accessories/${size}_mm_sensor_arch.stl" />
                  </geometry>
              </collision>
         </link>
