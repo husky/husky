@@ -17,8 +17,9 @@
     <!--DISABLE COLLISIONS: By default it is assumed that any link of the robot could potentially come into collision with any other link in the robot. This tag disables collision checking between a specified pair of links. -->
     <!-- <disable_collisions link1="base_link" link2="base_laser" reason="Never"/> ONLY REQUIRED IF USING BASE LASER -->
     <!-- <disable_collisions link1="base_link" link2="base_laser_mount_link" reason="Never"/> -->
-    <!-- <disable_collisions link1="sensor_arch_mount_link" link2="camera_link" reason="Adjacent" /> ONLY REQUIRED IF USING KINECT -->
-    <!-- <disable_collisions link1="base_link" link2="sensor_arch_mount_link" reason="Adjacent" /> ONLY REQUIRED IF USING KINECT -->
+    <disable_collisions link1="sensor_arch_mount_link" link2="camera_link" reason="Adjacent" /> <!-- ONLY REQUIRED IF USING KINECT -->
+    <disable_collisions link1="base_link" link2="sensor_arch_mount_link" reason="Never" /> <!-- ONLY REQUIRED IF USING KINECT -->
+    <disable_collisions link1="top_plate_link" link2="sensor_arch_mount_link" reason="Adjacent" /> <!-- ONLY REQUIRED IF USING KINECT -->
 
     <disable_collisions link1="base_link" link2="base_laser" reason="Adjacent" />
     <disable_collisions link1="base_link" link2="top_plate_link" reason="Adjacent" />
