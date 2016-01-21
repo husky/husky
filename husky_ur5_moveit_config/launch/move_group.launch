@@ -15,6 +15,7 @@
 
   <!-- move_group settings -->
   <arg name="allow_trajectory_execution" default="true"/>
+  <arg name="allow_sensor_manager" default="$(arg allow_trajectory_execution)"/>
   <arg name="fake_execution" default="false"/>
   <arg name="max_safe_path_cost" default="1"/>
   <arg name="jiggle_fraction" default="0.05" />
@@ -33,7 +34,7 @@
   </include>
 
   <!-- Sensors Functionality -->
-  <include ns="move_group" file="$(find husky_ur5_moveit_config)/launch/sensor_manager.launch.xml" if="$(arg allow_trajectory_execution)">
+  <include ns="move_group" file="$(find husky_ur5_moveit_config)/launch/sensor_manager.launch.xml" if="$(arg allow_sensor_manager)">
     <arg name="moveit_sensor_manager" value="husky_ur5" />
   </include>
 
