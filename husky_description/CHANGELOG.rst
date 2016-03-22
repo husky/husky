@@ -2,6 +2,12 @@
 Changelog for package husky_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+0.2.7 (2015-12-31)
+------------------
+* Fixed indent.
+* Added Sick LMS1XX URDF.
+* Contributors: Tony Baltovski
+
 0.2.6 (2015-07-08)
 ------------------
 * Adjust Kinect angle so it doesn't hit top plate

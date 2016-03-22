@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package>
   <name>husky_control</name>
-  <version>0.2.6</version>
+  <version>0.2.7</version>
   <description>Clearpath Husky controller configurations</description>
 
   <author email="pbovbel@clearpathrobotics.com">Paul Bovbel</author>
@@ -25,8 +25,6 @@
   <run_depend>rostopic</run_depend>
   <run_depend>controller_manager</run_depend>
   <run_depend>teleop_twist_joy</run_depend>
-  <run_depend>twist_mux</run_depend>
-
-  <export>
-  </export>
+  <run_depend>yocs_cmd_vel_mux</run_depend>
+  <run_depend>nodelet</run_depend>
 </package>

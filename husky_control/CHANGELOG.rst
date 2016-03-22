@@ -2,6 +2,13 @@
 Changelog for package husky_control
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+0.2.7 (2015-12-31)
+------------------
+* Update localization.yaml
+* Update localization.yaml
+* Remapping the move_base topic to be compatible with cpr autonomy core.
+* Contributors: Peiyi Chen, Tom Moore
+
 0.2.6 (2015-07-08)
 ------------------
 * Added angular_scale_turbo to teleop.config.
