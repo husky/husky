@@ -25,7 +25,7 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
 -->
 <robot xmlns:xacro="http://ros.org/wiki/xacro" name="husky_wheel">
 
-	<xacro:macro name="husky_wheel" params="wheel_prefix *joint_pose">
+	<xacro:macro name="husky_wheel" params="wheel_prefix fixed *joint_pose">
 		<link name="${wheel_prefix}_wheel_link">
 			<inertial>
 				<mass value="2.637" />
@@ -46,30 +46,48 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
 			</collision>
 		</link>
 
-		<gazebo reference="${wheel_prefix}_wheel_link">
-			<mu1 value="1.0"/>
-			<mu2 value="1.0"/>
-			<kp value="10000000.0" />
-			<kd value="1.0" />
-			<fdir1 value="1 0 0"/>
-		</gazebo>
+    <xacro:if value="${fixed}">
+      <gazebo reference="${wheel_prefix}_wheel_link">
+        <mu1 value="0.0"/>
+        <mu2 value="0.0"/>
+        <kp value="10000000.0" />
+        <kd value="1.0" />
+      </gazebo>
 
-		<joint name="${wheel_prefix}_wheel" type="continuous">
-			<parent link="base_link"/>
-			<child link="${wheel_prefix}_wheel_link"/>
-			<xacro:insert_block name="joint_pose"/>
-			<axis xyz="0 1 0" rpy="0 0 0" />
-		</joint>
-
-		<transmission name="${wheel_prefix}_wheel_trans" type="SimpleTransmission">
-			<type>transmission_interface/SimpleTransmission</type>
-			<actuator name="${wheel_prefix}_wheel_motor">
-				<mechanicalReduction>1</mechanicalReduction>
-			</actuator>
-			<joint name="${wheel_prefix}_wheel">
-				<hardwareInterface>VelocityJointInterface</hardwareInterface>
-			</joint>
-		</transmission>
+      <joint name="${wheel_prefix}_wheel" type="fixed">
+        <parent link="base_link"/>
+        <child link="${wheel_prefix}_wheel_link"/>
+        <xacro:insert_block name="joint_pose"/>
+        <axis xyz="0 1 0" rpy="0 0 0" />
+      </joint>
+    </xacro:if>
+    
+    <xacro:unless value="${fixed}">
+	    <gazebo reference="${wheel_prefix}_wheel_link">
+	      <mu1 value="1.0"/>
+	      <mu2 value="1.0"/>
+	      <kp value="10000000.0" />
+	      <kd value="1.0" />
+	      <fdir1 value="1 0 0"/>
+	    </gazebo>
+	    
+	    <joint name="${wheel_prefix}_wheel" type="continuous">
+	      <parent link="base_link"/>
+	      <child link="${wheel_prefix}_wheel_link"/>
+	      <xacro:insert_block name="joint_pose"/>
+	      <axis xyz="0 1 0" rpy="0 0 0" />
+	    </joint>
+	
+	    <transmission name="${wheel_prefix}_wheel_trans" type="SimpleTransmission">
+	      <type>transmission_interface/SimpleTransmission</type>
+	      <actuator name="${wheel_prefix}_wheel_motor">
+	        <mechanicalReduction>1</mechanicalReduction>
+	      </actuator>
+	      <joint name="${wheel_prefix}_wheel">
+	        <hardwareInterface>VelocityJointInterface</hardwareInterface>
+	      </joint>
+	    </transmission>
+    </xacro:unless>
 
 	</xacro:macro>
 </robot>

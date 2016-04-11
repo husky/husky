@@ -50,7 +50,7 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
   <xacro:property name="wheel_length" value="0.1143" />
   <xacro:property name="wheel_radius" value="0.17775" />
 
-  <xacro:macro name="husky_robot">
+  <xacro:macro name="husky_robot" params="wheelconfig">
 
     <!-- Base link is the center of the robot's bottom plate -->
     <link name="base_link">
@@ -110,18 +110,30 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
     </gazebo>
 
     <!-- Husky wheel macros -->
-    <xacro:husky_wheel wheel_prefix="front_left">
+    <xacro:husky_wheel wheel_prefix="front_left" fixed="false">
       <origin xyz="${wheelbase/2} ${track/2} ${wheel_vertical_offset}" rpy="0 0 0" />
     </xacro:husky_wheel>
-    <xacro:husky_wheel wheel_prefix="front_right">
+    <xacro:husky_wheel wheel_prefix="front_right" fixed="false">
       <origin xyz="${wheelbase/2} ${-track/2} ${wheel_vertical_offset}" rpy="0 0 0" />
     </xacro:husky_wheel>
-    <xacro:husky_wheel wheel_prefix="rear_left">
-      <origin xyz="${-wheelbase/2} ${track/2} ${wheel_vertical_offset}" rpy="0 0 0" />
-    </xacro:husky_wheel>
-    <xacro:husky_wheel wheel_prefix="rear_right">
-      <origin xyz="${-wheelbase/2} ${-track/2} ${wheel_vertical_offset}" rpy="0 0 0" />
-    </xacro:husky_wheel>
+    
+    <xacro:if value="${wheelconfig_full}">
+	    <xacro:husky_wheel wheel_prefix="rear_left" fixed="false">
+	      <origin xyz="${-wheelbase/2} ${track/2} ${wheel_vertical_offset}" rpy="0 0 0" />
+	    </xacro:husky_wheel>
+	    <xacro:husky_wheel wheel_prefix="rear_right" fixed="false">
+	      <origin xyz="${-wheelbase/2} ${-track/2} ${wheel_vertical_offset}" rpy="0 0 0" />
+	    </xacro:husky_wheel>
+	  </xacro:if>
+	  
+	  <xacro:unless value="${wheelconfig_full}">
+      <xacro:husky_wheel wheel_prefix="rear_left" fixed="true">
+        <origin xyz="${-wheelbase/2} ${track/2} ${wheel_vertical_offset}" rpy="0 0 0" />
+      </xacro:husky_wheel>
+      <xacro:husky_wheel wheel_prefix="rear_right" fixed="true">
+        <origin xyz="${-wheelbase/2} ${-track/2} ${wheel_vertical_offset}" rpy="0 0 0" />
+      </xacro:husky_wheel>
+	  </xacro:unless>
 
     <xacro:husky_decorate />
 
