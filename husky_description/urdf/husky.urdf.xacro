@@ -30,9 +30,7 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
   <xacro:include filename="$(find husky_description)/urdf/wheel.urdf.xacro" />
 
   <xacro:include filename="$(find husky_description)/urdf/accessories/kinect_camera.urdf.xacro"/>
-  <xacro:include filename="$(find husky_description)/urdf/accessories/sick_lms1xx_mount.urdf.xacro"/>
   <xacro:include filename="$(find husky_description)/urdf/accessories/sensor_arch.urdf.xacro"/>
-  <xacro:include filename="$(find ur_description)/urdf/ur5.urdf.xacro" />
 
   <property name="M_PI" value="3.14159"/>
 
@@ -136,35 +134,6 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
 	  </xacro:unless>
 
     <xacro:husky_decorate />
-
-    <xacro:if value="$(arg ur5_enabled)">
-
-      <xacro:property name="reflect" value="-1" />
-
-      <!-- Spawn arm -->
-      <xacro:ur5_robot prefix="ur5_arm_" joint_limited="true"/>
-
-      <!-- Join arm -->
-      <joint name="ur5_arm_base" type="fixed">
-        <parent link="top_plate_link" />
-        <child link="ur5_arm_base_link" />
-        <origin xyz="0.3058 0 0.0065" rpy="0.0 0.0 -1.57" />
-      </joint>
-
-    </xacro:if>
-
-    <xacro:if value="$(arg laser_enabled)">
-
-      <sick_lms1xx_mount prefix="base" topic="scan"/>
-
-      <joint name="laser_mount_joint" type="fixed">
-        <origin xyz="$(optenv HUSKY_LMS1XX_XYZ 0.2206 0.0 0.00635)"
-                rpy="$(optenv HUSKY_LMS1XX_RPY 0.0 0.0 0.0)" />
-        <parent link="top_plate_link" />
-        <child link="base_laser_mount" />
-      </joint>
-
-    </xacro:if>
 
     <xacro:if value="$(arg kinect_enabled)">
 
