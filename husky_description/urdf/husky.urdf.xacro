@@ -82,7 +82,7 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
     </joint>
 
     <!-- Interial link stores the robot's inertial information -->
-    <link name="inertial_link">
+    <link name="base_link_inertia">
       <inertial>
         <mass value="33.455" />
         <origin xyz="-0.08748 -0.00085 0.09947" />
@@ -93,7 +93,7 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
     <joint name="inertial_joint" type="fixed">
       <origin xyz="0 0 0" rpy="0 0 0" />
       <parent link="base_link" />
-      <child link="inertial_link" />
+      <child link="base_link_inertia" />
     </joint>
 
     <!-- IMU Link is the standard mounting position for the UM6 IMU.-->
