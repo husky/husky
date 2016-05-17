@@ -32,7 +32,7 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
-          <mesh filename="package://husky_description/meshes/top_chassis.dae" />
+          <mesh filename="package://husky_description_mbzirc/meshes/top_chassis.dae" />
         </geometry>
       </visual>
     </link>
@@ -47,7 +47,7 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
     <link name="user_rail_link">
       <visual>
         <geometry>
-          <mesh filename="package://husky_description/meshes/user_rail.dae" />
+          <mesh filename="package://husky_description_mbzirc/meshes/user_rail.dae" />
         </geometry>
       </visual>
     </link>
@@ -63,7 +63,7 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
     <link name="front_bumper_link">
       <visual>
         <geometry>
-          <mesh filename="package://husky_description/meshes/bumper.dae" />
+          <mesh filename="package://husky_description_mbzirc/meshes/bumper.dae" />
         </geometry>
       </visual>
     </link>
@@ -79,7 +79,7 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
     <link name="rear_bumper_link">
       <visual>
         <geometry>
-          <mesh filename="package://husky_description/meshes/bumper.dae" />
+          <mesh filename="package://husky_description_mbzirc/meshes/bumper.dae" />
         </geometry>
       </visual>
     </link>
@@ -97,13 +97,13 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
         <visual>
           <origin xyz="0 0 0" rpy="0 0 0" />
           <geometry>
-            <mesh filename="package://husky_description/meshes/top_plate.dae" />
+            <mesh filename="package://husky_description_mbzirc/meshes/top_plate.dae" />
           </geometry>
         </visual>
         <collision>
           <origin xyz="0 0 0" rpy="0 0 0"/>
           <geometry>
-            <mesh filename="package://husky_description/meshes/top_plate.dae" />
+            <mesh filename="package://husky_description_mbzirc/meshes/top_plate.dae" />
           </geometry>
         </collision>
         <collision>

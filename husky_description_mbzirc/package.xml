@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <package>
-  <name>husky_description</name>
+  <name>husky_description_mbzirc</name>
   <version>0.2.7</version>
   <description>Clearpath Husky URDF description</description>
 

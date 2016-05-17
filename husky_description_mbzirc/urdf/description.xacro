@@ -29,7 +29,7 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
   <xacro:arg name="ur5_enabled" default="false" />
   <xacro:arg name="kinect_enabled" default="false" />
 
-  <xacro:include filename="$(find husky_description)/urdf/husky.urdf.xacro" />
+  <xacro:include filename="$(find husky_description_mbzirc)/urdf/husky.urdf.xacro" />
   <xacro:husky_robot />
 
 </robot>

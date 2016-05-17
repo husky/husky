@@ -26,11 +26,11 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
 <robot name="husky_robot" xmlns:xacro="http://ros.org/wiki/xacro">
 
   <!-- Included URDF/XACRO Files -->
-  <xacro:include filename="$(find husky_description)/urdf/decorations.urdf.xacro" />
-  <xacro:include filename="$(find husky_description)/urdf/wheel.urdf.xacro" />
+  <xacro:include filename="$(find husky_description_mbzirc)/urdf/decorations.urdf.xacro" />
+  <xacro:include filename="$(find husky_description_mbzirc)/urdf/wheel.urdf.xacro" />
 
-  <xacro:include filename="$(find husky_description)/urdf/accessories/kinect_camera.urdf.xacro"/>
-  <xacro:include filename="$(find husky_description)/urdf/accessories/sensor_arch.urdf.xacro"/>
+  <xacro:include filename="$(find husky_description_mbzirc)/urdf/accessories/kinect_camera.urdf.xacro"/>
+  <xacro:include filename="$(find husky_description_mbzirc)/urdf/accessories/sensor_arch.urdf.xacro"/>
 
   <property name="M_PI" value="3.14159"/>
 
@@ -55,7 +55,7 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
-          <mesh filename="package://husky_description/meshes/base_link.dae" />
+          <mesh filename="package://husky_description_mbzirc/meshes/base_link.dae" />
         </geometry>
       </visual>
       <collision>
