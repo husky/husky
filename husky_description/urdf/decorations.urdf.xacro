@@ -92,7 +92,7 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
     </joint>
 
 
-    <xacro:if value="$(optenv DUAL_ARM_BULKHEAD true)">
+    <xacro:if value="$(optenv DUAL_ARM_BULKHEAD false)">
         <!-- Spawn the bulkhead -->
         <link name="dual_arm_bulkhead_link">
         <visual>
