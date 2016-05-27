@@ -125,6 +125,27 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
 
     <xacro:husky_decorate />
 
+    <xacro:if value="$(arg dual_ur5_enabled)">
+
+        <xacro:ur5_robot prefix="l_ur5_arm_" joint_limited="true"/>
+        <xacro:ur5_robot prefix="r_ur5_arm_" joint_limited="true"/> 
+
+        <!-- Join left arm to top plate -->
+        <joint name="l_ur5_arm_base" type="fixed"/>
+            <parent link="modified_top_plate_link"/>
+            <child link="l_ur5_arm_base_link" />
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+        </joint>
+       
+         <!-- Joint right arm to top plate -->
+        <joint name="r_ur5_arm_base" type="fixed">
+            <parent link="modified_top_plate_link"/>
+            <child link="r_ur5_arm_base_link" />
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+        </joint>
+    
+    </xacro>
+
     <xacro:if value="$(arg ur5_enabled)">
 
       <xacro:property name="reflect" value="-1" />
