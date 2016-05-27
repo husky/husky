@@ -91,6 +91,33 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
       <child link="rear_bumper_link" />
     </joint>
 
+
+    <xacro:if value="$(optenv DUAL_ARM_BULKHEAD true)">
+        <!-- Spawn the bulkhead -->
+        <link name="dual_arm_bulkhead_link">
+        <visual>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry>
+            <mesh filename="package://husky_description/meshes/dual_arm_bulkhead.dae" />
+          </geometry>
+        </visual>
+        <collision>
+          <origin xyz="0 0 0" rpy="0 0 0"/>
+          <geometry>
+            <mesh filename="package://husky_description/meshes/dual_arm_bulkhead.dae" />
+          </geometry>
+        </collision>
+        </link>
+
+      <!-- Attach bulkhead -->
+      <joint name="dual_arm_bulkhead_joint" type="fixed">
+        <parent link="base_link" />
+        <child link="dual_arm_bulkhead_link"/>
+        <origin xyz="0.0812 0 0.245" rpy="0 0 0"/>
+      </joint>
+
+    </xacro:if>
+
     <xacro:if value="$(optenv HUSKY_TOP_PLATE_ENABLED true)">
       <!-- Spawn the top plate -->
       <link name="top_plate_link">
