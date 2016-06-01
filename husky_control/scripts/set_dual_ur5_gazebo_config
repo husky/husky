@@ -1,7 +1,8 @@
 #!/usr/bin/env python
 import time
 import rospy
-import gazebo_msgs.SetModelConfiguration
+import gazebo_msgs
+from gazebo_msgs.srv import SetModelConfiguration
 
 LEFT_JOINT_NAMES = ['l_ur5_arm_shoulder_pan_joint', 'l_ur5_arm_shoulder_lift_joint', 'l_ur5_arm_elbow_joint',
                'l_ur5_arm_wrist_1_joint', 'l_ur5_arm_wrist_2_joint', 'l_ur5_arm_wrist_3_joint']
