@@ -3,28 +3,41 @@ import time
 import rospy
 import gazebo_msgs
 from gazebo_msgs.srv import SetModelConfiguration
+from gazebo_msgs.srv import GetModelState
 
 LEFT_JOINT_NAMES = ['l_ur5_arm_shoulder_pan_joint', 'l_ur5_arm_shoulder_lift_joint', 'l_ur5_arm_elbow_joint',
                'l_ur5_arm_wrist_1_joint', 'l_ur5_arm_wrist_2_joint', 'l_ur5_arm_wrist_3_joint']
 
-LEFT_JOINT_POSITIONS = [0,0,0,0,0,0]
+LEFT_JOINT_POSITIONS = [1.57,3.14,-0.785,0,1.57,1.57]
 
 RIGHT_JOINT_NAMES = ['r_ur5_arm_shoulder_pan_joint', 'r_ur5_arm_shoulder_lift_joint', 'r_ur5_arm_elbow_joint',
                'r_ur5_arm_wrist_1_joint', 'r_ur5_arm_wrist_2_joint', 'r_ur5_arm_wrist_3_joint']
 
-RIGHT_JOINT_POSITIONS = [0,0,0,0,0,0]
+RIGHT_JOINT_POSITIONS = [-1.57,0,0,0,0,0.785]
 
 def main():
     try:
         rospy.wait_for_service('/gazebo/set_model_configuration')
         config = rospy.ServiceProxy('/gazebo/set_model_configuration', SetModelConfiguration)
-      
+
+        rospy.wait_for_service('/gazebo/get_model_state')
+        wait = rospy.ServiceProxy('/gazebo/get_model_state', GetModelState)
+        resp = wait('mobile_base', 'world')
+
+        while not resp.success:
+            print "Waiting for model mobile_base to be spawned in Gazebo"
+            resp = wait('mobile_base', 'world')
+
         try:
             #model_name: mobile_base
             #urdf_param_name: robot_description
             #joint_names: [joint1, joint2]
             #joint_positions: [0.0, 1.0, 2.0]
             resp = config('mobile_base', 'robot_description', LEFT_JOINT_NAMES, LEFT_JOINT_POSITIONS)
+
+            if resp.success:
+                print "Successfully set joint positions for the left ur5 arm"
+
         except rospy.ServiceException as exc:
             print ("Service did not process request: " + str(exc))
 
@@ -34,10 +47,16 @@ def main():
             #joint_names: [joint1, joint2]
             #joint_positions: [0.0, 1.0, 2.0]
             resp = config('mobile_base', 'robot_description', RIGHT_JOINT_NAMES, RIGHT_JOINT_POSITIONS)
+
+            if resp.success:
+                print "Successfully set joint positions for the right ur5 arm"
+
         except rospy.ServiceException as exc:
             print ("Service did not process request: " + str(exc))
 
         print "Positions have been set for left and right arms. Enjoy using your dual arm UR5!"
+
+         
 
     except KeyboardInterrupt:
         rospy.signal_shutdown("KeyboardInterrupt")
