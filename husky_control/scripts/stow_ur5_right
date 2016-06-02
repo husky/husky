@@ -4,6 +4,7 @@ import rospy
 import actionlib
 from control_msgs.msg import *
 from trajectory_msgs.msg import *
+from controller_manager_msgs import *
 
 JOINT_NAMES = ['r_ur5_arm_shoulder_pan_joint', 'r_ur5_arm_shoulder_lift_joint', 'r_ur5_arm_elbow_joint',
                'r_ur5_arm_wrist_1_joint', 'r_ur5_arm_wrist_2_joint', 'r_ur5_arm_wrist_3_joint']
@@ -88,14 +89,28 @@ def move_interrupt():
         raise
 
 def main():
+
     global client
+
     try:
-        rospy.init_node("test_move", anonymous=True, disable_signals=True)
-        client = actionlib.SimpleActionClient('r_arm_controller/follow_joint_trajectory', FollowJointTrajectoryAction)
-        print "Waiting for ur5_arm server..."
-        client.wait_for_server()
-        print "Connected to ur5_arm server"
-        move()
+        # Check if the controllers have been loaded
+        rospy.wait_for_service('/controller_manager/list_controllers')
+        controllers = rospy.ServiceProxy('/controller_manager/list_controllers', ControllerState)
+        
+        has_controller = False
+        # Search for r_arm_controller
+        for controller in controllers:
+            if controller.name is "r_arm_controller":
+                has_controller = True
+
+        if has_controller:  
+	    rospy.init_node("stow_right", anonymous=True, disable_signals=True)
+	    client = actionlib.SimpleActionClient('r_arm_controller/follow_joint_trajectory', FollowJointTrajectoryAction)
+	    print "Waiting for ur5_arm server..."
+	    client.wait_for_server()
+	    print "Connected to ur5_arm server"
+	    move()
+
     except KeyboardInterrupt:
         rospy.signal_shutdown("KeyboardInterrupt")
         raise
