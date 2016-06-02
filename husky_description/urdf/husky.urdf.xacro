@@ -141,7 +141,7 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
             <joint name="l_palm_to_l_ur5" type="fixed">
                 <parent link="l_ur5_arm_ee_link"/>
                 <child link="l_palm"/>
-                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <origin xyz="0 0 0" rpy="0 0 -1.57"/>
             </joint>
 
             <!-- Right gripper -->
@@ -149,7 +149,7 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
             <joint name="r_palm_to_r_ur5" type="fixed">
                 <parent link="r_ur5_arm_ee_link"/>
                 <child link="r_palm"/>
-                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <origin xyz="0 0 0" rpy="0 0 -1.57"/>
             </joint>
         </xacro:if>
 
