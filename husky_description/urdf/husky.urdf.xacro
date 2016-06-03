@@ -35,6 +35,7 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
   <xacro:include filename="$(find ur_description)/urdf/ur5.urdf.xacro" />
   <xacro:include filename="$(find robotiq_s_model_visualization)/cfg/robotiq_hand_macro.urdf.xacro"/> 
  <!-- <xacro:include filename="$(find robotiq_force_torque_sensor)/urdf/robotiq_fts150.urdf.xacro"/> -->
+  <xacro:include filename="$(find flir_ptu_description)/urdf/d46.urdf.xacro"/>
 
   <property name="M_PI" value="3.14159"/>
 
@@ -127,13 +128,25 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
 
     <xacro:husky_decorate />
 
+    <xacro:if value="$(optenv FLIR_PTU_ENABLED false)">
+
+         <xacro:ptu_d46 name="husky_ptu_"/>
+
+        <!-- Connect PTU to Husky bulkhead -->
+         <joint name="husky_ptu_joint" type="fixed">
+             <origin xyz="0 0 0" rpy="0 0 0"/>
+             <parent link="dual_arm_bulkhead_link" />
+             <child link="husky_ptu_base_link" />
+         </joint>
+
+    </xacro:if>
+
     <xacro:if value="$(arg dual_ur5_enabled)">
 
         <xacro:ur5_robot prefix="l_ur5_arm_" joint_limited="true"/>
         <xacro:ur5_robot prefix="r_ur5_arm_" joint_limited="true"/> 
 
         <xacro:if value="$(arg robotiq_grippers_enabled)">
-
 
             <xacro:robotiq_hand prefix="l_" reflect="1" parent="l_ur5_arm_ee_link">
                 <origin xyz="0.062 0 0" rpy="0 0 -1.57"/>
