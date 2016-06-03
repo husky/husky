@@ -134,11 +134,11 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
         <xacro:if value="$(arg robotiq_grippers_enabled)">
 
             <xacro:robotiq_hand prefix="l_" reflect="1" parent="l_ur5_arm_ee_link">
-                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <origin xyz="0 0 0" rpy="0 0 -1.57"/>
             </xacro:robotiq_hand>
 
-            <xacro:robotiq_hand prefix="r_" reflect="-1" parent="r_ur5_arm_ee_link">
-                <origin xyz="0 0 0" rpy="0 0 0"/>
+            <xacro:robotiq_hand prefix="r_" reflect="1" parent="r_ur5_arm_ee_link">
+                <origin xyz="0 0 0" rpy="0 0 -1.57"/>
             </xacro:robotiq_hand>
 
         </xacro:if>
