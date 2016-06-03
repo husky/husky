@@ -33,7 +33,7 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
   <xacro:include filename="$(find husky_description)/urdf/accessories/sick_lms1xx_mount.urdf.xacro"/>
   <xacro:include filename="$(find husky_description)/urdf/accessories/sensor_arch.urdf.xacro"/>
   <xacro:include filename="$(find ur_description)/urdf/ur5.urdf.xacro" />
-  <xacro:include filename="$(find robotiq_s_model_visualization)/cfg/s-model_articulated_macro.xacro"/> 
+  <xacro:include filename="$(find robotiq_s_model_visualization)/cfg/robotiq_hand_macro.urdf.xacro"/> 
 
   <property name="M_PI" value="3.14159"/>
 
@@ -133,24 +133,14 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
 
         <xacro:if value="$(arg robotiq_grippers_enabled)">
 
-            <xacro:s-model_articulated prefix="l_"/>
-            <xacro:s-model_articulated prefix="r_"/> 
+            <xacro:robotiq_hand prefix="l_" reflect="1" parent="l_ur5_arm_ee_link">
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+            </xacro:robotiq_hand>
 
-            <!-- Left gripper -->
+            <xacro:robotiq_hand prefix="r_" reflect="-1" parent="r_ur5_arm_ee_link">
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+            </xacro:robotiq_hand>
 
-            <joint name="l_palm_to_l_ur5" type="fixed">
-                <parent link="l_ur5_arm_ee_link"/>
-                <child link="l_palm"/>
-                <origin xyz="0 0 0" rpy="0 0 -1.57"/>
-            </joint>
-
-            <!-- Right gripper -->
-
-            <joint name="r_palm_to_r_ur5" type="fixed">
-                <parent link="r_ur5_arm_ee_link"/>
-                <child link="r_palm"/>
-                <origin xyz="0 0 0" rpy="0 0 -1.57"/>
-            </joint>
         </xacro:if>
 
         <!-- Join left arm to top plate -->
