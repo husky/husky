@@ -130,13 +130,12 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
 
     <xacro:if value="$(optenv FLIR_PTU_ENABLED false)">
 
-         <xacro:ptu_d46 name="husky_ptu"/>
-
-        <!-- Connect PTU to Husky bulkhead -->
-         <joint name="husky_ptu_joint" type="fixed">
+          <xacro:ptu_d46 name="husky_ptu"/>
+          <!-- Connect PTU to Husky bulkhead -->
+          <joint name="husky_ptu_joint" type="fixed">
              <origin xyz="0.365 0 0.221" rpy="0 1.57 3.14"/>
              <parent link="dual_arm_bulkhead_link" />
-             <child link="husky_ptu_base_link" />
+             <child link="husky_ptu_base_link" /> 
          </joint>
 
     </xacro:if>
