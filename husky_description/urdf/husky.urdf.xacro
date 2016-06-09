@@ -145,6 +145,16 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
         <xacro:ur5_robot prefix="l_ur5_arm_" joint_limited="true"/>
         <xacro:ur5_robot prefix="r_ur5_arm_" joint_limited="true"/> 
 
+        <!-- Add laser specifically for this mode -->
+        <sick_lms1xx frame="base_laser" topic="scan" />
+
+        <!-- This offset is from the base of the bracket to the LIDAR's focal point. -->
+        <joint name="base_laser_joint" type="fixed">
+           <origin xyz="0.45 0 0" rpy="${M_PI} 0 0" />
+           <parent link="dual_arm_bulkhead_link" />
+           <child link="base_laser" />
+        </joint>
+
         <!-- Add force torque model FT300 -->
         <xacro:robotiq_fts300 parent="l_ur5_arm_ee_link" prefix="l_robotiq_fts300_">
            <origin xyz="0 0 0" rpy="0 1.57 0"/>
