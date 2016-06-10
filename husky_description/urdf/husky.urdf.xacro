@@ -160,7 +160,7 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
        <BB2-08S2C-38 frame="bumblebee2" name="bumblebee2" />
 
         <joint name="bumblebee2_mount_joint" type="fixed">
-           <origin xyz="-0.075 0.02 -0.10" rpy="0 1.57 0" />
+           <origin xyz="-0.080 0.02 -0.10" rpy="0 1.57 0" />
            <parent link="husky_ptu_mount_link" />
            <child link="bumblebee2" />
         </joint>
