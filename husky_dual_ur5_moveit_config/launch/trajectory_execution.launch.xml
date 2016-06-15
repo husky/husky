@@ -13,6 +13,6 @@
   
   <!-- Load the robot specific controller manager; this sets the moveit_controller_manager ROS parameter -->
   <arg name="moveit_controller_manager" default="husky_dual_ur5" />
-  <include file="$(find husky_dual_ur5_moveit_config)/launch/$(arg moveit_controller_manager)_moveit_controller_manager.launch.xml" />
+  <include file="$(find husky_dual_ur5_moveit_config)/launch/$(arg moveit_controller_manager)_moveit_controller_manager.launch" />
   
 </launch>
