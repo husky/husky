@@ -1179,7 +1179,7 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
     </sensor>
   </gazebo>
   <joint name="bumblebee2_mount_joint" type="fixed">
-    <origin rpy="0 1.57 0" xyz="-0.07 0.02 -0.13"/>
+    <origin rpy="3.14 1.57 0" xyz="-0.079 0.02 -0.10"/>
     <parent link="husky_ptu_mount_link"/>
     <child link="bumblebee2"/>
   </joint>
