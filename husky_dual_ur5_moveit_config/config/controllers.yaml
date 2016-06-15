@@ -1,10 +1,10 @@
 controller_list:
-    - name: left_arm_controller
+    - name: l_arm_controller
       action_ns: follow_joint_trajectory
       default: true
       type: FollowJointTrajectory
       joints: [l_ur5_arm_shoulder_pan_joint, l_ur5_arm_shoulder_lift_joint, l_ur5_arm_elbow_joint, l_ur5_arm_wrist_1_joint, l_ur5_arm_wrist_2_joint, l_ur5_arm_wrist_3_joint, l_ur5_arm_ee_joint]
-    - name: right_arm_controller
+    - name: r_arm_controller
       action_ns: follow_joint_trajectory
       default: true
       type: FollowJointTrajectory
