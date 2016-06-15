@@ -65,7 +65,7 @@ right_arm:
     - TRRTkConfigDefault
     - PRMkConfigDefault
     - PRMstarkConfigDefault
-  projection_evaluator: joints(r_ur5_arm_shoulder_pan_joint,r_ur5_arm_shoulder_lift_joint)
+  ###projection_evaluator: joints(r_ur5_arm_shoulder_pan_joint,r_ur5_arm_shoulder_lift_joint)
   longest_valid_segment_fraction: 0.05
 left_arm:
   planner_configs:
@@ -80,7 +80,7 @@ left_arm:
     - TRRTkConfigDefault
     - PRMkConfigDefault
     - PRMstarkConfigDefault
-  projection_evaluator: joints(l_ur5_arm_shoulder_pan_joint,l_ur5_arm_shoulder_lift_joint)
+  ###projection_evaluator: joints(l_ur5_arm_shoulder_pan_joint,l_ur5_arm_shoulder_lift_joint)
   longest_valid_segment_fraction: 0.05
 pan_tilt:
   planner_configs:
@@ -95,7 +95,7 @@ pan_tilt:
     - TRRTkConfigDefault
     - PRMkConfigDefault
     - PRMstarkConfigDefault
-  projection_evaluator: joints(husky_ptu_pan,husky_ptu_tilt)
+  ####projection_evaluator: joints(husky_ptu_pan,husky_ptu_tilt)
   longest_valid_segment_fraction: 0.05
 robot_body:
   planner_configs:
