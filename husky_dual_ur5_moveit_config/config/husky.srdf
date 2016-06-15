@@ -10,22 +10,10 @@
     <!--CHAINS: When a chain is specified, all the links along the chain (including endpoints) are included in the group. Additionally, all the joints that are parents to included links are also included. This means that joints along the chain and the parent joint of the base link are included in the group-->
     <!--SUBGROUPS: Groups can also be formed by referencing to already defined group names-->
     <group name="right_arm">
-        <link name="r_ur5_arm_ee_link" />
-        <joint name="r_ur5_arm_shoulder_pan_joint" />
-        <joint name="r_ur5_arm_shoulder_lift_joint" />
-        <joint name="r_ur5_arm_elbow_joint" />
-        <joint name="r_ur5_arm_wrist_1_joint" />
-        <joint name="r_ur5_arm_wrist_2_joint" />
-        <joint name="r_ur5_arm_wrist_3_joint" />
+        <chain base_link="r_ur5_arm_base_link" tip_link="r_ur5_arm_ee_link" />
     </group>
     <group name="left_arm">
-        <link name="l_ur5_arm_ee_link" />
-        <joint name="l_ur5_arm_shoulder_pan_joint" />
-        <joint name="l_ur5_arm_shoulder_lift_joint" />
-        <joint name="l_ur5_arm_elbow_joint" />
-        <joint name="l_ur5_arm_wrist_1_joint" />
-        <joint name="l_ur5_arm_wrist_2_joint" />
-        <joint name="l_ur5_arm_wrist_3_joint" />
+        <chain base_link="l_ur5_arm_base_link" tip_link="l_ur5_arm_ee_link" />
     </group>
     <group name="pan_tilt">
         <joint name="husky_ptu_pan" />
@@ -36,6 +24,12 @@
         <joint name="husky_ptu_base" />
         <joint name="l_ur5_arm_base" />
         <joint name="r_ur5_arm_base" />
+    </group>
+    <group name="left_ee">
+        <link name="l_ur5_arm_ee_link" />
+    </group>
+    <group name="right_ee">
+        <link name="r_ur5_arm_ee_link" />
     </group>
     <!--GROUP STATES: Purpose: Define a named state for a particular group, in terms of joint values. This is useful to define states like 'folded arms'-->
     <group_state name="right_aggressive" group="right_arm">
@@ -55,8 +49,8 @@
         <joint name="l_ur5_arm_wrist_3_joint" value="0.8471" />
     </group_state>
     <!--END EFFECTOR: Purpose: Represent information about an end effector.-->
-    <end_effector name="left_ee" parent_link="dual_arm_bulkhead_link" group="left_arm" />
-    <end_effector name="right_ee" parent_link="dual_arm_bulkhead_link" group="right_arm" />
+    <end_effector name="left_ee" parent_link="l_ur5_arm_wrist_3_link" group="left_ee" parent_group="left_arm" />
+    <end_effector name="right_ee" parent_link="r_ur5_arm_wrist_3_link" group="right_ee" parent_group="right_arm" />
     <!--DISABLE COLLISIONS: By default it is assumed that any link of the robot could potentially come into collision with any other link in the robot. This tag disables collision checking between a specified pair of links. -->
     <disable_collisions link1="base_laser" link2="base_link" reason="Never" />
     <disable_collisions link1="base_laser" link2="bumblebee2" reason="Never" />

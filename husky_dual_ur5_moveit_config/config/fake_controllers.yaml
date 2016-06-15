@@ -22,3 +22,9 @@ controller_list:
   - name: fake_robot_body_controller
     joints:
       []
+  - name: fake_left_ee_controller
+    joints:
+      []
+  - name: fake_right_ee_controller
+    joints:
+      []
