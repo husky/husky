@@ -49,8 +49,8 @@
         <joint name="l_ur5_arm_wrist_3_joint" value="0.8471" />
     </group_state>
     <!--END EFFECTOR: Purpose: Represent information about an end effector.-->
-    <end_effector name="left_ee" parent_link="l_ur5_arm_wrist_3_link" group="left_ee" parent_group="left_arm" />
-    <end_effector name="right_ee" parent_link="r_ur5_arm_wrist_3_link" group="right_ee" parent_group="right_arm" />
+    <end_effector name="left_ee" parent_link="l_ur5_arm_ee_link" group="left_ee" parent_group="left_arm" />
+    <end_effector name="right_ee" parent_link="r_ur5_arm_ee_link" group="right_ee" parent_group="right_arm" />
     <!--DISABLE COLLISIONS: By default it is assumed that any link of the robot could potentially come into collision with any other link in the robot. This tag disables collision checking between a specified pair of links. -->
     <disable_collisions link1="base_laser" link2="base_link" reason="Never" />
     <disable_collisions link1="base_laser" link2="bumblebee2" reason="Never" />
