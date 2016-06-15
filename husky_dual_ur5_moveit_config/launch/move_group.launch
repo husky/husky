@@ -28,7 +28,7 @@
   <!-- Trajectory Execution Functionality -->
   <include ns="move_group" file="$(find husky_dual_ur5_moveit_config)/launch/trajectory_execution.launch.xml" if="$(arg allow_trajectory_execution)">
     <arg name="moveit_manage_controllers" value="true" />
-    <arg name="moveit_controller_manager" value="husky" unless="$(arg fake_execution)"/>
+    <arg name="moveit_controller_manager" value="husky_dual_ur5" unless="$(arg fake_execution)"/>
     <arg name="moveit_controller_manager" value="fake" if="$(arg fake_execution)"/>
   </include>
 
