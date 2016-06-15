@@ -126,6 +126,10 @@
     <passive_joint name="r_finger_middle_joint_paraproximal_bar" />
     <passive_joint name="r_finger_middle_joint_proximal_actuating_hinge" />
     <passive_joint name="r_finger_middle_joint_proximal_actuating_bar" />
+    <passive_joint name="r_palm_finger_1_joint" />
+    <passive_joint name="r_finger_1_joint_1" />
+    <passive_joint name="r_finger_1_joint_2" />
+    <passive_joint name="r_finger_1_joint_3" />
     <!--DISABLE COLLISIONS: By default it is assumed that any link of the robot could potentially come into collision with any other link in the robot. This tag disables collision checking between a specified pair of links. -->
     <disable_collisions link1="base_laser" link2="base_link" reason="Never" />
     <disable_collisions link1="base_laser" link2="bumblebee2" reason="Never" />
