@@ -2,7 +2,9 @@
 
   <!-- This file makes it easy to include the settings for trajectory execution  -->  
 
+
   <!-- Flag indicating whether MoveIt! is allowed to load/unload  or switch controllers -->
+  <arg name="side" default=""/>
   <arg name="moveit_manage_controllers" default="true"/>
   <param name="moveit_manage_controllers" value="$(arg moveit_manage_controllers)"/>
 
@@ -13,6 +15,8 @@
   
   <!-- Load the robot specific controller manager; this sets the moveit_controller_manager ROS parameter -->
   <arg name="moveit_controller_manager" default="husky_dual_ur5" />
-  <include file="$(find husky_dual_ur5_moveit_config)/launch/$(arg moveit_controller_manager)_moveit_controller_manager.launch" />
+  <include file="$(find husky_dual_ur5_moveit_config)/launch/$(arg moveit_controller_manager)_moveit_controller_manager.launch">
+     <arg name="side" value="$(arg side)"/>
+  </include>
   
 </launch>

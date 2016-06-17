@@ -1,9 +1,11 @@
 <launch>
 
+  <arg name="side" default=""/>
+
   <rosparam file="$(find husky_dual_ur5_moveit_config)/config/controllers.yaml"/>
   <param name="use_controller_manager" value="false"/>
   <param name="trajectory_execution/execution_duration_monitoring" value="false"/>
   <param name="moveit_controller_manager" value="moveit_simple_controller_manager/MoveItSimpleControllerManager"/>
-  <param name="arm_prefix" value="l_ur5_arm_"/>
+  <param name="arm_prefix" value="$(arg side)_ur5_arm_"/>
 
 </launch>
