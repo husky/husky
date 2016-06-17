@@ -165,14 +165,14 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
            <child link="bumblebee2" />
         </joint>
 
-        <!-- Add force torque model FT300 -->
+        <!-- Add force torque model FT300 
         <xacro:robotiq_fts300 parent="l_ur5_arm_ee_link" prefix="l_robotiq_fts300_">
            <origin xyz="0 0 0" rpy="0 1.57 0"/>
         </xacro:robotiq_fts300>
 
         <xacro:robotiq_fts300 parent="r_ur5_arm_ee_link" prefix="r_robotiq_fts300_">
            <origin xyz="0 0 0" rpy="0 1.57 0"/>
-        </xacro:robotiq_fts300>
+        </xacro:robotiq_fts300> -->
 
         <xacro:if value="$(arg robotiq_grippers_enabled)">
 
