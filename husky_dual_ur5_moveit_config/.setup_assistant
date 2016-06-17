@@ -5,4 +5,4 @@ moveit_setup_assistant_config:
   SRDF:
     relative_path: config/husky.srdf
   CONFIG:
-    generated_timestamp: 1466021291
+    generated_timestamp: 1466175610
