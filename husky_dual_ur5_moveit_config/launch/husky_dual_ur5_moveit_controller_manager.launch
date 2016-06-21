@@ -6,6 +6,5 @@
   <param name="use_controller_manager" value="false"/>
   <param name="trajectory_execution/execution_duration_monitoring" value="false"/>
   <param name="moveit_controller_manager" value="moveit_simple_controller_manager/MoveItSimpleControllerManager"/>
-  <param name="arm_prefix" value="$(arg side)_ur5_arm_"/>
 
 </launch>

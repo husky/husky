@@ -2,22 +2,11 @@
   <arg name="sim" default="false" />
   <arg name="limited" default="false"/>
   <arg name="debug" default="false" />
-  <!-- Remap follow_joint_trajectory -->
 
   <!-- Launch moveit -->
-  <group ns="husky_left_arm">
 	  <include file="$(find husky_dual_ur5_moveit_config)/launch/move_group.launch">
 	    <arg name="limited" default="$(arg limited)" />
 	    <arg name="debug" default="$(arg debug)" />
-            <arg name="side" value="l"/>
 	  </include>
-  </group>
 
-  <group ns="husky_right_arm">
-	  <include file="$(find husky_dual_ur5_moveit_config)/launch/move_group.launch">
-	    <arg name="limited" default="$(arg limited)" />
-	    <arg name="debug" default="$(arg debug)" />
-            <arg name="side" value="r"/>
-	  </include>
-  </group>
 </launch>
