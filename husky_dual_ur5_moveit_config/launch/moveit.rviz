@@ -5,6 +5,7 @@ Panels:
     Property Tree Widget:
       Expanded:
         - /MotionPlanning1
+        - /MotionPlanning1/Planning Request1
       Splitter Ratio: 0.74256
     Tree Height: 180
   - Class: rviz/Help
@@ -61,7 +62,622 @@ Visualization Manager:
           Expand Joint Details: false
           Expand Link Details: false
           Expand Tree: false
-          Link Tree Style: ""
+          Link Tree Style: Links in Alphabetic Order
+          base_footprint:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+          base_laser:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          base_link:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          bumblebee2:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          bumblebee2_optical:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+          dual_arm_bulkhead_link:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          front_bumper_link:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          front_left_wheel_link:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          front_right_wheel_link:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          husky_ptu_base_link:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+          husky_ptu_mount_link:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+          husky_ptu_pan_link:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          husky_ptu_tilt_link:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          husky_ptu_tilted_link:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+          imu_link:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+          inertial_link:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+          l_finger_1_link_0:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          l_finger_1_link_1:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          l_finger_1_link_2:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          l_finger_1_link_3:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          l_finger_1_link_median_actuating_hinge:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          l_finger_1_link_median_bar:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          l_finger_1_link_median_bar_underactuated:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          l_finger_1_link_paradistal_hinge:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          l_finger_1_link_paramedian_hinge:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          l_finger_1_link_paraproximal_actuating_hinge:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          l_finger_1_link_paraproximal_bar:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          l_finger_1_link_proximal_actuating_bar:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          l_finger_1_link_proximal_actuating_hinge:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          l_finger_2_link_0:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          l_finger_2_link_1:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          l_finger_2_link_2:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          l_finger_2_link_3:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          l_finger_2_link_median_actuating_hinge:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          l_finger_2_link_median_bar:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          l_finger_2_link_median_bar_underactuated:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          l_finger_2_link_paradistal_hinge:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          l_finger_2_link_paramedian_hinge:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          l_finger_2_link_paraproximal_actuating_hinge:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          l_finger_2_link_paraproximal_bar:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          l_finger_2_link_proximal_actuating_bar:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          l_finger_2_link_proximal_actuating_hinge:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          l_finger_middle_link_0:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          l_finger_middle_link_1:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          l_finger_middle_link_2:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          l_finger_middle_link_3:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          l_finger_middle_link_median_actuating_hinge:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          l_finger_middle_link_median_bar:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          l_finger_middle_link_median_bar_underactuated:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          l_finger_middle_link_paradistal_hinge:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          l_finger_middle_link_paramedian_hinge:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          l_finger_middle_link_paraproximal_actuating_hinge:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          l_finger_middle_link_paraproximal_bar:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          l_finger_middle_link_proximal_actuating_bar:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          l_finger_middle_link_proximal_actuating_hinge:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          l_palm:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          l_robotiq_fts300_fts_robotside:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          l_robotiq_fts300_fts_toolside:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+          l_robotiq_fts300_robotiq_force_torque_frame_id:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+          l_ur5_arm_base:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+          l_ur5_arm_base_link:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          l_ur5_arm_ee_link:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          l_ur5_arm_forearm_link:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          l_ur5_arm_shoulder_link:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          l_ur5_arm_tool0:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+          l_ur5_arm_upper_arm_link:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          l_ur5_arm_wrist_1_link:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          l_ur5_arm_wrist_2_link:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          l_ur5_arm_wrist_3_link:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          r_finger_1_link_0:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          r_finger_1_link_1:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          r_finger_1_link_2:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          r_finger_1_link_3:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          r_finger_1_link_median_actuating_hinge:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          r_finger_1_link_median_bar:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          r_finger_1_link_median_bar_underactuated:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          r_finger_1_link_paradistal_hinge:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          r_finger_1_link_paramedian_hinge:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          r_finger_1_link_paraproximal_actuating_hinge:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          r_finger_1_link_paraproximal_bar:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          r_finger_1_link_proximal_actuating_bar:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          r_finger_1_link_proximal_actuating_hinge:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          r_finger_2_link_0:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          r_finger_2_link_1:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          r_finger_2_link_2:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          r_finger_2_link_3:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          r_finger_2_link_median_actuating_hinge:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          r_finger_2_link_median_bar:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          r_finger_2_link_median_bar_underactuated:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          r_finger_2_link_paradistal_hinge:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          r_finger_2_link_paramedian_hinge:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          r_finger_2_link_paraproximal_actuating_hinge:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          r_finger_2_link_paraproximal_bar:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          r_finger_2_link_proximal_actuating_bar:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          r_finger_2_link_proximal_actuating_hinge:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          r_finger_middle_link_0:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          r_finger_middle_link_1:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          r_finger_middle_link_2:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          r_finger_middle_link_3:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          r_finger_middle_link_median_actuating_hinge:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          r_finger_middle_link_median_bar:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          r_finger_middle_link_median_bar_underactuated:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          r_finger_middle_link_paradistal_hinge:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          r_finger_middle_link_paramedian_hinge:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          r_finger_middle_link_paraproximal_actuating_hinge:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          r_finger_middle_link_paraproximal_bar:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          r_finger_middle_link_proximal_actuating_bar:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          r_finger_middle_link_proximal_actuating_hinge:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          r_palm:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          r_robotiq_fts300_fts_robotside:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          r_robotiq_fts300_fts_toolside:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+          r_robotiq_fts300_robotiq_force_torque_frame_id:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+          r_ur5_arm_base:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+          r_ur5_arm_base_link:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          r_ur5_arm_ee_link:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          r_ur5_arm_forearm_link:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          r_ur5_arm_shoulder_link:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          r_ur5_arm_tool0:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+          r_ur5_arm_upper_arm_link:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          r_ur5_arm_wrist_1_link:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          r_ur5_arm_wrist_2_link:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          r_ur5_arm_wrist_3_link:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          rear_bumper_link:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          rear_left_wheel_link:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          rear_right_wheel_link:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          top_chassis_link:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
         Loop Animation: true
         Robot Alpha: 0.5
         Show Robot Collision: false
@@ -80,7 +696,7 @@ Visualization Manager:
         Colliding Link Color: 255; 0; 0
         Goal State Alpha: 1
         Goal State Color: 250; 128; 0
-        Interactive Marker Size: 0
+        Interactive Marker Size: 0.3
         Joint Violation Color: 255; 0; 255
         Planning Group: left_arm
         Query Goal State: true
@@ -104,7 +720,622 @@ Visualization Manager:
           Expand Joint Details: false
           Expand Link Details: false
           Expand Tree: false
-          Link Tree Style: ""
+          Link Tree Style: Links in Alphabetic Order
+          base_footprint:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+          base_laser:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          base_link:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          bumblebee2:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          bumblebee2_optical:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+          dual_arm_bulkhead_link:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          front_bumper_link:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          front_left_wheel_link:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          front_right_wheel_link:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          husky_ptu_base_link:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+          husky_ptu_mount_link:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+          husky_ptu_pan_link:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          husky_ptu_tilt_link:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          husky_ptu_tilted_link:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+          imu_link:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+          inertial_link:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+          l_finger_1_link_0:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          l_finger_1_link_1:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          l_finger_1_link_2:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          l_finger_1_link_3:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          l_finger_1_link_median_actuating_hinge:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          l_finger_1_link_median_bar:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          l_finger_1_link_median_bar_underactuated:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          l_finger_1_link_paradistal_hinge:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          l_finger_1_link_paramedian_hinge:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          l_finger_1_link_paraproximal_actuating_hinge:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          l_finger_1_link_paraproximal_bar:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          l_finger_1_link_proximal_actuating_bar:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          l_finger_1_link_proximal_actuating_hinge:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          l_finger_2_link_0:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          l_finger_2_link_1:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          l_finger_2_link_2:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          l_finger_2_link_3:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          l_finger_2_link_median_actuating_hinge:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          l_finger_2_link_median_bar:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          l_finger_2_link_median_bar_underactuated:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          l_finger_2_link_paradistal_hinge:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          l_finger_2_link_paramedian_hinge:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          l_finger_2_link_paraproximal_actuating_hinge:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          l_finger_2_link_paraproximal_bar:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          l_finger_2_link_proximal_actuating_bar:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          l_finger_2_link_proximal_actuating_hinge:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          l_finger_middle_link_0:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          l_finger_middle_link_1:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          l_finger_middle_link_2:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          l_finger_middle_link_3:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          l_finger_middle_link_median_actuating_hinge:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          l_finger_middle_link_median_bar:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          l_finger_middle_link_median_bar_underactuated:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          l_finger_middle_link_paradistal_hinge:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          l_finger_middle_link_paramedian_hinge:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          l_finger_middle_link_paraproximal_actuating_hinge:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          l_finger_middle_link_paraproximal_bar:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          l_finger_middle_link_proximal_actuating_bar:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          l_finger_middle_link_proximal_actuating_hinge:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          l_palm:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          l_robotiq_fts300_fts_robotside:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          l_robotiq_fts300_fts_toolside:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+          l_robotiq_fts300_robotiq_force_torque_frame_id:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+          l_ur5_arm_base:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+          l_ur5_arm_base_link:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          l_ur5_arm_ee_link:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          l_ur5_arm_forearm_link:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          l_ur5_arm_shoulder_link:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          l_ur5_arm_tool0:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+          l_ur5_arm_upper_arm_link:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          l_ur5_arm_wrist_1_link:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          l_ur5_arm_wrist_2_link:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          l_ur5_arm_wrist_3_link:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          r_finger_1_link_0:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          r_finger_1_link_1:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          r_finger_1_link_2:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          r_finger_1_link_3:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          r_finger_1_link_median_actuating_hinge:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          r_finger_1_link_median_bar:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          r_finger_1_link_median_bar_underactuated:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          r_finger_1_link_paradistal_hinge:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          r_finger_1_link_paramedian_hinge:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          r_finger_1_link_paraproximal_actuating_hinge:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          r_finger_1_link_paraproximal_bar:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          r_finger_1_link_proximal_actuating_bar:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          r_finger_1_link_proximal_actuating_hinge:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          r_finger_2_link_0:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          r_finger_2_link_1:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          r_finger_2_link_2:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          r_finger_2_link_3:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          r_finger_2_link_median_actuating_hinge:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          r_finger_2_link_median_bar:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          r_finger_2_link_median_bar_underactuated:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          r_finger_2_link_paradistal_hinge:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          r_finger_2_link_paramedian_hinge:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          r_finger_2_link_paraproximal_actuating_hinge:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          r_finger_2_link_paraproximal_bar:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          r_finger_2_link_proximal_actuating_bar:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          r_finger_2_link_proximal_actuating_hinge:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          r_finger_middle_link_0:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          r_finger_middle_link_1:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          r_finger_middle_link_2:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          r_finger_middle_link_3:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          r_finger_middle_link_median_actuating_hinge:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          r_finger_middle_link_median_bar:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          r_finger_middle_link_median_bar_underactuated:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          r_finger_middle_link_paradistal_hinge:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          r_finger_middle_link_paramedian_hinge:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          r_finger_middle_link_paraproximal_actuating_hinge:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          r_finger_middle_link_paraproximal_bar:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          r_finger_middle_link_proximal_actuating_bar:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          r_finger_middle_link_proximal_actuating_hinge:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          r_palm:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          r_robotiq_fts300_fts_robotside:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          r_robotiq_fts300_fts_toolside:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+          r_robotiq_fts300_robotiq_force_torque_frame_id:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+          r_ur5_arm_base:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+          r_ur5_arm_base_link:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          r_ur5_arm_ee_link:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          r_ur5_arm_forearm_link:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          r_ur5_arm_shoulder_link:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          r_ur5_arm_tool0:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+          r_ur5_arm_upper_arm_link:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          r_ur5_arm_wrist_1_link:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          r_ur5_arm_wrist_2_link:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          r_ur5_arm_wrist_3_link:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          rear_bumper_link:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          rear_left_wheel_link:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          rear_right_wheel_link:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          top_chassis_link:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
         Robot Alpha: 0.5
         Show Robot Collision: false
         Show Robot Visual: true
@@ -136,10 +1367,10 @@ Visualization Manager:
         Z: 2.23518e-07
       Name: Current View
       Near Clip Distance: 0.01
-      Pitch: 0.509797
+      Pitch: 0.609797
       Target Frame: base_link
       Value: XYOrbit (rviz)
-      Yaw: 5.65995
+      Yaw: 6.10995
     Saved: ~
 Window Geometry:
   Displays:
@@ -151,7 +1382,7 @@ Window Geometry:
   Hide Right Dock: false
   Motion Planning:
     collapsed: false
-  QMainWindow State: 000000ff00000000fd0000000100000000000002a200000326fc0200000005fb000000100044006900730070006c006100790073010000002800000149000000dd00fffffffb0000000800480065006c00700000000342000000bb0000007600fffffffb0000000a0056006900650077007300000003b0000000b0000000b000fffffffb0000000c00430061006d00650072006100000002ff000001610000000000000000fb0000001e004d006f00740069006f006e00200050006c0061006e006e0069006e00670100000177000001d7000001d700ffffff000003570000032600000001000000020000000100000002fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
+  QMainWindow State: 000000ff00000000fd0000000100000000000002b100000326fc0200000005fb000000100044006900730070006c006100790073010000002800000149000000dd00fffffffb0000000800480065006c00700000000342000000bb0000007600fffffffb0000000a0056006900650077007300000003b0000000b0000000b000fffffffb0000000c00430061006d00650072006100000002ff000001610000000000000000fb0000001e004d006f00740069006f006e00200050006c0061006e006e0069006e00670100000177000001d7000001cc00ffffff000003480000032600000001000000020000000100000002fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
   Views:
     collapsed: false
   Width: 1535
