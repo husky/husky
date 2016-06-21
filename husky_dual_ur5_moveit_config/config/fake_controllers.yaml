@@ -22,3 +22,17 @@ controller_list:
   - name: fake_robot_body_controller
     joints:
       []
+  - name: fake_husky_arms_controller
+    joints:
+      - l_ur5_arm_shoulder_pan_joint
+      - l_ur5_arm_shoulder_lift_joint
+      - l_ur5_arm_elbow_joint
+      - l_ur5_arm_wrist_1_joint
+      - l_ur5_arm_wrist_2_joint
+      - l_ur5_arm_wrist_3_joint
+      - r_ur5_arm_shoulder_pan_joint
+      - r_ur5_arm_shoulder_lift_joint
+      - r_ur5_arm_elbow_joint
+      - r_ur5_arm_wrist_1_joint
+      - r_ur5_arm_wrist_2_joint
+      - r_ur5_arm_wrist_3_joint
