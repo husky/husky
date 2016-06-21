@@ -48,7 +48,7 @@
     </group_state>
     <group_state name="home_position" group="husky_arms">
         <joint name="l_ur5_arm_elbow_joint" value="2.7925" />
-        <joint name="l_ur5_arm_shoulder_lift_joint" value="-3.14" />
+        <joint name="l_ur5_arm_shoulder_lift_joint" value="-2.9297" />
         <joint name="l_ur5_arm_shoulder_pan_joint" value="1.57" />
         <joint name="l_ur5_arm_wrist_1_joint" value="-2.7164" />
         <joint name="l_ur5_arm_wrist_2_joint" value="-1.5884" />
