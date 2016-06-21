@@ -46,6 +46,20 @@
         <joint name="l_ur5_arm_wrist_2_joint" value="1.5531" />
         <joint name="l_ur5_arm_wrist_3_joint" value="0.8471" />
     </group_state>
+    <group_state name="home_position" group="husky_arms">
+        <joint name="l_ur5_arm_elbow_joint" value="2.7925" />
+        <joint name="l_ur5_arm_shoulder_lift_joint" value="-3.14" />
+        <joint name="l_ur5_arm_shoulder_pan_joint" value="1.57" />
+        <joint name="l_ur5_arm_wrist_1_joint" value="-2.7164" />
+        <joint name="l_ur5_arm_wrist_2_joint" value="-1.5884" />
+        <joint name="l_ur5_arm_wrist_3_joint" value="0" />
+        <joint name="r_ur5_arm_elbow_joint" value="-2.7925" />
+        <joint name="r_ur5_arm_shoulder_lift_joint" value="0" />
+        <joint name="r_ur5_arm_shoulder_pan_joint" value="-1.57" />
+        <joint name="r_ur5_arm_wrist_1_joint" value="-0.4236" />
+        <joint name="r_ur5_arm_wrist_2_joint" value="1.5884" />
+        <joint name="r_ur5_arm_wrist_3_joint" value="0" />
+    </group_state>
     <!--VIRTUAL JOINT: Purpose: this element defines a virtual joint between a robot link and an external frame of reference (considered fixed with respect to the robot)-->
     <virtual_joint name="virtual_connection" type="fixed" parent_frame="base_link" child_link="base_footprint" />
     <!--PASSIVE JOINT: Purpose: this element is used to mark joints that are not actuated-->
