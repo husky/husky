@@ -141,7 +141,7 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
 
     </xacro:if>
 
-    <xacro:if value="$(arg dual_ur5_enabled)">
+    <xacro:if value="$(optenv HUSKY_DUAL_UR5_ENABLED false)">
 
         <xacro:ur5_robot prefix="l_ur5_arm_" joint_limited="true"/>
         <xacro:ur5_robot prefix="r_ur5_arm_" joint_limited="true"/> 
