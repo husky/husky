@@ -1,8 +1,8 @@
 <launch>
 
   <arg name="limited" default="false"/>
-  <!-- Side is specified as "l" or "r" for left and right respectively -->
-  <arg name="side" default=""/>
+  <arg name="real" default="false"/>
+  
 
   <include file="$(find husky_dual_ur5_moveit_config)/launch/planning_context.launch" >
      <arg name="limited" value="$(arg limited)"/>
@@ -36,7 +36,7 @@
     <arg name="moveit_manage_controllers" value="true" />
     <arg name="moveit_controller_manager" value="husky_dual_ur5" unless="$(arg fake_execution)"/>
     <arg name="moveit_controller_manager" value="fake" if="$(arg fake_execution)"/>
-    <arg name="side" value="$(arg side)"/>
+    <arg name="real" value="$(arg real)"/>
   </include>
 
   <!-- Sensors Functionality -->
