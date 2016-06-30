@@ -134,11 +134,7 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
           <xacro:ptu_d46 name="husky_ptu"/>
           <!-- Connect PTU to Husky bulkhead -->
           <joint name="husky_ptu_joint" type="fixed">
-<<<<<<< HEAD
-             <origin xyz="0.365 0 0.15" rpy="0 0 0"/>
-=======
              <origin xyz="0.365 0 0.20" rpy="0 0 0"/>
->>>>>>> c7f0ce6cad03176c492bf3487e6330e5ffa1e847
              <parent link="dual_arm_bulkhead_link" />
              <child link="husky_ptu_base_link" /> 
          </joint>
