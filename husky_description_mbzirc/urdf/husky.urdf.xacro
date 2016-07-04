@@ -48,7 +48,7 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
   <xacro:property name="wheel_length" value="0.1143" />
   <xacro:property name="wheel_radius" value="0.17775" />
 
-  <xacro:macro name="husky_robot" params="wheelconfig">
+  <xacro:macro name="husky_robot" params="wheelconfig_full">
 
     <!-- Base link is the center of the robot's bottom plate -->
     <link name="base_link">
