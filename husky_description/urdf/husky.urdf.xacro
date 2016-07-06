@@ -218,7 +218,7 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
 
     </xacro:if>
 
-    <xacro:if value="$(arg laser_enabled)">
+    <xacro:if value="$(optenv HUSKY_LASER_ENABLED false)">
 
       <sick_lms1xx_mount prefix="base" topic="scan"/>
 
