@@ -17,7 +17,9 @@ To create a custom Husky description or simulation, please fork [husky_customiza
 
 REAL ROBOT INSTRUCTIONS:
 
-To use the Clearpath Robotics' Dual UR5 Husky, make sure you have your environment variables correctly set up. The correct setup (to be added in your real Husky's /etc/ros/setup.bash file (if you're using sim it will be your ~/.bashrc)) is listed below:
+To use the Clearpath Robotics' Dual UR5 Husky, make sure you have your environment variables correctly set up. The correct setup (to be added in your real Husky's /etc/ros/setup.bash file (if you're using sim it will be your ~/.bashrc)) is listed below.
+
+The correct way to bring up the arms and the moveit suite is to first bring up the arm drivers (ur_modern_driver ROS package), the planning execution node (which brings up move_group) and then RViz on the client computer which will interface to the robot. For the model to show up correctly you should have all drivers publishing on the robot, such as the flir_ptu, the arm drivers, the robotiq grippers, and the force torque. They should all be publishing their joint states from the drivers and then the model will show up neatly.
 
 The commands to use a simple interface with the gripper:
 
