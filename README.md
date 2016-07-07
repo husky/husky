@@ -29,7 +29,8 @@ The commands to use a simple interface with the gripper:
 
      rosrun robotiq_s_model_control SModelSimpleController.py
 
-3) For more complex control, see this TODO
+3) For more complex control, see this  
+    http://wiki.ros.org/robotiq/Tutorials/Control%20of%20an%20S-Model%20Gripper%20using%20the%20Modbus%20TCP%20Protocol
 
 How to launch the planning execution node for the arms (while ssh'd inside robot)
   
