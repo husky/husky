@@ -25,12 +25,18 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
 -->
 <robot xmlns:xacro="http://ros.org/wiki/xacro" name="husky_wheel">
 
-	<xacro:macro name="husky_wheel" params="wheel_prefix fixed *joint_pose">
+	<xacro:macro name="husky_wheel" params="wheel_prefix fixed double_inertia *joint_pose">
 		<link name="${wheel_prefix}_wheel_link">
 			<inertial>
 				<mass value="2.637" />
 				<origin xyz="0 0 0" />
-				<inertia  ixx="0.02467" ixy="0" ixz="0" iyy="0.02467" iyz="0" izz="0.04411" />
+        <xacro:if value="${double_inertia}">
+          <inertia  ixx="0.02467" ixy="0" ixz="0" iyy="${2*0.02467}" iyz="0" izz="0.04411" />
+        </xacro:if>
+        <xacro:unless value="${double_inertia}">
+          <inertia  ixx="0.02467" ixy="0" ixz="0" iyy="0.02467" iyz="0" izz="0.04411" />
+        </xacro:unless>
+				
 			</inertial>
 			<visual>
 				<origin xyz="0 0 0" rpy="0 0 0" />
