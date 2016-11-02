@@ -170,7 +170,7 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
 
 
     <!-- Enables a back LMS1XX for the Husky. Mainly used in autonomy core config. Laser is spawned inverted. -->
-    <xacro:if value="$(optenv BACK_LASER_ENABLED false)">
+    <xacro:if value="$(optenv HUSKY_BACK_LASER_ENABLED false)">
      <sick_lms1xx_mount prefix="back" topic="back_scan"/>
  <joint name="back_laser_mount_joint" type="fixed">  
         <origin xyz="$(optenv HUSKY_LMS1XX_BACK_XYZ 0.1 -0.1 0.1)" rpy="$(optenv HUSKY_LMS1XX_BACK_RPY 0 0 0" />
@@ -180,7 +180,7 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
     </xacro:if> 
 
     <!-- Enables a front mounted LMS1xx for the Husky. Mainly used in autonomy core config. Laser is spawned inverted. -->
-    <xacro:if value="$(optenv FRONT_LASER_ENABLED false)">
+    <xacro:if value="$(optenv HUSKY_FRONT_LASER_ENABLED false)">
       <sick_lms1xx_mount prefix="front" topic="front_scan"/>
       <joint name="front_laser_mount_joint" type="fixed">
         <origin xyz="$(optenv HUSKY_LMS1XX_FRONT_XYZ 0.1 0.1 0.1)" rpy="$(optenv HUSKY_LMS1XX_FRONT_RPY 0 0 0" />
