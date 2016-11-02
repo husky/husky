@@ -168,6 +168,21 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
       <xacro:kinect_camera prefix="camera"/>
     </xacro:if>
 
+
+    <!-- Enables a back LMS1XX for the Husky. Mainly used in autonomy core config. Laser is spawned inverted. -->
+    <xacro:if value="$(optenv BACK_LASER_ENABLED false)">
+
+        
+
+    </xacro:if> 
+
+    <!-- Enables a front mounted LMS1xx for the Husky. Mainly used in autonomy core config. Laser is spawned inverted. -->
+    <xacro:if value="$(optenv FRONT_LASER_ENABLED false)">
+
+
+    </xacro:if>
+    
+
   </xacro:macro>
 
 </robot>
