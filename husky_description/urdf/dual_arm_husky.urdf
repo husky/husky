@@ -482,7 +482,7 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
   </joint>
   <!-- Connect PTU to Husky bulkhead -->
   <joint name="husky_ptu_joint" type="fixed">
-    <origin rpy="0 1.57 3.14" xyz="0.365 0 0.221"/>
+    <origin rpy="0 0 0" xyz="0.365 0 0.221"/>
     <parent link="dual_arm_bulkhead_link"/>
     <child link="husky_ptu_base_link"/>
   </joint>
@@ -1179,7 +1179,7 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
     </sensor>
   </gazebo>
   <joint name="bumblebee2_mount_joint" type="fixed">
-    <origin rpy="3.14 1.57 0" xyz="-0.079 0.02 -0.10"/>
+    <origin rpy="0 0 0" xyz="0 0 0.00"/>
     <parent link="husky_ptu_mount_link"/>
     <child link="bumblebee2"/>
   </joint>
@@ -1268,7 +1268,7 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
   <link name="r_robotiq_fts300_fts_toolside"/>
   <!-- joint attaching parent link to robotiq hand -->
   <joint name="l_robotiq_hand_joint" type="fixed">
-    <origin rpy="1.57 0 0" xyz="0 0 0"/>
+    <origin rpy="1.57 0 0" xyz="0 0 0.08"/>
     <parent link="l_robotiq_fts300_fts_toolside"/>
     <child link="l_palm"/>
   </joint>
@@ -3036,7 +3036,7 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
   <!-- end of joint list -->
   <!-- joint attaching parent link to robotiq hand -->
   <joint name="r_robotiq_hand_joint" type="fixed">
-    <origin rpy="1.57 0 0" xyz="0 0 0"/>
+    <origin rpy="1.57 0 0" xyz="0 0 0.08"/>
     <parent link="r_robotiq_fts300_fts_toolside"/>
     <child link="r_palm"/>
   </joint>
