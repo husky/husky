@@ -1268,7 +1268,7 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
   <link name="r_robotiq_fts300_fts_toolside"/>
   <!-- joint attaching parent link to robotiq hand -->
   <joint name="l_robotiq_hand_joint" type="fixed">
-    <origin rpy="1.57 0 0" xyz="0 0 0.08"/>
+    <origin rpy="1.57 0 0" xyz="0 0 0.05398"/>
     <parent link="l_robotiq_fts300_fts_toolside"/>
     <child link="l_palm"/>
   </joint>
@@ -3036,7 +3036,7 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
   <!-- end of joint list -->
   <!-- joint attaching parent link to robotiq hand -->
   <joint name="r_robotiq_hand_joint" type="fixed">
-    <origin rpy="1.57 0 0" xyz="0 0 0.08"/>
+    <origin rpy="1.57 0 0" xyz="0 0 0.05398"/>
     <parent link="r_robotiq_fts300_fts_toolside"/>
     <child link="r_palm"/>
   </joint>
