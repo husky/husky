@@ -25,8 +25,6 @@
   <run_depend>rostopic</run_depend>
   <run_depend>controller_manager</run_depend>
   <run_depend>teleop_twist_joy</run_depend>
-  <run_depend>twist_mux</run_depend>
-
-  <export>
-  </export>
+  <run_depend>yocs_cmd_vel_mux</run_depend>
+  <run_depend>nodelet</run_depend>
 </package>
