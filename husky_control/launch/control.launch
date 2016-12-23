@@ -16,4 +16,7 @@
     <arg name="nodelet_manager_name" value="cmd_vel_mux" />
     <arg name="config_file" value="$(find husky_control)/config/cmd_vel_mux.yaml" />
   </include>
+
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
+
 </launch>

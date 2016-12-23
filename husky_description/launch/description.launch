@@ -25,16 +25,17 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
 -->
 <launch>
 
+  <arg name="robot_namespace" default="/"/>
   <arg name="laser_enabled" default="$(optenv HUSKY_LMS1XX_ENABLED false)"/>
-  <arg name="ur5_enabled" default="$(optenv HUSKY_UR5_ENABLED false)"/>
-  <arg name="kinect_enabled" default="false"/>
+  <arg name="kinect_enabled" default="$(optenv HUSKY_UR5_ENABLED false)"/>
+  <arg name="urdf_extras" default="$(optenv HUSKY_URDF_EXTRAS)"/>
 
-  <param name="robot_description" command="$(find xacro)/xacro.py '$(env HUSKY_DESCRIPTION)'
+  <param name="robot_description" command="$(find xacro)/xacro.py '$(find husky_description)/urdf/husky.urdf.xacro'
+    --inorder
+    robot_namespace:=$(arg robot_namespace)
     laser_enabled:=$(arg laser_enabled)
-    ur5_enabled:=$(arg ur5_enabled)
     kinect_enabled:=$(arg kinect_enabled)
+    urdf_extras:=$(arg urdf_extras)
     " />
-
-  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
 
 </launch>
