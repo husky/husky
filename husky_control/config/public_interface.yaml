@@ -1,0 +1,27 @@
+import_relay:
+  topics:
+    - topic: cmd_vel
+      type: geometry_msgs/Twist
+    - topic: twist_marker_server/feedback
+      type: visualization_msgs/InteractiveMarkerFeedback
+    - topic: initialpose
+      type: geometry_msgs/PoseWithCovarianceStamped
+
+export_relay:
+  topics:
+    - topic: odometry/filtered
+      type: nav_msgs/Odometry
+      throttle_frequency: 1.0
+    - topic: twist_marker_server/update
+      type: visualization_msgs/InteractiveMarkerUpdate
+    - topic: twist_marker_server/update_full
+      type: visualization_msgs/InteractiveMarkerInit
+
+  services:
+    - service: set_pose
+      type: robot_localization/SetPose
+
+  actions:
+    - action: move_base
+      type: move_base_msgs/MoveBaseAction
+      feedback_throttle_frequency: 1.0

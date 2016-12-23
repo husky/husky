@@ -5,6 +5,12 @@
   <arg name="simulation" default="$(optenv ROBOT_SIMULATION false)"/>
   <arg name="robot_namespace" default="$(optenv ROBOT_NAMESPACE robot)"/>
 
+  <arg name="config_extras" default="$(eval optenv('HUSKY_CONFIG_EXTRAS', find('husky_control') + '/config/empty.yaml'))"/>
+
+  <arg name="laser_enabled" default="$(optenv HUSKY_LMS1XX_ENABLED false)"/>
+  <arg name="kinect_enabled" default="$(optenv HUSKY_UR5_ENABLED false)"/>
+  <arg name="urdf_extras" default="$(optenv HUSKY_URDF_EXTRAS)"/>
+
   <include file="$(find multimaster_launch)/launch/multimaster_robot.launch">
     <arg name="gazebo_interface" value="$(find husky_control)/config/gazebo_interface.yaml" />
     <arg name="public_interface" value="$(find husky_control)/config/public_interface.yaml" />
@@ -13,7 +19,11 @@
   </include>
 
   <!-- Load robot description -->
-  <include file="$(find husky_description)/launch/description.launch"/>
+  <include file="$(find husky_description)/launch/description.launch" >
+    <arg name="laser_enabled" default="$(arg laser_enabled)"/>
+    <arg name="kinect_enabled" default="$(arg kinect_enabled)"/>
+    <arg name="urdf_extras" default="$(arg urdf_extras)"/>
+  </include>
 
   <!-- Load controller configuration -->
   <rosparam command="load" file="$(find husky_control)/config/control.yaml" />
@@ -34,5 +44,7 @@
     <rosparam command="load" file="$(find husky_control)/config/twist_mux.yaml" />
     <remap from="cmd_vel_out" to="husky_velocity_controller/cmd_vel"/>
   </node>
+
+  <rosparam command="load" file="$(arg config_extras)" />
 
 </launch>

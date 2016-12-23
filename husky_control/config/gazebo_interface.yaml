@@ -1,0 +1,33 @@
+from_sim:
+  topics:
+    - topic: joint_states
+      type: sensor_msgs/JointState
+    - topic: scan
+      type: sensor_msgs/LaserScan
+    - topic: husky_velocity_controller/odom
+      type: nav_msgs/Odometry
+    - topic: imu/data
+      type: sensor_msgs/Imu
+    - topic: navsat/fix
+      type: sensor_msgs/NavSatFix
+    - topic: navsat/vel
+      type: geometry_msgs/Vector3Stamped
+
+  services:
+    - servce: controller_manager/list_controller_types
+      type: controller_manager_msgs/ListControllerTypes
+    - service: controller_manager/load_controller
+      type: controller_manager_msgs/LoadController
+    - service: controller_manager/list_controllers
+      type: controller_manager_msgs/ListControllers
+    - service: controller_manager/reload_controller_libraries
+      type: controller_manager_msgs/ReloadControllerLibraries
+    - service: controller_manager/switch_controller
+      type: controller_manager_msgs/SwitchController
+    - service: controller_manager/unload_controller
+      type: controller_manager_msgs/UnloadController
+
+to_sim:
+  topics:
+    - topic: husky_velocity_controller/cmd_vel
+      type: geometry_msgs/Twist
