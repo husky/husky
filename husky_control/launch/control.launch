@@ -28,12 +28,11 @@
 
   <node pkg="interactive_marker_twist_server" type="marker_server" name="twist_marker_server" output="screen"/>
 
-  <node pkg="nodelet" type="nodelet" name="cmd_vel_mux" args="manager" />
-  <include file="$(find yocs_cmd_vel_mux)/launch/cmd_vel_mux.launch">
-    <arg name="nodelet_manager_name" value="cmd_vel_mux" />
-    <arg name="config_file" value="$(find husky_control)/config/cmd_vel_mux.yaml" />
-  </include>
-
   <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
+
+  <node pkg="twist_mux" type="twist_mux" name="twist_mux">
+    <rosparam command="load" file="$(find husky_control)/config/twist_mux.yaml" />
+    <remap from="cmd_vel_out" to="husky_velocity_controller/cmd_vel"/>
+  </node>
 
 </launch>
