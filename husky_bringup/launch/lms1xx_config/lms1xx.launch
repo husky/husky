@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<launch>
+  <arg name="lms1xx_enabled" default="$(optenv HUSKY_LMS1XX_ENABLED false)" />
+  <group if="$(arg lms1xx_enabled)">
+    <node pkg="lms1xx" name="lms1xx" type="LMS1xx_node">
+      <param name="host" value="$(env HUSKY_LMS1XX_IP)" />
+      <param name="frame_id" value="base_laser" />
+    </node>
+  </group>
+</launch>

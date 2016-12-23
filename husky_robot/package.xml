@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<package>
+  <name>husky_robot</name>
+  <version>0.2.6</version>
+  <description>Metapackage for Clearpath Husky robot software</description>
+  <maintainer email="pbovbel@clearpathrobotics.com">Paul Bovbel</maintainer>
+
+  <license>BSD</license>
+
+  <url type="website">http://ros.org/wiki/husky_robot</url>
+  <url type="bugtracker">https://github.com/husky/husky_robot/issues</url>
+  <url type="repository">https://github.com/husky/husky_robot</url>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <run_depend>husky_bringup</run_depend>
+  <run_depend>husky_base</run_depend>
+
+  <export>
+    <metapackage/>
+  </export>
+</package>

@@ -1,0 +1,68 @@
+#!/bin/bash
+
+TEMPDIR=$(mktemp -d --tmpdir calibrate_compass.XXXX)
+BAG_FILE=${TEMPDIR}/imu_record.bag
+CAL_FILE=${TEMPDIR}/mag_config.yaml
+CAL_FINAL_PATH=${ROS_ETC_DIR%/*}/husky_bringup
+DURATION=60
+
+ROSTOPIC_OUTPUT=$(rostopic list)
+if [[ "$?" != "0" ]]; then
+  echo "ROS appears not to be running. Please start ROS service:"
+  echo "sudo service ros start"
+  exit 1
+fi
+
+rospack find rosbag > /dev/null
+if [[ "$?" != "0" ]]; then
+  echo "Unable to find rosbag record. Is the ROS environment set up correctly?"
+  exit 1
+fi
+
+rosbag record /tf /imu/data /imu/mag -O $BAG_FILE --duration $DURATION &
+ROSBAG_PID=$!
+echo "Started rosbag record, duration $DURATION seconds, pid [${ROSBAG_PID}]"
+
+rostopic pub /cmd_vel geometry_msgs/Twist '{linear:  {x: 0.0, y: 0.0, z: 0.0}, angular: {x: 0.0,y: 0.0,z: 0.2}}' -r 15 & > /dev/null
+ROSTOPIC_PID=$!
+echo "Started motion commands, pid [${ROSTOPIC_PID}]"
+
+sleep 2
+
+echo "Test underway."
+
+for i in $(seq 0 ${DURATION}); do
+  echo -en "\rTime remaining: $((${DURATION}-i))  ";
+  sleep 1
+done
+echo
+
+echo "Shutting down motion command publisher."
+kill $ROSTOPIC_PID
+
+sleep 2
+
+echo "Waiting for rosbag to shut down."
+
+sleep 2
+
+echo "Computing magnetic calibration."
+rosrun husky_bringup compute_calibration $BAG_FILE $CAL_FILE &> /tmp/compute_output.log
+if [[ "$?" != "0" ]]; then
+  echo "Unable to compute calibration from recorded bag."
+  echo "Output in /tmp/compute_output.log"
+  exit 1
+fi
+
+if [[ -r $CAL_FILE ]]; then
+  echo "Calibration generated in $CAL_FILE."
+  read -r -p "Copy calibration to ${CAL_FINAL_PATH}? [Y/n] " response
+  response=${response,,}    # tolower
+  if [[ $response =~ ^(no|n)$ ]]; then
+    echo "Skipping."
+  else
+    sudo mkdir -p ${CAL_FINAL_PATH}
+    sudo cp $CAL_FILE ${CAL_FINAL_PATH}
+    echo "Restart ROS service to begin using saved calibration."
+  fi
+fi

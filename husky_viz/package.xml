@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<package>
+  <name>husky_viz</name>
+  <version>0.2.2</version>
+  <description>Visualization configuration for Clearpath Husky</description>
+
+  <author email="rgariepy@clearpathrobotics.com">Ryan Gariepy</author>
+  <author email="mpurvis@clearpathrobotics.com">Mike Purvis</author>
+
+  <maintainer email="pbovbel@clearpathrobotics.com">Paul Bovbel</maintainer>
+
+  <license>BSD</license>
+
+  <url type="website">http://ros.org/wiki/husky_viz</url>
+  <url type="bugtracker">https://github.com/husky/husky_desktop/issues</url>
+  <url type="repository">https://github.com/husly/husky_desktop</url>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <build_depend>roslaunch</build_depend>
+
+  <run_depend>husky_description</run_depend>
+  <run_depend>joint_state_publisher</run_depend>
+  <run_depend>rviz</run_depend>
+  <run_depend>rviz_imu_plugin</run_depend>
+
+  <export>
+  </export>
+</package>

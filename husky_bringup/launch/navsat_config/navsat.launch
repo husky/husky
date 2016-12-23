@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<launch>
+  <group ns="gps">
+    <!-- NavSat Serial -->
+    <node pkg="nmea_comms" type="serial_node" name="nmea_serial_node" output="screen">
+      <param name="port" value="$(optenv HUSKY_NAVSAT_PORT /dev/clearpath/gps)" />
+      <param name="baud" value="$(optenv HUSKY_NAVSAT_BAUD 19200)" />
+    </node>
+
+    <!-- NavSat Processing -->
+    <node pkg="nmea_navsat_driver" type="nmea_topic_driver" name="nmea_topic_driver">
+    </node>
+  </group>
+
+  <node pkg="robot_localization" type="navsat_transform_node" name="navsat_transform" >
+    <rosparam>
+      magnetic_declination_radians: 0
+      roll_offset: 0
+      pitch_offset: 0
+      yaw_offset: 0
+      zero_altitude: false
+      broadcast_utm_transform: false
+    </rosparam>
+  </node>
+</launch>

@@ -1,6 +1,0 @@
-<launch>
-	<param name="octomap_frame" type="string" value="base_footprint" />
-	<param name="octomap_resolution" type="double" value="0.05" />
-	<rosparam command="load" file="$(find husky_ur5_moveit_config)/config/sensors_rgbd.yaml" />
-</launch>
-

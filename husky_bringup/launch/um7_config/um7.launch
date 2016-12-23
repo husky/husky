@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<launch>
+
+  <node pkg="um7" type="um7_driver" name="um7_driver">
+    <param name="port" type="string" value="$(optenv HUSKY_IMU_PORT /dev/clearpath/um7)"/>
+    <param name="mag_updates" type="bool" value="false"/>
+    <param name="frame_id" value="imu_link"/>
+    <param name="tf_ned_to_enu" value="false"/>
+    <remap from="imu" to="imu_um7"/>
+  </node>
+
+  <node pkg="nodelet" type="nodelet" name="imu_manager" args="manager"/>
+
+  <!-- Transforms UM7 tilted data in imu_link frame to ENU data in base_link frame -->
+  <node pkg="nodelet" type="nodelet" name="imu_data_transformer" args="load imu_transformer/imu_transformer_nodelet imu_manager">
+    <remap from="imu_in" to="imu_um7"/>
+    <remap from="imu_out/data" to="imu/data_raw"/>
+    <remap from="imu_out/mag" to="imu/mag"/>
+    <param name="target_frame" value="base_link"/>
+  </node>
+
+  <!-- Filter raw gyro, accel and mag data into a usable orientation -->
+  <node pkg="nodelet" type="nodelet" name="imu_filter" args="load imu_filter_madgwick/ImuFilterNodelet imu_manager">
+    <rosparam file="$(env HUSKY_MAG_CONFIG)" />
+    <rosparam>
+      orientation_stddev: 0.001
+      gain: 0.01
+      zeta: 0.001
+      publish_tf: false
+    </rosparam>
+  </node>
+
+</launch>

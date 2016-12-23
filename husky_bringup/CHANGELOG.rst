@@ -1,0 +1,102 @@
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Changelog for package husky_bringup
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+0.2.6 (2016-10-03)
+------------------
+* Adding support for the UM7 IMU.
+* Added new ur_modern_driver
+* Added param for laser frame_id.
+* Contributors: TheDash, Tony Baltovski
+
+0.2.5 (2015-12-31)
+------------------
+
+0.2.4 (2015-07-08)
+------------------
+* Fix laser path
+* Contributors: Paul Bovbel
+
+0.2.3 (2015-04-08)
+------------------
+* Integrate husky_customization workflow
+* Contributors: Paul Bovbel
+
+0.2.2 (2015-03-23)
+------------------
+* Fix package urls
+* Contributors: Paul Bovbel
+
+0.2.1 (2015-03-23)
+------------------
+
+0.2.0 (2015-03-23)
+------------------
+* Add UR5 bringup
+* Contributors: Paul Bovbel, Devon Ash
+
+0.1.2 (2015-02-12)
+------------------
+* Namespace fixes
+* Contributors: Paul Bovbel
+
+0.1.1 (2015-01-30)
+------------------
+* Update website and authors
+* Add transform to transfer IMU data to base_link frame
+* Make ROBOT_NETWORK optional
+* Switch to robot_upstart python API
+* Switch to debhelper install method for udeb rules
+* Switch to env-hook for file storage
+* Switch to new calibration method for um6; switch to imu_filter_magwick
+* Contributors: Paul Bovbel
+
+0.1.0 (2015-01-13)
+------------------
+* Port to robot_localization, gyro only pending um6 fixes
+* changed the launch file to match parameter namespace changes in the imu_compass node
+* ported kingfisher compass calibration to husky
+* Added Microstrain device condition - Looks for an attached Microstrain device and installs the necessary launch files from the microstrain_config directory.
+* Update sick.launch - Fixed binary name
+* Change default IP for LIDAR to 192.168.1.14
+* Add launcher for sick LIDAR.
+* Added Microstrain launch file and udev rule.
+* Contributors: Jeff Schmidt, Mike Purvis, Paul Bovbel, Prasenjit Mukherjee
+
+0.0.6 (2013-10-12)
+------------------
+* Restore leading slash in checking the joystick path.
+  This was removed by mistake in an earlier commit.
+
+0.0.5 (2013-10-05)
+------------------
+* Acknowledge the ROBOT_SETUP env variable in the install script.
+
+0.0.4 (2013-10-03)
+------------------
+* Remove the other launchfile check until we get a chance to fix the config location issue.
+* adding installation of ekf yaml file to install script
+* better parameters for husky compass calibration based on standard husky configurations
+* combining both ekf launchers into one and relying on a config file to to pick whether we want an outdoor or indoor ekf to start
+* allowing the user to scale the gps data if desired
+* adding parameter to lock the altitude at 0
+* set invalid covariance value for enu to really high, instead of -1
+
+0.0.3 (2013-10-01)
+------------------
+* Add sicktoolbox_wrapper in advance of a config for standard LIDARs.
+* Parameterize from environment variables the IMU and GPS ports, and network interface to launch from.
+
+0.0.2 (2013-09-23)
+------------------
+* Compass startup and inertial ekf
+* adding magnetometer configuration file to husky_bringup
+* added static transform to um6 launcher
+* Set namespace to navsat, baud rate to 9600.
+* Depend on robot_upstart.
+* Add automatic launchfile checks.
+
+0.0.1 (2013-09-13)
+------------------
+* Catkinize package.
+* First cut of a new install script.

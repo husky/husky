@@ -1,0 +1,29 @@
+#!/usr/bin/env python
+
+import robot_upstart
+import os
+
+j = robot_upstart.Job(name="husky-core", interface=os.environ.get('ROBOT_NETWORK'), workspace_setup=os.environ.get('ROBOT_SETUP'))
+
+# Stuff to launch on system startup.
+j.add(package="husky_base", glob="launch/*")
+
+if os.path.exists('/dev/clearpath/imu'):
+  j.add(package="husky_bringup", glob="launch/um6_config/*")
+
+if os.path.exists('/dev/clearpath/um7'):
+  j.add(package="husky_bringup", glob="launch/um7_config/*")
+
+if os.path.exists('/dev/microstrain'):
+  j.add(package="husky_bringup", glob="launch/microstrain_config/*")
+
+if os.path.exists('/dev/clearpath/gps'):
+  j.add(package="husky_bringup", glob="launch/navsat_config/*")
+
+if os.environ.get('HUSKY_UR5_IP'):
+  j.add(package="husky_bringup", glob="launch/ur5_arm_config/*")
+
+if os.environ.get('HUSKY_LMS1XX_IP'):
+  j.add(package="husky_bringup", glob="launch/lms1xx_config/*")
+
+j.install()

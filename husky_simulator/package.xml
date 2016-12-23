@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<package>
+  <name>husky_simulator</name>
+  <version>0.2.6</version>
+  <description>Metapackage for Clearpath Husky simulation software</description>
+
+  <maintainer email="pbovbel@clearpathrobotics.com">Paul Bovbel</maintainer>
+
+  <license>BSD</license>
+
+  <url type="website">http://ros.org/wiki/husky_simulator</url>
+  <url type="bugtracker">https://github.com/husky/husky_simulator/issues</url>
+  <url type="repository">https://github.com/husly/husky_simulator</url>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <run_depend>husky_gazebo</run_depend>
+
+  <export>
+    <metapackage/>
+  </export>
+</package>

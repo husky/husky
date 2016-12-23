@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<package>
+  <name>husky_gazebo</name>
+  <version>0.2.6</version>
+  <description>Clearpath Husky Simulator bringup</description>
+
+  <author email="rgariepy@clearpathrobotics.com">Ryan Gariepy</author>
+  <author email="pmukherj@clearpathrobotics.com">Prasenjit Mukherjee</author>
+  <author email="pbovbel@clearpathrobotics.com">Paul Bovbel</author>
+  <author email="dash@clearpathrobotics.com">Devon Ash</author>
+
+  <maintainer email="pbovbel@clearpathrobotics.com">Paul Bovbel</maintainer>
+
+  <license>BSD</license>
+
+  <url type="website">http://ros.org/wiki/husky_gazebo</url>
+  <url type="bugtracker">https://github.com/husky/husky_simulator/issues</url>
+  <url type="repository">https://github.com/husly/husky_simulator</url>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <build_depend>roslaunch</build_depend>
+  <run_depend>controller_manager</run_depend>
+  <run_depend>gazebo_plugins</run_depend>
+  <run_depend>gazebo_ros</run_depend>
+  <run_depend>gazebo_ros_control</run_depend>
+  <run_depend>hector_gazebo_plugins</run_depend>
+  <run_depend>husky_control</run_depend>
+  <run_depend>husky_description</run_depend>
+  <run_depend>pointcloud_to_laserscan</run_depend>
+  <run_depend>robot_state_publisher</run_depend>
+  <run_depend>rostopic</run_depend>
+
+  <export>
+  </export>
+</package>

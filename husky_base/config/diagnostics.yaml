@@ -1,0 +1,7 @@
+analyzers:
+  husky:
+    type: diagnostic_aggregator/GenericAnalyzer
+    path: Husky A200
+    find_and_remove_prefix: 'husky_base: '
+    expected: ['husky_base: power_status','husky_base: system_status','husky_base: safety_status','husky_base: software_status']
+    timeout: 5.0
