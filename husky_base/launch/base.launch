@@ -28,9 +28,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <launch>
     <arg name="port" default="$(optenv HUSKY_PORT /dev/prolific)" />
 
-    <!-- Load robot description -->
-    <include file="$(find husky_description)/launch/description.launch"/>
-
     <!-- Husky harware driver -->
     <node pkg="husky_base" type="husky_node" name="husky_node">
         <rosparam subst_value="true">

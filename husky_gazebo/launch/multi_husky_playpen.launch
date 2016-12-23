@@ -2,7 +2,7 @@
 <!--
 Software License Agreement (BSD)
 
-\file      husky_playpen.launch
+\file      multi_husky_playpen.launch
 \authors   Paul Bovbel <pbovbel@clearpathrobotics.com
 \copyright Copyright (c) 2015, Clearpath Robotics, Inc., All rights reserved.
 
@@ -28,6 +28,8 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
   <arg name="laser_enabled" default="true"/>
   <arg name="ur5_enabled" default="false"/>
   <arg name="kinect_enabled" default="false"/>
+
+ <include file="$(find multimaster_launch)/launch/multimaster_gazebo.launch"/>
 
   <!-- We resume the logic in empty_world.launch, changing only the name of the world to be launched -->
   <include file="$(find husky_gazebo)/launch/playpen.launch" />

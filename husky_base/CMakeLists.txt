@@ -14,6 +14,8 @@ catkin_package(
 
 include_directories(include ${Boost_INCLUDE_DIRS} ${catkin_INCLUDE_DIRS})
 
+set_directory_properties(PROPERTIES COMPILE_OPTIONS "-std=c++11;")
+
 add_library(horizon_legacy
   src/horizon_legacy/crc.cpp
   src/horizon_legacy/Logger.cpp
