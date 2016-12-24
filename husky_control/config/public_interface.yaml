@@ -6,6 +6,8 @@ import_relay:
       type: visualization_msgs/InteractiveMarkerFeedback
     - topic: initialpose
       type: geometry_msgs/PoseWithCovarianceStamped
+    - topic: move_base_simple/goal
+      type: geometry_msgs/PoseStamped
 
 export_relay:
   topics:
@@ -16,6 +18,11 @@ export_relay:
       type: visualization_msgs/InteractiveMarkerUpdate
     - topic: twist_marker_server/update_full
       type: visualization_msgs/InteractiveMarkerInit
+    - topic: map
+      type: nav_msgs/OccupancyGrid
+      latch: true
+    - topic: map_metadata
+      type: nav_msgs/MapMetaData
 
   services:
     - service: set_pose
