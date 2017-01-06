@@ -142,6 +142,16 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
     
     <!-- Attaching additional sensors and frames to husky -->
     
+    <!-- Velodyne laser -->
+    <link name="velodyne_mount_link"/>
+    <joint name="velodyne_joint" type="fixed">
+      <origin xyz="0.23 0 0.35" rpy="0 0 ${PI}" />
+      <parent link="base_link" />
+      <child link="velodyne_mount_link" />
+    </joint>
+    <gazebo reference="velodyne_mount_link">
+    </gazebo>
+    
     <!-- GPS mounting position -->
     <link name="gps_mount_link"/>
     <joint name="gps_joint" type="fixed">
