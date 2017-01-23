@@ -5,7 +5,8 @@
   <arg name="simulation" default="$(optenv ROBOT_SIMULATION false)"/>
   <arg name="robot_namespace" default="$(optenv ROBOT_NAMESPACE robot)"/>
 
-  <arg name="config_extras" default="$(eval optenv('HUSKY_CONFIG_EXTRAS', find('husky_control') + '/config/empty.yaml'))"/>
+  <arg name="config_extras"
+       default="$(eval optenv('HUSKY_CONFIG_EXTRAS', find('husky_control') + '/config/empty.yaml'))"/>
 
   <arg name="laser_enabled" default="$(optenv HUSKY_LMS1XX_ENABLED false)"/>
   <arg name="kinect_enabled" default="$(optenv HUSKY_UR5_ENABLED false)"/>
@@ -29,7 +30,8 @@
   <rosparam command="load" file="$(find husky_control)/config/control.yaml" />
 
   <!-- Spawn controllers -->
-  <node name="base_controller_spawner" pkg="controller_manager" type="spawner" args="husky_joint_publisher husky_velocity_controller --shutdown-timeout 3"/>
+  <node name="base_controller_spawner" pkg="controller_manager" type="spawner"
+        args="husky_joint_publisher husky_velocity_controller --shutdown-timeout 3"/>
 
   <!-- Start EKF for localization -->
   <node pkg="robot_localization" type="ekf_localization_node" name="ekf_localization">
@@ -45,6 +47,7 @@
     <remap from="cmd_vel_out" to="husky_velocity_controller/cmd_vel"/>
   </node>
 
+  <!-- Override the default control parameters, see config/empty.yaml for default. -->
   <rosparam command="load" file="$(arg config_extras)" />
 
 </launch>
