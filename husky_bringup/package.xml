@@ -34,7 +34,7 @@
   <run_depend>robot_upstart</run_depend>
   <run_depend>tf</run_depend>
   <run_depend>tf2_ros</run_depend>
-  <!-- <run_depend>um6</run_depend> -->
+  <run_depend>um6</run_depend>
   <!-- <run_depend>um7</run_depend> -->
 
   <export>
