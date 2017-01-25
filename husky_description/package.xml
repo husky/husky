@@ -11,6 +11,7 @@
   <author email="dash@clearpathrobotics.com">Devon Ash</author>
 
   <maintainer email="pbovbel@clearpathrobotics.com">Paul Bovbel</maintainer>
+  <maintainer email="tbaltovski@clearpathrobotics.com">Tony Baltovski</maintainer>
 
   <url type="website">http://ros.org/wiki/husky_description</url>
   <url type="bugtracker">https://github.com/husky/husky/issues</url>

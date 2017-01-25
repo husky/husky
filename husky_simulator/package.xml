@@ -5,6 +5,7 @@
   <description>Metapackage for Clearpath Husky simulation software</description>
 
   <maintainer email="pbovbel@clearpathrobotics.com">Paul Bovbel</maintainer>
+  <maintainer email="tbaltovski@clearpathrobotics.com">Tony Baltovski</maintainer>
 
   <license>BSD</license>
 
