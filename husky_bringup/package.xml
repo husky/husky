@@ -25,7 +25,7 @@
   <run_depend>husky_control</run_depend>
   <run_depend>husky_description</run_depend>
   <run_depend>imu_filter_madgwick</run_depend>
-  <!-- <run_depend>imu_transformer</run_depend> -->
+  <run_depend>imu_transformer</run_depend>
   <run_depend>lms1xx</run_depend>
   <!-- <run_depend>microstrain_3dmgx2_imu</run_depend> -->
   <run_depend>nmea_comms</run_depend>
@@ -36,7 +36,7 @@
   <run_depend>tf</run_depend>
   <run_depend>tf2_ros</run_depend>
   <run_depend>um6</run_depend>
-  <!-- <run_depend>um7</run_depend> -->
+  <run_depend>um7</run_depend>
 
   <export>
   </export>
