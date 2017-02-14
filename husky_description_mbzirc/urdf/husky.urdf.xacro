@@ -145,7 +145,7 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
     <!-- Velodyne laser -->
     <link name="velodyne_mount_link"/>
     <joint name="velodyne_joint" type="fixed">
-      <origin xyz="0.23 0 0.35" rpy="0 0 ${PI}" />
+      <origin xyz="0.23 0 0.48" rpy="0 0 ${PI}" />
       <parent link="base_link" />
       <child link="velodyne_mount_link" />
     </joint>
@@ -155,8 +155,8 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
     <!-- GPS mounting position -->
     <link name="gps_mount_link"/>
     <joint name="gps_joint" type="fixed">
-      <origin xyz="-0.14 -0.20 0.65" rpy="0 0 0" />
-      <parent link="base_link" />
+      <origin xyz="-0.30 0.20 0.125" rpy="0 0 0" />
+      <parent link="top_plate_link" />
       <child link="gps_mount_link" />
     </joint>
     <gazebo reference="gps_mount_link">
