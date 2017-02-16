@@ -91,34 +91,129 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
       <child link="rear_bumper_link" />
     </joint>
 
-      <!-- Spawn the top plate -->
-      <link name="top_plate_link">
-        <visual>
-          <origin xyz="0 0 0" rpy="0 0 0" />
-          <geometry>
-            <mesh filename="package://husky_description_mbzirc/meshes/top_plate.dae" />
-          </geometry>
-        </visual>
-        <collision>
-          <origin xyz="0 0 0" rpy="0 0 0"/>
-          <geometry>
-            <mesh filename="package://husky_description_mbzirc/meshes/top_plate.dae" />
-          </geometry>
-        </collision>
-        <collision>
-          <!-- Extra collision tag for widgets on top plate -->
-          <geometry>
-            <box size="0.32 0.41 0.09" rpy="0 0 0"/>
-          </geometry>
-        </collision>
-      </link>
+    <!-- Spawn the husky box --> <!-- Former: Top plate of husky -->
+    <link name="top_plate_link">
+      <visual>
+        <origin xyz="0 0 0.0675" rpy="0 0 0" />
+        <geometry>
+          <box size="0.54 0.42 0.135" rpy="0 0 0"/>
+        </geometry>
+        <material name="grey">
+          <color rgba="0.6 0.6 0.6 1"/>
+        </material>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0.0675" rpy="0 0 0"/>
+        <geometry>
+          <box size="0.54 0.42 0.135" rpy="0 0 0"/>
+        </geometry>
+      </collision>
+      <inertial>
+        <mass value="5.0"/>
+        <origin xyz="0.0 0.0 0.0675"/>
+        <inertia ixx="0.0811" ixy="0" ixz="0" iyy="0.1291" iyz="0" izz="0.195"/>
+      </inertial>
+    </link>
 
-      <!-- Attach top plate -->
-      <joint name="top_plate_joint" type="fixed">
-        <parent link="base_link" />
-        <child link="top_plate_link"/>
-        <origin xyz="0.0812 0 0.245" rpy="0 0 0"/>
-      </joint>
+    <!-- Attach husky box -->
+    <joint name="top_plate_joint" type="fixed">
+      <parent link="base_link" />
+      <child link="top_plate_link"/>
+      <origin xyz="0.0 0 0.245" rpy="0 0 0"/>
+    </joint>
+    
+    <!-- Spawn the arm mounting -->
+    <link name="arm_mounting_link">
+      <visual>
+        <origin xyz="0 0 0.071" rpy="0 0 0" />
+        <geometry>
+          <box size="0.2 0.2 0.142" rpy="0 0 0"/>
+        </geometry>
+        <material name="grey">
+          <color rgba="0.6 0.6 0.6 1"/>
+        </material>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0.071" rpy="0 0 0" />
+        <geometry>
+          <box size="0.2 0.2 0.142" rpy="0 0 0"/>
+        </geometry>
+      </collision>
+      <inertial>
+        <mass value="1.5"/>
+        <origin xyz="0.0 0.0 0.071"/>
+        <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>
+      </inertial>
+    </link>
+
+    <!-- Attach arm mounting -->
+    <joint name="arm_mounting_joint" type="fixed">
+      <parent link="top_plate_link" />
+      <child link="arm_mounting_link"/>
+      <origin xyz="-0.17 -0.11 0.135" rpy="0 0 0"/>
+    </joint>
+    
+    <!-- Velodyne collision box -->
+    <link name="velodyne_cage_link">
+      <visual>
+        <origin xyz="0 0 0.075" rpy="0 0 0" />
+        <geometry>
+          <box size="0.15 0.19 0.15" rpy="0 0 0"/>
+        </geometry>
+        <material name="grey">
+          <color rgba="0.6 0.6 0.6 1"/>
+        </material>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0.075" rpy="0 0 0" />
+        <geometry>
+          <box size="0.15 0.19 0.15" rpy="0 0 0"/>
+        </geometry>
+      </collision>
+      <inertial>
+        <mass value="0.5"/>
+        <origin xyz="0.0 0.0 0.075"/>
+        <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>
+      </inertial>
+    </link>
+    
+    <!-- Attach velodyne cage -->
+    <joint name="velodyne_cage_joint" type="fixed">
+      <parent link="top_plate_link" />
+      <child link="velodyne_cage_link"/>
+      <origin xyz="0.195 0.0 0.135" rpy="0 0 0"/>
+    </joint>
+    
+    <!-- Velodyne top plate -->
+    <link name="velodyne_top_plate_link">
+      <visual>
+        <origin xyz="0 0 0.001" rpy="0 0 0" />
+        <geometry>
+          <box size="0.24 0.24 0.002" rpy="0 0 0"/>
+        </geometry>
+        <material name="grey">
+          <color rgba="0.6 0.6 0.6 1"/>
+        </material>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0.001" rpy="0 0 0" />
+        <geometry>
+          <box size="0.24 0.24 0.002" rpy="0 0 0"/>
+        </geometry>
+      </collision>
+      <inertial>
+        <mass value="0.1"/>
+        <origin xyz="0.0 0.0 0.001"/>
+        <inertia ixx="0.0005" ixy="0" ixz="0" iyy="0.0005" iyz="0" izz="0.0005"/>
+      </inertial>
+    </link>
+    
+    <!-- Attach velodyne cage -->
+    <joint name="velodyne_top_plate_joint" type="fixed">
+      <parent link="velodyne_cage_link" />
+      <child link="velodyne_top_plate_link"/>
+      <origin xyz="0.0 0.0 0.15" rpy="0 0 0"/>
+    </joint>
 
   </xacro:macro>
 
