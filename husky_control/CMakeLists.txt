@@ -7,8 +7,8 @@ catkin_package()
 
 roslaunch_add_file_check(launch)
 
-catkin_install_python(PROGRAMS scripts/stow_ur5 DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
+install(PROGRAMS scripts/stow_ur5 scripts/stow_ur5_left scripts/stow_ur5_right DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION})
 
-install(DIRECTORY config launch scripts
+install(DIRECTORY config launch
   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
 )

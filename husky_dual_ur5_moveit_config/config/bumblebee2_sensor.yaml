@@ -1,0 +1,10 @@
+sensors:
+  - sensor_plugin: occupancy_map_monitor/PointCloudOctomapUpdater
+    point_cloud_topic: /bumblebee2/points2
+    max_range: 5.0
+    padding_offset: 0
+    padding_scale: 3.0
+    frame_subsample: 1
+    point_subsample: 10
+
+

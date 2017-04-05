@@ -1,0 +1,13 @@
+<launch>
+  <arg name="limited" default="false"/>
+  <arg name="debug" default="false" />
+  <arg name="real" default="false"/>
+
+  <!-- Launch moveit -->
+	  <include file="$(find husky_dual_ur5_moveit_config)/launch/move_group.launch">
+	    <arg name="limited" default="$(arg limited)" />
+	    <arg name="debug" default="$(arg debug)" />
+            <arg name="real" default="$(arg real)" />
+          </include>
+
+</launch>

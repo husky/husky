@@ -33,6 +33,10 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
   <xacro:include filename="$(find husky_description)/urdf/accessories/sick_lms1xx_mount.urdf.xacro"/>
   <xacro:include filename="$(find husky_description)/urdf/accessories/sensor_arch.urdf.xacro"/>
   <xacro:include filename="$(find ur_description)/urdf/ur5.urdf.xacro" />
+  <xacro:include filename="$(find robotiq_s_model_visualization)/cfg/robotiq_hand_macro.urdf.xacro"/> 
+  <xacro:include filename="$(find robotiq_force_torque_sensor)/urdf/robotiq_fts300.urdf.xacro"/>
+  <xacro:include filename="$(find flir_ptu_description)/urdf/d46.urdf.xacro"/>
+  <xacro:include filename="$(find pointgrey_camera_description)/urdf/pointgrey_bumblebee2.urdf.xacro"/>
 
   <property name="M_PI" value="3.14159"/>
 
@@ -83,11 +87,19 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
       <child link="base_footprint" />
     </joint>
 
-    <!-- Interial link stores the robot's inertial information -->
+<<<<<<< HEAD
+    <!-- Interial link stores the robot's inertial information --> 
     <link name="inertial_link">
       <inertial>
-        <mass value="33.455" />
+        <mass value="46.034"/>
+        <origin xyz="-0.00065 -0.085 0.062" />
+=======
+    <!-- Interial link stores the robot's inertial information 
+    <link name="inertial_link">
+      <inertial>
+        <mass value="" />
         <origin xyz="-0.08748 -0.00085 0.09947" />
+>>>>>>> 685a629... Shits broken
         <inertia ixx="0.6022" ixy="-0.02364" ixz="-0.1197" iyy="1.7386" iyz="-0.001544" izz="2.0296" />
       </inertial>
     </link>
@@ -96,7 +108,11 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
       <origin xyz="0 0 0" rpy="0 0 0" />
       <parent link="base_link" />
       <child link="inertial_link" />
-    </joint>
+<<<<<<< HEAD
+    </joint> 
+=======
+    </joint> -->
+>>>>>>> 685a629... Shits broken
 
     <!-- IMU Link is the standard mounting position for the UM6 IMU.-->
     <!-- Can be modified with environment variables in /etc/ros/setup.bash -->
@@ -125,6 +141,79 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
 
     <xacro:husky_decorate />
 
+    <xacro:if value="$(optenv FLIR_PTU_ENABLED false)">
+
+          <xacro:ptu_d46 name="husky_ptu"/>
+          <!-- Connect PTU to Husky bulkhead -->
+          <joint name="husky_ptu_joint" type="fixed">
+             <origin xyz="0.365 0 0.20" rpy="0 0 0"/>
+             <parent link="dual_arm_bulkhead_link" />
+             <child link="husky_ptu_base_link" /> 
+         </joint>
+
+    </xacro:if>
+
+    <xacro:if value="$(optenv HUSKY_DUAL_UR5_ENABLED false)">
+
+        <xacro:ur5_robot prefix="l_ur5_arm_" joint_limited="true"/>
+        <xacro:ur5_robot prefix="r_ur5_arm_" joint_limited="true"/> 
+
+        <!-- Add laser specifically for this mode -->
+        <sick_lms1xx frame="base_laser" topic="scan" />
+
+        <!-- This offset is from the base of the bracket to the LIDAR's focal point. -->
+        <joint name="base_laser_joint" type="fixed">
+           <origin xyz="0.465 0 -0.085" rpy="${M_PI} 0 0" />
+           <parent link="dual_arm_bulkhead_link" />
+           <child link="base_laser" />
+        </joint>
+
+        <!-- Add bumblebee camera -->
+       <BB2-08S2C-38 frame="bumblebee2" name="bumblebee2" />
+
+        <joint name="bumblebee2_mount_joint" type="fixed">
+           <origin xyz="0 0 0.00" rpy="0 0 0" />
+           <parent link="husky_ptu_mount_link" />
+           <child link="bumblebee2" />
+        </joint>
+
+        <!-- Add force torque model FT300 -->
+        <xacro:robotiq_fts300 parent="l_ur5_arm_ee_link" prefix="l_robotiq_fts300_">
+           <origin xyz="0 0 0" rpy="0 1.57 0"/>
+        </xacro:robotiq_fts300>
+
+        <xacro:robotiq_fts300 parent="r_ur5_arm_ee_link" prefix="r_robotiq_fts300_">
+           <origin xyz="0 0 0" rpy="0 1.57 0"/>
+        </xacro:robotiq_fts300> 
+
+        <xacro:if value="$(optenv ROBOTIQ_GRIPPERS_ENABLED false)">
+
+            <xacro:robotiq_hand prefix="l_" reflect="1" parent="l_robotiq_fts300_fts_toolside">
+                <origin xyz="0 0 0.08" rpy="1.57 0 0"/>
+            </xacro:robotiq_hand>
+
+            <xacro:robotiq_hand prefix="r_" reflect="1" parent="r_robotiq_fts300_fts_toolside">
+                <origin xyz="0 0 0.08" rpy="1.57 0 0"/>
+            </xacro:robotiq_hand>
+
+        </xacro:if>
+
+        <!-- Join left arm to top plate -->
+        <joint name="r_ur5_arm_base" type="fixed">
+            <parent link="dual_arm_bulkhead_link"/>
+            <child link="r_ur5_arm_base_link" />
+            <origin xyz="0.125 -0.15 0.135" rpy="0 0.785 -1.57"/>
+        </joint>
+       
+         <!-- Joint right arm to top plate -->
+        <joint name="l_ur5_arm_base" type="fixed">
+            <parent link="dual_arm_bulkhead_link"/>
+            <child link="l_ur5_arm_base_link" />
+            <origin xyz="0.125 0.15 0.135" rpy="0 -0.785 -1.57"/>
+        </joint>
+    
+    </xacro:if>
+
     <xacro:if value="$(arg ur5_enabled)">
 
       <xacro:property name="reflect" value="-1" />
@@ -141,14 +230,14 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
 
     </xacro:if>
 
-    <xacro:if value="$(arg laser_enabled)">
+    <xacro:if value="$(optenv HUSKY_LASER_ENABLED false)">
 
       <sick_lms1xx_mount prefix="base" topic="scan"/>
 
       <joint name="laser_mount_joint" type="fixed">
         <origin xyz="$(optenv HUSKY_LMS1XX_XYZ 0.2206 0.0 0.00635)"
                 rpy="$(optenv HUSKY_LMS1XX_RPY 0.0 0.0 0.0)" />
-        <parent link="top_plate_link" />
+        <parent link="$(optenv HUSKY_LASER_PARENT_LINK top_plate_link)" />
         <child link="base_laser_mount" />
       </joint>
 
