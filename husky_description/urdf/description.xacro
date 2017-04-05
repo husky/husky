@@ -25,11 +25,13 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
 -->
 <robot name="husky" xmlns:xacro="http://ros.org/wiki/xacro">
 
+  <xacro:arg name="dual_ur5_enabled" default="$(optenv HUSKY_DUAL_UR5_ENABLED false)" />
   <xacro:arg name="laser_enabled" default="false" />
   <xacro:arg name="ur5_enabled" default="false" />
   <xacro:arg name="kinect_enabled" default="false" />
-
-  <xacro:include filename="$(find husky_description)/urdf/husky.urdf.xacro" />
+  <xacro:arg name="robotiq_grippers_enabled" default="$(optenv ROBOTIQ_GRIPPERS_ENABLED false)" />
+ 
+  <xacro:include filename="$(find husky_description)/urdf/dual_arm_husky.urdf.xacro" />
   <xacro:husky_robot />
 
 </robot>

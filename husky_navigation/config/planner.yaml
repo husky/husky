@@ -82,7 +82,7 @@ DWAPlannerROS:
 
   # # Trajectory scoring parameters
   # path_distance_bias: 32.0 # The weighting for how much the controller should stay close to the path it was given
-  # goal_distance_bias: 24.0 # The weighting for how much the controller should attempt to reach its local goal, also controls speed
+  goal_distance_bias: 40.0 # The weighting for how much the controller should attempt to reach its local goal, also controls speed
   # occdist_scale: 0.01 # The weighting for how much the controller should attempt to avoid obstacles
   # forward_point_distance: 0.325 # The distance from the center point of the robot to place an additional scoring point, in meters
   # stop_time_buffer: 0.2  # The amount of time that the robot must stThe absolute value of the veolicty at which to start scaling the robot's footprint, in m/sop before a collision in order for a trajectory to be considered valid in seconds

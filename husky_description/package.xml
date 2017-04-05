@@ -25,7 +25,8 @@
   <run_depend>xacro</run_depend>
   <run_depend>ur_description</run_depend>
   <run_depend>lms1xx</run_depend>
-
+  <run_depend>flir_ptu_description</run_depend>
+  <run_depend>pointgrey_camera_description</run_depend>
 
   <export>
   </export>

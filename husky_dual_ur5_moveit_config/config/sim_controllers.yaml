@@ -1,0 +1,21 @@
+controller_list:
+    - name: l_arm_controller
+      action_ns: follow_joint_trajectory
+      default: true
+      type: FollowJointTrajectory
+      joints: [l_ur5_arm_shoulder_pan_joint, l_ur5_arm_shoulder_lift_joint, l_ur5_arm_elbow_joint, l_ur5_arm_wrist_1_joint, l_ur5_arm_wrist_2_joint, l_ur5_arm_wrist_3_joint]
+    - name: r_arm_controller
+      action_ns: follow_joint_trajectory
+      default: true
+      type: FollowJointTrajectory
+      joints: [r_ur5_arm_shoulder_pan_joint, r_ur5_arm_shoulder_lift_joint, r_ur5_arm_elbow_joint, r_ur5_arm_wrist_1_joint, r_ur5_arm_wrist_2_joint, r_ur5_arm_wrist_3_joint]
+    - name: flir_ptu_pan_controller
+      action_ns: follow_joint_trajectory
+      default: true
+      type: FollowJointTrajectory
+      joints: [husky_ptu_pan]
+    - name: flir_ptu_tilt_controller
+      action_ns: follow_joint_trajectory
+      default: true
+      type: FollowJointTrajectory
+      joints: [husky_ptu_tilt]

@@ -23,19 +23,19 @@ husky_velocity_controller:
 
   # Wheel separation and radius multipliers
   wheel_separation_multiplier: 1.875 # default: 1.0
-  wheel_radius_multiplier    : 1.0 # default: 1.0
+  wheel_radius_multiplier    : 0.5 # default: 1.0
 
   # Velocity and acceleration limits
   # Whenever a min_* is unspecified, default to -max_*
   linear:
     x:
       has_velocity_limits    : true
-      max_velocity           : 1.0   # m/s
+      max_velocity           : 0.5   # m/s
       has_acceleration_limits: true
-      max_acceleration       : 3.0   # m/s^2
+      max_acceleration       : 1.0   # m/s^2
   angular:
     z:
       has_velocity_limits    : true
-      max_velocity           : 2.0   # rad/s
+      max_velocity           : 1.0   # rad/s
       has_acceleration_limits: true
-      max_acceleration       : 6.0   # rad/s^2
+      max_acceleration       : 2.0   # rad/s^2

@@ -1,0 +1,8 @@
+moveit_setup_assistant_config:
+  URDF:
+    package: husky_description
+    relative_path: urdf/dual_arm_husky.urdf
+  SRDF:
+    relative_path: config/husky.srdf
+  CONFIG:
+    generated_timestamp: 1466549481

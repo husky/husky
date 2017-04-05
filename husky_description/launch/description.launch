@@ -25,14 +25,19 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
 -->
 <launch>
 
+  <arg name="dual_ur5_enabled" default="$(optenv HUSKY_DUAL_UR5_ENABLED false)"/>
+  <arg name="robotiq_grippers_enabled" default="$(optenv HUSKY_ROBOTIQ_GRIPPERS_ENABLED false)"/>
   <arg name="laser_enabled" default="$(optenv HUSKY_LMS1XX_ENABLED false)"/>
   <arg name="ur5_enabled" default="$(optenv HUSKY_UR5_ENABLED false)"/>
   <arg name="kinect_enabled" default="false"/>
+ 
 
   <param name="robot_description" command="$(find xacro)/xacro.py '$(env HUSKY_DESCRIPTION)'
     laser_enabled:=$(arg laser_enabled)
     ur5_enabled:=$(arg ur5_enabled)
     kinect_enabled:=$(arg kinect_enabled)
+    dual_ur5_enabled:=$(arg dual_ur5_enabled)
+    robotiq_grippers_enabled:=$(arg robotiq_grippers_enabled)
     " />
 
   <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
