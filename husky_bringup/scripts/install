@@ -20,9 +20,6 @@ if os.path.exists('/dev/microstrain'):
 if os.path.exists('/dev/clearpath/gps'):
   j.add(package="husky_bringup", glob="launch/navsat_config/*")
 
-if os.environ.get('HUSKY_UR5_IP'):
-  j.add(package="husky_bringup", glob="launch/ur5_arm_config/*")
-
 if os.environ.get('HUSKY_LMS1XX_IP'):
   j.add(package="husky_bringup", glob="launch/lms1xx_config/*")
 

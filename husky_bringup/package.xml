@@ -27,7 +27,7 @@
   <run_depend>imu_filter_madgwick</run_depend>
   <run_depend>imu_transformer</run_depend>
   <run_depend>lms1xx</run_depend>
-  <!-- <run_depend>microstrain_3dmgx2_imu</run_depend> -->
+  <run_depend>microstrain_3dmgx2_imu</run_depend>
   <run_depend>nmea_comms</run_depend>
   <run_depend>nmea_navsat_driver</run_depend>
   <run_depend>python-scipy</run_depend>
