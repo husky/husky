@@ -5,10 +5,10 @@
   <description>Clearpath Husky installation and integration package</description>
 
   <author email="mpurvis@clearpathrobotics.com">Mike Purvis</author>
-  <author email="pbovbel@clearpathrobotics.com">Paul Bovbel</author>
+  <author email="paul@bovbel.com">Paul Bovbel</author>
   <author email="dash@clearpathrobotics.com">Devon Ash</author>
 
-  <maintainer email="pbovbel@clearpathrobotics.com">Paul Bovbel</maintainer>
+  <maintainer email="paul@bovbel.com">Paul Bovbel</maintainer>
   <maintainer email="tbaltovski@clearpathrobotics.com">Tony Baltovski</maintainer>
 
   <license>BSD</license>

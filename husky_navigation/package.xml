@@ -5,9 +5,9 @@
   <description>Autonomous mapping and navigation demos for the Clearpath Husky</description>
 
   <author email="pmukherj@clearpathrobotics.com">Prasenjit Mukherjee</author>
-  <author email="pbovbel@clearpathrobotics.com">Paul Bovbel</author>
+  <author email="paul@bovbel.com">Paul Bovbel</author>
 
-  <maintainer email="pbovbel@clearpathrobotics.com">Paul Bovbel</maintainer>
+  <maintainer email="paul@bovbel.com">Paul Bovbel</maintainer>
   <maintainer email="tbaltovski@clearpathrobotics.com">Tony Baltovski</maintainer>
 
   <license>BSD</license>
