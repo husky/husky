@@ -32,7 +32,7 @@ Robot ROS packages for the Clearpath Husky, for operating robot hardware.
 
 For Husky instructions and tutorials, please see http://wiki.ros.org/Robots/Husky
 
-husky_simualtor
+husky_simulator
 ==============
 
 Simulator ROS packages for the Clearpath Husky.
