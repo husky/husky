@@ -1,9 +1,8 @@
 <?xml version="1.0"?>
 <launch>
 
-  <arg name="multimaster" default="$(optenv ROBOT_MULTIMASTER false)"/>
-  <arg name="simulation" default="$(optenv ROBOT_SIMULATION false)"/>
-  <arg name="robot_namespace" default="$(optenv ROBOT_NAMESPACE robot)"/>
+  <arg name="multimaster_enabled" default="$(optenv HUSKY_MULTIMASTER false)"/>
+  <arg name="robot_namespace" default="$(optenv HUSKY_NAMESPACE /)"/>
 
   <arg name="config_extras"
        default="$(eval optenv('HUSKY_CONFIG_EXTRAS', find('husky_control') + '/config/empty.yaml'))"/>
@@ -12,17 +11,19 @@
   <arg name="kinect_enabled" default="$(optenv HUSKY_UR5_ENABLED false)"/>
   <arg name="urdf_extras" default="$(optenv HUSKY_URDF_EXTRAS)"/>
 
-  <include file="$(find multimaster_launch)/launch/multimaster_robot.launch">
-    <arg name="gazebo_interface" value="$(find husky_control)/config/gazebo_interface.yaml" />
-    <arg name="public_interface" value="$(find husky_control)/config/public_interface.yaml" />
-    <arg name="robot_namespace" value="$(arg robot_namespace)"/>
-    <arg name="simulation" value="$(arg simulation)"/>
-  </include>
+  <group if="$(arg mutlimaster_enabled)">
+    <include file="$(find multimaster_launch)/launch/multimaster_robot.launch">
+      <arg name="gazebo_interface" value="$(find husky_control)/config/gazebo_interface.yaml" />
+      <arg name="public_interface" value="$(find husky_control)/config/public_interface.yaml" />
+      <arg name="robot_namespace" value="$(arg robot_namespace)"/>
+    </include>
+  </group>
 
   <!-- Load robot description -->
   <include file="$(find husky_description)/launch/description.launch" >
     <arg name="laser_enabled" default="$(arg laser_enabled)"/>
     <arg name="kinect_enabled" default="$(arg kinect_enabled)"/>
+    <arg name="robot_namespace" default="$(arg robot_namespace)"/>
     <arg name="urdf_extras" default="$(arg urdf_extras)"/>
   </include>
 

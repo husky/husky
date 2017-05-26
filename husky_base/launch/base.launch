@@ -27,6 +27,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 <launch>
     <arg name="port" default="$(optenv HUSKY_PORT /dev/prolific)" />
+    <arg name="multimaster_enabled" default="$(optenv HUSKY_MULTIMASTER false)" />
+    <arg name="robot_namespace" default="$(optenv HUSKY_NAMESPACE /)" />
 
     <!-- Husky harware driver -->
     <node pkg="husky_base" type="husky_node" name="husky_node">
@@ -44,10 +46,13 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     </node>
 
     <!-- Differential controller parameters and basic localization -->
-    <include file="$(find husky_control)/launch/control.launch" />
+    <include file="$(find husky_control)/launch/control.launch" >
+      <arg name="multimaster_enabled" default="$(arg multimaster_enabled)"/>
+      <arg name="robot_namespace" default="$(arg robot_namepsace)" />
+    </include>
 
     <!--Teleop -->
-    <include file="$(find husky_control)/launch/teleop.launch" />
+    <include file="$(find husky_control)/launch/teleop.launch" >
 
     <!-- Diagnostic Aggregator -->
     <node pkg="diagnostic_aggregator" type="aggregator_node" name="diagnostic_aggregator">
