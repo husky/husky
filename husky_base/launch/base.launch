@@ -28,7 +28,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <launch>
     <arg name="port" default="$(optenv HUSKY_PORT /dev/prolific)" />
     <arg name="multimaster_enabled" default="$(optenv HUSKY_MULTIMASTER false)" />
-    <arg name="robot_namespace" default="$(optenv HUSKY_NAMESPACE /)" />
+    <arg name="robot_namespace" default="$(optenv HUSKY_NAMESPACE husky)" />
 
     <!-- Husky harware driver -->
     <node pkg="husky_base" type="husky_node" name="husky_node">
