@@ -1,0 +1,5 @@
+r_gripper_controller:
+  # Position Controllers ---------------------------------------
+  type: effort_controllers/JointPositionController
+  joint: r_gripper_l_finger_joint
+  pid: {p: 100.0, i: 0.01, d: 10.0}

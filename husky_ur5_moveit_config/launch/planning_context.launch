@@ -1,4 +1,9 @@
 <launch>
+  <arg name="laser_enabled" default="false"/>
+  <arg name="ur5_enabled" default="true"/>
+  <arg name="gripper_enabled" default="true"/>
+  <arg name="kinect_enabled" default="true"/>
+
   <!-- By default we do not overwrite the URDF. Change the following to true to change the default behavior -->
   <arg name="load_robot_description" default="false"/>
 
@@ -6,7 +11,14 @@
   <arg name="robot_description" default="robot_description"/>
 
   <!-- Load universal robot description format (URDF) -->
-  <param if="$(arg load_robot_description)" name="$(arg robot_description)" command="$(find xacro)/xacro.py '$(find husky_description)/urdf/description.xacro'"/>
+  <param if="$(arg load_robot_description)" name="$(arg robot_description)"
+         command="$(find xacro)/xacro.py '$(find
+                  husky_description)/urdf/description.xacro'
+                  laser_enabled:=$(arg laser_enabled)
+                  ur5_enabled:=$(arg ur5_enabled)
+                  kinect_enabled:=$(arg kinect_enabled)
+                  gripper_enabled:=$(arg gripper_enabled)
+                  "/>
 
   <!-- The semantic description that corresponds to the URDF -->
   <param name="$(arg robot_description)_semantic" textfile="$(find husky_ur5_moveit_config)/config/husky_ur5.srdf" />

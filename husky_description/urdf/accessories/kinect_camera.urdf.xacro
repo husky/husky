@@ -39,6 +39,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
         <geometry>
           <mesh filename="package://husky_description/meshes/accessories/kinect.dae" />
         </geometry>
+        <material name="LightGrey">
+          <color rgba="0.6 0.6 0.6 1.0"/>
+        </material>
       </visual>
       <collision>
         <geometry>
