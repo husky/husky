@@ -1,0 +1,15 @@
+flir_ptu_pan_controller:
+  type: position_controllers/JointPositionController
+  joint: husky_ptu_pan
+  pid:
+    p: 0
+    i: 0
+    d: 0
+
+flir_ptu_tilt_controller:
+  type: position_controllers/JointPositionController
+  joint: husky_ptu_tilt
+  pid:
+    p: 0
+    i: 0
+    d: 0.0
