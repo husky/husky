@@ -38,7 +38,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
             max_acceleration: 3.0
             max_speed: 1.0
-            wheel_diameter: 0.3555
+            wheel_diameter: 0.3302
             polling_timeout: 10.0
         </rosparam>
     </node>
