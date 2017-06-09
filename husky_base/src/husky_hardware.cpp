@@ -52,7 +52,7 @@ namespace husky_base
     safety_status_task_(husky_status_msg_),
     software_status_task_(husky_status_msg_, target_control_freq)
   {
-    private_nh_.param<double>("wheel_diameter", wheel_diameter_, 0.3555);
+    private_nh_.param<double>("wheel_diameter", wheel_diameter_, 0.3302);
     private_nh_.param<double>("max_accel", max_accel_, 5.0);
     private_nh_.param<double>("max_speed", max_speed_, 1.0);
     private_nh_.param<double>("polling_timeout_", polling_timeout_, 10.0);
