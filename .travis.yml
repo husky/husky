@@ -5,6 +5,8 @@ dist: trusty
 services:
   - docker
 language: generic 
+cache:
+  - apt
 compiler:
   - gcc
 notifications:
