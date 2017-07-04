@@ -1,8 +1,18 @@
 <launch>
 
-  <rosparam file="$(find husky_ur5_moveit_config)/config/controllers.yaml"/>
+  <arg name="real" default="true"/>
+
+  <group if="$(arg real)">
+      <rosparam file="$(find husky_ur5_moveit_config)/config/real_controllers.yaml"/>
+  </group>
+
+  <group unless="$(arg real)">
+      <rosparam file="$(find husky_ur5_moveit_config)/config/sim_controllers.yaml"/>
+  </group>
+
   <param name="use_controller_manager" value="false"/>
   <param name="trajectory_execution/execution_duration_monitoring" value="false"/>
   <param name="moveit_controller_manager" value="moveit_simple_controller_manager/MoveItSimpleControllerManager"/>
   <param name="arm_prefix" value="ur5_arm_"/>
+
 </launch>
