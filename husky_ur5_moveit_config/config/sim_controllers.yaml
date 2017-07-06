@@ -1,0 +1,6 @@
+controller_list:
+  - name: arm_controller
+    action_ns: follow_joint_trajectory
+    default: true
+    type: FollowJointTrajectory
+    joints: [ur5_arm_shoulder_pan_joint, ur5_arm_shoulder_lift_joint, ur5_arm_elbow_joint, ur5_arm_wrist_1_joint, ur5_arm_wrist_2_joint, ur5_arm_wrist_3_joint, ee_joint]
