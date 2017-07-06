@@ -17,6 +17,8 @@
 
   <buildtool_depend>catkin</buildtool_depend>
   <build_depend>roslaunch</build_depend>
+
+  <run_depend>husky_description</run_depend>
   <run_depend>interactive_marker_twist_server</run_depend>
   <run_depend>diff_drive_controller</run_depend>
   <run_depend>joint_state_controller</run_depend>
