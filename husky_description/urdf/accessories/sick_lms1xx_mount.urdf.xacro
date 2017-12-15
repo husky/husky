@@ -35,10 +35,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
     <link name="${prefix}_laser_mount">
       <visual>
-        <origin xyz="0 0 0" rpy="0 0 ${-M_PI/2}" />
+        <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
-          <!-- Origin of this mesh is the base of the bracket. -->
-          <mesh filename="package://husky_description/meshes/accessories/lms1xx_mount.dae" />
+          <mesh filename="package://husky_description/meshes/accessories/lms1xx_front_mount.dae" />
         </geometry>
       </visual>
       <collision>
