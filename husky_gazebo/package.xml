@@ -16,7 +16,7 @@
 
   <url type="website">http://ros.org/wiki/husky_gazebo</url>
   <url type="bugtracker">https://github.com/husky/husky_simulator/issues</url>
-  <url type="repository">https://github.com/husly/husky_simulator</url>
+  <url type="repository">https://github.com/husky/husky_simulator</url>
 
   <buildtool_depend>catkin</buildtool_depend>
   <build_depend>roslaunch</build_depend>

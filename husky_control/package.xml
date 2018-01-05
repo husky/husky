@@ -13,7 +13,7 @@
 
   <url type="website">http://ros.org/wiki/husky_control</url>
   <url type="bugtracker">https://github.com/husky/husky/issues</url>
-  <url type="repository">https://github.com/husly/husky</url>
+  <url type="repository">https://github.com/husky/husky</url>
 
   <buildtool_depend>catkin</buildtool_depend>
   <build_depend>roslaunch</build_depend>

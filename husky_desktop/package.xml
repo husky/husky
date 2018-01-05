@@ -11,7 +11,7 @@
 
   <url type="website">http://ros.org/wiki/husky_desktop</url>
   <url type="bugtracker">https://github.com/husky/husky_desktop/issues</url>
-  <url type="repository">https://github.com/husly/husky_desktop</url>
+  <url type="repository">https://github.com/husky/husky_desktop</url>
 
   <buildtool_depend>catkin</buildtool_depend>
   <run_depend>husky_viz</run_depend>
