@@ -347,6 +347,16 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
     <child link="dual_arm_bulkhead_link"/>
     <origin rpy="0 0 0" xyz="0 0 0.225"/>
   </joint>
+
+  <!-- Velodyne Link -->
+  <link name="velodyne"/>
+  <!-- Attach Velodyne Link -->
+  <joint name="velodyne_joint" type="fixed">
+    <parent link="dual_arm_bulkhead_link"/>
+    <child link="velodyne"/>
+    <origin rpy="0 0 0" xyz="-0.24535 0 0.39296"/>
+  </joint>
+
   <link name="husky_ptu_pan_link">
     <inertial>
       <mass value="0.65"/>
@@ -434,7 +444,7 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
       <inertia ixx="1.1e-09" ixy="0" ixz="0" iyy="1.1e-09" iyz="0" izz="1.1e-09"/>
     </inertial>
   </link>
-  <!-- There's an offset between the origin of the pan joint and the origin of 
+  <!-- There's an offset between the origin of the pan joint and the origin of
          the overall device, which is between the mounting screws on its base. -->
   <joint name="husky_ptu_base" type="fixed">
     <parent link="husky_ptu_base_link"/>
@@ -4816,4 +4826,3 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
     <origin rpy="0 -0.785 -1.57" xyz="0.125 0.15 0.135"/>
   </joint>
 </robot>
-
