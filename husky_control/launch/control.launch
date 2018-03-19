@@ -12,7 +12,7 @@
   <arg name="kinect_enabled" default="$(optenv HUSKY_KINECT_ENABLED false)"/>
   <arg name="urdf_extras" default="$(optenv HUSKY_URDF_EXTRAS)"/>
 
-  <include file="$(find multimaster_launch)/launch/multimaster_robot.launch">
+  <include file="$(find multimaster_launch)/launch/multimaster_robot.launch" if="$(arg multimaster)">
     <arg name="gazebo_interface" value="$(find husky_control)/config/gazebo_interface.yaml" />
     <arg name="public_interface" value="$(find husky_control)/config/public_interface.yaml" />
     <arg name="robot_namespace" value="$(arg robot_namespace)"/>
