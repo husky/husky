@@ -2,6 +2,15 @@
 Changelog for package husky_desktop
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Updated all package versions to 0.2.6.
+* Fixed typo in URLs.
+* Remove defunct email address
+* Updated maintainers.
+* Move packages into monorepo for kinetic; strip out ur packages
+* Contributors: Paul Bovbel, Tony Baltovski
+
 0.2.2 (2015-04-08)
 ------------------
 

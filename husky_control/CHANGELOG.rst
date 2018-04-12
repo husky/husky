@@ -2,6 +2,28 @@
 Changelog for package husky_control
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Updated all package versions to 0.2.6.
+* Made multimaster not come up by default in husky_control
+* [husky_control] Fixed typo.
+* Updated the rolling window size for more responsive control
+* Fixed typo in URLs.
+* Added dependency on husky_description to husky_control/package.xml
+* Remove defunct email address
+* Updated maintainers.
+* Added more details to the config_extras workflow.
+* Temp commit
+* Add interface definitions
+* Revert "Remove twist_mux config."
+  (cherry picked from commit 4ae73877d0d3b0db8e6bc6be18f0648ea310d372)
+* Update bringup for multirobot
+* Purge more UR; Implement urdf_extras
+* Update URDF for multirobot
+* Remove twist_mux config.
+* Replace twist-mux
+* Contributors: Administrator, Dave Niewinski, Paul Bovbel, Peiyi Chen, TheDash, Tony Baltovski
+
 0.2.7 (2015-12-31)
 ------------------
 * Update localization.yaml

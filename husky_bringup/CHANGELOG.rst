@@ -2,6 +2,18 @@
 Changelog for package husky_bringup
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Remove defunct email address
+* Re-added microstrain_3dmgx2_imu as run  dependency.
+* Re-added imu_transformer and um7 as run dependencies.
+* Updated maintainers.
+* Changed the name of robot_upstart job to ros.
+* Added the UM6 as a run dep.
+* Purge more UR; Implement urdf_extras
+* Move packages into monorepo for kinetic; strip out ur packages
+* Contributors: Paul Bovbel, Tony Baltovski
+
 0.2.6 (2016-10-03)
 ------------------
 * Adding support for the UM7 IMU.

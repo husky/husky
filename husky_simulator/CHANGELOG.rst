@@ -2,6 +2,14 @@
 Changelog for package husky_simulator
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Fixed typo in URLs.
+* Remove defunct email address
+* Updated maintainers.
+* Move packages into monorepo for kinetic; strip out ur packages
+* Contributors: Paul Bovbel, Tony Baltovski
+
 0.2.6 (2016-10-26)
 ------------------
 

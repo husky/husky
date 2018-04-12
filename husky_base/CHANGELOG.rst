@@ -2,6 +2,17 @@
 Changelog for package husky_base
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Fix default tyre radius
+* changed the tire radius in base.launch to reflect a 13 inch Husky outdoor tire
+* Remove defunct email address
+* Updated maintainers.
+* Update bringup for multirobot
+* Update URDF for multirobot
+* Move packages into monorepo for kinetic; strip out ur packages
+* Contributors: Martin Cote, Paul Bovbel, Tony Baltovski, Wolfgang Merkt
+
 0.2.6 (2016-10-03)
 ------------------
 * Adding support for the UM7 IMU.

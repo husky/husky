@@ -2,6 +2,32 @@
 Changelog for package husky_gazebo
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Fixed typo in URLs.
+* Corrected the kinect scan topic name so it matches the laser scanner topic name.
+* description.launch should be launched only once when the flag multimaster is false.
+  This commit fixes `#47 <https://github.com/husky/husky/issues/47>`_.
+  Also delete the urdf subdirectory from the installation list of the package husky_gazebo
+  since the directory doesn't exist.
+  HOW BUILT
+  $ catkin_make_isolated --install --use-ninja
+  HOW VERIFIED
+  $ roslaunch husky_gazebo husky_playpen.launch
+  $ roslaunch husky_viz view_robot.launch
+  Verify that the LiDAR is present on the gazebo husky and works as expected.
+  Change-Id: I8797d561489250417dc8fe2b49d958993ca7949c
+  Signed-off-by: Wei Ren <renwei@smartconn.cc>
+* Remove defunct email address
+* Updated maintainers.
+* Temp commit
+* Add interface definitions
+* Update bringup for multirobot
+* Purge more UR; Implement urdf_extras
+* Update URDF for multirobot
+* Move packages into monorepo for kinetic; strip out ur packages
+* Contributors: Farzad Niroui, Paul Bovbel, Tony Baltovski, Wei Ren
+
 0.2.6 (2016-10-26)
 ------------------
 * spawn_husky.launch: enable to use custom controller files, i.e effort controller
