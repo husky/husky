@@ -2,8 +2,8 @@
 Changelog for package husky_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.3.0 (2018-04-11)
+------------------
 * Updated all package versions to 0.2.6.
 * Added a large top plate (used for waterproofing upgrade and UR5 upgrade) and an environment variable for controlling it HUSKY_LARGE_TOP_PLATE
 * changed Husky wheel radius, a Husky outdoor tire is 13 inchs (0.3302m)

@@ -2,8 +2,8 @@
 Changelog for package husky_robot
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.3.0 (2018-04-11)
+------------------
 * Remove defunct email address
 * Updated maintainers.
 * Move packages into monorepo for kinetic; strip out ur packages

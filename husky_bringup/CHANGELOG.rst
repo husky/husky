@@ -2,8 +2,8 @@
 Changelog for package husky_bringup
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.3.0 (2018-04-11)
+------------------
 * Remove defunct email address
 * Re-added microstrain_3dmgx2_imu as run  dependency.
 * Re-added imu_transformer and um7 as run dependencies.

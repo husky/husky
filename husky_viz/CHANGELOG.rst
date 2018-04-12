@@ -2,8 +2,8 @@
 Changelog for package husky_viz
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.3.0 (2018-04-11)
+------------------
 * Updated all package versions to 0.2.6.
 * Fixed typo in URLs.
 * Remove defunct email address

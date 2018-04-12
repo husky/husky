@@ -2,8 +2,8 @@
 Changelog for package husky_gazebo
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.3.0 (2018-04-11)
+------------------
 * Fixed typo in URLs.
 * Corrected the kinect scan topic name so it matches the laser scanner topic name.
 * description.launch should be launched only once when the flag multimaster is false.

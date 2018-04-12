@@ -2,8 +2,8 @@
 Changelog for package husky_simulator
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.3.0 (2018-04-11)
+------------------
 * Fixed typo in URLs.
 * Remove defunct email address
 * Updated maintainers.

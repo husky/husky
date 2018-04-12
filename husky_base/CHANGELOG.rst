@@ -2,8 +2,8 @@
 Changelog for package husky_base
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.3.0 (2018-04-11)
+------------------
 * Fix default tyre radius
 * changed the tire radius in base.launch to reflect a 13 inch Husky outdoor tire
 * Remove defunct email address

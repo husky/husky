@@ -2,8 +2,8 @@
 Changelog for package husky_control
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.3.0 (2018-04-11)
+------------------
 * Updated all package versions to 0.2.6.
 * Made multimaster not come up by default in husky_control
 * [husky_control] Fixed typo.
