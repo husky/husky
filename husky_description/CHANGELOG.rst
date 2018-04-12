@@ -2,8 +2,8 @@
 Changelog for package husky_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.2.8 (2018-04-11)
+------------------
 * Added a large top plate (used for waterproofing upgrade and UR5 upgrade) and an environment variable for controlling it HUSKY_LARGE_TOP_PLATE
 * Moved URDF_EXTRAS into the macro where it belongs
 * Added environment variables to enabled or disabled the bumpers and the user rail

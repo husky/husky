@@ -2,8 +2,8 @@
 Changelog for package husky_control
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.2.8 (2018-04-11)
+------------------
 * Fixed typo in URLs.
 * Revert "Remove twist_mux config."
 * Remove twist_mux config.

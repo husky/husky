@@ -2,8 +2,8 @@
 Changelog for package husky_navigation
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.2.8 (2018-04-11)
+------------------
 * Fixed typo in URLs.
 * Contributors: Tony Baltovski
 

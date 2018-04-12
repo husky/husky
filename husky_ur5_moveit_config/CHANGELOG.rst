@@ -2,8 +2,8 @@
 Changelog for package husky_ur5_moveit_config
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.2.8 (2018-04-11)
+------------------
 * Fixed typo in URLs.
 * Removed old controllers.yaml
 * Added dependency fixes and synergy between dualur5 config files
