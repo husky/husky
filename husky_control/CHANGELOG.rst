@@ -2,6 +2,14 @@
 Changelog for package husky_control
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Fixed typo in URLs.
+* Revert "Remove twist_mux config."
+* Remove twist_mux config.
+* Replace twist-mux
+* Contributors: Administrator, Peiyi Chen, Tony Baltovski
+
 0.2.7 (2015-12-31)
 ------------------
 * Update localization.yaml

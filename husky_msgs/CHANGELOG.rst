@@ -2,6 +2,11 @@
 Changelog for package husky_msgs
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Fixed typo in URLs.
+* Contributors: Tony Baltovski
+
 0.2.7 (2015-12-31)
 ------------------
 

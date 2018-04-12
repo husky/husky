@@ -2,6 +2,17 @@
 Changelog for package husky_ur5_moveit_config
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Fixed typo in URLs.
+* Removed old controllers.yaml
+* Added dependency fixes and synergy between dualur5 config files
+* Added pading to the robot so the real robot doesn't fail
+* This package depends on ur_kinematics
+* added dependencies on these moveit packages
+* created .setup_assistant, needed to run moveit assitant
+* Contributors: Dash, Ilia Baranov, TheDash, Tony Baltovski
+
 0.2.7 (2015-12-31)
 ------------------
 

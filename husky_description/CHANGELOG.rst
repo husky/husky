@@ -2,6 +2,18 @@
 Changelog for package husky_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Added a large top plate (used for waterproofing upgrade and UR5 upgrade) and an environment variable for controlling it HUSKY_LARGE_TOP_PLATE
+* Moved URDF_EXTRAS into the macro where it belongs
+* Added environment variables to enabled or disabled the bumpers and the user rail
+* Added urdf_extras so husky is consistent to our other platforms
+* Changed the wheel radius to reflect 13 inch outdoor Husky tire
+* [husky_description] Updated intertial parameters.
+* wheel.urdf.xacro: swap iyy, izz inertias
+  Fixes `#34 <https://github.com/husky/husky/issues/34>`_.
+* Contributors: Dave Niewinski, Martin Cote, Steven Peters, Tony Baltovski
+
 0.2.7 (2015-12-31)
 ------------------
 * Fixed indent.
