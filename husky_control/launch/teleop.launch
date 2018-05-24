@@ -6,11 +6,16 @@
 
   <group ns="joy_teleop">
 
-    <rosparam command="load" file="$(find husky_control)/config/teleop.yaml" />
+    <group unless="$(optenv HUSKY_LOGITECH 0)" >
+      <rosparam command="load" file="$(find husky_control)/config/teleop_ps4.yaml" />
+    </group>
 
-    <node pkg="joy" type="joy_node" name="joy_node">
-      <param name="dev" value="$(arg joy_dev)" />
-    </node>
+    <group if="$(optenv HUSKY_LOGITECH 0)" >
+      <rosparam command="load" file="$(find husky_control)/config/teleop.yaml" />
+      <param name="joy_node/dev" value="$(arg joy_dev)" />
+    </group>
+
+    <node pkg="joy" type="joy_node" name="joy_node" />
 
     <node pkg="teleop_twist_joy" type="teleop_node" name="teleop_twist_joy"/>
   </group>
