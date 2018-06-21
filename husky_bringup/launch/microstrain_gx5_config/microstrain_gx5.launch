@@ -2,12 +2,6 @@
 <launch>
   <!-- Standalone example launch file for 3DM-GX5-25 -->
 
-  <!-- For setting debug level to debug -->
-  <!--
-  <env name="ROSCONSOLE_CONFIG_FILE" 
-       value="$(find microstrain_3dm_gx5_45)/config/custom_rosconsole.conf"/>
-  -->
-
   <!-- Microstain sensor node -->
   <node name="microstrain_3dm_gx5_25_node" 
   pkg="microstrain_3dm_gx5_45" 
@@ -44,12 +38,5 @@
     <param name="odom_child_frame_id" value="base_link" type="str" />
   </node>
 
-  <!-- Diagnostics -->
-  <!--
-  <node pkg="rqt_topic" type="rqt_topic" name="rqt_topic"/>
-  -->
-  <!--<node pkg="rqt_plot" type="rqt_plot" name="pid_setpoints"
-      args="/yaw_pid_debug/Setpoint /vel_pid_debug/Setpoint"/>-->
- 
 </launch>
 
