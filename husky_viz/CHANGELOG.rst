@@ -2,6 +2,12 @@
 Changelog for package husky_viz
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Updated dependencies for robot_state_publisher
+* Updated view_model.launch to include a robot_state_publisher since it was moved to control.launch
+* Contributors: Dave Niewinski
+
 0.3.0 (2018-04-11)
 ------------------
 * Updated all package versions to 0.2.6.

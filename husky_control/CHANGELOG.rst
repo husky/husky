@@ -2,6 +2,11 @@
 Changelog for package husky_control
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Updated default controller to be PS4.  Can be set back to logitech (legacy) by setting HUSKY_LOGITECH environment variable
+* Contributors: Dave Niewinski
+
 0.3.0 (2018-04-11)
 ------------------
 * Updated all package versions to 0.2.6.

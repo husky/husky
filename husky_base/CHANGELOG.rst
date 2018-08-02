@@ -2,6 +2,9 @@
 Changelog for package husky_base
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+
 0.3.0 (2018-04-11)
 ------------------
 * Fix default tyre radius

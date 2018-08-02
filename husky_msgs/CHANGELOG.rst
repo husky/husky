@@ -2,6 +2,9 @@
 Changelog for package husky_msgs
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+
 0.3.0 (2018-04-11)
 ------------------
 * Updated all package versions to 0.2.6.
