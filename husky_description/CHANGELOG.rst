@@ -2,8 +2,8 @@
 Changelog for package husky_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.3.1 (2018-08-02)
+------------------
 * Removed unnecessary dae objects and duplicate vertices
 * Contributors: Dave Niewinski
 

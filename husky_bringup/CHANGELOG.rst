@@ -2,8 +2,8 @@
 Changelog for package husky_bringup
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.3.1 (2018-08-02)
+------------------
 * Renamed udev so it is installed
 * Contributors: Dave Niewinski, Tony Baltovski
 
