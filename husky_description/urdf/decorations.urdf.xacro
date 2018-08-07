@@ -27,6 +27,8 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
 
   <xacro:macro name="husky_decorate">
 
+    <xacro:property name="husky_bumper_extend" value="$(optenv HUSKY_FORWARD_BUMPER_EXTEND 0)" />
+
     <!-- Spawn Husky chassis -->
     <link name="top_chassis_link">
       <visual>
@@ -70,10 +72,26 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
 
     <!-- Attach front bumper -->
     <joint name="front_bumper" type="fixed">
-      <origin xyz="0.48 0 0.091" rpy="0 0 0" />
+      <origin xyz="${0.48 + husky_bumper_extend / 100.0} 0 0.091" rpy="0 0 0" />
       <parent link="base_link" />
       <child link="front_bumper_link" />
     </joint>
+
+    <xacro:if value="${husky_bumper_extend}">
+      <link name="front_bumper_extension_link">
+          <visual>
+              <geometry>
+                  <mesh filename="package://husky_description/meshes/bumper_extension.dae" scale="${husky_bumper_extend} 1 1"/>
+              </geometry>
+          </visual>
+      </link>
+
+      <joint name="front_bumper_extension" type="fixed">
+        <origin xyz="${0.405 + husky_bumper_extend / 200.0} 0 0.091" rpy="0 0 0" />
+        <parent link="base_link" />
+        <child link="front_bumper_extension_link" />
+      </joint>
+    </xacro:if>
 
     <!-- Spawn rear bumper link -->
     <link name="rear_bumper_link">
