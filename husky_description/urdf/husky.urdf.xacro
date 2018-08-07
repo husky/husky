@@ -33,6 +33,8 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
   <xacro:arg name="kinect_xyz" default="$(optenv HUSKY_KINECT_XYZ 0 0 0)" />
   <xacro:arg name="kinect_rpy" default="$(optenv HUSKY_KINECT_RPY 0 0.18 3.14)" />
 
+  <xacro:property name="husky_bumper_extend" value="$(optenv HUSKY_FORWARD_BUMPER_EXTEND 0)" />
+
   <xacro:arg name="robot_namespace" default="/" />
   <xacro:arg name="urdf_extras" default="empty.urdf" />
 
@@ -69,9 +71,9 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
       </geometry>
     </visual>
     <collision>
-      <origin xyz="0 0 ${base_z_size/4}" rpy="0 0 0" />
+      <origin xyz="${husky_bumper_extend / 200.0} 0 ${base_z_size/4}" rpy="0 0 0" />
       <geometry>
-        <box size="${base_x_size} ${base_y_size} ${base_z_size/2}"/>
+        <box size="${base_x_size + husky_bumper_extend / 100.0} ${base_y_size} ${base_z_size/2}"/>
       </geometry>
     </collision>
     <collision>
