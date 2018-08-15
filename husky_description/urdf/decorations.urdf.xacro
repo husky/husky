@@ -45,21 +45,23 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
       <child link="top_chassis_link" />
     </joint>
 
-    <!-- Spawn user rails -->
-    <link name="user_rail_link">
-      <visual>
-        <geometry>
-          <mesh filename="package://husky_description/meshes/user_rail.dae" />
-        </geometry>
-      </visual>
-    </link>
+    <xacro:if value="$(optenv HUSKY_USER_RAIL_ENABLED true)">
+      <!-- Spawn user rails -->
+      <link name="user_rail_link">
+        <visual>
+          <geometry>
+            <mesh filename="package://husky_description/meshes/user_rail.dae" />
+          </geometry>
+        </visual>
+      </link>
 
-    <!-- Attach user rails to base link -->
-    <joint name="user_rail" type="fixed">
-      <origin xyz="0.272 0 0.245" rpy="0 0 0" />
-      <parent link="base_link" />
-      <child link="user_rail_link" />
-    </joint>
+      <!-- Attach user rails to base link -->
+      <joint name="user_rail" type="fixed">
+        <origin xyz="0.272 0 0.245" rpy="0 0 0" />
+        <parent link="base_link" />
+        <child link="user_rail_link" />
+      </joint>
+    </xacro:if>
 
     <!-- Spawn front bumper link -->
     <link name="front_bumper_link">
@@ -138,6 +140,18 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
           <child link="top_plate_link"/>
           <origin xyz="0.0812 0 0.225" rpy="0 0 0"/>
         </joint>
+        <!-- Top plate front link -->
+        <joint name="top_plate_front_joint" type="fixed">
+          <parent link="top_plate_link" />
+          <child link="top_plate_front_link"/>
+          <origin xyz="0.4125 0 0.00672" rpy="0 0 0"/>
+        </joint>
+        <!-- Top plate rear link-->
+        <joint name="top_plate_rear_joint" type="fixed">
+          <parent link="top_plate_link" />
+          <child link="top_plate_rear_link"/>
+          <origin xyz="-0.4125 0 0.00672" rpy="0 0 0"/>
+        </joint>
       </xacro:if>
 
       <xacro:unless value="$(optenv HUSKY_LARGE_TOP_PLATE false)">
@@ -161,15 +175,27 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
             </geometry>
           </collision>
         </link>
-
         <!-- Attach top plate -->
         <joint name="top_plate_joint" type="fixed">
           <parent link="base_link" />
           <child link="top_plate_link"/>
           <origin xyz="0.0812 0 0.245" rpy="0 0 0"/>
         </joint>
+        <!-- Top plate front link -->
+        <joint name="top_plate_front_joint" type="fixed">
+          <parent link="top_plate_link" />
+          <child link="top_plate_front_link"/>
+          <origin xyz="0.36367 0 0.00639" rpy="0 0 0"/>
+        </joint>
+        <!-- Top plate rear link-->
+        <joint name="top_plate_rear_joint" type="fixed">
+          <parent link="top_plate_link" />
+          <child link="top_plate_rear_link"/>
+          <origin xyz="-0.36633 0 0.00639" rpy="0 0 0"/>
+        </joint>
       </xacro:unless>
-
+      <link name="top_plate_front_link"/>
+      <link name="top_plate_rear_link"/>
     </xacro:if>
 
   </xacro:macro>
