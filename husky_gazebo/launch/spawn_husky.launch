@@ -31,6 +31,7 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
 
   <arg name="x" default="0.0"/>
   <arg name="y" default="0.0"/>
+  <arg name="z" default="0.0"/>
   <arg name="yaw" default="0.0"/>
 
   <arg name="laser_enabled" default="$(optenv HUSKY_LMS1XX_ENABLED false)"/>
@@ -102,6 +103,7 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
     <node name="spawn_husky_model" pkg="gazebo_ros" type="spawn_model"
         args="-x $(arg x)
               -y $(arg y)
+              -z $(arg z)
               -Y $(arg yaw)
               -unpause
               -urdf
