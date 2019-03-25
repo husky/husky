@@ -2,6 +2,11 @@
 Changelog for package husky_gazebo
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Added Z to spawn husky launch
+* Contributors: Dave Niewinski
+
 0.3.1 (2018-08-02)
 ------------------
 

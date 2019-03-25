@@ -2,6 +2,16 @@
 Changelog for package husky_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Added some additional frames on the top plates and an environment variable for diabling the user rails
+* Added env var to allow a 7cm forward bumper extension (`#92 <https://github.com/husky/husky/issues/92>`_)
+  * Added env var to allow for extendable front bumper
+  * Fix weird spacing
+  * Uploaded bumper extension meshes
+  * Allowed for different lengths of bumper extensions
+* Contributors: Dave Niewinski, Guy Stoppi
+
 0.3.1 (2018-08-02)
 ------------------
 * Removed unnecessary dae objects and duplicate vertices

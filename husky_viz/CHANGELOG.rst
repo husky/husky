@@ -2,6 +2,9 @@
 Changelog for package husky_viz
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+
 0.3.1 (2018-08-02)
 ------------------
 * Updated dependencies for robot_state_publisher
