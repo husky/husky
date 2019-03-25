@@ -2,8 +2,8 @@
 Changelog for package husky_bringup
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.3.2 (2019-03-25)
+------------------
 * [husky_bringup] Disabled the use of magnetic field msgs in imu_filter_madgwick.
 * Contributors: Tony Baltovski
 

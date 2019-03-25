@@ -2,8 +2,8 @@
 Changelog for package husky_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.3.2 (2019-03-25)
+------------------
 * Added some additional frames on the top plates and an environment variable for diabling the user rails
 * Added env var to allow a 7cm forward bumper extension (`#92 <https://github.com/husky/husky/issues/92>`_)
   * Added env var to allow for extendable front bumper
