@@ -27,7 +27,8 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
 
   <xacro:macro name="husky_decorate">
 
-    <xacro:property name="husky_bumper_extend" value="$(optenv HUSKY_FORWARD_BUMPER_EXTEND 0)" />
+    <xacro:property name="husky_front_bumper_extend" value="$(optenv HUSKY_FRONT_BUMPER_EXTEND 0)" />
+    <xacro:property name="husky_rear_bumper_extend" value="$(optenv HUSKY_REAR_BUMPER_EXTEND 0)" />
 
     <!-- Spawn Husky chassis -->
     <link name="top_chassis_link">
@@ -74,22 +75,22 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
 
     <!-- Attach front bumper -->
     <joint name="front_bumper" type="fixed">
-      <origin xyz="${0.48 + husky_bumper_extend / 100.0} 0 0.091" rpy="0 0 0" />
+      <origin xyz="${0.48 + husky_front_bumper_extend} 0 0.091" rpy="0 0 0" />
       <parent link="base_link" />
       <child link="front_bumper_link" />
     </joint>
 
-    <xacro:if value="${husky_bumper_extend}">
+    <xacro:if value="${husky_front_bumper_extend}">
       <link name="front_bumper_extension_link">
           <visual>
               <geometry>
-                  <mesh filename="package://husky_description/meshes/bumper_extension.dae" scale="${husky_bumper_extend} 1 1"/>
+                  <mesh filename="package://husky_description/meshes/bumper_extension.dae" />
               </geometry>
           </visual>
       </link>
 
       <joint name="front_bumper_extension" type="fixed">
-        <origin xyz="${0.405 + husky_bumper_extend / 200.0} 0 0.091" rpy="0 0 0" />
+        <origin xyz="${0.48 + husky_front_bumper_extend} 0 0.091" rpy="0 0 0" />
         <parent link="base_link" />
         <child link="front_bumper_extension_link" />
       </joint>
@@ -106,10 +107,26 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
 
     <!-- Attach rear bumper -->
     <joint name="rear_bumper" type="fixed">
-      <origin xyz="-0.48 0 0.091" rpy="0 0 ${M_PI}" />
+      <origin xyz="${-0.48 - husky_rear_bumper_extend} 0 0.091" rpy="0 0 ${M_PI}" />
       <parent link="base_link" />
       <child link="rear_bumper_link" />
     </joint>
+
+    <xacro:if value="${husky_rear_bumper_extend}">
+      <link name="rear_bumper_extension_link">
+          <visual>
+              <geometry>
+                  <mesh filename="package://husky_description/meshes/bumper_extension.dae" />
+              </geometry>
+          </visual>
+      </link>
+
+      <joint name="rear_bumper_extension" type="fixed">
+        <origin xyz="${-0.48 - husky_rear_bumper_extend} 0 0.091" rpy="0 0 ${M_PI}" />
+        <parent link="base_link" />
+        <child link="rear_bumper_extension_link" />
+      </joint>
+    </xacro:if>
 
     <xacro:if value="$(optenv HUSKY_TOP_PLATE_ENABLED true)">
       <!-- Spawn the top plate -->
@@ -125,12 +142,6 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
             <origin xyz="0 0 0" rpy="0 0 0"/>
             <geometry>
               <mesh filename="package://husky_description/meshes/large_top_plate_collision.stl" />
-            </geometry>
-          </collision>
-          <collision>
-            <!-- Extra collision tag for widgets on top plate -->
-            <geometry>
-              <box size="0.32 0.41 0.09" rpy="0 0 0"/>
             </geometry>
           </collision>
         </link>
@@ -165,13 +176,7 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
           <collision>
             <origin xyz="0 0 0" rpy="0 0 0"/>
             <geometry>
-              <mesh filename="package://husky_description/meshes/top_plate.dae" />
-            </geometry>
-          </collision>
-          <collision>
-            <!-- Extra collision tag for widgets on top plate -->
-            <geometry>
-              <box size="0.32 0.41 0.09" rpy="0 0 0"/>
+              <mesh filename="package://husky_description/meshes/top_plate.stl" />
             </geometry>
           </collision>
         </link>
