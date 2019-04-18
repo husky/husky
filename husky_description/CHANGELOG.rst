@@ -2,6 +2,11 @@
 Changelog for package husky_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Fixed bumper extensions, cleaned up collision meshes
+* Contributors: Dave Niewinski
+
 0.3.2 (2019-03-25)
 ------------------
 * Added some additional frames on the top plates and an environment variable for diabling the user rails
