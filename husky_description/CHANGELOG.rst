@@ -2,8 +2,8 @@
 Changelog for package husky_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.3.3 (2019-04-18)
+------------------
 * Fixed bumper extensions, cleaned up collision meshes
 * Contributors: Dave Niewinski
 
