@@ -14,8 +14,11 @@ if os.path.exists('/dev/clearpath/imu') or os.path.exists('/dev/clearpath/um6'):
 if os.path.exists('/dev/clearpath/um7'):
   j.add(package="husky_bringup", glob="launch/um7_config/*")
 
-if os.path.exists('/dev/microstrain'):
-  j.add(package="husky_bringup", glob="launch/microstrain_config/*")
+if os.path.exists('/dev/microstrain_gx3'):
+  j.add(package="husky_bringup", glob="launch/microstrain_gx3_config/*")
+
+if os.path.exists('/dev/microstrain_gx5'):
+  j.add(package="husky_bringup", glob="launch/microstrain_gx5_config/*")
 
 if os.path.exists('/dev/clearpath/gps'):
   j.add(package="husky_bringup", glob="launch/navsat_config/*")
