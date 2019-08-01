@@ -19,7 +19,8 @@
   <buildtool_depend>catkin</buildtool_depend>
   <build_depend>roslaunch</build_depend>
   <run_depend>amcl</run_depend>
-  <run_depend>frontier_exploration</run_depend>
+  <!-- Disabling till package is released -->
+  <!-- <run_depend>frontier_exploration</run_depend> -->
   <run_depend>gmapping</run_depend>
   <run_depend>map_server</run_depend>
   <run_depend>move_base</run_depend>
