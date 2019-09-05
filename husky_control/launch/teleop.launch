@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <launch>
 
-  <arg name="joy_dev" default="/dev/input/js0" />
+  <arg name="joy_dev" default="$(optenv HUSKY_JOY_DEVICE /dev/input/js0)" />
   <arg name="joystick" default="true" />
 
   <group ns="joy_teleop">
