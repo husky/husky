@@ -2,8 +2,8 @@
 Changelog for package husky_bringup
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.4.1 (2019-09-30)
+------------------
 * [husky_bringup] Enabled using MagnenticField message for UM6 and UM7 since imu_filter_madgwick now uses it by default.
 * Added Udev rule for Logitech joy. (`#116 <https://github.com/husky/husky/issues/116>`_)
 * Contributors: Tony Baltovski
