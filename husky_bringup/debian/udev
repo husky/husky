@@ -1,2 +1,5 @@
 # Udev rule for the Prolific Serial-to-USB adapter shipped standard with Husky
 SUBSYSTEMS=="usb", ATTRS{manufacturer}=="Prolific*", SYMLINK+="prolific prolific_$attr{devpath}", MODE="0666"
+
+# Udev rule for the Logitec controller shipped standard with Husky
+KERNEL=="js*", ATTRS{idVendor}=="046d", ATTRS{idProduct}=="c21f", SYMLINK="input/f710"
