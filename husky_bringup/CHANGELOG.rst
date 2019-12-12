@@ -2,6 +2,12 @@
 Changelog for package husky_bringup
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* [husky_bringup] Installed udev rule for Logitech controller.
+* Added Udev rule for Logitech joy.
+* Contributors: Tony Baltovski
+
 0.3.4 (2019-08-01)
 ------------------
 * Properly support GX5.
