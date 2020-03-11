@@ -10,9 +10,8 @@
     <arg name="kinect_enabled" value="$(arg kinect_enabled)"/>
   </include>
 
-  <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
-    <param name="use_gui" value="true" />
-  </node>
+  <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" />
+  <node name="joint_state_publisher_gui" pkg="joint_state_publisher_gui" type="joint_state_publisher_gui" />
 
   <node name="rviz" pkg="rviz" type="rviz" args="-d $(find husky_viz)/rviz/model.rviz" />
 
