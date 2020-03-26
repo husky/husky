@@ -11,7 +11,7 @@
     </group>
 
     <group if="$(optenv HUSKY_LOGITECH 0)" >
-      <rosparam command="load" file="$(find husky_control)/config/teleop.yaml" />
+      <rosparam command="load" file="$(find husky_control)/config/teleop_logitech.yaml" />
       <param name="joy_node/dev" value="$(arg joy_dev)" />
     </group>
 
