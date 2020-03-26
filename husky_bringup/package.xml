@@ -27,6 +27,7 @@
   <run_depend>imu_filter_madgwick</run_depend>
   <run_depend>imu_transformer</run_depend>
   <run_depend>lms1xx</run_depend>
+  <run_depend>urg_node</run_depend>
   <run_depend>microstrain_3dmgx2_imu</run_depend>
   <run_depend>microstrain_mips</run_depend>
   <run_depend>nmea_comms</run_depend>
