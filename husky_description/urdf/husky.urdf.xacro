@@ -26,8 +26,6 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
 <robot name="husky" xmlns:xacro="http://ros.org/wiki/xacro">
 
   <xacro:arg name="laser_enabled" default="false" />
-  <xacro:arg name="laser_xyz" default="$(optenv HUSKY_LMS1XX_XYZ 0.2206 0.0 0.00635)" />
-  <xacro:arg name="laser_rpy" default="$(optenv HUSKY_LMS1XX_RPY 0.0 0.0 0.0)" />
 
   <xacro:arg name="kinect_enabled" default="false" />
   <xacro:arg name="kinect_xyz" default="$(optenv HUSKY_KINECT_XYZ 0 0 0)" />
@@ -138,15 +136,34 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
 
   <xacro:if value="$(arg laser_enabled)">
 
-    <sick_lms1xx_mount prefix="base"/>
+    <xacro:if value="$(optenv HUSKY_LASER_HOKUYO 0)">
+      <xacro:include filename="$(find husky_description)/urdf/accessories/hokuyo_ust10.urdf.xacro" />
+      <hokuyo_ust10_mount prefix="base"
+                          topic="scan" />
 
-    <sick_lms1xx frame="base_laser" topic="scan" robot_namespace="$(arg robot_namespace)"/>
+      <xacro:arg name="laser_xyz" default="$(optenv HUSKY_HOKUYO_XYZ 0.0 0.0 0.0)" />
+      <xacro:arg name="laser_rpy" default="$(optenv HUSKY_HOKUYO_RPY 0.0 0.0 0.0)" />
 
-    <joint name="laser_mount_joint" type="fixed">
-      <origin xyz="$(arg laser_xyz)" rpy="$(arg laser_rpy)" />
-      <parent link="top_plate_link" />
-      <child link="base_laser_mount" />
-    </joint>
+      <joint name="laser_mount_joint" type="fixed">
+        <origin xyz="$(arg laser_xyz)" rpy="$(arg laser_rpy)" />
+        <parent link="top_plate_link" />
+        <child link="base_laser_mount" />
+      </joint>
+    </xacro:if>
+    <xacro:unless value="$(optenv HUSKY_LASER_HOKUYO 0)">
+      <xacro:arg name="laser_xyz" default="$(optenv HUSKY_LMS1XX_XYZ 0.2206 0.0 0.00635)" />
+      <xacro:arg name="laser_rpy" default="$(optenv HUSKY_LMS1XX_RPY 0.0 0.0 0.0)" />
+
+      <sick_lms1xx_mount prefix="base"/>
+
+      <sick_lms1xx frame="base_laser" topic="scan" robot_namespace="$(arg robot_namespace)"/>
+
+      <joint name="laser_mount_joint" type="fixed">
+        <origin xyz="$(arg laser_xyz)" rpy="$(arg laser_rpy)" />
+        <parent link="top_plate_link" />
+        <child link="base_laser_mount" />
+      </joint>
+    </xacro:unless>
 
   </xacro:if>
 
