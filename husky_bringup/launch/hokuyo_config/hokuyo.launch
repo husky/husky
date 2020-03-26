@@ -3,9 +3,9 @@
   <arg name="laser_enabled" default="$(optenv HUSKY_LASER false)" />
   <arg name="hokuyo_enabled" default="$(optenv HUSKY_LASER_HOKUYO false)" />
   <group if="$(arg laser_enabled)">
-    <group unless="$(hokuyo_enabled)">
-      <node pkg="lms1xx" name="lms1xx" type="LMS1xx_node">
-        <param name="host" value="$(env HUSKY_LASER_IP)" />
+    <group if="$(arg hokuyo_enabled)">
+      <node pkg="urg_node" name="hokuyo" type="urg_node">
+        <param name="_ip_address" value="$(env HUSKY_LASER_IP 192.168.131.20)" />
         <param name="frame_id" value="base_laser" />
       </node>
     </group>

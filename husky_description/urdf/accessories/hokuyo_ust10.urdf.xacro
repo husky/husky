@@ -57,7 +57,7 @@
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
           <!-- Origin of this mesh is the base of the bracket. -->
-          <mesh filename="package://husky_description/meshes/accessories/hokuyo_ust10.stl" />
+          <mesh filename="package://jackal_description/meshes/hokuyo_ust10.stl" />
         </geometry>
         <material name="dark_grey" />
       </visual>
@@ -65,7 +65,7 @@
 
     <joint name="${prefix}_laser_joint" type="fixed">
       <!-- This offset is from the base of the bracket to the LIDAR's focal point. -->
-      <origin xyz="0 0 0" rpy="0 0 0" />
+      <origin xyz="0 0 0.149" rpy="0 0 0" />
       <parent link="${prefix}_laser_mount" />
       <child link="${prefix}_laser" />
     </joint>
