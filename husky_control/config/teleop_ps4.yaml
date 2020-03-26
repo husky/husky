@@ -1,4 +1,59 @@
 # Teleop configuration for PS4 joystick using the x-pad configuration.
+# Left thumb-stick up/down for velocity, left/right for twist
+# Left shoulder button for enable
+# Right shoulder button for enable-turbo
+#
+#          L1                                       R1
+#          L2                                       R2
+#       _=====_                                  _=====_
+#      / _____ \                                / _____ \
+#    +.-'_____'-.------------------------------.-'_____'-.+
+#   /   |     |  '.        S O N Y           .'  |  _  |   \
+#  / ___| /|\ |___ \                        / ___| /_\ |___ \      (Y)
+# / |      |      | ;                      ; | _         _ ||
+# | | <---   ---> | |                      | ||_|       (_)||  (X)     (B)
+# | |___   |   ___| ;                      ; |___       ___||
+# |\    | \|/ |    /  _      ____      _   \    | (X) |    /|      (A)
+# | \   |_____|  .','" "',  (_PS_)  ,'" "', '.  |_____|  .' |
+# |  '-.______.-' /       \        /       \  '-._____.-'   |
+# |               |  LJ   |--------|  RJ   |                |
+# |              /\       /        \       /\               |
+# |             /  '.___.'          '.___.'  \              |
+# |            /                              \             |
+#  \          /                                \           /
+#   \________/                                  \_________/
+#
+#          ^ x
+#          |
+#          |
+#  y <-----+      Accelerometer axes
+#           \
+#            \
+#             > z (out)
+#
+# BUTTON         Value
+#   L1             4
+#   L2             6
+#   R1             5
+#   R2             7
+#   A              1
+#   B              2
+#   X              0
+#   Y              3
+#
+#    AXIS        Value
+# Left Horiz.      0
+# Left Vert.       1
+# Right Horiz.     2
+# Right Vert.      5
+#    L2            3
+#    R2            4
+# D-pad Horiz.     9
+# D-pad Vert.      10
+# Accel x          7
+# Accel y          6
+# Accel z          8
+
 teleop_twist_joy:
   axis_linear: 1
   scale_linear: 0.4

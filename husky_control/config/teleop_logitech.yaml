@@ -1,0 +1,55 @@
+# Teleop configuration for Logitech F710 Gamepad using the x-pad configuration.
+# Left thumb-stick up/down for velocity, left/right for twist
+# LB for enable
+# RB for enable-turbo
+#
+#         (LB)                                 (RB)
+#         (LT)                                 (RT)
+#       _=====_            D(  .)X            _=====_
+#      / _____ \                             / _____ \
+#    +.-'_____'-.---------------------------.-'_____'-.+
+#   /   |     |  '.                       .'  |      |   \
+#  / ___| /|\ |___ \ (back)(Lgtc)(strt)  / ___| (Y)  |___ \
+# / |      |      | ;  __           __  ; |              | |
+# | | <---   ---> | | (__) .       (__) | | (X)       (B)| |
+# | |___   |   ___| ; MODE         VIBE ; |___       ____| /
+# |\    | \|/ |    /  _     ___      _   \    | (A) |    /|
+# | \   |_____|  .','" "', |___|  ,'" "', '.  |_____|  .' |
+# |  '-.______.-' /       \ANALOG/       \  '-._____.-'   |
+# |               |  LJ   |------|   RJ  |                |
+# |              /\       /      \       /\               |
+# |             /  '.___.'        '.___.'  \              |
+# |            /                            \             |
+#  \          /                              \           /
+#   \________/                                \_________/
+#
+# BUTTON         Value
+#   LB             4
+#   RB             5
+#   A              0
+#   B              1
+#   X              2
+#   Y              3
+#
+#    AXIS        Value
+# Left Horiz.      0
+# Left Vert.       1
+# Right Horiz.     3
+# Right Vert.      4
+# Left Trigger     2
+# Right Trigger    5
+# D-pad Horiz.     6
+# D-pad Vert.      7
+
+teleop_twist_joy:
+  axis_linear: 1
+  scale_linear: 0.4
+  scale_linear_turbo: 1.0
+  axis_angular: 0
+  scale_angular: 0.6
+  scale_angular_turbo: 1.2
+  enable_button: 4
+  enable_turbo_button: 5
+joy_node:
+  deadzone: 0.1
+  autorepeat_rate: 20
