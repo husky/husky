@@ -53,3 +53,4 @@ teleop_twist_joy:
 joy_node:
   deadzone: 0.1
   autorepeat_rate: 20
+  dev: /dev/input/f710
