@@ -6,6 +6,7 @@ KERNEL=="js*", ATTRS{idVendor}=="046d", ATTRS{idProduct}=="c21f", SYMLINK="input
 
 # Udev rule for the PS4 controller now shipped with standard with Husky
 KERNEL=="js*", ATTRS{idVendor}=="8087", ATTRS{idProduct}=="07dc", SYMLINK="input/ps4"
+KERNEL=="js*", ATTRS{idVendor}=="8087", ATTRS{idProduct}=="07da", SYMLINK="input/ps4"
 
 # Alternate Udev rule for the PS4 controller (if it's detected as DualShock 4)
 KERNEL=="js*", ATTRS{idVendor}=="054C", ATTRS{idProduct}=="05C4", SYMLINK="input/ps4"
