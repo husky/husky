@@ -2,8 +2,8 @@
 Changelog for package husky_bringup
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.4.3 (2020-04-20)
+------------------
 * Add the other product ID for the PS4 controller to the udev rule
 * Update the udev rules to map the controllers to appropriate symlinks instead of relying on device enumeration to save us
 * Contributors: Chris I-B

@@ -2,8 +2,8 @@
 Changelog for package husky_control
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.4.3 (2020-04-20)
+------------------
 * Update the udev rules to map the controllers to appropriate symlinks instead of relying on device enumeration to save us
 * Remove the device override for the PS4 controller since we pair with bluez now (which maps the device to /dev/input/js0)
 * Fix the filename in the launch fike
