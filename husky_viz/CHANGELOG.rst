@@ -2,6 +2,12 @@
 Changelog for package husky_viz
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* [husky_viz] Removed joint_state_publisher since joint_state_publisher_gui is generating the same data.
+* Fix a deprecation warning about the joint state publisher's gui
+* Contributors: Chris Iverach-Brereton, Tony Baltovski
+
 0.4.2 (2019-12-11)
 ------------------
 

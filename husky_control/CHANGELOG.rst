@@ -2,6 +2,14 @@
 Changelog for package husky_control
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Update the udev rules to map the controllers to appropriate symlinks instead of relying on device enumeration to save us
+* Remove the device override for the PS4 controller since we pair with bluez now (which maps the device to /dev/input/js0)
+* Fix the filename in the launch fike
+* Make the Logitech controller config file explicit. Add ascii-art controllers to label the axes to make configuration easier
+* Contributors: Chris I-B, Chris Iverach-Brereton
+
 0.4.2 (2019-12-11)
 ------------------
 
