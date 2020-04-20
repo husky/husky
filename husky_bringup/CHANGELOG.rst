@@ -2,6 +2,9 @@
 Changelog for package husky_bringup
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+
 0.3.5 (2019-12-11)
 ------------------
 * [husky_bringup] Installed udev rule for Logitech controller.

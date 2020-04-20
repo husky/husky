@@ -2,6 +2,11 @@
 Changelog for package husky_viz
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Add the joint_state_publisher_gui dependency
+* Contributors: Chris I-B
+
 0.3.5 (2019-12-11)
 ------------------
 
