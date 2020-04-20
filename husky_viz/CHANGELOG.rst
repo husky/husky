@@ -2,8 +2,8 @@
 Changelog for package husky_viz
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.3.6 (2020-04-20)
+------------------
 * Add the joint_state_publisher_gui dependency
 * Contributors: Chris I-B
 
