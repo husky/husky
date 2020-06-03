@@ -155,10 +155,18 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
 
   </xacro:if>
 
-  <xacro:if value="$(arg kinect_enabled)">
+  <!-- top sensor arch; include this if we have either the kinect or realsense enabled -->
+  <xacro:property name="topbar_needed_kinect" value="$(arg kinect_enabled)" />
+  <xacro:property name="topbar_needed_realsense" value="$(arg realsense_enabled)" />
+  <xacro:if value="${topbar_needed_kinect.lower() == 'true' or topbar_needed_kinect == '1' or topbar_needed_realsense == 'true' or topbar_needed_realsense == '1'}">
     <xacro:sensor_arch prefix="" parent="top_plate_link">
       <origin xyz="-0.35 0 0.51" rpy="0 0 -3.14"/>
     </xacro:sensor_arch>
+  </xacro:if>
+
+  <!-- add the kinect for xbox 360 to the topbar if needed -->
+  <!-- NOTE: this camera is considered depricated -->
+  <xacro:if value="$(arg kinect_enabled)">
     <joint name="kinect_frame_joint" type="fixed">
       <origin xyz="$(arg kinect_xyz)" rpy="$(arg kinect_rpy)" />
       <parent link="sensor_arch_mount_link"/>
@@ -167,10 +175,8 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
     <xacro:kinect_camera prefix="camera" robot_namespace="$(arg robot_namespace)"/>
   </xacro:if>
 
+  <!-- add the intel realsense to the topbar if needed -->
   <xacro:if value="$(arg realsense_enabled)">
-    <xacro:sensor_arch prefix="" parent="top_plate_link">
-      <origin xyz="-0.35 0 0.51" rpy="0 0 -3.14159"/>
-    </xacro:sensor_arch>
     <link name="realsense_mountpoint"/>
     <joint name="realsense_mountpoint_joint" type="fixed">
       <origin xyz="0 0 0" rpy="0 0 -3.14159" />
