@@ -7,7 +7,7 @@
   <arg name="tf_prefix"           default="$(arg camera)"/>
   <arg name="external_manager"    default="false"/>
   <arg name="manager"             default="realsense2_camera_manager"/>
-  <arg name="base_frame_id"       default="$(optenv JACKAL_REANSENSE_MOUNT front_fender)_realsense" />
+  <arg name="base_frame_id"       default="sensor_arch_mount_link" />
 
   <arg name="fisheye_width"       default="640"/>
   <arg name="fisheye_height"      default="480"/>
@@ -111,4 +111,32 @@
     <arg name="publish_odom_tf"          value="$(arg publish_odom_tf)"/>
     <arg name="allow_no_texture_points"  value="$(arg allow_no_texture_points)"/>
   </include>
+
+  <!-- Include poincloud_to_laserscan if realsense is attached -->
+  <node pkg="pointcloud_to_laserscan" type="pointcloud_to_laserscan_node" name="realsense_to_laserscan" output="screen">
+
+      <remap from="cloud_in" to="realsense/depth/color/points"/>
+      <remap from="scan" to="realsense/scan"/>
+      <!-- TODO: modify these to match the Realsense D400 series parameters -->
+      <rosparam>
+          target_frame: base_link # Leave empty to output scan in the pointcloud frame
+          tolerance: 1.0
+          min_height: 0.05
+          max_height: 1.0
+
+          angle_min: -0.7592182246175333 # -(87/2))*M_PI/180.0
+          angle_max: 0.7592182246175333 # (87/2))*M_PI/180.0
+          angle_increment: 0.005 # M_PI/360.0
+          scan_time: 0.3333
+          range_min: 0.105
+          range_max: 8.0
+          use_inf: true
+
+          # Concurrency level, affects number of pointclouds queued for processing and number of threads used
+          # 0 : Detect number of cores
+          # 1 : Single threaded
+          # 2->inf : Parallelism level
+          concurrency_level: 1
+      </rosparam>
+  </node>
 </launch>
