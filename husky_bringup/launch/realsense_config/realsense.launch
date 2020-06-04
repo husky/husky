@@ -3,11 +3,10 @@
   <arg name="usb_port_id"         default=""/>
   <arg name="device_type"         default=""/>
   <arg name="json_file_path"      default=""/>
-  <arg name="camera"              default="camera"/>
-  <arg name="tf_prefix"           default="$(arg camera)"/>
+  <arg name="tf_prefix"           default="$(optenv HUSKY_REALSENSE_TF_PREFIX camera)"/>
   <arg name="external_manager"    default="false"/>
   <arg name="manager"             default="realsense2_camera_manager"/>
-  <arg name="base_frame_id"       default="sensor_arch_mount_link" />
+  <arg name="base_frame_id"       default="$(optenv HUSKY_REALSENSE_MOUNT_FRAME sensor_arch_mount_link)" />
 
   <arg name="fisheye_width"       default="640"/>
   <arg name="fisheye_height"      default="480"/>
