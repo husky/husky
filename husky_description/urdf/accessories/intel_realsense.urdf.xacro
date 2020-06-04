@@ -76,10 +76,14 @@
 
     <link name="${prefix}_realsense_lens">
       <visual>
-        <origin xyz="0 0 0" rpy="0 0 0" />
+        <!--
+          the model's origin is in the middle & it's rotated to lie in
+          the optical standard with X left, Y up, and Z forward
+        -->
+        <origin xyz="0.0115 0 0.0100" rpy="1.570796 0 1.570796" />
         <geometry>
           <!-- Origin of this mesh is the base of the bracket. -->
-          <mesh filename="package://husky_description/meshes/accessories/intel_realsense_d415.stl" />
+          <mesh filename="package://realsense2_description/meshes/d415.stl" />
         </geometry>
         <material name="white" />
       </visual>
