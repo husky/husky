@@ -1,0 +1,29 @@
+<launch>
+  <!-- Include poincloud_to_laserscan if simulated realsense is attached -->
+  <node pkg="pointcloud_to_laserscan" type="pointcloud_to_laserscan_node" name="realsense_to_laserscan" output="screen">
+
+      <remap from="cloud_in" to="realsense/depth/color/points"/>
+      <remap from="scan" to="realsense/scan"/>
+      <!-- TODO: modify these to match the Realsense D400 series parameters -->
+      <rosparam>
+          target_frame: base_link # Leave empty to output scan in the pointcloud frame
+          tolerance: 1.0
+          min_height: 0.05
+          max_height: 1.0
+
+          angle_min: -0.7592182246175333 # -(87/2))*M_PI/180.0
+          angle_max: 0.7592182246175333 # (87/2))*M_PI/180.0
+          angle_increment: 0.005 # M_PI/360.0
+          scan_time: 0.3333
+          range_min: 0.105
+          range_max: 8.0
+          use_inf: true
+
+          # Concurrency level, affects number of pointclouds queued for processing and number of threads used
+          # 0 : Detect number of cores
+          # 1 : Single threaded
+          # 2->inf : Parallelism level
+          concurrency_level: 1
+      </rosparam>
+  </node>
+</launch>

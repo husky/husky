@@ -25,6 +25,14 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
 -->
 <robot name="husky_decorations" xmlns:xacro="http://ros.org/wiki/xacro">
 
+  <material name="dark_grey"><color rgba="0.2 0.2 0.2 1.0" /></material>
+  <material name="medium_grey"><color rgba="0.6 0.6 0.6 1.0" /></material>
+  <material name="light_grey"><color rgba="0.8 0.8 0.8 1.0" /></material>
+  <material name="yellow"><color rgba="0.8 0.8 0.0 1.0" /></material>
+  <material name="black"><color rgba="0.15 0.15 0.15 1.0" /></material>
+  <material name="white"><color rgba="1.0 1.0 1.0 1.0" /></material>
+  <material name="red"><color rgba="1.0 0.0 0.0 1.0" /></material>
+
   <xacro:macro name="husky_decorate">
 
     <xacro:property name="husky_front_bumper_extend" value="$(optenv HUSKY_FRONT_BUMPER_EXTEND 0)" />
