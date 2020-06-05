@@ -56,6 +56,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     <link name="${prefix}_frame_optical"/>
 
     <gazebo reference="${prefix}_link">
+      <selfCollide>true</selfCollide>
+      <turnGravityOff>true</turnGravityOff>
       <sensor type="depth" name="${prefix}">
         <always_on>true</always_on>
         <update_rate>20.0</update_rate>
