@@ -159,7 +159,7 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
   <!-- top sensor arch; include this if we have either the kinect or realsense enabled -->
   <xacro:property name="topbar_needed_kinect" value="$(arg kinect_enabled)" />
   <xacro:property name="topbar_needed_realsense" value="$(arg realsense_enabled)" />
-  <xacro:if value="${topbar_needed_kinect.lower() == 'true' or topbar_needed_kinect == '1' or topbar_needed_realsense == 'true' or topbar_needed_realsense == '1'}">
+  <xacro:if value="${topbar_needed_kinect or topbar_needed_realsense}">
     <xacro:sensor_arch prefix="" parent="top_plate_link">
       <origin xyz="-0.35 0 0.51" rpy="0 0 -3.14"/>
     </xacro:sensor_arch>
