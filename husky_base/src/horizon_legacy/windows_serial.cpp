@@ -56,6 +56,7 @@
 #include <termios.h> /* POSIX terminal control definitions */
 #include <stdlib.h>  /* Malloc */
 #include <assert.h>
+#include <windows.h>
 
 ///////////////////////////////////////////////////////////////////////////////////
 //                                                                               //
@@ -68,63 +69,38 @@
 // Open the serial port, return the file descriptor for it
 int OpenSerial(void **handle, const char *port_name)
 {
+  HANDLE serialHandle = CreateFile(port_name, GENERIC_READ, GENERIC_WRITE, 0, 0, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, 0);
 
-  int fd; /* File descriptor for the port */
+  // copy the handle back to the provided pointer
+  *handle = (void*)malloc(sizeof(serialHandle));
+  memcpy(&serialHandle, *handle, sizeof(serialHandle));
 
-  fd = open(port_name, O_RDWR | O_NOCTTY | O_NDELAY);
-  if (fd == -1)
-  {
-    fprintf(stderr, "Unable to open %s\n\r", port_name);
-    return -3;
-  }
-
-  // Verify it is a serial port
-  if (!isatty(fd))
-  {
-    close(fd);
-    fprintf(stderr, "%s is not a serial port\n", port_name);
-    return -3;
-  }
-
-  *handle = (int *) malloc(sizeof(int));
-  **(int **) handle = fd;
-  return fd;
+  return 0;
 }
 
 // Configure the serial port for 115200 baud 8N1
 int SetupSerial(void *handle)
 {
-  struct termios options;
+  // Do some basic settings
+  DCB serialParams = { 0 };
+  serialParams.DCBlength = sizeof(serialParams);
 
-  // Get the current options for the port...
-  tcgetattr(*(int *) handle, &options);
+  GetCommState(serialHandle, &serialParams);
+  serialParams.BaudRate = baudrate;
+  serialParams.ByteSize = byteSize;
+  serialParams.StopBits = stopBits;
+  serialParams.Parity = parity;
+  SetCommState(serialHandle, &serialParams);
 
-  // 8 bits, 1 stop, no parity
-  options.c_cflag = 0;
-  options.c_cflag |= CS8;         // 8-bit input
+  // Set timeouts
+  COMMTIMEOUTS timeout = { 0 };
+  timeout.ReadIntervalTimeout = 50;
+  timeout.ReadTotalTimeoutConstant = 50;
+  timeout.ReadTotalTimeoutMultiplier = 50;
+  timeout.WriteTotalTimeoutConstant = 50;
+  timeout.WriteTotalTimeoutMultiplier = 10;
 
-  // Enable the receiver and set local mode...
-  options.c_cflag |= (CLOCAL | CREAD);
-
-  // Set the baud rates to 115200...
-  cfsetispeed(&options, B115200);
-  cfsetospeed(&options, B115200);
-
-  // No input processing
-  options.c_iflag = 0;
-
-  // No output processing
-  options.c_oflag = 0;
-
-  // No line processing
-  options.c_lflag = 0;
-
-  // read timeout
-  options.c_cc[VMIN] = 0;    // non-blocking
-  options.c_cc[VTIME] = 1;    // always return after 0.1 seconds
-
-  // Set the new options for the port...
-  tcsetattr(*(int *) handle, TCSAFLUSH, &options);
+  SetCommTimeouts(*handle, &timeout);
 
   return 0;
 }
@@ -132,8 +108,10 @@ int SetupSerial(void *handle)
 // write data to the serial port, return the number of bytes written
 int WriteData(void *handle, const char *buffer, int length)
 {
-  int n = write(*(int *) handle, buffer, length);
-  if (n < 0)
+  DWORD nBytesWritten = 0;
+  WriteFile(*handle, buffer, length, &nBytesWritten, NULL);
+
+  if(nBytesWritten != length)
   {
     fprintf(stderr, "Error in serial write\r\n");
     return -1;
@@ -142,10 +120,11 @@ int WriteData(void *handle, const char *buffer, int length)
   // serial port output monitor
 //#define TX_DEBUG
 #ifdef TX_DEBUG
-	printf("TX:");
-	int i;
-	for (i=0; i<length; ++i) printf(" %x", (unsigned char)(buffer[i]));
-	printf("\r\n");
+  printf("TX:");
+  int i;
+  for (i=0; i<length; ++i)
+    printf(" %x", (unsigned char)(buffer[i]));
+  printf("\r\n");
 #endif
 
   return n;
@@ -154,8 +133,10 @@ int WriteData(void *handle, const char *buffer, int length)
 // read data from the serial port, return the number of bytes read
 int ReadData(void *handle, char *buffer, int length)
 {
-  int bytesRead = read(*(int *) handle, buffer, length);
-  if (bytesRead <= 0)
+  DWORD nBytesRead = 0;
+  ReadFile(*handle, buffer, length, &nBytesRead, NULL);
+
+  if(nBytesRead <= 0)
   {
     return 0;
   }
@@ -163,24 +144,24 @@ int ReadData(void *handle, char *buffer, int length)
   // serial port input monitor
 //#define RX_DEBUG
 #ifdef RX_DEBUG
-	printf("RX:");
-	int i;
-	for (i=0; i<bytesRead; ++i) printf(" %x", (unsigned char)buffer[i]);
-	printf("\r\n");
+  printf("RX:");
+  int i;
+  for (i=0; i<nBytesRead; ++i)
+    printf(" %x", (unsigned char)buffer[i]);
+  printf("\r\n");
 #endif
 
-  return bytesRead;
+  return nBytesRead;
 }
 
 // close the serial port, always return 0
 int CloseSerial(void *handle)
 {
-  if (NULL == handle)
-  {
+  if (handle == NULL)
     return 0;
-  }
-  close(*(int *) handle);
-  free(handle);
+
+  close(*handle);
+  free(*handle);
   return 0;
 }
 
