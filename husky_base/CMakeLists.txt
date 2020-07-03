@@ -26,6 +26,7 @@ add_library(horizon_legacy
   src/horizon_legacy/Transport.cpp
   src/horizon_legacy/Number.cpp
   src/horizon_legacy/linux_serial.cpp
+  src/horizon_legacy/windows_serial.cpp
 )
 
 add_executable(husky_node
