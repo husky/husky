@@ -35,7 +35,7 @@
         args="husky_joint_publisher husky_velocity_controller"/>
 
   <!-- Start EKF for localization -->
-  <group if="$(arg robot_ekf_disable)" >
+  <group unless="$(arg robot_ekf_disable)" >
     <node pkg="robot_localization" type="ekf_localization_node" name="ekf_localization">
       <rosparam command="load" file="$(find husky_control)/config/localization.yaml" />
     </node>
