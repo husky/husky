@@ -39,6 +39,9 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
   <arg name="realsense_enabled" default="$(optenv HUSKY_REALSENSE_ENABLED false)"/>
   <arg name="urdf_extras" default="$(optenv HUSKY_URDF_EXTRAS)"/>
 
+  <!-- Optionally disable teleop control -->
+  <arg name="joystick" default="true" />
+
   <group ns="$(arg robot_namespace)">
 
     <group if="$(arg multimaster)">
@@ -68,6 +71,9 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
         <arg name="kinect_enabled" value="$(arg kinect_enabled)"/>
         <arg name="realsense_enabled" default="$(arg realsense_enabled)"/>
         <arg name="urdf_extras" value="$(arg urdf_extras)"/>
+      </include>
+      <include file="$(find husky_control)/launch/teleop.launch">
+        <arg name="joystick" value="$(arg joystick)" />
       </include>
     </group>
 
