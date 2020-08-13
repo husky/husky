@@ -2,8 +2,8 @@
 Changelog for package husky_bringup
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.4.4 (2020-08-13)
+------------------
 * Set default for optenv HUSKY_MAG_CONFIG
 * Removed env-hooks
 * Removed Paul Bovbel as maintainer.
