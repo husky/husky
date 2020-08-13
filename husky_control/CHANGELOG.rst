@@ -2,8 +2,8 @@
 Changelog for package husky_control
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.3.7 (2020-08-13)
+------------------
 * clearer wording
 * change if to unless
 * added env var and if-statement to disable robot ekf

@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package>
   <name>husky_robot</name>
-  <version>0.3.6</version>
+  <version>0.3.7</version>
   <description>Metapackage for Clearpath Husky robot software</description>
 
   <maintainer email="paul@bovbel.com">Paul Bovbel</maintainer>

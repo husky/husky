@@ -2,8 +2,8 @@
 Changelog for package husky_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.3.7 (2020-08-13)
+------------------
 * Add a comment explaining why things are ugly in Kinetic
 * Add support for some environment variables to override realsense defaults
 * Use the STL from realsense2_description, rotated as necessary. Add realsense2_description to the dependencies
