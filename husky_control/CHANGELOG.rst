@@ -2,6 +2,16 @@
 Changelog for package husky_control
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* clearer wording
+* change if to unless
+* added env var and if-statement to disable robot ekf
+* Remove support for the Kinect for Xbox 360. We've had the deprecation warning around for a while, so let's finally do it.  Realsense support is in-place as a drop-in replacement that gets added to the top rollbar, just like the old Kinect would have.
+* Removed Paul Bovbel as maintainer.
+* Finish adding the simulated realsense to the topbar, add support for the physical realsense. Tidy up some parameters that were copied in last night but not yet configured.
+* Contributors: Chris I-B, Chris Iverach-Brereton, Jose Mastrangelo, Tony Baltovski
+
 0.4.3 (2020-04-20)
 ------------------
 * Update the udev rules to map the controllers to appropriate symlinks instead of relying on device enumeration to save us

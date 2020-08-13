@@ -2,6 +2,11 @@
 Changelog for package husky_simulator
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Removed Paul Bovbel as maintainer.
+* Contributors: Tony Baltovski
+
 0.4.3 (2020-04-20)
 ------------------
 

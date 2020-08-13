@@ -2,6 +2,17 @@
 Changelog for package husky_bringup
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Set default for optenv HUSKY_MAG_CONFIG
+* Removed env-hooks
+* Removed Paul Bovbel as maintainer.
+* Add support for some environment variables to override realsense defaults
+* Sort the dependencies alphabetically
+* Finish adding the simulated realsense to the topbar, add support for the physical realsense. Tidy up some parameters that were copied in last night but not yet configured.
+* Mark the Kinect for Xbox 360 as deprecated, start adding support for the Intel Realsense D400 series as a replacement
+* Contributors: Chris I-B, Dave Niewinski, Tony Baltovski
+
 0.4.3 (2020-04-20)
 ------------------
 * Add the other product ID for the PS4 controller to the udev rule
