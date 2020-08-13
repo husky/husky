@@ -2,6 +2,14 @@
 Changelog for package husky_bringup
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Add support for some environment variables to override realsense defaults
+* Sort the dependencies alphabetically
+* Finish adding the simulated realsense to the topbar, add support for the physical realsense. Tidy up some parameters that were copied in last night but not yet configured.
+* Mark the Kinect for Xbox 360 as deprecated, start adding support for the Intel Realsense D400 series as a replacement
+* Contributors: Chris I-B
+
 0.3.6 (2020-04-20)
 ------------------
 

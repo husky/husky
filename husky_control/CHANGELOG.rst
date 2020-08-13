@@ -2,6 +2,14 @@
 Changelog for package husky_control
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* clearer wording
+* change if to unless
+* added env var and if-statement to disable robot ekf
+* Finish adding the simulated realsense to the topbar, add support for the physical realsense. Tidy up some parameters that were copied in last night but not yet configured.
+* Contributors: Chris I-B, Jose Mastrangelo
+
 0.3.6 (2020-04-20)
 ------------------
 

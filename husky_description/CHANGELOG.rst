@@ -2,6 +2,16 @@
 Changelog for package husky_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Add a comment explaining why things are ugly in Kinetic
+* Add support for some environment variables to override realsense defaults
+* Use the STL from realsense2_description, rotated as necessary. Add realsense2_description to the dependencies
+* Refactor so that the sensor bar only gets added once if either the realsense OR the kinect is enabled. Adding both will still cause issues because they'll mount to the same point on the bracket, but at least the URDF won't fail.
+* Finish adding the simulated realsense to the topbar, add support for the physical realsense. Tidy up some parameters that were copied in last night but not yet configured.
+* Mark the Kinect for Xbox 360 as deprecated, start adding support for the Intel Realsense D400 series as a replacement
+* Contributors: Chris I-B
+
 0.3.6 (2020-04-20)
 ------------------
 * Fixed GazeboRosControlPlugin missing error
