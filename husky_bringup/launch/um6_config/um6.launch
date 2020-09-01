@@ -21,7 +21,7 @@
 
   <!-- Filter raw gyro, accel and mag data into a usable orientation -->
   <node pkg="nodelet" type="nodelet" name="imu_filter" args="load imu_filter_madgwick/ImuFilterNodelet imu_manager">
-    <rosparam file="$(env HUSKY_MAG_CONFIG)" />
+    <rosparam file="$(eval optenv('HUSKY_MAG_CONFIG', find('husky_bringup')+'/config/mag_config_default.yaml'))" />
     <rosparam>
       orientation_stddev: 0.001
       gain: 0.01
