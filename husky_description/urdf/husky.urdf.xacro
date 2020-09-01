@@ -29,10 +29,6 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
   <xacro:arg name="laser_xyz" default="$(optenv HUSKY_LMS1XX_XYZ 0.2206 0.0 0.00635)" />
   <xacro:arg name="laser_rpy" default="$(optenv HUSKY_LMS1XX_RPY 0.0 0.0 0.0)" />
 
-  <xacro:arg name="kinect_enabled" default="false" />
-  <xacro:arg name="kinect_xyz" default="$(optenv HUSKY_KINECT_XYZ 0 0 0)" />
-  <xacro:arg name="kinect_rpy" default="$(optenv HUSKY_KINECT_RPY 0 0.18 3.14)" />
-
   <xacro:arg name="realsense_enabled" default="false" />
   <xacro:arg name="realsense_xyz" default="$(optenv HUSKY_REALSENSE_XYZ 0 0 0)" />
   <xacro:arg name="realsense_rpy" default="$(optenv HUSKY_REALSENSE_RPY 0 0 0)" />
@@ -48,7 +44,6 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
   <xacro:include filename="$(find husky_description)/urdf/decorations.urdf.xacro" />
   <xacro:include filename="$(find husky_description)/urdf/wheel.urdf.xacro" />
 
-  <xacro:include filename="$(find husky_description)/urdf/accessories/kinect_camera.urdf.xacro"/>
   <xacro:include filename="$(find husky_description)/urdf/accessories/intel_realsense.urdf.xacro"/>
   <xacro:include filename="$(find husky_description)/urdf/accessories/sick_lms1xx_mount.urdf.xacro"/>
   <xacro:include filename="$(find husky_description)/urdf/accessories/sensor_arch.urdf.xacro"/>
@@ -156,25 +151,13 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
 
   </xacro:if>
 
-  <!-- top sensor arch; include this if we have either the kinect or realsense enabled -->
-  <xacro:property name="topbar_needed_kinect" value="$(arg kinect_enabled)" />
+  <!-- top sensor arch; include this if we have the realsense enabled -->
   <xacro:property name="topbar_needed_realsense" value="$(arg realsense_enabled)" />
   <!-- In melodic we can treat the above as booleans, but in kinetic they're strings, hence this ugliness... -->
-  <xacro:if value="${topbar_needed_kinect.lower() == 'true' or topbar_needed_kinect == '1' or topbar_needed_realsense == 'true' or topbar_needed_realsense == '1'}">
+  <xacro:if value="${topbar_needed_realsense == 'true' or topbar_needed_realsense == '1'}">
     <xacro:sensor_arch prefix="" parent="top_plate_link">
       <origin xyz="-0.35 0 0.51" rpy="0 0 -3.14"/>
     </xacro:sensor_arch>
-  </xacro:if>
-
-  <!-- add the kinect for xbox 360 to the topbar if needed -->
-  <!-- NOTE: this camera is considered depricated -->
-  <xacro:if value="$(arg kinect_enabled)">
-    <joint name="kinect_frame_joint" type="fixed">
-      <origin xyz="$(arg kinect_xyz)" rpy="$(arg kinect_rpy)" />
-      <parent link="sensor_arch_mount_link"/>
-      <child link="camera_link"/>
-    </joint>
-    <xacro:kinect_camera prefix="camera" robot_namespace="$(arg robot_namespace)"/>
   </xacro:if>
 
   <!-- add the intel realsense to the topbar if needed -->
