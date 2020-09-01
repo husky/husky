@@ -2,13 +2,11 @@
 <launch>
 
   <arg name="laser_enabled" default="$(optenv HUSKY_LMS1XX_ENABLED false)"/>
-  <arg name="kinect_enabled" default="false"/>
   <arg name="realsense_enabled" default="false"/>
 
   <!-- Standalone launcher to visualize the robot model. -->
   <include file="$(find husky_description)/launch/description.launch">
     <arg name="laser_enabled" value="$(arg laser_enabled)"/>
-    <arg name="kinect_enabled" value="$(arg kinect_enabled)"/>
     <arg name="realsense_enabled" value="$(arg realsense_enabled)"/>
   </include>
 
