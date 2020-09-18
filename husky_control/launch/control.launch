@@ -39,7 +39,7 @@
   <!-- Spawn controllers -->
   <node name="base_controller_spawner" pkg="controller_manager" type="spawner"
         args="husky_joint_publisher husky_velocity_controller $(arg extra_controllers)"/>
-  <node name="ros_control_stopped_spawner" pkg="controller_manager" type="spawner" respawn="false"
+  <node name="base_control_stopped_spawner" pkg="controller_manager" type="spawner" respawn="false"
         args="--stopped $(arg stopped_controllers)" />
 
   <!-- Start EKF for localization -->
