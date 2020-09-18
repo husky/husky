@@ -10,6 +10,8 @@
        default="$(eval optenv('HUSKY_CONFIG_EXTRAS', find('husky_control') + '/config/empty.yaml'))"/>
   <arg name="extra_controllers"
        default="$(eval optenv('HUSKY_EXTRA_CONTROLLERS', ''))" />
+  <arg name="stopped_controllers"
+       default="$(eval optenv('HUSKY_STOPPED_CONTROLLERS', ''))" />
 
   <arg name="laser_enabled" default="$(optenv HUSKY_LMS1XX_ENABLED false)"/>
   <arg name="realsense_enabled" default="$(optenv HUSKY_REALSENSE_ENABLED false)"/>
@@ -34,7 +36,9 @@
 
   <!-- Spawn controllers -->
   <node name="base_controller_spawner" pkg="controller_manager" type="spawner"
-        args="$(eval 'husky_joint_publisher husky_velocity_controller ' + arg('extra_controllers')"/>
+        args="husky_joint_publisher husky_velocity_controller $(arg extra_controllers)"/>
+  <node name="ros_control_stopped_spawner" pkg="controller_manager" type="spawner" respawn="false"
+        args="--stopped $(arg stopped_controllers)" />
 
   <!-- Start EKF for localization -->
   <group if="$(arg enable_ekf)" >
