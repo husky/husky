@@ -12,6 +12,8 @@
        default="$(eval optenv('HUSKY_EXTRA_CONTROLLERS', ''))" />
   <arg name="stopped_controllers"
        default="$(eval optenv('HUSKY_STOPPED_CONTROLLERS', ''))" />
+  <arg name="launch_extras"
+       default="$(eval optenv('HUSKY_LAUNCH_EXTRAS', find('husky_control') + '/launch/empty.launch'))" />
 
   <arg name="laser_enabled" default="$(optenv HUSKY_LMS1XX_ENABLED false)"/>
   <arg name="realsense_enabled" default="$(optenv HUSKY_REALSENSE_ENABLED false)"/>
@@ -58,5 +60,8 @@
 
   <!-- Override the default control parameters, see config/empty.yaml for default. -->
   <rosparam command="load" file="$(arg config_extras)" />
+
+  <!-- Launch whatever other extras are required -->
+  <include file="$(arg launch_extras)" />
 
 </launch>
