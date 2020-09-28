@@ -1,0 +1,25 @@
+{
+    "configurations": [
+        {
+            "browse": {
+                "databaseFilename": "",
+                "limitSymbolsToIncludedHeaders": true
+            },
+            "includePath": [
+                "/home/basavaraj/catkin_ws_husky/devel/include",
+                "/opt/ros/melodic/include",
+                "/home/basavaraj/catkin_ws_husky/src/frontier_exploration/exploration_server/include",
+                "/home/basavaraj/catkin_ws_husky/src/frontier_exploration/frontier_exploration/include",
+                "/home/basavaraj/catkin_ws_husky/src/husky/husky_base/include",
+                "/home/basavaraj/catkin_ws_husky/src/frontier_exploration/polygon_layer/include",
+                "/usr/include"
+            ],
+            "name": "Linux",
+            "intelliSenseMode": "gcc-x64",
+            "compilerPath": "/usr/bin/gcc",
+            "cStandard": "gnu11",
+            "cppStandard": "gnu++14"
+        }
+    ],
+    "version": 4
+}
