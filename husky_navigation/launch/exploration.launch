@@ -24,19 +24,65 @@ ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCL
 ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 <launch>
+    <arg name="plugin" default="exploration_server::ExamplePlugin"/>
+    <param name="plugin_name" value="$(arg plugin)"/>
+    <arg name="blacklist_box_size" default="0.5"/>
+    <param name="blacklist_box_size" value="$(arg blacklist_box_size)"/>
 
-  <!-- <node pkg="frontier_exploration" type="explore_client" name="explore_client" output="screen"/>
+    <!-- Set to your sensor's range -->
+    <arg name="sensor_range" default="6.0"/>
 
-  <node pkg="frontier_exploration" type="explore_server" name="explore_server" output="screen">
+    <node pkg="exploration_server" type="plugin_client" name="plugin_client" output="screen">
 
-    <param name="frequency" value="1.0"/> -->
+    </node>
 
-    <!-- Should be less than sensor range -->
-    <!-- <param name="goal_aliasing" value="2.0"/>
+    <node pkg="exploration_server" type="exploration_server_node" name="exploration_server_node" output="screen">
 
-    <rosparam file="$(find husky_navigation)/config/costmap_common.yaml" command="load" ns="explore_costmap" />
-    <rosparam file="$(find husky_navigation)/config/costmap_exploration.yaml" command="load" ns="explore_costmap" />
+        <rosparam param="points" ns="explore_costmap" file="$(find exploration_server)/config/points.yaml" command="load"/>
+        <param name="frequency" type="double" value="2.0"/>
+        <param name="goal_aliasing" type="double" value="$(arg sensor_range)"/>
 
-  </node> -->
+        #All standard costmap_2d parameters as in move_base, other than PolygonLayer
+        <rosparam ns="explore_costmap" subst_value="true">
+            footprint: [[-0.5, -0.33], [-0.5, 0.33], [0.5, 0.33], [0.5, -0.33]]
+            robot_radius: 0.30
 
+            transform_tolerance: 0.5
+            update_frequency: 4.0
+            publish_frequency: 3.0
+
+            #must match incoming static map
+            global_frame: map
+            robot_base_frame: base_link
+            resolution: 0.05
+
+            rolling_window: false
+            track_unknown_space: true
+
+            plugins:
+
+                - {name: static,           type: "costmap_2d::StaticLayer"}
+                - {name: polygon_layer,    type: "polygon_layer::PolygonLayer"}
+                #Can disable sensor layer if gmapping is fast enough to update scans
+                - {name: sensor,           type: "costmap_2d::ObstacleLayer"}
+                - {name: inflation,        type: "costmap_2d::InflationLayer"}
+
+            static:
+                #Can pull data from gmapping, map_server or a non-rolling costmap
+                map_topic: /map
+                # map_topic: move_base/global_costmap/costmap
+                subscribe_to_updates: true
+
+            polygon_layer:
+                resize_to_polygon: true
+
+            sensor:
+                observation_sources: laser
+                laser: {data_type: LaserScan, clearing: true, marking: true, topic: scan, inf_is_valid: true, raytrace_range: $(arg sensor_range), obstacle_range: $(arg sensor_range)}
+
+            inflation:
+                inflation_radius: 1.0
+      </rosparam>
+
+    </node>
 </launch>
