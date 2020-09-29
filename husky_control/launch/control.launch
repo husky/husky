@@ -29,6 +29,9 @@
 
   <!-- Load controller configuration -->
   <rosparam command="load" file="$(find husky_control)/config/control.yaml" />
+  
+  <!-- Override the default control parameters, see config/empty.yaml for default. -->
+  <rosparam command="load" file="$(arg config_extras)" />
 
   <!-- Spawn controllers -->
   <node name="base_controller_spawner" pkg="controller_manager" type="spawner"
@@ -38,6 +41,8 @@
   <group if="$(arg enable_ekf)" >
     <node pkg="robot_localization" type="ekf_localization_node" name="ekf_localization">
       <rosparam command="load" file="$(find husky_control)/config/localization.yaml" />
+      <!-- Also load the config extras here, in case we're overriding e.g. the IMU topic -->
+      <rosparam command="load" file="$(arg config_extras)" />
     </node>
   </group>
 
@@ -49,8 +54,5 @@
     <rosparam command="load" file="$(find husky_control)/config/twist_mux.yaml" />
     <remap from="cmd_vel_out" to="husky_velocity_controller/cmd_vel"/>
   </node>
-
-  <!-- Override the default control parameters, see config/empty.yaml for default. -->
-  <rosparam command="load" file="$(arg config_extras)" />
 
 </launch>
