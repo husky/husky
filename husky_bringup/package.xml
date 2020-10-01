@@ -30,7 +30,7 @@
   <run_depend>microstrain_mips</run_depend>
   <run_depend>nmea_comms</run_depend>
   <run_depend>nmea_navsat_driver</run_depend>
-  <run_depend>python-scipy</run_depend>
+  <run_depend>python3-scipy</run_depend>
   <run_depend>realsense2_camera</run_depend>
   <run_depend>robot_localization</run_depend>
   <run_depend>robot_upstart</run_depend>
