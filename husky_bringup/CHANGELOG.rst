@@ -2,6 +2,11 @@
 Changelog for package husky_bringup
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Fix a bug where the UM7 and UM6 launch files don't work when installed to /etc/ros/*/ros.d; they fail to find the mag config files.
+* Contributors: Chris Iverach-Brereton
+
 0.3.7 (2020-08-13)
 ------------------
 * Add support for some environment variables to override realsense defaults

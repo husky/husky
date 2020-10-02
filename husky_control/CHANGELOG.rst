@@ -2,6 +2,11 @@
 Changelog for package husky_control
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Remove the Kinect 360 support; the deprecation warning is being treated as an error, and it's about time to remove it anyway
+* Contributors: Chris Iverach-Brereton
+
 0.3.7 (2020-08-13)
 ------------------
 * clearer wording

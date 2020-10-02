@@ -2,6 +2,11 @@
 Changelog for package husky_viz
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Remove the Kinect 360 support; the deprecation warning is being treated as an error, and it's about time to remove it anyway
+* Contributors: Chris Iverach-Brereton
+
 0.3.7 (2020-08-13)
 ------------------
 * Mark the Kinect for Xbox 360 as deprecated, start adding support for the Intel Realsense D400 series as a replacement

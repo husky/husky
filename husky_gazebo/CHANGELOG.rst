@@ -2,6 +2,12 @@
 Changelog for package husky_gazebo
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Remove an extra < that we missed when removing the kinect stuff
+* Remove the Kinect 360 support; the deprecation warning is being treated as an error, and it's about time to remove it anyway
+* Contributors: Chris Iverach-Brereton
+
 0.3.7 (2020-08-13)
 ------------------
 * Finish adding the simulated realsense to the topbar, add support for the physical realsense. Tidy up some parameters that were copied in last night but not yet configured.
