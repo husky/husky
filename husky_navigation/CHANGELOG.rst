@@ -2,6 +2,11 @@
 Changelog for package husky_navigation
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Expose the scan_topic argument in amcl_demo and gmapping_demo, make them use the HUSKY_LASER_TOPIC env var as their default
+* Contributors: Chris Iverach-Brereton
+
 0.4.4 (2020-08-13)
 ------------------
 * Removed Paul Bovbel as maintainer.
