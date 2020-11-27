@@ -27,17 +27,10 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
 
   <arg name="plugin" default="frontier_exploration::FrontierPlugin"/>
   <param name="plugin_name" value="$(arg plugin)"/>
-  <!-- <arg name="blacklist_box_size" default="0.5"/>
-  <param name="blacklist_box_size" value="$(arg blacklist_box_size)"/> -->
 
- <node pkg="exploration_server" type="plugin_client" name="explore_client" output="screen"  />
+  <node pkg="exploration_server" type="plugin_client" name="explore_client" output="screen" />
 
-  <node pkg="exploration_server" type="exploration_server_node" name="explore_server" output="screen"  >
-  
-    <!-- <param name="frequency" value="1.0"/> --> 
-
-    <!-- Should be less than sensor range -->
-    <!-- <param name="goal_aliasing" value="2.0"/> -->
+  <node pkg="exploration_server" type="exploration_server_node" name="explore_server" output="screen">
 
     <rosparam file="$(find husky_navigation)/config/costmap_common.yaml" command="load" ns="explore_costmap" />
     <rosparam file="$(find husky_navigation)/config/costmap_exploration.yaml" command="load" ns="explore_costmap" />
