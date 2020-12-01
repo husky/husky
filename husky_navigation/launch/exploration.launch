@@ -28,13 +28,13 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
   <arg name="plugin" default="frontier_exploration::FrontierPlugin"/>
   <param name="plugin_name" value="$(arg plugin)"/>
 
-  <node pkg="exploration_server" type="plugin_client" name="explore_client" output="screen" />
+  <!-- <node pkg="exploration_server" type="plugin_client" name="explore_client" output="screen" /> -->
 
-  <node pkg="exploration_server" type="exploration_server_node" name="explore_server" output="screen">
+  <!-- <node pkg="exploration_server" type="exploration_server_node" name="explore_server" output="screen">
 
     <rosparam file="$(find husky_navigation)/config/costmap_common.yaml" command="load" ns="explore_costmap" />
     <rosparam file="$(find husky_navigation)/config/costmap_exploration.yaml" command="load" ns="explore_costmap" />
 
-  </node>
+  </node> -->
 
 </launch>
