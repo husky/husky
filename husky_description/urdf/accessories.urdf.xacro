@@ -1,0 +1,96 @@
+<robot xmlns:xacro="http://wiki.ros.org/xacro">
+
+  <xacro:arg name="robot_namespace" default="$(optenv HUSKY_NAMESPACE /" />
+
+  <!-- Include external sensors & payloads -->
+  <xacro:include filename="$(find husky_description)/urdf/accessories/intel_realsense.urdf.xacro"/>
+  <xacro:include filename="$(find husky_description)/urdf/accessories/sick_lms1xx_mount.urdf.xacro"/>
+  <xacro:include filename="$(find velodyne_description)/urdf/VLP-16.urdf.xacro" />
+
+  <xacro:if value="$(optenv HUSKY_LASER 0)">
+    <xacro:property name="lidar_model" value="$(optenv HUSKY_LASER_MODEL lms1xx)" />
+
+    <xacro:if value="${lidar_model == 'lms1xx'}">
+      <sick_lms1xx_mount prefix="base"/>
+      <sick_lms1xx frame="base_laser" topic="scan" robot_namespace="$(arg robot_namespace)"/>
+
+      <joint name="laser_mount_joint" type="fixed">
+        <origin xyz="$(optenv HUSKY_LASER_OFFSET 0.2206 0.0 0.00635)" rpy="$(optenv HUSKY_LASER_RPY 0 0 0)" />
+        <parent link="top_plate_link" />
+        <child link="base_laser_mount" />
+      </joint>
+    </xacro:if>
+  </xacro:if>
+
+  <xacro:if value="$(optenv HUSKY_LASER_SECONDARY 0)">
+    <xacro:property name="lidar2_model" value="$(optenv HUSKY_LASER_SECONDARY_MODEL lms1xx)" />
+
+    <xacro:if value="${lidar2_model == 'lms1xx'}">
+      <sick_lms1xx_mount prefix="rear"/>
+      <sick_lms1xx frame="rear_laser" topic="rear/scan" robot_namespace="$(arg robot_namespace)"/>
+
+      <joint name="secondary_laser_mount_joint" type="fixed">
+        <origin xyz="$(optenv HUSKY_LASER_SECONDARY_OFFSET -0.2206 0.0 0.00635)" rpy="$(optenv HUSKY_LASER_RPY 0 0 ${M_PI})" />
+        <parent link="top_plate_link" />
+        <child link="rear_laser_mount" />
+      </joint>
+    </xacro:if>
+  </xacro:if>
+
+  <xacro:if value="$(optenv HUSKY_LASER_3D 0)">
+    <xacro:property name="lidar_3d_model" value="$(optenv HUSKY_LASER_3D_MODEL vlp16)" />
+
+    <xacro:VLP-16 parent="sensor_arch_mount_link" topic="$(optenv HUSKY_LASER_3D_TOPIC ponts)">
+      <origin xyz="$(optenv HUSKY_LASER_3D_OFFSET 0 0 0)" rpy="$(optenv HUSKY_LASER_3D_RPY 0 0 0)" />
+    </xacro:VLP-16>
+  </xacro:if>
+
+  <!-- add the intel realsense to the topbar if needed -->
+  <xacro:if value="$(arg realsense_enabled)">
+    <link name="realsense_mountpoint"/>
+    <joint name="realsense_mountpoint_joint" type="fixed">
+      <origin xyz="0 0 0" rpy="0 0 -3.14159" />
+      <parent link="$(arg realsense_mount)"/>
+      <child link="realsense_mountpoint" />
+    </joint>
+    <xacro:intel_realsense_mount prefix="camera" topic="realsense" parent_link="realsense_mountpoint"/>
+  </xacro:if>
+
+  <gazebo>
+    <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+      <robotNamespace>$(arg robot_namespace)</robotNamespace>
+      <legacyModeNS>true</legacyModeNS>
+    </plugin>
+  </gazebo>
+
+  <gazebo>
+    <plugin name="imu_controller" filename="libhector_gazebo_ros_imu.so">
+      <robotNamespace>$(arg robot_namespace)</robotNamespace>
+      <updateRate>50.0</updateRate>
+      <bodyName>base_link</bodyName>
+      <topicName>imu/data</topicName>
+      <accelDrift>0.005 0.005 0.005</accelDrift>
+      <accelGaussianNoise>0.005 0.005 0.005</accelGaussianNoise>
+      <rateDrift>0.005 0.005 0.005 </rateDrift>
+      <rateGaussianNoise>0.005 0.005 0.005 </rateGaussianNoise>
+      <headingDrift>0.005</headingDrift>
+      <headingGaussianNoise>0.005</headingGaussianNoise>
+    </plugin>
+  </gazebo>
+
+  <gazebo>
+    <plugin name="gps_controller" filename="libhector_gazebo_ros_gps.so">
+      <robotNamespace>$(arg robot_namespace)</robotNamespace>
+      <updateRate>40</updateRate>
+      <bodyName>base_link</bodyName>
+      <frameId>base_link</frameId>
+      <topicName>navsat/fix</topicName>
+      <velocityTopicName>navsat/vel</velocityTopicName>
+      <referenceLatitude>49.9</referenceLatitude>
+      <referenceLongitude>8.9</referenceLongitude>
+      <referenceHeading>0</referenceHeading>
+      <referenceAltitude>0</referenceAltitude>
+      <drift>0.0001 0.0001 0.0001</drift>
+    </plugin>
+  </gazebo>
+</robot>
