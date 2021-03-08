@@ -2,7 +2,7 @@
 <launch>
 
   <!-- Standalone launcher to visualize the robot model. -->
-  <include file="$(find husky_description)/launch/description.launch">s
+  <include file="$(find husky_description)/launch/description.launch">
   </include>
 
   <node name="joint_state_publisher_gui" pkg="joint_state_publisher_gui" type="joint_state_publisher_gui" />
