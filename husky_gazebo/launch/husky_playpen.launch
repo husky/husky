@@ -24,15 +24,9 @@ ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCL
 ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 <launch>
-
-  <arg name="laser_enabled" default="true"/>
-  <arg name="realsense_enabled" default="false"/>
-
   <include file="$(find husky_gazebo)/launch/playpen.launch" />
 
   <include file="$(find husky_gazebo)/launch/spawn_husky.launch">
-    <arg name="laser_enabled" value="$(arg laser_enabled)"/>
-    <arg name="realsense_enabled" value="$(arg realsense_enabled)"/>
   </include>
 
 </launch>

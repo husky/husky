@@ -1,10 +1,12 @@
 <?xml version="1.0"?>
 <launch>
-  <arg name="lms1xx_enabled" default="$(optenv HUSKY_LMS1XX_ENABLED false)" />
-  <group if="$(arg lms1xx_enabled)">
-    <node pkg="lms1xx" name="lms1xx" type="LMS1xx_node">
-      <param name="host" value="$(env HUSKY_LMS1XX_IP)" />
-      <param name="frame_id" value="base_laser" />
-    </node>
-  </group>
+  <arg name="prefix"   default="front" />
+  <arg name="host"     default="$(optenv HUSKY_LASER_HOST 192.168.131.20)" />
+  <arg name="topic"    default="$(optenv HUSKY_LASER_TOPIC front/scan)" />
+  <arg name="frame_id" default="front_laser" />
+
+  <node pkg="lms1xx" name="$(arg prefix)" type="LMS1xx_node">
+    <param name="host" value="$(arg host)" />
+    <param name="frame_id" value="$(arg frame_id)" />
+  </node>
 </launch>

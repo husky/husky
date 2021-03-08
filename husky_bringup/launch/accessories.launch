@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<launch>
+  <!--
+    Automatically launch IMU & GPS nodes if the devices are present
+  -->
+  <group if="$(eval os.path.exists('/dev/clearpath/imu') or os.path.exists('/dev/clearpath/um6'))">
+    <include file="$(find husky_bringup)/launch/um6_config/um6.launch" />
+  </group>
+  <group if="$(eval os.path.exists('/dev/clearpath/um7'))">
+    <include file="$(find husky_bringup)/launch/um7_config/um7.launch" />
+  </group>
+  <group if="$(eval os.path.exists('/dev/microstrain_gx3'))">
+    <include file="$(find husky_bringup)/microstrain_gx3_config/microstrain_gx3.launch" />
+  </group>
+  <group if="$(eval os.path.exists('/dev/microstrain_gx5'))">
+    <include file="$(find husky_bringup)/microstrain_gx5_config/microstrain_gx5.launch" />
+  </group>
+  <group if="$(eval os.path.exists('/dev/clearpath/gps'))">
+    <include file="$(find husky_bringup)/navsat_config/navsat.launch" />
+  </group>
+
+  <!--
+    Launch primary, secondary, and 3D laser scanners if env vars are configured to do so
+  -->
+  <group if="$(optenv HUSKY_LASER 0)">
+    <arg name="lidar_model" value="$(optenv HUSKY_LASER_MODEL lms1xx)" />
+    <group if="$(eval arg('lidar_model') == 'lms1xx')">
+      <include file="$(find husky_bringup)/launch/lms1xx_config/lms1xx.launch">
+        <arg name="frame_id"  value="front_laser" />
+        <arg name="host"      value="$(optenv HUSKY_LASER_HOST 192.168.131.20)" />
+        <arg name="prefix"    value="front" />
+        <arg name="topic"     value="$(HUSKY_LASER_TOPIC front/scan)" />
+      </include>
+    </group>
+  </group>
+  <group if="$(optenv HUSKY_LASER_SECONDARY 0)">
+    <arg name="lidar2_model" value="$(optenv HUSKY_LASER_SECONDARY_MODEL lms1xx)" />
+    <group if="$(eval arg('lidar2_model') == 'lms1xx')">
+      <include file="$(find husky_bringup)/launch/lms1xx_config/lms1xx.launch">
+        <arg name="frame_id"  value="rear_laser" />
+        <arg name="host"      value="$(optenv HUSKY_LASER_SECONDARY_HOST 192.168.131.21)" />
+        <arg name="prefix"    value="rear" />
+        <arg name="topic"     value="$(HUSKY_LASER_SECONDARY_TOPIC rear/scan)" />
+      </include>
+    </group>
+  </group>
+  <group if="$(optenv HUSKY_LASER_3D 0)">
+    <arg name="lidar_3d_model" value="$(optenv HUSKY_LASER_3D_MODEL vlp16)" />
+    <group if="$(eval arg('lidar_3d_model') == 'lms1xx')">
+      <include file="$(find husky_bringup)/launch/velodyne_config/vlp16.launch">
+        <arg name="topic"     value="$(optenv HUSKY_LASER_3D_TOPIC)" />
+        <arg name="host"      value="$(optenv HUSKY_LASER_3D_HOST)" />
+      </include>
+    </group>
+  </group>
+</launch>
