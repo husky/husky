@@ -213,7 +213,8 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
 
     <xacro:if value="$(optenv HUSKY_SENSOR_ARCH 0)">
       <xacro:include filename="$(find husky_description)/urdf/accessories/sensor_arch.urdf.xacro"/>
-      <xacro:sensor_arch prefix="" parent="top_plate_link">
+      <!-- Size must be 510 or 300 -->
+      <xacro:sensor_arch prefix="" parent="top_plate_link" size="$(optenv HUSKY_SENSOR_ARCH_SIZE 510)">
         <origin xyz="$(optenv HUSKY_SENSOR_ARCH_OFFSET 0 0 0)" rpy="$(optenv HUSKY_SENSOR_ARCH_RPY 0 0 0)"/>
       </xacro:sensor_arch>
     </xacro:if>

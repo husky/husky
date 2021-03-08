@@ -31,7 +31,7 @@
         <joint name="${prefix}sensor_arch_mount" type="fixed">
              <parent link="${prefix}sensor_arch_base_link"/>
              <child link="${prefix}sensor_arch_mount_link"/>
-             <origin xyz="0 0 0.51" rpy="0 0 0" />
+             <origin xyz="0 0 ${size/1000}" rpy="0 0 0" />
         </joint>
 
     </xacro:macro>
