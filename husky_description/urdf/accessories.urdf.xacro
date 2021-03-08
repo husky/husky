@@ -5,7 +5,8 @@
   <!-- Include external sensors & payloads -->
   <xacro:include filename="$(find husky_description)/urdf/accessories/intel_realsense.urdf.xacro"/>
   <xacro:include filename="$(find husky_description)/urdf/accessories/sick_lms1xx_mount.urdf.xacro"/>
-  <xacro:include filename="$(find velodyne_description)/urdf/VLP-16.urdf.xacro" />
+  <xacro:include filename="$(find husky_description)/urdf/accessories/vlp16_mount.urdf.xacro"/>
+
 
   <xacro:if value="$(optenv HUSKY_LASER 0)">
     <xacro:property name="lidar_model" value="$(optenv HUSKY_LASER_MODEL lms1xx)" />
@@ -40,13 +41,15 @@
   <xacro:if value="$(optenv HUSKY_LASER_3D 0)">
     <xacro:property name="lidar_3d_model" value="$(optenv HUSKY_LASER_3D_MODEL vlp16)" />
 
-    <xacro:VLP-16 parent="sensor_arch_mount_link" topic="$(optenv HUSKY_LASER_3D_TOPIC ponts)">
-      <origin xyz="$(optenv HUSKY_LASER_3D_OFFSET 0 0 0)" rpy="$(optenv HUSKY_LASER_3D_RPY 0 0 0)" />
-    </xacro:VLP-16>
+    <xacro:if value="${lidar_3d_model == 'vlp16'}">
+      <xacro:vlp16_mount prefix="vlp16" topic="$(optenv HUSKY_LASER_3D_TOPIC points)" parent_link="sensor_arch_mount_link">
+        <origin xyz="$(optenv HUSKY_LASER_3D_OFFSET 0 0 0)" rpy="$(optenv HUSKY_LASER_3D_RPY 0 0 0)" />
+      </xacro:vlp16_mount>
+    </xacro:if>
   </xacro:if>
 
   <!-- add the intel realsense to the topbar if needed -->
-  <xacro:if value="$(arg realsense_enabled)">
+  <xacro:if value="$(optenv HUSKY_REALSENSE 0)">
     <link name="realsense_mountpoint"/>
     <joint name="realsense_mountpoint_joint" type="fixed">
       <origin xyz="0 0 0" rpy="0 0 -3.14159" />
