@@ -37,6 +37,9 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
   <xacro:property name="husky_front_bumper_extend" value="$(optenv HUSKY_FRONT_BUMPER_EXTEND 0)" />
   <xacro:property name="husky_rear_bumper_extend" value="$(optenv HUSKY_REAR_BUMPER_EXTEND 0)" />
 
+  <!-- Height of the sensor arch in mm.  Must be either 510 or 300 -->
+  <xacro:arg name="sensor_arch_height"  default="$(optenv HUSKY_SENSOR_ARCH_HEIGHT 510)" />
+
   <xacro:arg name="robot_namespace" default="/" />
   <xacro:arg name="urdf_extras" default="empty.urdf" />
 
@@ -156,10 +159,12 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
     keep this as a property to make it easier to add multiple conditions, should we need
     the top bar for any additional sensors in the future
   -->
-  <xacro:property name="topbar_needed_realsense" value="$(arg realsense_enabled)" />
-  <xacro:if value="${topbar_needed_realsense}">
-    <xacro:sensor_arch prefix="" parent="top_plate_link">
-      <origin xyz="-0.35 0 0.51" rpy="0 0 -3.14"/>
+  <xacro:property name="sensorbar_user_enabled"     value="$(optenv HUSKY_SENSOR_ARCH 0)" />
+  <xacro:property name="sensorbar_needed_realsense" value="$(arg realsense_enabled)" />
+  <xacro:if value="${sensorbar_needed_realsense or sensorbar_user_enabled}">
+    <xacro:property name="arch_height" value="$(arg sensor_arch_height)" />
+    <xacro:sensor_arch prefix="" parent="top_plate_link" size="$(arg sensor_arch_height)">
+      <origin xyz="-0.35 0 ${arch_height / 1000.0}" rpy="0 0 -3.14"/>
     </xacro:sensor_arch>
   </xacro:if>
 
