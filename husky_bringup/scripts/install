@@ -23,7 +23,10 @@ if os.path.exists('/dev/microstrain_gx5'):
 if os.path.exists('/dev/clearpath/gps'):
   j.add(package="husky_bringup", glob="launch/navsat_config/*")
 
-if os.environ.get('HUSKY_LMS1XX_IP'):
+if os.environ.get('HUSKY_LMS1XX_IP') or os.environ.get('HUSKY_LMS1XX_SECONDARY_IP'):
   j.add(package="husky_bringup", glob="launch/lms1xx_config/*")
+
+if os.environ.get('HUSKY_LASER_3D_ENABLED')
+  j.add(package="husky_bringup", glob="launch/velodyne_config/*")
 
 j.install()
