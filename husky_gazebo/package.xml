@@ -29,6 +29,7 @@
   <run_depend>multimaster_launch</run_depend>
   <run_depend>pointcloud_to_laserscan</run_depend>
   <run_depend>rostopic</run_depend>
+  <run_depend>velodyne_gazebo_plugins</run_depend>
 
   <export>
   </export>
