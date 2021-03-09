@@ -47,6 +47,7 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
 
   <!-- Height of the sensor arch in mm.  Must be either 510 or 300 -->
   <xacro:arg name="sensor_arch_height"  default="$(optenv HUSKY_SENSOR_ARCH_HEIGHT 510)" />
+  <xacro:arg name="sensor_arch"         default="$(optenv HUSKY_SENSOR_ARCH 0)" />
 
   <xacro:arg name="robot_namespace" default="/" />
   <xacro:arg name="urdf_extras" default="empty.urdf" />
@@ -179,9 +180,9 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
     Add the main sensor arch if the user has specifically enabled it, or if a sensor
     requires it for mounting
   -->
-  <xacro:property name="sensorbar_user_enabled"     value="$(optenv HUSKY_SENSOR_ARCH 0)" />
+  <xacro:property name="sensorbar_user_enabled"     value="$(arg sensor_arch)" />
   <xacro:property name="sensorbar_needed_realsense" value="$(arg realsense_enabled)" />
-  <xacro:property name="sensorbar_needed_lidar"     value="$(optenv HUSKY_LASER_3D 0)" />
+  <xacro:property name="sensorbar_needed_lidar"     value="$(arg laser_3d_enabled)" />
   <xacro:if value="${sensorbar_needed_realsense or sensorbar_user_enabled or sensorbar_needed_lidar}">
     <xacro:sensor_arch prefix="" parent="top_plate_link" size="$(arg sensor_arch_height)">
         <origin xyz="$(optenv HUSKY_SENSOR_ARCH_OFFSET 0 0 0)" rpy="$(optenv HUSKY_SENSOR_ARCH_RPY 0 0 0)"/>
