@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <launch>
 
-  <arg name="laser_enabled" default="$(optenv HUSKY_LMS1XX_ENABLED false)"/>
-  <arg name="realsense_enabled" default="false"/>
+  <arg name="laser_enabled" default="$(optenv HUSKY_LMS1XX_ENABLED 0)"/>
+  <arg name="realsense_enabled" default="$(optenv HUSKY_REALSENSE_ENABLED 0)"/>
 
   <!-- Standalone launcher to visualize the robot model. -->
   <include file="$(find husky_description)/launch/description.launch">
