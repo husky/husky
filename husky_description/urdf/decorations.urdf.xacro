@@ -35,8 +35,10 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
 
   <xacro:macro name="husky_decorate">
 
+    <xacro:property name="husky_front_bumper_enable" value="$(optenv HUSKY_FRONT_BUMPER 1)" />
+    <xacro:property name="husky_rear_bumper_enable"  value="$(optenv HUSKY_REAR_BUMPER 1)" />
     <xacro:property name="husky_front_bumper_extend" value="$(optenv HUSKY_FRONT_BUMPER_EXTEND 0)" />
-    <xacro:property name="husky_rear_bumper_extend" value="$(optenv HUSKY_REAR_BUMPER_EXTEND 0)" />
+    <xacro:property name="husky_rear_bumper_extend"  value="$(optenv HUSKY_REAR_BUMPER_EXTEND 0)" />
 
     <!-- Spawn Husky chassis -->
     <link name="top_chassis_link">
@@ -73,67 +75,71 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
     </xacro:if>
 
     <!-- Spawn front bumper link -->
-    <link name="front_bumper_link">
-      <visual>
-        <geometry>
-          <mesh filename="package://husky_description/meshes/bumper.dae" />
-        </geometry>
-      </visual>
-    </link>
-
-    <!-- Attach front bumper -->
-    <joint name="front_bumper" type="fixed">
-      <origin xyz="${0.48 + husky_front_bumper_extend} 0 0.091" rpy="0 0 0" />
-      <parent link="base_link" />
-      <child link="front_bumper_link" />
-    </joint>
-
-    <xacro:if value="${husky_front_bumper_extend}">
-      <link name="front_bumper_extension_link">
-          <visual>
-              <geometry>
-                  <mesh filename="package://husky_description/meshes/bumper_extension.dae" />
-              </geometry>
-          </visual>
+    <xacro:if value="${husky_front_bumper_enable}">
+      <link name="front_bumper_link">
+        <visual>
+          <geometry>
+            <mesh filename="package://husky_description/meshes/bumper.dae" />
+          </geometry>
+        </visual>
       </link>
 
-      <joint name="front_bumper_extension" type="fixed">
+      <!-- Attach front bumper -->
+      <joint name="front_bumper" type="fixed">
         <origin xyz="${0.48 + husky_front_bumper_extend} 0 0.091" rpy="0 0 0" />
         <parent link="base_link" />
-        <child link="front_bumper_extension_link" />
+        <child link="front_bumper_link" />
       </joint>
+
+      <xacro:if value="${husky_front_bumper_extend}">
+        <link name="front_bumper_extension_link">
+            <visual>
+                <geometry>
+                    <mesh filename="package://husky_description/meshes/bumper_extension.dae" />
+                </geometry>
+            </visual>
+        </link>
+
+        <joint name="front_bumper_extension" type="fixed">
+          <origin xyz="${0.48 + husky_front_bumper_extend} 0 0.091" rpy="0 0 0" />
+          <parent link="base_link" />
+          <child link="front_bumper_extension_link" />
+        </joint>
+      </xacro:if>
     </xacro:if>
 
     <!-- Spawn rear bumper link -->
-    <link name="rear_bumper_link">
-      <visual>
-        <geometry>
-          <mesh filename="package://husky_description/meshes/bumper.dae" />
-        </geometry>
-      </visual>
-    </link>
-
-    <!-- Attach rear bumper -->
-    <joint name="rear_bumper" type="fixed">
-      <origin xyz="${-0.48 - husky_rear_bumper_extend} 0 0.091" rpy="0 0 ${M_PI}" />
-      <parent link="base_link" />
-      <child link="rear_bumper_link" />
-    </joint>
-
-    <xacro:if value="${husky_rear_bumper_extend}">
-      <link name="rear_bumper_extension_link">
-          <visual>
-              <geometry>
-                  <mesh filename="package://husky_description/meshes/bumper_extension.dae" />
-              </geometry>
-          </visual>
+    <xacro:if value="${husky_rear_bumper_enable}">
+      <link name="rear_bumper_link">
+        <visual>
+          <geometry>
+            <mesh filename="package://husky_description/meshes/bumper.dae" />
+          </geometry>
+        </visual>
       </link>
 
-      <joint name="rear_bumper_extension" type="fixed">
+      <!-- Attach rear bumper -->
+      <joint name="rear_bumper" type="fixed">
         <origin xyz="${-0.48 - husky_rear_bumper_extend} 0 0.091" rpy="0 0 ${M_PI}" />
         <parent link="base_link" />
-        <child link="rear_bumper_extension_link" />
+        <child link="rear_bumper_link" />
       </joint>
+
+      <xacro:if value="${husky_rear_bumper_extend}">
+        <link name="rear_bumper_extension_link">
+            <visual>
+                <geometry>
+                    <mesh filename="package://husky_description/meshes/bumper_extension.dae" />
+                </geometry>
+            </visual>
+        </link>
+
+        <joint name="rear_bumper_extension" type="fixed">
+          <origin xyz="${-0.48 - husky_rear_bumper_extend} 0 0.091" rpy="0 0 ${M_PI}" />
+          <parent link="base_link" />
+          <child link="rear_bumper_extension_link" />
+        </joint>
+      </xacro:if>
     </xacro:if>
 
     <xacro:if value="$(optenv HUSKY_TOP_PLATE_ENABLED true)">
