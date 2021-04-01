@@ -2,6 +2,11 @@
 Changelog for package husky_bringup
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Add a missing colon to the install script
+* Contributors: Chris Iverach-Brereton
+
 0.4.7 (2021-03-16)
 ------------------
 
