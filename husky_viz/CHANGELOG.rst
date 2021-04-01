@@ -2,6 +2,9 @@
 Changelog for package husky_viz
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+0.4.7 (2021-03-16)
+------------------
+
 0.4.6 (2021-03-09)
 ------------------
 * Add VLP16, secondary LMS1xx support (`#164 <https://github.com/husky/husky/issues/164>`_)

@@ -2,6 +2,11 @@
 Changelog for package husky_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+0.4.7 (2021-03-16)
+------------------
+* Add HUSKY\_{FRONT|REAR}_BUMPER envars we can use to completely turn off the front & rear bumpers.  This is requested to make integration of the wireless charging docks easier
+* Contributors: Chris Iverach-Brereton
+
 0.4.6 (2021-03-09)
 ------------------
 * Add VLP16, secondary LMS1xx support (`#164 <https://github.com/husky/husky/issues/164>`_)
