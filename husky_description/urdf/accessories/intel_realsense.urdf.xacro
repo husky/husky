@@ -38,7 +38,7 @@
               <width>${width}</width>
               <height>${height}</height>
               <!-- TODO: check what format the Realsense hardware delivers and set this to match! -->
-              <format>RGB8</format>
+              <format>RGB_INT8</format>
             </image>
             <clip>
               <!-- give the color sensor a maximum range of 50m so that the simulation renders nicely -->
