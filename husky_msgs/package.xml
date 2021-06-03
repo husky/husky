@@ -1,25 +1,26 @@
 <?xml version="1.0"?>
-<package>
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
   <name>husky_msgs</name>
   <version>0.4.4</version>
   <description>Messages for Clearpath Husky</description>
-
   <author email="paul@bovbel.com">Paul Bovbel</author>
-
   <maintainer email="tbaltovski@clearpathrobotics.com">Tony Baltovski</maintainer>
-
   <license>BSD</license>
 
-  <url type="website">http://ros.org/wiki/husky_msgs</url>
-  <url type="bugtracker">https://github.com/husky/husky/issues</url>
-  <url type="repository">https://github.com/husky/husky</url>
+  <buildtool_depend>ament_cmake</buildtool_depend>
 
-  <buildtool_depend>catkin</buildtool_depend>
-  <build_depend>message_generation</build_depend>
-  <build_depend>std_msgs</build_depend>
-  <run_depend>message_runtime</run_depend>
-  <run_depend>std_msgs</run_depend>
+  <depend>std_msgs</depend>
+
+  <build_depend>builtin_interfaces</build_depend>
+  <build_depend>rosidl_default_generators</build_depend>
+
+  <exec_depend>builtin_interfaces</exec_depend>
+  <exec_depend>rosidl_default_runtime</exec_depend>
+
+  <member_of_group>rosidl_interface_packages</member_of_group>
 
   <export>
+    <build_type>ament_cmake</build_type>
   </export>
 </package>

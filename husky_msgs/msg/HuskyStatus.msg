@@ -1,4 +1,4 @@
-Header header
+std_msgs/Header header
 
 # MCU Uptime, in ms
 uint32 uptime

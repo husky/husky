@@ -1,19 +1,26 @@
-cmake_minimum_required(VERSION 2.8.3)
+cmake_minimum_required(VERSION 3.5)
 project(husky_msgs)
 
-find_package(catkin REQUIRED COMPONENTS
-  std_msgs
-  message_generation
-)
+# Default to C++14
+if(NOT CMAKE_CXX_STANDARD)
+  set(CMAKE_CXX_STANDARD 14)
+endif()
 
-add_message_files(
-  FILES
-  HuskyStatus.msg
-)
+if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
+  add_compile_options(-Wall -Wextra -Wpedantic)
+endif()
 
-generate_messages(
+find_package(ament_cmake REQUIRED)
+find_package(std_msgs REQUIRED)
+find_package(builtin_interfaces REQUIRED)
+find_package(rosidl_default_generators REQUIRED)
+
+rosidl_generate_interfaces(husky_msgs
+   msg/HuskyStatus.msg
   DEPENDENCIES
-  std_msgs
+   builtin_interfaces std_msgs
 )
 
-catkin_package(CATKIN_DEPENDS std_msgs message_runtime)
+ament_export_dependencies(rosidl_default_runtime)
+
+ament_package()
