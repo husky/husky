@@ -34,10 +34,6 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
   <arg name="z" default="0.0"/>
   <arg name="yaw" default="0.0"/>
 
-  <arg name="laser_enabled" default="$(optenv HUSKY_LMS1XX_ENABLED false)"/>
-  <arg name="realsense_enabled" default="$(optenv HUSKY_REALSENSE_ENABLED false)"/>
-  <arg name="urdf_extras" default="$(optenv HUSKY_URDF_EXTRAS)"/>
-
   <!-- Optionally disable teleop control -->
   <arg name="joystick" default="true" />
 
@@ -46,9 +42,6 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
     <!-- <group if="$(arg multimaster)">
       <include file="$(find husky_description)/launch/description.launch" >
         <arg name="robot_namespace" value="$(arg robot_namespace)"/>
-        <arg name="laser_enabled" default="$(arg laser_enabled)"/>
-        <arg name="realsense_enabled" default="$(arg realsense_enabled)"/>
-        <arg name="urdf_extras" default="$(arg urdf_extras)"/>
       </include>
 
       <include file="$(find multimaster_launch)/launch/multimaster_gazebo_robot.launch">
@@ -63,19 +56,16 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
     <!-- For single master bringup, run robot control on the gazebo master -->
     <!-- Note that husky_description/description.launch is already included in husky_control/control.launch. -->
     <!-- <group unless="$(arg multimaster)"> -->
-    <include file="$(find husky_control)/launch/control.launch">
-      <!-- <arg name="multimaster" value="$(arg multimaster)"/> -->
-      <arg name="laser_enabled" value="$(arg laser_enabled)"/>
-      <arg name="realsense_enabled" default="$(arg realsense_enabled)"/>
-      <arg name="urdf_extras" value="$(arg urdf_extras)"/>
-    </include>
-    <include file="$(find husky_control)/launch/teleop.launch">
-      <arg name="joystick" value="$(arg joystick)" />
-    </include>
+      <include file="$(find husky_control)/launch/control.launch">
+        <!-- <arg name="multimaster" value="$(arg multimaster)"/> -->
+      </include>
+      <include file="$(find husky_control)/launch/teleop.launch">
+        <arg name="joystick" value="$(arg joystick)" />
+      </include>
     <!-- </group> -->
 
     <!-- Additional nodes for specific accessories -->
-    <group if="$(arg realsense_enabled)">
+    <group if="$(optenv HUSKY_REALSENSE_ENABLED 0)">
       <include file="$(find husky_gazebo)/launch/realsense.launch" />
     </group>
 
