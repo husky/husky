@@ -1,42 +1,66 @@
-husky_joint_publisher:
-  type: "joint_state_controller/JointStateController"
-  publish_rate: 50
+controller_manager:
+  ros__parameters:
+    update_rate: 2  # Hz
+
+    joint_state_broadcaster:
+      type: joint_state_broadcaster/JointStateBroadcaster
+
+    husky_velocity_controller:
+      type: diff_drive_controller/DiffDriveController
 
 husky_velocity_controller:
-  type: "diff_drive_controller/DiffDriveController"
-  left_wheel: ['front_left_wheel', 'rear_left_wheel']
-  right_wheel: ['front_right_wheel', 'rear_right_wheel']
-  publish_rate: 50
-  pose_covariance_diagonal: [0.001, 0.001, 0.001, 0.001, 0.001, 0.03]
-  twist_covariance_diagonal: [0.001, 0.001, 0.001, 0.001, 0.001, 0.03]
-  cmd_vel_timeout: 0.25
-  velocity_rolling_window_size: 2
+  ros__parameters:
+    left_wheel_names: [ "front_left_wheel", "rear_left_wheel" ]
+    right_wheel_names: [ "front_right_wheel", "rear_right_wheel" ]
 
-  # Base frame_id
-  base_frame_id: base_link
+    wheel_separation: 0.10
+    #wheels_per_side: 1  # actually 2, but both are controlled by 1 signal
+    wheel_radius: 0.015
 
-  # Odometry fused with IMU is published by robot_localization, so
-  # no need to publish a TF based on encoders alone.
-  enable_odom_tf: false
+    wheel_separation_multiplier: 1.0
+    left_wheel_radius_multiplier: 1.0
+    right_wheel_radius_multiplier: 1.0
 
-  # Husky hardware provides wheel velocities
-  estimate_velocity_from_position: false
+    publish_rate: 50.0
+    odom_frame_id: odom
+    base_frame_id: base_link
+    pose_covariance_diagonal : [0.001, 0.001, 0.001, 0.001, 0.001, 0.01]
+    twist_covariance_diagonal: [0.001, 0.001, 0.001, 0.001, 0.001, 0.01]
 
-  # Wheel separation and radius multipliers
-  wheel_separation_multiplier: 1.875 # default: 1.0
-  wheel_radius_multiplier    : 1.0 # default: 1.0
+    open_loop: true
+    enable_odom_tf: true
 
-  # Velocity and acceleration limits
-  # Whenever a min_* is unspecified, default to -max_*
-  linear:
-    x:
-      has_velocity_limits    : true
-      max_velocity           : 1.0   # m/s
-      has_acceleration_limits: true
-      max_acceleration       : 3.0   # m/s^2
-  angular:
-    z:
-      has_velocity_limits    : true
-      max_velocity           : 2.0   # rad/s
-      has_acceleration_limits: true
-      max_acceleration       : 6.0   # rad/s^2
+    cmd_vel_timeout: 0.5
+    #publish_limited_velocity: true
+    use_stamped_vel: false
+    #velocity_rolling_window_size: 10
+
+    # Preserve turning radius when limiting speed/acceleration/jerk
+    preserve_turning_radius: true
+
+    # Publish limited velocity
+    publish_cmd: true
+
+    # Publish wheel data
+    publish_wheel_data: true
+
+    # Velocity and acceleration limits
+    # Whenever a min_* is unspecified, default to -max_*
+    linear.x.has_velocity_limits: true
+    linear.x.has_acceleration_limits: true
+    linear.x.has_jerk_limits: false
+    linear.x.max_velocity: 1.0
+    linear.x.min_velocity: -1.0
+    linear.x.max_acceleration: 1.0
+    linear.x.max_jerk: 0.0
+    linear.x.min_jerk: 0.0
+
+    angular.z.has_velocity_limits: true
+    angular.z.has_acceleration_limits: true
+    angular.z.has_jerk_limits: false
+    angular.z.max_velocity: 1.0
+    angular.z.min_velocity: -1.0
+    angular.z.max_acceleration: 1.0
+    angular.z.min_acceleration: -1.0
+    angular.z.max_jerk: 0.0
+    angular.z.min_jerk: 0.0

@@ -44,9 +44,9 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
   <xacro:include filename="$(find husky_description)/urdf/decorations.urdf.xacro" />
   <xacro:include filename="$(find husky_description)/urdf/wheel.urdf.xacro" />
 
-  <xacro:include filename="$(find husky_description)/urdf/accessories/intel_realsense.urdf.xacro"/>
+  <!-- <xacro:include filename="$(find husky_description)/urdf/accessories/intel_realsense.urdf.xacro"/>
   <xacro:include filename="$(find husky_description)/urdf/accessories/sick_lms1xx_mount.urdf.xacro"/>
-  <xacro:include filename="$(find husky_description)/urdf/accessories/sensor_arch.urdf.xacro"/>
+  <xacro:include filename="$(find husky_description)/urdf/accessories/sensor_arch.urdf.xacro"/> -->
 
   <xacro:property name="M_PI" value="3.14159"/>
 
@@ -211,6 +211,54 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
       <drift>0.0001 0.0001 0.0001</drift>
     </plugin>
   </gazebo>
+
+
+  <ros2_control name="husky_base" type="system">
+    <hardware>
+      <plugin>husky_base/HuskyBase</plugin>
+      <param name="hw_start_duration_sec">2.0</param>
+      <param name="hw_stop_duration_sec">3.0</param>
+      <param name="wheel_diameter">0.3302</param>
+      <param name="max_accel">5.0</param>
+      <param name="max_speed">1.0</param>
+      <param name="polling_timeout">10.0</param>
+      <!-- <param name="serial_port">/dev/prolific</param> -->
+      <param name="serial_port">/dev/ttyUSB0</param>
+    </hardware>
+    <joint name="front_left_wheel">
+      <command_interface name="velocity">
+        <param name="min">-1</param>
+        <param name="max">1</param>
+      </command_interface>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+    </joint>
+    <joint name="front_right_wheel">
+      <command_interface name="velocity">
+        <param name="min">-1</param>
+        <param name="max">1</param>
+      </command_interface>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+    </joint>
+    <joint name="rear_left_wheel">
+      <command_interface name="velocity">
+        <param name="min">-1</param>
+        <param name="max">1</param>
+      </command_interface>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+    </joint>
+    <joint name="rear_right_wheel">
+      <command_interface name="velocity">
+        <param name="min">-1</param>
+        <param name="max">1</param>
+      </command_interface>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+    </joint>
+  </ros2_control>
+
 
   <!-- Optional custom includes. -->
   <xacro:include filename="$(arg urdf_extras)" />

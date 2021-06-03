@@ -1,22 +1,37 @@
-cmake_minimum_required(VERSION 2.8.3)
+cmake_minimum_required(VERSION 3.5)
 project(husky_base)
 
-find_package(catkin REQUIRED COMPONENTS controller_manager hardware_interface husky_msgs
-  diagnostic_updater roslaunch roslint roscpp sensor_msgs)
-find_package(Boost REQUIRED COMPONENTS chrono)
+# Default to C++14
+if(NOT CMAKE_CXX_STANDARD)
+  set(CMAKE_CXX_STANDARD 14)
+endif()
 
-catkin_package(
-  INCLUDE_DIRS include
-  LIBRARIES horizon_legacy
-  CATKIN_DEPENDS diagnostic_updater hardware_interface husky_msgs roscpp sensor_msgs
-  DEPENDS Boost
-)
+if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
+  add_compile_options(-Wall -Wextra -Wpedantic)
+endif()
 
-include_directories(include ${Boost_INCLUDE_DIRS} ${catkin_INCLUDE_DIRS})
+find_package(ament_cmake_ros REQUIRED)
 
-set_directory_properties(PROPERTIES COMPILE_OPTIONS "-std=c++11;")
+find_package(hardware_interface REQUIRED)
+find_package(pluginlib REQUIRED)
+find_package(rclcpp REQUIRED)
 
-add_library(horizon_legacy
+find_package(geometry_msgs REQUIRED)
+find_package(husky_msgs REQUIRED)
+find_package(nav_msgs REQUIRED)
+find_package(sensor_msgs REQUIRED)
+find_package(std_msgs REQUIRED)
+find_package(std_srvs REQUIRED)
+find_package(tf2 REQUIRED)
+find_package(tf2_ros REQUIRED)
+
+
+## COMPILE
+add_library(
+  ${PROJECT_NAME}
+  SHARED
+  src/husky_base.cpp
+  src/horizon_legacy_wrapper.cpp
   src/horizon_legacy/crc.cpp
   src/horizon_legacy/Logger.cpp
   src/horizon_legacy/Message.cpp
@@ -28,30 +43,45 @@ add_library(horizon_legacy
   src/horizon_legacy/linux_serial.cpp
 )
 
-add_executable(husky_node
-  src/husky_base.cpp
-  src/husky_hardware.cpp
-  src/husky_diagnostics.cpp
-  src/horizon_legacy_wrapper.cpp)
-target_link_libraries(husky_node horizon_legacy ${catkin_LIBRARIES} ${Boost_LIBRARIES})
-
-roslint_cpp(
-  src/husky_base.cpp
-  src/husky_hardware.cpp
-  src/husky_diagnostics.cpp
-  include/husky_base/husky_diagnostics.h
-  include/husky_base/husky_hardware.h
+target_include_directories(
+  ${PROJECT_NAME}
+  PRIVATE
+  include
 )
 
-roslaunch_add_file_check(launch)
+ament_target_dependencies(
+  ${PROJECT_NAME}
+  hardware_interface
+  pluginlib
+  rclcpp
+)
 
-install(TARGETS horizon_legacy husky_node
-  RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
-  LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
-  ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION})
 
-install(DIRECTORY include/${PROJECT_NAME}/
-  DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION})
+pluginlib_export_plugin_description_file(hardware_interface husky_base.xml)
 
-install(DIRECTORY launch config
-  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION})
+
+# INSTALL
+install(
+  TARGETS ${PROJECT_NAME}
+  DESTINATION lib
+)
+install(
+  DIRECTORY include/
+  DESTINATION include
+)
+
+
+## EXPORTS
+ament_export_include_directories(
+  include
+)
+ament_export_libraries(
+  ${PROJECT_NAME}
+)
+ament_export_dependencies(
+  hardware_interface
+  pluginlib
+  rclcpp
+)
+# ament_export_libraries(horizon_legacy)
+ament_package()

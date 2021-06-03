@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
-<package>
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
   <name>husky_description</name>
   <version>0.4.4</version>
   <description>Clearpath Husky URDF description</description>
@@ -18,13 +19,11 @@
 
   <license>BSD</license>
 
-  <buildtool_depend>catkin</buildtool_depend>
-  <build_depend>roslaunch</build_depend>
-  <run_depend>realsense2_description</run_depend>
-  <run_depend>urdf</run_depend>
-  <run_depend>xacro</run_depend>
-  <run_depend>lms1xx</run_depend>
+  <buildtool_depend>ament_cmake</buildtool_depend>
+
+  <depend>urdf</depend>
 
   <export>
+    <build_type>ament_cmake</build_type>
   </export>
 </package>
