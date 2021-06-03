@@ -71,7 +71,7 @@ namespace clearpath
 /* void toBytes(void* dest, size_t dest_len, float src, float scale); */
   void ftob(void *dest, size_t dest_len, double src, double scale);
 
-/* Number to little-endian byte array conversion routines 
+/* Number to little-endian byte array conversion routines
  * Need to provide all, since size of the int param matters. */
   uint64_t btou(void *src, size_t src_len);
 
@@ -79,7 +79,7 @@ namespace clearpath
 
   double btof(void *src, size_t src_len, double scale);
 
-}; // namespace clearpath
+} // namespace clearpath
 
 #endif // NUMBER_H_
 

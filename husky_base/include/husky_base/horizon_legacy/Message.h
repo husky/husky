@@ -313,7 +313,7 @@ namespace clearpath
     DATA_MAGNETOMETER_RAW = 0xA116
   }; // enum MessageTypes
 
-}; // namespace clearpath
+} // namespace clearpath
 
 std::ostream &operator<<(std::ostream &stream, clearpath::Message &msg);
 

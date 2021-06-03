@@ -1084,7 +1084,7 @@ namespace clearpath
     virtual std::ostream &printMessage(std::ostream &stream = std::cout);
   };
 
-}; // namespace clearpath
+} // namespace clearpath
 
 #endif  // CLEARPATH_MESSAGE_DATA_H
 

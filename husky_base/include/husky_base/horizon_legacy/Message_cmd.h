@@ -292,7 +292,7 @@ namespace clearpath
     SetVelocity(const SetVelocity &other);
   };
 
-}; // namespace clearpath
+} // namespace clearpath
 
 #endif // CLEARPATH_MESSAGE_CMD_H
 

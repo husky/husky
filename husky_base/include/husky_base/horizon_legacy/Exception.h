@@ -63,6 +63,6 @@ namespace clearpath
     }
   };
 
-}; // namespace clearpath
+} // namespace clearpath
 
 #endif // CPR_EXCEPTION_H
