@@ -150,5 +150,4 @@ namespace clearpath
     signal(SIGSEGV, loggerTermHandler);
   }
 
-}; // namespace clearpath
-
+} // namespace clearpath

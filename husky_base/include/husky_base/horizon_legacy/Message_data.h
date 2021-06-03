@@ -1087,4 +1087,3 @@ namespace clearpath
 } // namespace clearpath
 
 #endif  // CLEARPATH_MESSAGE_DATA_H
-

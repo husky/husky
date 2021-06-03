@@ -177,4 +177,3 @@ namespace clearpath
 } // namespace clearpath
 
 #endif // CLEARPATH_TRANSPORT_H
-

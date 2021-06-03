@@ -70,7 +70,7 @@ namespace clearpath
     {
 #ifdef LOGGING_AVAIL
         CPR_WARN() << "Command message destroyed without being sent. Type: "
-            << "0x" << hex << getType() << dec 
+            << "0x" << hex << getType() << dec
             << ". Total unsent: " << (total_destroyed-total_sent) << endl;
 #endif
     }
@@ -373,5 +373,4 @@ namespace clearpath
   }
 
 
-}; // namespace clearpath
-
+} // namespace clearpath

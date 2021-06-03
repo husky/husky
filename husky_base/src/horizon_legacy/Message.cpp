@@ -67,7 +67,7 @@ namespace clearpath
       : Exception(msg), type(ex_type)
   {
 #ifdef LOGGING_AVAIL
-	CPR_EXCEPT() << "MessageException "<<type<<": "<< message << endl << flush;
+  CPR_EXCEPT() << "MessageException "<<type<<": "<< message << endl << flush;
 #endif
   }
 
@@ -301,7 +301,7 @@ namespace clearpath
 */
   bool Message::isValid(char *whyNot, size_t strLen)
   {
-    // Check SOH 
+    // Check SOH
     if (data[SOH_OFST] != SOH)
     {
       if (whyNot) { strncpy(whyNot, "SOH is not present.", strLen); }
@@ -493,10 +493,9 @@ namespace clearpath
     return Transport::instance().waitNext(timeout);
   }
 
-}; // namespace clearpath
+} // namespace clearpath
 
 std::ostream &operator<<(std::ostream &stream, clearpath::Message &msg)
 {
   return msg.printMessage(stream);
 }
-

@@ -62,5 +62,4 @@ namespace clearpath
   {
   }
 
-}; // namespace clearpath
-
+} // namespace clearpath

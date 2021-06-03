@@ -30,7 +30,7 @@
 */
 
 #include "husky_base/horizon_legacy/clearpath.h"
-#include <ros/ros.h>
+
 
 namespace
 {
@@ -46,9 +46,9 @@ namespace horizon_legacy
     {
       throw std::logic_error("Can't reconnect when port is not configured");
     }
-    ROS_INFO_STREAM("Connecting to Husky on port " << port_ << "...");
+    std::cout << "Connecting to Husky on port " << port_ << "...";
     clearpath::Transport::instance().configure(port_.c_str(), 3);
-    ROS_INFO("Connected");
+    std::cout << "Connected";
   }
 
   void connect(std::string port)
@@ -71,7 +71,7 @@ namespace horizon_legacy
       }
       catch (clearpath::Exception *ex)
       {
-        ROS_ERROR_STREAM("Error configuring velocity and accel limits: " << ex->message);
+        std::cout << "Error configuring velocity and accel limits: " << ex->message;
         reconnect();
       }
     }
@@ -89,7 +89,7 @@ namespace horizon_legacy
       }
       catch (clearpath::Exception *ex)
       {
-        ROS_ERROR_STREAM("Error sending speed and accel command: " << ex->message);
+        std::cout << "Error sending speed and accel command: " << ex->message;
         reconnect();
       }
     }

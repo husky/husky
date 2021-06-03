@@ -82,4 +82,3 @@ namespace clearpath
 } // namespace clearpath
 
 #endif // NUMBER_H_
-

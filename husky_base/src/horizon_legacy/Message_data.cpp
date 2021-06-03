@@ -202,9 +202,9 @@ enum MessageTypes MessageClass::getTypeID() { \
 
 
 
-  MESSAGE_CONSTRUCTORS(DataDifferentialSpeed, PAYLOAD_LEN);
+  MESSAGE_CONSTRUCTORS(DataDifferentialSpeed, PAYLOAD_LEN)
 
-  MESSAGE_CONVENIENCE_FNS(DataDifferentialSpeed, DATA_DIFF_WHEEL_SPEEDS);
+  MESSAGE_CONVENIENCE_FNS(DataDifferentialSpeed, DATA_DIFF_WHEEL_SPEEDS)
 
   double DataDifferentialSpeed::getLeftSpeed()
   {
@@ -266,7 +266,7 @@ enum MessageTypes MessageClass::getTypeID() { \
   {
   }
 
-  MESSAGE_CONVENIENCE_FNS(DataEncoders, DATA_ENCODER);
+  MESSAGE_CONVENIENCE_FNS(DataEncoders, DATA_ENCODER)
 
   uint8_t DataEncoders::getCount()
   {
@@ -1146,5 +1146,4 @@ enum MessageTypes MessageClass::getTypeID() { \
     return stream;
   }
 
-}; // namespace clearpath
-
+} // namespace clearpath

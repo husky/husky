@@ -109,4 +109,3 @@ namespace clearpath
 #define CPR_DTL()      CPR_LOG(clearpath::Logger::DETAIL)
 
 #endif //CPR_LOGGER_H
-

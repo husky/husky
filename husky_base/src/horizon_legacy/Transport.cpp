@@ -241,7 +241,7 @@ namespace clearpath
   Message *Transport::rxMessage()
   {
     /* Each time this function is called, any available characters are added
-     * to the receive buffer.  A new Message is created and returned when 
+     * to the receive buffer.  A new Message is created and returned when
      * a complete message has been received (the message may be aggregated
      * from data received over multiple calls) */
     static char rx_buf[Message::MAX_MSG_LENGTH];
@@ -250,7 +250,7 @@ namespace clearpath
 
     if (!rx_inx) { memset(rx_buf, 0xba, Message::MAX_MSG_LENGTH); }
 
-    /* Read in and handle characters, one at a time. 
+    /* Read in and handle characters, one at a time.
      * (This is a simple state machine, using 'rx_inx' as state) */
     while (ReadData(serial, rx_buf + rx_inx, 1) == 1)
     {
@@ -692,5 +692,4 @@ namespace clearpath
     }
   }
 
-}; // namespace clearpath
-
+} // namespace clearpath
