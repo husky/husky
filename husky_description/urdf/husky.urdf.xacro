@@ -49,8 +49,8 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
   <xacro:arg name="sensor_arch_height"  default="$(optenv HUSKY_SENSOR_ARCH_HEIGHT 510)" />
   <xacro:arg name="sensor_arch"         default="$(optenv HUSKY_SENSOR_ARCH 0)" />
 
-  <xacro:arg name="robot_namespace" default="/" />
-  <xacro:arg name="urdf_extras" default="empty.urdf" />
+  <xacro:arg name="robot_namespace" default="$(optenv ROBOT_NAMESPACE /)" />
+  <xacro:arg name="urdf_extras" default="$(optenv HUSKY_URDF_EXTRAS empty.urdf)" />
 
   <!-- Included URDF/XACRO Files -->
   <xacro:include filename="$(find husky_description)/urdf/decorations.urdf.xacro" />
