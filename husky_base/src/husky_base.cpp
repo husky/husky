@@ -305,7 +305,7 @@ hardware_interface::return_type HuskyBase::read()
     RCLCPP_INFO(
       rclcpp::get_logger(HW_NAME),
       "Got position state %.5f and velocity state %.5f for '%s'!",
-      hw_states_velocity_[i], hw_states_position_[i], info_.joints[i].name.c_str());
+      hw_states_position_[i], hw_states_velocity_[i], info_.joints[i].name.c_str());
   }
 
   RCLCPP_INFO(rclcpp::get_logger(HW_NAME), "Joints successfully read!");
