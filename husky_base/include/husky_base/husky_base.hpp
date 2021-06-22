@@ -62,34 +62,15 @@ private:
   void limitDifferentialSpeed(double &diff_speed_left, double &diff_speed_right);
   void updateJointsFromHardware();
 
-  /**
-  * Joint structure that is hooked to ros_control's InterfaceManager, to allow control via diff_drive_controller
-  */
-  struct Joint
-  {
-    double position;
-    double position_offset;
-    double velocity;
-    double effort;
-    double velocity_command;
-
-    Joint() :
-      position(0), velocity(0), effort(0), velocity_command(0)
-    { }
-  } joints_[4];
-
   // ROS Parameters
   std::string serial_port_;
-  double wheel_diameter_, max_accel_, max_speed_;
   double polling_timeout_;
-  
-  // Parameters for the DiffBot simulation
-  double hw_start_sec_;
-  double hw_stop_sec_;
+  double wheel_diameter_, max_accel_, max_speed_;
+  double hw_start_sec_, hw_stop_sec_;
 
-  // Store the command for the simulated robot
+  // Store the command for the robot
   std::vector<double> hw_commands_;
-  std::vector<double> hw_states_;
+  std::vector<double> hw_states_position_, hw_states_position_offset_, hw_states_velocity_;
 };
 
 }  // namespace husky_base
