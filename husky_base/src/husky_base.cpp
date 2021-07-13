@@ -91,7 +91,7 @@ namespace husky_base
         rclcpp::get_logger(HW_NAME),
         "Received linear distance information (L: %f, R: %f)",
         enc->getTravel(LEFT), enc->getTravel(RIGHT));
-      for (auto i = 0; i < hw_states_position_.size(); i++)
+      for (auto i = 0u; i < hw_states_position_.size(); i++)
       {
         double delta = linearToAngular(enc->getTravel(i % 2)) - hw_states_position_[i] - hw_states_position_offset_[i];
 
@@ -119,7 +119,7 @@ namespace husky_base
         "Received linear speed information (L: %f, R: %f)",
         speed->getLeftSpeed(), speed->getRightSpeed());
 
-      for (auto i = 0; i < hw_states_velocity_.size(); i++)
+      for (auto i = 0u; i < hw_states_velocity_.size(); i++)
       {
         if (i % 2 == LEFT)
         {

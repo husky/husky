@@ -31,7 +31,7 @@ class HuskyBase
 : public hardware_interface::BaseInterface<hardware_interface::SystemInterface>
 {
 public:
-  RCLCPP_SHARED_PTR_DEFINITIONS(HuskyBase);
+  RCLCPP_SHARED_PTR_DEFINITIONS(HuskyBase)
 
   HARDWARE_INTERFACE_PUBLIC
   hardware_interface::return_type configure(const hardware_interface::HardwareInfo & info) override;
