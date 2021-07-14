@@ -51,6 +51,7 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
 
   <xacro:arg name="robot_namespace" default="$(optenv ROBOT_NAMESPACE /)" />
   <xacro:arg name="urdf_extras" default="$(optenv HUSKY_URDF_EXTRAS empty.urdf)" />
+  <xacro:arg name="cpr_urdf_extras" default="$(optenv CPR_URDF_EXTRAS empty.urdf)" />
 
   <!-- Included URDF/XACRO Files -->
   <xacro:include filename="$(find husky_description)/urdf/decorations.urdf.xacro" />
@@ -249,5 +250,8 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
 
   <!-- Optional custom includes. -->
   <xacro:include filename="$(arg urdf_extras)" />
+
+  <!-- Optional for Clearpath internal softwares -->
+  <xacro:include filename="$(arg cpr_urdf_extras)" />
 
 </robot>
