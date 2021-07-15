@@ -2,6 +2,13 @@
 Changelog for package husky_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Remove the need to explicitly specify the laser_enabled, realsense_enabled, and urdf_extras arguments; use the envars to make it easier to simulate customized robots & use the moveit setup assistant.
+* Update intel_realsense.urdf.xacro
+  modify image format in sim to avoid log warn spam
+* Contributors: Chris Iverach-Brereton, vamshi konduri
+
 0.4.8 (2021-04-01)
 ------------------
 

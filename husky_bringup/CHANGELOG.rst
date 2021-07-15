@@ -2,6 +2,11 @@
 Changelog for package husky_bringup
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Fix the name of teh VLP16 launch file that gets included
+* Contributors: Chris Iverach-Brereton
+
 0.4.8 (2021-04-01)
 ------------------
 * Add a missing colon to the install script
