@@ -2,8 +2,8 @@
 Changelog for package husky_bringup
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.4.9 (2021-07-15)
+------------------
 * Fix the name of teh VLP16 launch file that gets included
 * Contributors: Chris Iverach-Brereton
 
