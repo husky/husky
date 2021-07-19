@@ -2,8 +2,8 @@
 Changelog for package husky_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.4.10 (2021-07-18)
+-------------------
 * cpr urdf extras
 * Contributors: Ebrahim Shahrivar
 
