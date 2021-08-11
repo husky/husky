@@ -78,7 +78,8 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
               -unpause
               -urdf
               -param robot_description
-              -model $(arg robot_namespace)" />
+              -model husky
+              -robot_namespace $(arg robot_namespace)" />
 
   </group>
 
