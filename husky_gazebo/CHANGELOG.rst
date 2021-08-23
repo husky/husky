@@ -2,8 +2,8 @@
 Changelog for package husky_gazebo
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.5.0 (2021-08-23)
+------------------
 * Disabled multimaster.
 * Update spawn_husky.launch
   I think the robot spawn should be like this

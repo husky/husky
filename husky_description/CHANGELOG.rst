@@ -2,8 +2,8 @@
 Changelog for package husky_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.5.0 (2021-08-23)
+------------------
 * Update husky.urdf.xacro (`#169 <https://github.com/husky/husky/issues/169>`_)
   Fix Failed to build tree: child link [base_laser_mount] of joint [laser_mount_joint] not found error.
   As found on https://answers.ros.org/question/354219/failed-to-build-tree-child-link-base_laser_mount-of-joint-laser_mount_joint-not-found/

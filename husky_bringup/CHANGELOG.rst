@@ -2,8 +2,8 @@
 Changelog for package husky_bringup
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.5.0 (2021-08-23)
+------------------
 * [husky_bringup] Switched microstrain_mips to ros_mscl.
 * Fix the python-scipy dependency to refer to the python-3 version; python-scipy isn't installable on Focal
 * Fix a bug where the UM7 and UM6 launch files don't work when installed to /etc/ros/*/ros.d; they fail to find the mag config files.
