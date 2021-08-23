@@ -27,13 +27,13 @@
   <run_depend>imu_transformer</run_depend>
   <run_depend>lms1xx</run_depend>
   <run_depend>microstrain_3dmgx2_imu</run_depend>
-  <run_depend>microstrain_mips</run_depend>
   <run_depend>nmea_comms</run_depend>
   <run_depend>nmea_navsat_driver</run_depend>
   <run_depend>python3-scipy</run_depend>
   <run_depend>realsense2_camera</run_depend>
   <run_depend>robot_localization</run_depend>
   <run_depend>robot_upstart</run_depend>
+  <run_depend>ros_mscl</run_depend>
   <run_depend>tf</run_depend>
   <run_depend>tf2_ros</run_depend>
   <run_depend>um6</run_depend>
