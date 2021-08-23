@@ -2,6 +2,13 @@
 Changelog for package husky_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Update husky.urdf.xacro (`#169 <https://github.com/husky/husky/issues/169>`_)
+  Fix Failed to build tree: child link [base_laser_mount] of joint [laser_mount_joint] not found error.
+  As found on https://answers.ros.org/question/354219/failed-to-build-tree-child-link-base_laser_mount-of-joint-laser_mount_joint-not-found/
+* Contributors: Guido Sanchez
+
 0.4.4 (2020-08-13)
 ------------------
 * Remove support for the Kinect for Xbox 360. We've had the deprecation warning around for a while, so let's finally do it.  Realsense support is in-place as a drop-in replacement that gets added to the top rollbar, just like the old Kinect would have.

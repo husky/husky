@@ -2,6 +2,12 @@
 Changelog for package husky_control
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Disabled multimaster.
+* Add the link_name parameter to fix the interactive markers in rviz
+* Contributors: Chris Iverach-Brereton, Tony Baltovski
+
 0.4.4 (2020-08-13)
 ------------------
 * clearer wording
