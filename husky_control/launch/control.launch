@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <launch>
 
-  <arg name="multimaster" default="$(optenv ROBOT_MULTIMASTER false)"/>
+  <!-- <arg name="multimaster" default="$(optenv ROBOT_MULTIMASTER false)"/> -->
   <arg name="simulation" default="$(optenv ROBOT_SIMULATION false)"/>
   <arg name="robot_namespace" default="$(optenv ROBOT_NAMESPACE robot)"/>
   <arg name="enable_ekf" default="$(optenv ENABLE_EKF true)"/>
@@ -13,12 +13,12 @@
   <arg name="realsense_enabled" default="$(optenv HUSKY_REALSENSE_ENABLED false)"/>
   <arg name="urdf_extras" default="$(optenv HUSKY_URDF_EXTRAS)"/>
 
-  <include file="$(find multimaster_launch)/launch/multimaster_robot.launch" if="$(arg multimaster)">
+  <!-- <include file="$(find multimaster_launch)/launch/multimaster_robot.launch" if="$(arg multimaster)">
     <arg name="gazebo_interface" value="$(find husky_control)/config/gazebo_interface.yaml" />
     <arg name="public_interface" value="$(find husky_control)/config/public_interface.yaml" />
     <arg name="robot_namespace" value="$(arg robot_namespace)"/>
     <arg name="simulation" value="$(arg simulation)"/>
-  </include>
+  </include> -->
 
   <!-- Load robot description -->
   <include file="$(find husky_description)/launch/description.launch" >

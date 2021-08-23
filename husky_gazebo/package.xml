@@ -26,7 +26,7 @@
   <run_depend>hector_gazebo_plugins</run_depend>
   <run_depend>husky_control</run_depend>
   <run_depend>husky_description</run_depend>
-  <run_depend>multimaster_launch</run_depend>
+  <!-- <run_depend>multimaster_launch</run_depend> -->
   <run_depend>pointcloud_to_laserscan</run_depend>
   <run_depend>rostopic</run_depend>
 

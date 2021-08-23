@@ -23,7 +23,7 @@
   <run_depend>joint_state_controller</run_depend>
   <run_depend>joint_trajectory_controller</run_depend>
   <run_depend>joy</run_depend>
-  <run_depend>multimaster_launch</run_depend>
+  <!-- <run_depend>multimaster_launch</run_depend> -->
   <run_depend>robot_localization</run_depend>
   <run_depend>rostopic</run_depend>
   <run_depend>robot_state_publisher</run_depend>
