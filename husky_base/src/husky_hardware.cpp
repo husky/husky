@@ -30,7 +30,9 @@
 */
 
 #include "husky_base/husky_hardware.h"
+#include <algorithm>
 #include <boost/assign/list_of.hpp>
+#include <string>
 
 namespace
 {
@@ -72,8 +74,8 @@ namespace husky_base
   */
   void HuskyHardware::resetTravelOffset()
   {
-    horizon_legacy::Channel<clearpath::DataEncoders>::Ptr enc = horizon_legacy::Channel<clearpath::DataEncoders>::requestData(
-      polling_timeout_);
+    horizon_legacy::Channel<clearpath::DataEncoders>::Ptr enc;
+    enc = horizon_legacy::Channel<clearpath::DataEncoders>::requestData(polling_timeout_);
     if (enc)
     {
       for (int i = 0; i < 4; i++)
@@ -143,12 +145,13 @@ namespace husky_base
   */
   void HuskyHardware::updateJointsFromHardware()
   {
-
-    horizon_legacy::Channel<clearpath::DataEncoders>::Ptr enc = horizon_legacy::Channel<clearpath::DataEncoders>::requestData(
+    horizon_legacy::Channel<clearpath::DataEncoders>::Ptr enc;
+    enc = horizon_legacy::Channel<clearpath::DataEncoders>::requestData(
       polling_timeout_);
     if (enc)
     {
-      ROS_DEBUG_STREAM("Received travel information (L:" << enc->getTravel(LEFT) << " R:" << enc->getTravel(RIGHT) << ")");
+      ROS_DEBUG_STREAM("Received travel information (L:" << enc->getTravel(LEFT)
+          << " R:" << enc->getTravel(RIGHT) << ")");
       for (int i = 0; i < 4; i++)
       {
         double delta = linearToAngular(enc->getTravel(i % 2)) - joints_[i].position - joints_[i].position_offset;
@@ -167,11 +170,12 @@ namespace husky_base
       }
     }
 
-    horizon_legacy::Channel<clearpath::DataDifferentialSpeed>::Ptr speed = horizon_legacy::Channel<clearpath::DataDifferentialSpeed>::requestData(
-      polling_timeout_);
+    horizon_legacy::Channel<clearpath::DataDifferentialSpeed>::Ptr speed;
+    speed = horizon_legacy::Channel<clearpath::DataDifferentialSpeed>::requestData(polling_timeout_);
     if (speed)
     {
-      ROS_DEBUG_STREAM("Received linear speed information (L:" << speed->getLeftSpeed() << " R:" << speed->getRightSpeed() << ")");
+      ROS_DEBUG_STREAM("Received linear speed information (L:" << speed->getLeftSpeed()
+          << " R:" << speed->getRightSpeed() << ")");
       for (int i = 0; i < 4; i++)
       {
         if (i % 2 == LEFT)

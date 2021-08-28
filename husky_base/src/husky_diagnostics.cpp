@@ -30,6 +30,8 @@
 */
 
 #include "husky_base/husky_diagnostics.h"
+#include <algorithm>
+#include <limits>
 
 namespace
 {

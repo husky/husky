@@ -45,73 +45,73 @@
 namespace husky_base
 {
 
+/**
+* Class representing Husky hardware, allows for ros_control to modify internal state via joint interfaces
+*/
+class HuskyHardware :
+  public hardware_interface::RobotHW
+{
+public:
+  HuskyHardware(ros::NodeHandle nh, ros::NodeHandle private_nh, double target_control_freq);
+
+  void updateJointsFromHardware();
+
+  void writeCommandsToHardware();
+
+  void updateDiagnostics();
+
+  void reportLoopDuration(const ros::Duration &duration);
+
+private:
+  void initializeDiagnostics();
+
+  void resetTravelOffset();
+
+  void registerControlInterfaces();
+
+  double linearToAngular(const double &travel) const;
+
+  double angularToLinear(const double &angle) const;
+
+  void limitDifferentialSpeed(double &travel_speed_left, double &travel_speed_right);
+
+  ros::NodeHandle nh_, private_nh_;
+
+  // ROS Control interfaces
+  hardware_interface::JointStateInterface joint_state_interface_;
+  hardware_interface::VelocityJointInterface velocity_joint_interface_;
+
+  // Diagnostics
+  ros::Publisher diagnostic_publisher_;
+  husky_msgs::HuskyStatus husky_status_msg_;
+  diagnostic_updater::Updater diagnostic_updater_;
+  HuskyHardwareDiagnosticTask<clearpath::DataSystemStatus> system_status_task_;
+  HuskyHardwareDiagnosticTask<clearpath::DataPowerSystem> power_status_task_;
+  HuskyHardwareDiagnosticTask<clearpath::DataSafetySystemStatus> safety_status_task_;
+  HuskySoftwareDiagnosticTask software_status_task_;
+
+  // ROS Parameters
+  double wheel_diameter_, max_accel_, max_speed_;
+
+  double polling_timeout_;
+
   /**
-  * Class representing Husky hardware, allows for ros_control to modify internal state via joint interfaces
+  * Joint structure that is hooked to ros_control's InterfaceManager, to allow control via diff_drive_controller
   */
-  class HuskyHardware :
-    public hardware_interface::RobotHW
+  struct Joint
   {
-  public:
-    HuskyHardware(ros::NodeHandle nh, ros::NodeHandle private_nh, double target_control_freq);
+    double position;
+    double position_offset;
+    double velocity;
+    double effort;
+    double velocity_command;
 
-    void updateJointsFromHardware();
-
-    void writeCommandsToHardware();
-
-    void updateDiagnostics();
-
-    void reportLoopDuration(const ros::Duration &duration);
-
-  private:
-
-    void initializeDiagnostics();
-
-    void resetTravelOffset();
-
-    void registerControlInterfaces();
-
-    double linearToAngular(const double &travel) const;
-
-    double angularToLinear(const double &angle) const;
-
-    void limitDifferentialSpeed(double &travel_speed_left, double &travel_speed_right);
-
-    ros::NodeHandle nh_, private_nh_;
-
-    // ROS Control interfaces
-    hardware_interface::JointStateInterface joint_state_interface_;
-    hardware_interface::VelocityJointInterface velocity_joint_interface_;
-
-    // Diagnostics
-    ros::Publisher diagnostic_publisher_;
-    husky_msgs::HuskyStatus husky_status_msg_;
-    diagnostic_updater::Updater diagnostic_updater_;
-    HuskyHardwareDiagnosticTask<clearpath::DataSystemStatus> system_status_task_;
-    HuskyHardwareDiagnosticTask<clearpath::DataPowerSystem> power_status_task_;
-    HuskyHardwareDiagnosticTask<clearpath::DataSafetySystemStatus> safety_status_task_;
-    HuskySoftwareDiagnosticTask software_status_task_;
-
-    // ROS Parameters
-    double wheel_diameter_, max_accel_, max_speed_;
-
-    double polling_timeout_;
-
-    /**
-    * Joint structure that is hooked to ros_control's InterfaceManager, to allow control via diff_drive_controller
-    */
-    struct Joint
-    {
-      double position;
-      double position_offset;
-      double velocity;
-      double effort;
-      double velocity_command;
-
-      Joint() :
-        position(0), velocity(0), effort(0), velocity_command(0)
-      { }
-    } joints_[4];
-  };
+    Joint() :
+      position(0), velocity(0), effort(0), velocity_command(0)
+    { }
+  }
+  joints_[4];
+};
 
 }  // namespace husky_base
 #endif  // HUSKY_BASE_HUSKY_HARDWARE_H
