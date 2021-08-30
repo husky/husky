@@ -12,6 +12,9 @@ endif()
 
 find_package(ament_cmake_ros REQUIRED)
 
+find_package(controller_interface REQUIRED)
+find_package(controller_manager REQUIRED)
+find_package(controller_manager_msgs REQUIRED)
 find_package(hardware_interface REQUIRED)
 find_package(pluginlib REQUIRED)
 find_package(rclcpp REQUIRED)
@@ -28,9 +31,9 @@ find_package(tf2_ros REQUIRED)
 
 ## COMPILE
 add_library(
-  ${PROJECT_NAME}
+  husky_hardware
   SHARED
-  src/husky_base.cpp
+  src/husky_hardware.cpp
   src/horizon_legacy_wrapper.cpp
   src/horizon_legacy/crc.cpp
   src/horizon_legacy/Logger.cpp
@@ -44,30 +47,34 @@ add_library(
 )
 
 target_include_directories(
-  ${PROJECT_NAME}
+  husky_hardware
   PRIVATE
   include
 )
 
 ament_target_dependencies(
-  ${PROJECT_NAME}
+  husky_hardware
   hardware_interface
   pluginlib
   rclcpp
 )
 
 
-pluginlib_export_plugin_description_file(hardware_interface husky_base.xml)
-
+pluginlib_export_plugin_description_file(hardware_interface husky_hardware.xml)
 
 # INSTALL
 install(
-  TARGETS ${PROJECT_NAME}
-  DESTINATION lib
+  TARGETS husky_hardware
+  LIBRARY DESTINATION lib
+  RUNTIME DESTINATION lib/${PROJECT_NAME}
 )
 install(
   DIRECTORY include/
   DESTINATION include
+)
+
+install(DIRECTORY launch
+  DESTINATION share/${PROJECT_NAME}
 )
 
 
@@ -76,12 +83,12 @@ ament_export_include_directories(
   include
 )
 ament_export_libraries(
-  ${PROJECT_NAME}
+  husky_hardware
 )
 ament_export_dependencies(
   hardware_interface
   pluginlib
   rclcpp
 )
-# ament_export_libraries(horizon_legacy)
+
 ament_package()

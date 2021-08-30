@@ -1,28 +1,5 @@
 <?xml version="1.0"?>
-<!--
-Software License Agreement (BSD)
 
-\file      husky.urdf.xacro
-\authors   Paul Bovbel <pbovbel@clearpathrobotics.com>, Devon Ash <dash@clearpathrobotics.com>
-\copyright Copyright (c) 2015, Clearpath Robotics, Inc., All rights reserved.
-
-Redistribution and use in source and binary forms, with or without modification, are permitted provided that
-the following conditions are met:
- * Redistributions of source code must retain the above copyright notice, this list of conditions and the
-   following disclaimer.
- * Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the
-   following disclaimer in the documentation and/or other materials provided with the distribution.
- * Neither the name of Clearpath Robotics nor the names of its contributors may be used to endorse or promote
-   products derived from this software without specific prior written permission.
-
-THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WAR-
-RANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
-PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, IN-
-DIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT
-OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
-ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
--->
 <robot name="husky" xmlns:xacro="http://ros.org/wiki/xacro">
 
   <xacro:arg name="laser_enabled" default="false" />
@@ -137,7 +114,7 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
 
   <xacro:husky_decorate />
 
-  <xacro:if value="$(arg laser_enabled)">
+  <!-- <xacro:if value="$(arg laser_enabled)">
 
     <xacro:sick_lms1xx_mount prefix="base"/>
 
@@ -149,22 +126,22 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
       <child link="base_laser_mount" />
     </joint>
 
-  </xacro:if>
+  </xacro:if> -->
 
   <!--
     top sensor arch; include this if we have realsense enabled
     keep this as a property to make it easier to add multiple conditions, should we need
     the top bar for any additional sensors in the future
   -->
-  <xacro:property name="topbar_needed_realsense" value="$(arg realsense_enabled)" />
+  <!-- <xacro:property name="topbar_needed_realsense" value="$(arg realsense_enabled)" />
   <xacro:if value="${topbar_needed_realsense}">
     <xacro:sensor_arch prefix="" parent="top_plate_link">
       <origin xyz="-0.35 0 0.51" rpy="0 0 -3.14"/>
     </xacro:sensor_arch>
-  </xacro:if>
+  </xacro:if> -->
 
   <!-- add the intel realsense to the topbar if needed -->
-  <xacro:if value="$(arg realsense_enabled)">
+  <!-- <xacro:if value="$(arg realsense_enabled)">
     <link name="realsense_mountpoint"/>
     <joint name="realsense_mountpoint_joint" type="fixed">
       <origin xyz="0 0 0" rpy="0 0 -3.14159" />
@@ -172,14 +149,14 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
       <child link="realsense_mountpoint" />
     </joint>
     <xacro:intel_realsense_mount prefix="camera" topic="realsense" parent_link="realsense_mountpoint"/>
-  </xacro:if>
+  </xacro:if> -->
 
-  <gazebo>
+  <!-- <gazebo>
     <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
       <robotNamespace>$(arg robot_namespace)</robotNamespace>
       <legacyModeNS>true</legacyModeNS>
     </plugin>
-  </gazebo>
+  </gazebo> -->
 
   <gazebo>
     <plugin name="imu_controller" filename="libhector_gazebo_ros_imu.so">
@@ -213,16 +190,15 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
   </gazebo>
 
 
-  <ros2_control name="husky_base" type="system">
+  <ros2_control name="husky_hardware" type="system">
     <hardware>
-      <plugin>husky_base/HuskyBase</plugin>
+      <plugin>husky_base/HuskyHardware</plugin>
       <param name="hw_start_duration_sec">2.0</param>
       <param name="hw_stop_duration_sec">3.0</param>
       <param name="wheel_diameter">0.3302</param>
       <param name="max_accel">5.0</param>
       <param name="max_speed">1.0</param>
       <param name="polling_timeout">10.0</param>
-      <!-- <param name="serial_port">/dev/prolific</param> -->
       <param name="serial_port">/dev/ttyUSB0</param>
     </hardware>
     <joint name="front_left_wheel">
@@ -258,7 +234,6 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
       <state_interface name="velocity"/>
     </joint>
   </ros2_control>
-
 
   <!-- Optional custom includes. -->
   <xacro:include filename="$(arg urdf_extras)" />

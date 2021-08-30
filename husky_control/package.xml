@@ -1,36 +1,34 @@
-<?xml version="1.0"?>
-<package>
+<?xml-model href="http://download.ros.org/schema/package_format2.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="2">
   <name>husky_control</name>
   <version>0.4.4</version>
   <description>Clearpath Husky controller configurations</description>
 
+  <author email="mpurvis@clearpathrobotics.com">Mike Purvis</author>
   <author email="paul@bovbel.com">Paul Bovbel</author>
 
   <maintainer email="tbaltovski@clearpathrobotics.com">Tony Baltovski</maintainer>
 
   <license>BSD</license>
 
-  <url type="website">http://ros.org/wiki/husky_control</url>
-  <url type="bugtracker">https://github.com/husky/husky/issues</url>
-  <url type="repository">https://github.com/husky/husky</url>
+  <buildtool_depend>ament_cmake</buildtool_depend>
 
-  <buildtool_depend>catkin</buildtool_depend>
-  <build_depend>roslaunch</build_depend>
+  <depend>husky_description</depend>
+  <depend>interactive_marker_twist_server</depend>
+  <depend>diff_drive_controller</depend>
+  <depend>joint_state_controller</depend>
+  <depend>joint_trajectory_controller</depend>
+  <depend>joy</depend>
+  <depend>multimaster_launch</depend>
+  <depend>robot_localization</depend>
+  <depend>rostopic</depend>
+  <depend>robot_state_publisher</depend>
+  <depend>controller_manager</depend>
+  <depend>teleop_twist_joy</depend>
+  <depend>twist_mux</depend>
 
-  <run_depend>husky_description</run_depend>
-  <run_depend>interactive_marker_twist_server</run_depend>
-  <run_depend>diff_drive_controller</run_depend>
-  <run_depend>joint_state_controller</run_depend>
-  <run_depend>joint_trajectory_controller</run_depend>
-  <run_depend>joy</run_depend>
-  <run_depend>multimaster_launch</run_depend>
-  <run_depend>robot_localization</run_depend>
-  <run_depend>rostopic</run_depend>
-  <run_depend>robot_state_publisher</run_depend>
-  <run_depend>controller_manager</run_depend>
-  <run_depend>teleop_twist_joy</run_depend>
-  <run_depend>twist_mux</run_depend>
 
   <export>
+    <build_type>ament_cmake</build_type>
   </export>
 </package>

@@ -14,14 +14,17 @@ import xacro
 
 def generate_launch_description():
 
-    robot_description_path = os.path.join(
-         get_package_share_directory('husky_description'),
-        'urdf',
-        'husky.urdf.xacro',
+    # Get URDF via xacro
+    robot_description_content = Command(
+        [
+            PathJoinSubstitution([FindExecutable(name="xacro")]),
+            " ",
+            PathJoinSubstitution(
+                [FindPackageShare("husky_description"), "urdf", "husky.urdf.xacro"]
+            ),
+        ]
     )
-
-    robot_description_config = xacro.process_file(robot_description_path)
-    robot_description = {"robot_description": robot_description_config.toxml()}
+    robot_description = {"robot_description": robot_description_content}
 
     husky_diff_drive_controller = os.path.join(
         get_package_share_directory("husky_control"),
@@ -46,13 +49,6 @@ def generate_launch_description():
         },
     )
 
-    # husky_base_node = Node(
-    #     package="husky_base",
-    #     executable="husky_node",
-    #     output="screen",
-    #     parameters=[robot_description],    
-    # )
-
     spawn_controller = Node(
         package="controller_manager",
         executable="spawner.py",
@@ -60,7 +56,7 @@ def generate_launch_description():
         output="screen",
     )
 
-    spawn_dd_controller = Node(
+    spawn_husky_velocity_controller = Node(
         package="controller_manager",
         executable="spawner.py",
         arguments=["husky_velocity_controller"],
@@ -71,8 +67,7 @@ def generate_launch_description():
         [
             node_robot_state_publisher,
             controller_manager_node,
-            # husky_base_node,
             spawn_controller,
-            spawn_dd_controller,
+            spawn_husky_velocity_controller,
         ]
     )

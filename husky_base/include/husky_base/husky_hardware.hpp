@@ -1,5 +1,5 @@
-#ifndef HUSKY_BASE__HUSKY_BASE_HPP_
-#define HUSKY_BASE__HUSKY_BASE_HPP_
+#ifndef HUSKY_BASE__HUSKY_HARDWARE_HPP_
+#define HUSKY_BASE__HUSKY_HARDWARE_HPP_
 
 #include <memory>
 #include <string>
@@ -23,15 +23,14 @@
 
 using namespace std::chrono_literals;
 
-
 namespace husky_base
 {
 
-class HuskyBase
+class HuskyHardware
 : public hardware_interface::BaseInterface<hardware_interface::SystemInterface>
 {
 public:
-  RCLCPP_SHARED_PTR_DEFINITIONS(HuskyBase)
+  RCLCPP_SHARED_PTR_DEFINITIONS(HuskyHardware)
 
   HARDWARE_INTERFACE_PUBLIC
   hardware_interface::return_type configure(const hardware_interface::HardwareInfo & info) override;
@@ -75,4 +74,4 @@ private:
 
 }  // namespace husky_base
 
-#endif  // HUSKY_BASE__HUSKY_BASE_HPP_
+#endif  // HUSKY_BASE__HUSKY_HARDWARE_HPP_

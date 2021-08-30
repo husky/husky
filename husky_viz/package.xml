@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<package>
+<package format="3">
   <name>husky_viz</name>
   <version>0.4.4</version>
   <description>Visualization configuration for Clearpath Husky</description>
@@ -15,17 +15,26 @@
   <url type="bugtracker">https://github.com/husky/husky_desktop/issues</url>
   <url type="repository">https://github.com/husky/husky_desktop</url>
 
-  <buildtool_depend>catkin</buildtool_depend>
 
-  <build_depend>roslaunch</build_depend>
+  <buildtool_depend>ament_cmake</buildtool_depend>
 
-  <run_depend>husky_description</run_depend>
-  <run_depend>joint_state_publisher</run_depend>
-  <run_depend>robot_state_publisher</run_depend>
-  <run_depend>joint_state_publisher_gui</run_depend>
-  <run_depend>rviz</run_depend>
-  <run_depend>rviz_imu_plugin</run_depend>
+  <exec_depend>husky_description</exec_depend>
+  <exec_depend>joint_state_publisher</exec_depend>
+  <exec_depend>robot_state_publisher</exec_depend>
+  <exec_depend>joint_state_publisher_gui</exec_depend>
+  <exec_depend>rviz</exec_depend>
+  <exec_depend>rviz_imu_plugin</exec_depend>
+
+  <depend>launch_ros</depend>
+
+  <test_depend>ament_lint_common</test_depend>
+  <test_depend>ament_lint_auto</test_depend>
+  <test_depend>ament_cmake_gtest</test_depend>
+  <test_depend>ament_cmake_pytest</test_depend>
+  <test_depend>launch</test_depend>
+  <test_depend>launch_testing</test_depend>
 
   <export>
+    <build_type>ament_cmake</build_type>
   </export>
 </package>
