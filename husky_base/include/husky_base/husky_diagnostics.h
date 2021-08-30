@@ -40,69 +40,69 @@
 namespace husky_base
 {
 
-  class HuskySoftwareDiagnosticTask :
-    public diagnostic_updater::DiagnosticTask
+class HuskySoftwareDiagnosticTask :
+  public diagnostic_updater::DiagnosticTask
+{
+public:
+  explicit HuskySoftwareDiagnosticTask(husky_msgs::HuskyStatus &msg, double target_control_freq);
+
+  void run(diagnostic_updater::DiagnosticStatusWrapper &stat);
+
+  void updateControlFrequency(double frequency);
+
+private:
+  void reset();
+
+  double control_freq_, target_control_freq_;
+  husky_msgs::HuskyStatus &msg_;
+};
+
+template<typename T>
+class HuskyHardwareDiagnosticTask :
+  public diagnostic_updater::DiagnosticTask
+{
+public:
+  explicit HuskyHardwareDiagnosticTask(husky_msgs::HuskyStatus &msg);
+
+  void run(diagnostic_updater::DiagnosticStatusWrapper &stat)
   {
-  public:
-    explicit HuskySoftwareDiagnosticTask(husky_msgs::HuskyStatus &msg, double target_control_freq);
-
-    void run(diagnostic_updater::DiagnosticStatusWrapper &stat);
-
-    void updateControlFrequency(double frequency);
-
-  private:
-    void reset();
-
-    double control_freq_, target_control_freq_;
-    husky_msgs::HuskyStatus &msg_;
-  };
-
-  template<typename T>
-  class HuskyHardwareDiagnosticTask :
-    public diagnostic_updater::DiagnosticTask
-  {
-  public:
-    explicit HuskyHardwareDiagnosticTask(husky_msgs::HuskyStatus &msg);
-
-    void run(diagnostic_updater::DiagnosticStatusWrapper &stat)
+    typename horizon_legacy::Channel<T>::Ptr latest = horizon_legacy::Channel<T>::requestData(1.0);
+    if (latest)
     {
-      typename horizon_legacy::Channel<T>::Ptr latest = horizon_legacy::Channel<T>::requestData(1.0);
-      if (latest)
-      {
-        update(stat, latest);
-      }
+      update(stat, latest);
     }
+  }
 
-    void update(diagnostic_updater::DiagnosticStatusWrapper &stat, typename horizon_legacy::Channel<T>::Ptr &status);
+  void update(diagnostic_updater::DiagnosticStatusWrapper &stat, typename horizon_legacy::Channel<T>::Ptr &status);
 
-  private:
-    husky_msgs::HuskyStatus &msg_;
-  };
+private:
+  husky_msgs::HuskyStatus &msg_;
+};
 
-  template<>
-  HuskyHardwareDiagnosticTask<clearpath::DataSystemStatus>::HuskyHardwareDiagnosticTask(husky_msgs::HuskyStatus &msg);
+template<>
+HuskyHardwareDiagnosticTask<clearpath::DataSystemStatus>::HuskyHardwareDiagnosticTask(husky_msgs::HuskyStatus &msg);
 
-  template<>
-  HuskyHardwareDiagnosticTask<clearpath::DataPowerSystem>::HuskyHardwareDiagnosticTask(husky_msgs::HuskyStatus &msg);
+template<>
+HuskyHardwareDiagnosticTask<clearpath::DataPowerSystem>::HuskyHardwareDiagnosticTask(husky_msgs::HuskyStatus &msg);
 
-  template<>
-  HuskyHardwareDiagnosticTask<clearpath::DataSafetySystemStatus>::HuskyHardwareDiagnosticTask(
-    husky_msgs::HuskyStatus &msg);
+template<>
+HuskyHardwareDiagnosticTask<clearpath::DataSafetySystemStatus>::HuskyHardwareDiagnosticTask(
+  husky_msgs::HuskyStatus &msg);
 
-  template<>
-  void HuskyHardwareDiagnosticTask<clearpath::DataSystemStatus>::update(
-    diagnostic_updater::DiagnosticStatusWrapper &stat,
-    horizon_legacy::Channel<clearpath::DataSystemStatus>::Ptr &status);
+template<>
+void HuskyHardwareDiagnosticTask<clearpath::DataSystemStatus>::update(
+  diagnostic_updater::DiagnosticStatusWrapper &stat,
+  horizon_legacy::Channel<clearpath::DataSystemStatus>::Ptr &status);
 
-  template<>
-  void HuskyHardwareDiagnosticTask<clearpath::DataPowerSystem>::update(
-    diagnostic_updater::DiagnosticStatusWrapper &stat,
-    horizon_legacy::Channel<clearpath::DataPowerSystem>::Ptr &status);
+template<>
+void HuskyHardwareDiagnosticTask<clearpath::DataPowerSystem>::update(
+  diagnostic_updater::DiagnosticStatusWrapper &stat,
+  horizon_legacy::Channel<clearpath::DataPowerSystem>::Ptr &status);
 
-  template<>
-  void HuskyHardwareDiagnosticTask<clearpath::DataSafetySystemStatus>::update(
-    diagnostic_updater::DiagnosticStatusWrapper &stat,
-    horizon_legacy::Channel<clearpath::DataSafetySystemStatus>::Ptr &status);
+template<>
+void HuskyHardwareDiagnosticTask<clearpath::DataSafetySystemStatus>::update(
+  diagnostic_updater::DiagnosticStatusWrapper &stat,
+  horizon_legacy::Channel<clearpath::DataSafetySystemStatus>::Ptr &status);
 
 }  // namespace husky_base
 #endif  // HUSKY_BASE_HUSKY_DIAGNOSTICS_H
