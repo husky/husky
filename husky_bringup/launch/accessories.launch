@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<launch>
+  <!-- IMU, triggered by presence of the appropriate device -->
+  <group if="$(eval os.path.exists('/dev/clearpath/imu') or os.path.exists('/dev/clearpath/um6'))">
+    <include file="$(find husky_bringup)/launch/um6_config/um6.launch" />
+  </group>
+  <group if="$(eval os.path.exists('/dev/clearpath/um7'))">
+    <include file="$(find husky_bringup)/launch/um7_config/um7.launch" />
+  </group>
+  <group if="$(eval os.path.exists('/dev/microstrain_gx3'))">
+    <include file="$(find husky_bringup)/launch/microstrain_gx3_config/microstrain_gx3.launch" />
+  </group>
+  <group if="$(eval os.path.exists('/dev/microstrain_gx5'))">
+    <include file="$(find husky_bringup)/launch/microstrain_gx5_config/microstrain_gx5.launch" />
+  </group>
+
+  <!-- GPS, triggered by the presence of the appropriate device -->
+  <group if="$(eval os.path.exists('/dev/clearpath/gps'))">
+    <include file="$(find husky_bringup)/launch/navsat_config/navsat.launch" />
+  </group>
+
+  <!-- Lidar, triggered by envars -->
+  <group if="$(eval len(optenv('HUSKY_LMS1XX_IP', '')) > 0)">
+    <include file="$(find husky_bringup)/launch/lms1xx_config/lms1xx.launch" />
+  </group>
+  <group if="$(optenv HUSKY_LASER_3D_ENABLED 0)">
+    <include file="$(find husky_bringup)/launch/velodyne_config/vlp16.launch" />
+  </group>
+</launch>
