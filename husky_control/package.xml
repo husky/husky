@@ -19,7 +19,7 @@
   <depend>joint_state_controller</depend>
   <depend>joint_trajectory_controller</depend>
   <depend>joy</depend>
-  <depend>multimaster_launch</depend>
+  <!-- <depend>multimaster_launch</depend> -->
   <depend>robot_localization</depend>
   <depend>rostopic</depend>
   <depend>robot_state_publisher</depend>
