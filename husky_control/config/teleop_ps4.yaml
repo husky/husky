@@ -55,14 +55,16 @@
 # Accel z          8
 
 teleop_twist_joy:
-  axis_linear: 1
-  scale_linear: 0.4
-  scale_linear_turbo: 2.0
-  axis_angular: 0
-  scale_angular: 1.4
-  enable_button: 4
-  enable_turbo_button: 5
+  ros__parameters:
+    axis_linear: 1
+    scale_linear: 0.4
+    scale_linear_turbo: 2.0
+    axis_angular: 0
+    scale_angular: 1.4
+    enable_button: 4
+    enable_turbo_button: 5
 joy_node:
-  deadzone: 0.1
-  autorepeat_rate: 20
-  dev: /dev/input/ps4
+  ros__parameters:
+    deadzone: 0.1
+    autorepeat_rate: 20
+    dev: /dev/input/ps4
