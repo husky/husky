@@ -21,7 +21,7 @@
   <depend>joy</depend>
   <!-- <depend>multimaster_launch</depend> -->
   <depend>robot_localization</depend>
-  <depend>rostopic</depend>
+  <!-- <depend>rostopic</depend> -->
   <depend>robot_state_publisher</depend>
   <depend>controller_manager</depend>
   <depend>teleop_twist_joy</depend>
