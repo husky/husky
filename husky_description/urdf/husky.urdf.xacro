@@ -199,7 +199,7 @@
       <param name="max_accel">5.0</param>
       <param name="max_speed">1.0</param>
       <param name="polling_timeout">10.0</param>
-      <param name="serial_port">/dev/ttyUSB0</param>
+      <param name="serial_port">/dev/prolific</param>
     </hardware>
     <joint name="front_left_wheel">
       <command_interface name="velocity">
