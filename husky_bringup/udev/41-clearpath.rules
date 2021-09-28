@@ -1,1 +1,0 @@
-SUBSYSTEM=="tty", ATTRS{idProduct}=="6001", ATTRS{idVendor}=="0403", ATTRS{product}=="Clearpath Robotics /*", MODE="0666", PROGRAM="/bin/echo '%s{product}'", SYMLINK+="clearpath%c{3}"
