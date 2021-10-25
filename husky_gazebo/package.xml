@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<package>
+<package format="3">
   <name>husky_gazebo</name>
   <version>0.4.4</version>
   <description>Clearpath Husky Simulator bringup</description>
@@ -17,19 +17,20 @@
   <url type="bugtracker">https://github.com/husky/husky_simulator/issues</url>
   <url type="repository">https://github.com/husky/husky_simulator</url>
 
-  <buildtool_depend>catkin</buildtool_depend>
-  <build_depend>roslaunch</build_depend>
-  <run_depend>controller_manager</run_depend>
-  <run_depend>gazebo_plugins</run_depend>
-  <run_depend>gazebo_ros</run_depend>
-  <run_depend>gazebo_ros_control</run_depend>
-  <run_depend>hector_gazebo_plugins</run_depend>
-  <run_depend>husky_control</run_depend>
-  <run_depend>husky_description</run_depend>
-  <run_depend>multimaster_launch</run_depend>
-  <run_depend>pointcloud_to_laserscan</run_depend>
-  <run_depend>rostopic</run_depend>
+  <buildtool_depend>ament_cmake</buildtool_depend>
+
+  <depend>urdf</depend>
+  <depend>xacro</depend>
+
+  <exec_depend>gazebo_ros</exec_depend>
+  <exec_depend>husky_control</exec_depend>
+  <exec_depend>husky_description</exec_depend>
+  <exec_depend>ros2launch</exec_depend>
+
+  <test_depend>ament_lint_auto</test_depend>
+  <test_depend>ament_lint_common</test_depend>
 
   <export>
+    <build_type>ament_cmake</build_type>
   </export>
 </package>

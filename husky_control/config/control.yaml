@@ -10,8 +10,8 @@ controller_manager:
 
 husky_velocity_controller:
   ros__parameters:
-    left_wheel_names: [ "front_left_wheel", "rear_left_wheel" ]
-    right_wheel_names: [ "front_right_wheel", "rear_right_wheel" ]
+    left_wheel_names: [ "front_left_wheel_joint", "rear_left_wheel_joint" ]
+    right_wheel_names: [ "front_right_wheel_joint", "rear_right_wheel_joint" ]
 
     wheel_separation: 0.10
     #wheels_per_side: 1  # actually 2, but both are controlled by 1 signal

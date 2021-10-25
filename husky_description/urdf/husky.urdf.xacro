@@ -15,6 +15,7 @@
   <xacro:property name="husky_rear_bumper_extend" value="$(optenv HUSKY_REAR_BUMPER_EXTEND 0)" />
 
   <xacro:arg name="robot_namespace" default="/" />
+  <xacro:arg name="is_sim" default="false" />
   <xacro:arg name="urdf_extras" default="empty.urdf" />
 
   <!-- Included URDF/XACRO Files -->
@@ -46,7 +47,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <mesh filename="package://husky_description/meshes/base_link.dae" />
+        <mesh filename="file://$(find husky_description)/meshes/base_link.dae" />
       </geometry>
     </visual>
     <collision>
@@ -151,12 +152,11 @@
     <xacro:intel_realsense_mount prefix="camera" topic="realsense" parent_link="realsense_mountpoint"/>
   </xacro:if> -->
 
-  <!-- <gazebo>
-    <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
-      <robotNamespace>$(arg robot_namespace)</robotNamespace>
-      <legacyModeNS>true</legacyModeNS>
+  <gazebo>
+    <plugin name="gazebo_ros2_control" filename="libgazebo_ros2_control.so">
+      <parameters>$(find husky_control)/config/control.yaml</parameters>
     </plugin>
-  </gazebo> -->
+  </gazebo>
 
   <gazebo>
     <plugin name="imu_controller" filename="libhector_gazebo_ros_imu.so">
@@ -189,51 +189,76 @@
     </plugin>
   </gazebo>
 
+  <xacro:unless value="$(arg is_sim)">
+    <ros2_control name="husky_hardware" type="system">
+      <hardware>
+        <plugin>husky_base/HuskyHardware</plugin>
+        <param name="hw_start_duration_sec">2.0</param>
+        <param name="hw_stop_duration_sec">3.0</param>
+        <param name="wheel_diameter">0.3302</param>
+        <param name="max_accel">5.0</param>
+        <param name="max_speed">1.0</param>
+        <param name="polling_timeout">10.0</param>
+        <param name="serial_port">/dev/prolific</param>
+      </hardware>
+      <joint name="front_left_wheel_joint">
+        <command_interface name="velocity">
+          <param name="min">-1</param>
+          <param name="max">1</param>
+        </command_interface>
+        <state_interface name="position"/>
+        <state_interface name="velocity"/>
+      </joint>
+      <joint name="rear_left_wheel_joint">
+        <command_interface name="velocity">
+          <param name="min">-1</param>
+          <param name="max">1</param>
+        </command_interface>
+        <state_interface name="position"/>
+        <state_interface name="velocity"/>
+      </joint>
+      <joint name="front_right_wheel_joint">
+        <command_interface name="velocity">
+          <param name="min">-1</param>
+          <param name="max">1</param>
+        </command_interface>
+        <state_interface name="position"/>
+        <state_interface name="velocity"/>
+      </joint>
+      <joint name="rear_right_wheel_joint">
+        <command_interface name="velocity">
+          <param name="min">-1</param>
+          <param name="max">1</param>
+        </command_interface>
+        <state_interface name="position"/>
+        <state_interface name="velocity"/>
+      </joint>
+    </ros2_control>
+  </xacro:unless>
 
-  <ros2_control name="husky_hardware" type="system">
-    <hardware>
-      <plugin>husky_base/HuskyHardware</plugin>
-      <param name="hw_start_duration_sec">2.0</param>
-      <param name="hw_stop_duration_sec">3.0</param>
-      <param name="wheel_diameter">0.3302</param>
-      <param name="max_accel">5.0</param>
-      <param name="max_speed">1.0</param>
-      <param name="polling_timeout">10.0</param>
-      <param name="serial_port">/dev/prolific</param>
-    </hardware>
-    <joint name="front_left_wheel">
-      <command_interface name="velocity">
-        <param name="min">-1</param>
-        <param name="max">1</param>
-      </command_interface>
-      <state_interface name="position"/>
-      <state_interface name="velocity"/>
-    </joint>
-    <joint name="front_right_wheel">
-      <command_interface name="velocity">
-        <param name="min">-1</param>
-        <param name="max">1</param>
-      </command_interface>
-      <state_interface name="position"/>
-      <state_interface name="velocity"/>
-    </joint>
-    <joint name="rear_left_wheel">
-      <command_interface name="velocity">
-        <param name="min">-1</param>
-        <param name="max">1</param>
-      </command_interface>
-      <state_interface name="position"/>
-      <state_interface name="velocity"/>
-    </joint>
-    <joint name="rear_right_wheel">
-      <command_interface name="velocity">
-        <param name="min">-1</param>
-        <param name="max">1</param>
-      </command_interface>
-      <state_interface name="position"/>
-      <state_interface name="velocity"/>
-    </joint>
-  </ros2_control>
+  <xacro:if value="$(arg is_sim)">
+    <ros2_control name="husky_hardware" type="system">
+      <hardware>
+        <plugin>gazebo_ros2_control/GazeboSystem</plugin>
+      </hardware>
+      <joint name="front_left_wheel_joint">
+        <state_interface name="position" />
+        <command_interface name="velocity" />
+      </joint>
+      <joint name="rear_left_wheel_joint">
+        <state_interface name="position" />
+        <command_interface name="velocity" />
+      </joint>
+      <joint name="front_right_wheel_joint">
+        <state_interface name="position" />
+        <command_interface name="velocity" />
+      </joint>
+      <joint name="rear_right_wheel_joint">
+        <state_interface name="position" />
+        <command_interface name="velocity" />
+      </joint>
+    </ros2_control>
+  </xacro:if>
 
   <!-- Optional custom includes. -->
   <xacro:include filename="$(arg urdf_extras)" />

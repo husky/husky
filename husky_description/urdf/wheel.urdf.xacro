@@ -2,51 +2,41 @@
 
 <robot xmlns:xacro="http://ros.org/wiki/xacro" name="husky_wheel">
 
-	<xacro:macro name="husky_wheel" params="wheel_prefix *joint_pose">
-		<link name="${wheel_prefix}_wheel_link">
-			<inertial>
-				<mass value="2.637" />
-				<origin xyz="0 0 0" />
-				<inertia  ixx="0.02467" ixy="0" ixz="0" iyy="0.04411" iyz="0" izz="0.02467" />
-			</inertial>
-			<visual>
-				<origin xyz="0 0 0" rpy="0 0 0" />
-				<geometry>
-					<mesh filename="package://husky_description/meshes/wheel.dae" />
-				</geometry>
-			</visual>
-			<collision>
-				<origin xyz="0 0 0" rpy="${M_PI/2} 0 0" />
-				<geometry>
-					<cylinder length="${wheel_length}" radius="${wheel_radius}" />
-				</geometry>
-			</collision>
-		</link>
+  <xacro:macro name="husky_wheel" params="wheel_prefix *joint_pose">
+    <link name="${wheel_prefix}_wheel">
+      <inertial>
+        <mass value="2.637" />
+        <origin xyz="0 0 0" />
+        <inertia  ixx="0.02467" ixy="0" ixz="0" iyy="0.04411" iyz="0" izz="0.02467" />
+      </inertial>
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="file://$(find husky_description)/meshes/wheel.dae" />
+        </geometry>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="${M_PI/2} 0 0" />
+        <geometry>
+          <cylinder length="${wheel_length}" radius="${wheel_radius}" />
+        </geometry>
+      </collision>
+    </link>
 
-		<gazebo reference="${wheel_prefix}_wheel_link">
-			<mu1 value="1.0"/>
-			<mu2 value="1.0"/>
-			<kp value="10000000.0" />
-			<kd value="1.0" />
-			<fdir1 value="1 0 0"/>
-		</gazebo>
+    <gazebo reference="${wheel_prefix}_wheel">
+      <mu1 value="1.0"/>
+      <mu2 value="1.0"/>
+      <kp value="10000000.0" />
+      <kd value="1.0" />
+      <fdir1 value="1 0 0"/>
+    </gazebo>
 
-		<joint name="${wheel_prefix}_wheel" type="continuous">
-			<parent link="base_link"/>
-			<child link="${wheel_prefix}_wheel_link"/>
-			<xacro:insert_block name="joint_pose"/>
-			<axis xyz="0 1 0" rpy="0 0 0" />
-		</joint>
-
-		<transmission name="${wheel_prefix}_wheel_trans" type="SimpleTransmission">
-			<type>transmission_interface/SimpleTransmission</type>
-			<actuator name="${wheel_prefix}_wheel_motor">
-				<mechanicalReduction>1</mechanicalReduction>
-			</actuator>
-			<joint name="${wheel_prefix}_wheel">
-				<hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
-			</joint>
-		</transmission>
-
-	</xacro:macro>
+    <joint name="${wheel_prefix}_wheel_joint" type="continuous">
+      <parent link="base_link"/>
+      <child link="${wheel_prefix}_wheel"/>
+      <xacro:insert_block name="joint_pose"/>
+      <axis xyz="0 1 0" rpy="0 0 0" />
+    </joint>
+    
+  </xacro:macro>
 </robot>
