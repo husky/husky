@@ -39,7 +39,7 @@ bag = rosbag.Bag(args.bag)
 
 vecs = []
 for topic, msg, time in bag.read_messages(topics=("/imu/mag",)):
-  vecs.append((float(msg.vector.x), float(msg.vector.y), float(msg.vector.z)))
+  vecs.append((float(msg.magnetic_field.x), float(msg.magnetic_field.y), float(msg.magnetic_field.z)))
 
 print ("Using " + str(len(vecs)) + " samples.")
 
@@ -60,8 +60,8 @@ radius = calc_R(*center).mean()
 center = (center[0], center[1], mean(z))
 
 a = arange(0, 2*pi + pi/50, pi/50)
-circle_points = (center[0] + cos(a) * radius, 
-                 center[1] + sin(a) * radius, 
+circle_points = (center[0] + cos(a) * radius,
+                 center[1] + sin(a) * radius,
                  center[2] * ones(len(a)))
 
 print("Magnetic circle centered at " + str(center) + ", with radius " + str(radius))
@@ -81,4 +81,3 @@ if pyplot:
   ax2.scatter(x, y, z)
   ax2.plot(*circle_points, c="red")
   pyplot.show()
-
