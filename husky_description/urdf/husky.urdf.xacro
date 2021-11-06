@@ -64,6 +64,7 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
   <xacro:arg name="sensor_arch"         default="$(optenv HUSKY_SENSOR_ARCH 0)" />
 
   <xacro:arg name="robot_namespace" default="$(optenv ROBOT_NAMESPACE /)" />
+  <xacro:arg name="tf_prefix" default="$(optenv TF_PREFIX)" />
   <xacro:arg name="urdf_extras" default="$(optenv HUSKY_URDF_EXTRAS empty.urdf)" />
   <xacro:arg name="cpr_urdf_extras" default="$(optenv CPR_URDF_EXTRAS empty.urdf)" />
 
@@ -94,7 +95,7 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
   <xacro:property name="wheel_radius" value="0.1651" />
 
   <!-- Base link is the center of the robot's bottom plate -->
-  <link name="base_link">
+  <link name="$(arg tf_prefix)base_link">
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
@@ -116,16 +117,16 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
   </link>
 
   <!-- Base footprint is on the ground under the robot -->
-  <link name="base_footprint"/>
+  <link name="$(arg tf_prefix)base_footprint"/>
 
-  <joint name="base_footprint_joint" type="fixed">
+  <joint name="$(arg tf_prefix)base_footprint_joint" type="fixed">
     <origin xyz="0 0 ${wheel_vertical_offset - wheel_radius}" rpy="0 0 0" />
-    <parent link="base_link" />
-    <child link="base_footprint" />
+    <parent link="$(arg tf_prefix)base_link" />
+    <child link="$(arg tf_prefix)base_footprint" />
   </joint>
 
   <!-- Inertial link stores the robot's inertial information -->
-  <link name="inertial_link">
+  <link name="$(arg tf_prefix)inertial_link">
     <inertial>
       <mass value="46.034" />
       <origin xyz="-0.00065 -0.085 0.062" />
@@ -133,62 +134,62 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
     </inertial>
   </link>
 
-  <joint name="inertial_joint" type="fixed">
+  <joint name="$(arg tf_prefix)inertial_joint" type="fixed">
     <origin xyz="0 0 0" rpy="0 0 0" />
-    <parent link="base_link" />
-    <child link="inertial_link" />
+    <parent link="$(arg tf_prefix)base_link" />
+    <child link="$(arg tf_prefix)inertial_link" />
   </joint>
 
   <!-- IMU Link is the standard mounting position for the UM6 IMU.-->
   <!-- Can be modified with environment variables in /etc/ros/setup.bash -->
-  <link name="imu_link"/>
-  <joint name="imu_joint" type="fixed">
+  <link name="$(arg tf_prefix)imu_link"/>
+  <joint name="$(arg tf_prefix)imu_joint" type="fixed">
     <origin xyz="$(optenv HUSKY_IMU_XYZ 0.19 0 0.149)" rpy="$(optenv HUSKY_IMU_RPY 0 -1.5708 3.1416)" />
-    <parent link="base_link" />
-    <child link="imu_link" />
+    <parent link="$(arg tf_prefix)base_link" />
+    <child link="$(arg tf_prefix)imu_link" />
   </joint>
   <gazebo reference="imu_link">
   </gazebo>
 
   <!-- Husky wheel macros -->
-  <xacro:husky_wheel wheel_prefix="front_left">
+  <xacro:husky_wheel wheel_prefix="front_left" tf_prefix="$(arg tf_prefix)">
     <origin xyz="${wheelbase/2} ${track/2} ${wheel_vertical_offset}" rpy="0 0 0" />
   </xacro:husky_wheel>
-  <xacro:husky_wheel wheel_prefix="front_right">
+  <xacro:husky_wheel wheel_prefix="front_right" tf_prefix="$(arg tf_prefix)">
     <origin xyz="${wheelbase/2} ${-track/2} ${wheel_vertical_offset}" rpy="0 0 0" />
   </xacro:husky_wheel>
-  <xacro:husky_wheel wheel_prefix="rear_left">
+  <xacro:husky_wheel wheel_prefix="rear_left" tf_prefix="$(arg tf_prefix)">
     <origin xyz="${-wheelbase/2} ${track/2} ${wheel_vertical_offset}" rpy="0 0 0" />
   </xacro:husky_wheel>
-  <xacro:husky_wheel wheel_prefix="rear_right">
+  <xacro:husky_wheel wheel_prefix="rear_right" tf_prefix="$(arg tf_prefix)">
     <origin xyz="${-wheelbase/2} ${-track/2} ${wheel_vertical_offset}" rpy="0 0 0" />
   </xacro:husky_wheel>
 
-  <xacro:husky_decorate />
+  <xacro:husky_decorate tf_prefix="$(arg tf_prefix)"/>
 
   <!--
     Add the primary and secondary lasers
   -->
   <xacro:if value="$(arg laser_enabled)">
-    <xacro:sick_lms1xx_mount prefix="base"/>
+    <xacro:sick_lms1xx_mount prefix="$(arg tf_prefix)base"/>
 
-    <xacro:sick_lms1xx frame="base_laser" topic="scan" robot_namespace="$(arg robot_namespace)"/>
+    <xacro:sick_lms1xx frame="$(arg tf_prefix)base_laser" topic="scan" robot_namespace="$(arg robot_namespace)"/>
 
-    <joint name="laser_mount_joint" type="fixed">
+    <joint name="$(arg tf_prefix)laser_mount_joint" type="fixed">
       <origin xyz="$(arg laser_xyz)" rpy="$(arg laser_rpy)" />
-      <parent link="top_plate_link" />
-      <child link="base_laser_mount" />
+      <parent link="$(arg tf_prefix)top_plate_link" />
+      <child link="$(arg tf_prefix)base_laser_mount" />
     </joint>
   </xacro:if>
   <xacro:if value="$(arg laser_secondary_enabled)">
-    <xacro:sick_lms1xx_mount prefix="rear"/>
+    <xacro:sick_lms1xx_mount prefix="$(arg tf_prefix)rear"/>
 
-    <xacro:sick_lms1xx frame="rear_laser" topic="rear/scan" robot_namespace="$(arg robot_namespace)"/>
+    <xacro:sick_lms1xx frame="$(arg tf_prefix)rear_laser" topic="rear/scan" robot_namespace="$(arg robot_namespace)"/>
 
-    <joint name="laser_secondary_mount_joint" type="fixed">
+    <joint name="$(arg tf_prefix)laser_secondary_mount_joint" type="fixed">
       <origin xyz="$(arg laser_secondary_xyz)" rpy="$(arg laser_secondary_rpy)" />
-      <parent link="top_plate_link" />
-      <child link="rear_laser_mount" />
+      <parent link="$(arg tf_prefix)top_plate_link" />
+      <child link="$(arg tf_prefix)rear_laser_mount" />
     </joint>
   </xacro:if>
 
@@ -196,12 +197,12 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
     Add front and back hokuyo UST10 Lidars
   -->
   <xacro:if value="$(arg laser_ust10_front_enabled)">
-    <xacro:hokuyo_ust10_mount topic="$(arg laser_ust10_front_topic)" prefix="$(arg laser_ust10_front_prefix)" parent_link="$(arg laser_ust10_front_parent)">
+    <xacro:hokuyo_ust10_mount topic="$(arg laser_ust10_front_topic)" prefix="$(arg tf_prefix)$(arg laser_ust10_front_prefix)" parent_link="$(arg tf_prefix)$(arg laser_ust10_front_parent)">
         <origin xyz="$(arg laser_ust10_front_xyz)" rpy="$(arg laser_ust10_front_rpy)" />
       </xacro:hokuyo_ust10_mount>
   </xacro:if>
   <xacro:if value="$(arg laser_ust10_rear_enabled)">
-    <xacro:hokuyo_ust10_mount topic="$(arg laser_ust10_rear_topic)" prefix="$(arg laser_ust10_rear_prefix)" parent_link="$(arg laser_ust10_rear_parent)">
+    <xacro:hokuyo_ust10_mount topic="$(arg laser_ust10_rear_topic)" prefix="$(arg tf_prefix)$(arg laser_ust10_rear_prefix)" parent_link="$(arg tf_prefix)$(arg laser_ust10_rear_parent)">
         <origin xyz="$(arg laser_ust10_rear_xyz)" rpy="$(arg laser_ust10_rear_rpy)" />
       </xacro:hokuyo_ust10_mount>
   </xacro:if>
@@ -214,27 +215,27 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
   <xacro:property name="sensorbar_needed_realsense" value="$(arg realsense_enabled)" />
   <xacro:property name="sensorbar_needed_lidar"     value="$(arg laser_3d_enabled)" />
   <xacro:if value="${sensorbar_needed_realsense or sensorbar_user_enabled or sensorbar_needed_lidar}">
-    <xacro:sensor_arch prefix="" parent="top_plate_link" size="$(arg sensor_arch_height)">
+    <xacro:sensor_arch prefix="$(arg tf_prefix)" parent="$(arg tf_prefix)top_plate_link" size="$(arg sensor_arch_height)">
         <origin xyz="$(optenv HUSKY_SENSOR_ARCH_OFFSET 0 0 0)" rpy="$(optenv HUSKY_SENSOR_ARCH_RPY 0 0 0)"/>
       </xacro:sensor_arch>
   </xacro:if>
 
   <!-- add the intel realsense to the sensor arch if needed -->
   <xacro:if value="$(arg realsense_enabled)">
-    <link name="realsense_mountpoint"/>
-    <joint name="realsense_mountpoint_joint" type="fixed">
+    <link name="$(arg tf_prefix)realsense_mountpoint"/>
+    <joint name="$(arg tf_prefix)realsense_mountpoint_joint" type="fixed">
       <origin xyz="$(arg realsense_xyz)" rpy="$(arg realsense_rpy)" />
-      <parent link="$(arg realsense_mount)"/>
-      <child link="realsense_mountpoint" />
+      <parent link="$(arg tf_prefix)$(arg realsense_mount)"/>
+      <child link="$(arg tf_prefix)realsense_mountpoint" />
     </joint>
-    <xacro:intel_realsense_mount prefix="camera" topic="realsense" parent_link="realsense_mountpoint"/>
+    <xacro:intel_realsense_mount prefix="$(arg tf_prefix)camera" topic="realsense" parent_link="$(arg tf_prefix)realsense_mountpoint"/>
   </xacro:if>
 
   <!--
     Add the 3d laser to the sensor arch if needed
   -->
   <xacro:if value="$(arg laser_3d_enabled)">
-    <xacro:vlp16_mount prefix="" parent_link="sensor_arch_mount_link" topic="$(optenv HUSKY_LASER_3D_TOPIC points)">
+    <xacro:vlp16_mount prefix="$(arg tf_prefix)" parent_link="$(arg tf_prefix)sensor_arch_mount_link" topic="$(optenv HUSKY_LASER_3D_TOPIC points)">
       <origin xyz="$(arg laser_3d_xyz)" rpy="$(arg laser_3d_rpy)" />
     </xacro:vlp16_mount>
   </xacro:if>
