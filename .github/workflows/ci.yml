@@ -5,7 +5,7 @@ on: [push, pull_request]
 jobs:
 
   husky_foxy_ci:
-    name: Noetic
+    name: Foxy
     strategy:
       matrix:
         env:
