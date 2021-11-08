@@ -2,6 +2,18 @@
 Changelog for package husky_base
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Initial Gazebo Classic changes.
+* Updates to use ros2_control.
+* [husky_base] Fixed comparison warnings.
+* [husky_base] Fixed logging variable order.
+* [husky_base] Populated hardware states and removed joints struct.
+* Initial attempt at ros2_control.
+* [husky_base] Updated horizon_legacy library for C++11.
+* [husky_base] Linting changes to horizon_legacy library.
+* Contributors: Tony Baltovski
+
 0.4.4 (2020-08-13)
 ------------------
 * Removed Paul Bovbel as maintainer.

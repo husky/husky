@@ -2,6 +2,11 @@
 Changelog for package husky_msgs
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* [husky_msgs] Updated husky_msgs for ROS2.
+* Contributors: Tony Baltovski
+
 0.4.4 (2020-08-13)
 ------------------
 * Removed Paul Bovbel as maintainer.

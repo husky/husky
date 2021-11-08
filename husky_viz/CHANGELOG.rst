@@ -2,6 +2,15 @@
 Changelog for package husky_viz
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* [husky_viz] Removed tests.
+* [husky_viz] Switched to depend on rviz2.
+* Removed missing packages in ROS2.
+* Updates to use ros2_control.
+* Added COLCON_IGNORE for certian packages.
+* Contributors: Tony Baltovski
+
 0.4.4 (2020-08-13)
 ------------------
 * Remove support for the Kinect for Xbox 360. We've had the deprecation warning around for a while, so let's finally do it.  Realsense support is in-place as a drop-in replacement that gets added to the top rollbar, just like the old Kinect would have.

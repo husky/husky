@@ -2,6 +2,21 @@
 Changelog for package husky_control
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Initial Gazebo Classic changes.
+* [husky_control] Added basic localization config.
+* [husky_control] Disabled interactive_marker_twist_server for now.
+* Removed missing packages in ROS2.
+* [husky_control] Removed multimaster_launch.
+* [husky_control] Added teleop launch.
+* [husky_control] Update control rate to 10Hz.
+* Updates to use ros2_control.
+* [husky_control] Updated CMakeLists.txt.
+* Initial attempt at ros2_control.
+* Add the link_name parameter to fix the interactive markers in rviz
+* Contributors: Chris Iverach-Brereton, Tony Baltovski
+
 0.4.4 (2020-08-13)
 ------------------
 * clearer wording
