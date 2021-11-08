@@ -2,8 +2,8 @@
 Changelog for package husky_base
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+1.0.0 (2021-11-07)
+------------------
 * Initial Gazebo Classic changes.
 * Updates to use ros2_control.
 * [husky_base] Fixed comparison warnings.

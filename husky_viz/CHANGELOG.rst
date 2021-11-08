@@ -2,8 +2,8 @@
 Changelog for package husky_viz
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+1.0.0 (2021-11-07)
+------------------
 * [husky_viz] Removed tests.
 * [husky_viz] Switched to depend on rviz2.
 * Removed missing packages in ROS2.

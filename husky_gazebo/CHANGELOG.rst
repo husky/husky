@@ -2,8 +2,8 @@
 Changelog for package husky_gazebo
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+1.0.0 (2021-11-07)
+------------------
 * Initial Gazebo Classic changes.
 * Added COLCON_IGNORE for certian packages.
 * Contributors: Tony Baltovski

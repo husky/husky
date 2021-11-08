@@ -2,8 +2,8 @@
 Changelog for package husky_msgs
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+1.0.0 (2021-11-07)
+------------------
 * [husky_msgs] Updated husky_msgs for ROS2.
 * Contributors: Tony Baltovski
 

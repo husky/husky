@@ -2,8 +2,8 @@
 Changelog for package husky_control
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+1.0.0 (2021-11-07)
+------------------
 * Initial Gazebo Classic changes.
 * [husky_control] Added basic localization config.
 * [husky_control] Disabled interactive_marker_twist_server for now.
