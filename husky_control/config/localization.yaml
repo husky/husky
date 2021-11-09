@@ -4,6 +4,8 @@ world_frame: odom
 
 two_d_mode: true
 
+predict_to_current_time: true
+
 frequency: 50
 
 odom0: husky_velocity_controller/odom
