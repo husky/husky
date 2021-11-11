@@ -3,14 +3,13 @@ name: husky_ci
 on: [push, pull_request]
 
 jobs:
-
-  husky_foxy_ci:
-    name: Foxy
+  husky_galactic_ci:
+    name: Galactic
     strategy:
       matrix:
         env:
-          - {ROS_DISTRO: foxy, ROS_REPO: main}
-          - {ROS_DISTRO: foxy, ROS_REPO: testing}
+          - {ROS_DISTRO: galactic, ROS_REPO: main}
+          - {ROS_DISTRO: galactic, ROS_REPO: testing}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
