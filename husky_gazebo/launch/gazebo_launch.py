@@ -35,9 +35,9 @@ def generate_launch_description():
         "control.yaml"],
     )
 
-    node_husky_velocity_controller = Node(
+    spawn_husky_velocity_controller = Node(
         package='controller_manager',
-        executable='spawner.py',
+        executable='spawner',
         parameters=[config_husky_velocity_controller],
         arguments=['husky_velocity_controller', '-c', '/controller_manager'],
         output='screen',
@@ -52,16 +52,16 @@ def generate_launch_description():
 
     spawn_joint_state_broadcaster = Node(
         package='controller_manager',
-        executable='spawner.py',
+        executable='spawner',
         arguments=['joint_state_broadcaster', '-c', '/controller_manager'],
         output='screen',
     )
-    
-    # Make sure node_husky_velocity_controller starts after spawn_joint_state_broadcaster
-    diffdrive_controller_callback = RegisterEventHandler(
+
+    # Make sure spawn_husky_velocity_controller starts after spawn_joint_state_broadcaster
+    diffdrive_controller_spawn_callback = RegisterEventHandler(
         event_handler=OnProcessExit(
             target_action=spawn_joint_state_broadcaster,
-            on_exit=[node_husky_velocity_controller],
+            on_exit=[spawn_husky_velocity_controller],
         )
     )
     # Gazebo server
@@ -95,7 +95,7 @@ def generate_launch_description():
     ld = LaunchDescription(ARGUMENTS)
     ld.add_action(node_robot_state_publisher)
     ld.add_action(spawn_joint_state_broadcaster)
-    ld.add_action(diffdrive_controller_callback)
+    ld.add_action(diffdrive_controller_spawn_callback)
     ld.add_action(gzserver)
     ld.add_action(gzclient)
     ld.add_action(spawn_robot)
