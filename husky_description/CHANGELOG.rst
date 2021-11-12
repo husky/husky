@@ -2,8 +2,8 @@
 Changelog for package husky_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+1.0.1 (2021-11-12)
+------------------
 * [husky_description] Removed testing.
 * Contributors: Tony Baltovski
 
