@@ -2,6 +2,13 @@
 Changelog for package husky_robot
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Bumped verisons of metapackages.
+* [husky_robot] Disabled dependency on husky_bringup.
+* Re-enabled metapackages.
+* Contributors: Tony Baltovski
+
 0.4.4 (2020-08-13)
 ------------------
 * Removed Paul Bovbel as maintainer.

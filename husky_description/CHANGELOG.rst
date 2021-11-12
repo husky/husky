@@ -2,6 +2,11 @@
 Changelog for package husky_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* [husky_description] Removed testing.
+* Contributors: Tony Baltovski
+
 1.0.0 (2021-11-07)
 ------------------
 * Initial Gazebo Classic changes.

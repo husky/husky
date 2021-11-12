@@ -2,6 +2,9 @@
 Changelog for package husky_viz
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+
 1.0.0 (2021-11-07)
 ------------------
 * [husky_viz] Removed tests.
