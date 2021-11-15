@@ -193,8 +193,6 @@
     <ros2_control name="husky_hardware" type="system">
       <hardware>
         <plugin>husky_base/HuskyHardware</plugin>
-        <param name="hw_start_duration_sec">2.0</param>
-        <param name="hw_stop_duration_sec">3.0</param>
         <param name="wheel_diameter">0.3302</param>
         <param name="max_accel">5.0</param>
         <param name="max_speed">1.0</param>
