@@ -59,7 +59,6 @@ def generate_launch_description():
     ld = LaunchDescription()
     ld.add_action(node_robot_state_publisher)
     ld.add_action(node_controller_manager)
-    ld.add_action(node_controller_manager)
     ld.add_action(spawn_controller)
     ld.add_action(spawn_husky_velocity_controller)
 
