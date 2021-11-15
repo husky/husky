@@ -16,7 +16,7 @@
   <depend>husky_description</depend>
   <!-- <depend>interactive_marker_twist_server</depend> -->
   <depend>diff_drive_controller</depend>
-  <depend>joint_state_controller</depend>
+  <depend>joint_state_broadcaster</depend>
   <depend>joint_trajectory_controller</depend>
   <depend>joy</depend>
   <!-- <depend>multimaster_launch</depend> -->
