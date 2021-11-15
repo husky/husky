@@ -65,7 +65,6 @@ private:
   std::string serial_port_;
   double polling_timeout_;
   double wheel_diameter_, max_accel_, max_speed_;
-  double hw_start_sec_, hw_stop_sec_;
 
   // Store the command for the robot
   std::vector<double> hw_commands_;

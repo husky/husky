@@ -178,8 +178,6 @@ hardware_interface::return_type HuskyHardware::configure(
 
   RCLCPP_INFO(rclcpp::get_logger(HW_NAME), "Number of Joints %u", info_.joints.size());
 
-  hw_start_sec_ = std::stod(info_.hardware_parameters["hw_start_duration_sec"]);
-  hw_stop_sec_ = std::stod(info_.hardware_parameters["hw_stop_duration_sec"]);
   hw_states_position_.resize(info_.joints.size(), std::numeric_limits<double>::quiet_NaN());
   hw_states_position_offset_.resize(info_.joints.size(), std::numeric_limits<double>::quiet_NaN());
   hw_states_velocity_.resize(info_.joints.size(), std::numeric_limits<double>::quiet_NaN());
@@ -282,13 +280,6 @@ hardware_interface::return_type HuskyHardware::start()
 {
   RCLCPP_INFO(rclcpp::get_logger(HW_NAME), "Starting ...please wait...");
 
-  for (auto i = 0; i <= hw_start_sec_; i++)
-  {
-    rclcpp::sleep_for(std::chrono::seconds(1));
-    RCLCPP_INFO(
-      rclcpp::get_logger(HW_NAME), "%.1f seconds left...", hw_start_sec_ - i);
-  }
-
   // set some default values
   for (auto i = 0u; i < hw_states_position_.size(); i++)
   {
@@ -311,13 +302,6 @@ hardware_interface::return_type HuskyHardware::start()
 hardware_interface::return_type HuskyHardware::stop()
 {
   RCLCPP_INFO(rclcpp::get_logger(HW_NAME), "Stopping ...please wait...");
-
-  for (auto i = 0u; i <= hw_stop_sec_; i++)
-  {
-    rclcpp::sleep_for(std::chrono::seconds(1));
-    RCLCPP_INFO(
-      rclcpp::get_logger(HW_NAME), "%.1f seconds left...", hw_stop_sec_ - i);
-  }
 
   status_ = hardware_interface::status::STOPPED;
 
