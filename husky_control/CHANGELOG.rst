@@ -2,6 +2,11 @@
 Changelog for package husky_control
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Correct name of joint state broadcaster (controller) does not exist anymore.
+* Contributors: Denis Štogl
+
 1.0.1 (2021-11-12)
 ------------------
 

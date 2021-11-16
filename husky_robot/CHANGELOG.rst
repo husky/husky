@@ -2,6 +2,9 @@
 Changelog for package husky_robot
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+
 1.0.1 (2021-11-12)
 ------------------
 * Bumped verisons of metapackages.

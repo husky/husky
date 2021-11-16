@@ -2,6 +2,12 @@
 Changelog for package husky_base
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Removed unused parameters.
+* [husky_base] Removed duplicate node in launch.
+* Contributors: Tony Baltovski
+
 1.0.1 (2021-11-12)
 ------------------
 

@@ -2,6 +2,11 @@
 Changelog for package husky_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Removed unused parameters.
+* Contributors: Tony Baltovski
+
 1.0.1 (2021-11-12)
 ------------------
 * [husky_description] Removed testing.

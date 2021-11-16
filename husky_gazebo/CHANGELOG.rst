@@ -2,6 +2,11 @@
 Changelog for package husky_gazebo
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Make variable names clearer.
+* Contributors: Denis Štogl
+
 1.0.1 (2021-11-12)
 ------------------
 
