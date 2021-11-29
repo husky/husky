@@ -15,6 +15,11 @@ def generate_launch_description():
             PathJoinSubstitution(
                 [FindPackageShare("husky_description"), "urdf", "husky.urdf.xacro"]
             ),
+            " ",
+            "name:=husky",
+            " ",
+            "prefix:=''",
+            " ",
         ]
     )
     robot_description = {"robot_description": robot_description_content}

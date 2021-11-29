@@ -37,6 +37,6 @@
       <xacro:insert_block name="joint_pose"/>
       <axis xyz="0 1 0" rpy="0 0 0" />
     </joint>
-    
+
   </xacro:macro>
 </robot>
