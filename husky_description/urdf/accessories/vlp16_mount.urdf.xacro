@@ -9,16 +9,16 @@
     <link name="${prefix}vlp16_mount_left_support">
       <visual>
         <geometry>
-          <box size="0.012 0.012 ${height}" />
+          <box size="0.04 0.02 ${height}" />
         </geometry>
-        <material name="white">
+        <material name="black">
           <color rgba="1 1 1 1" />
         </material>
         <origin xyz="0 0 0" rpy="0 0 0" />
       </visual>
       <collision>
         <geometry>
-          <box size="0.012 0.012 ${height}" />
+          <box size="0.04 0.02 ${height}" />
         </geometry>
         <origin xyz="0 0 0" rpy="0 0 0" />
       </collision>
@@ -26,16 +26,16 @@
     <link name="${prefix}vlp16_mount_right_support">
       <visual>
         <geometry>
-          <box size="0.012 0.012 ${height}" />
+          <box size="0.04 0.02 ${height}" />
         </geometry>
-        <material name="white">
+        <material name="black">
           <color rgba="1 1 1 1" />
         </material>
         <origin xyz="0 0 0" rpy="0 0 0" />
       </visual>
       <collision>
         <geometry>
-          <box size="0.012 0.012 ${height}" />
+          <box size="0.04 0.02 ${height}" />
         </geometry>
         <origin xyz="0 0 0" rpy="0 0 0" />
       </collision>
@@ -49,12 +49,12 @@
     <joint name="${prefix}vlp16_mount_left_support_joint" type="fixed">
       <parent link="${prefix}vlp16_mount_base_link" />
       <child link="${prefix}vlp16_mount_left_support" />
-      <origin xyz="0 0.04 ${height/2}" rpy="0 0 0"/>
+      <origin xyz="0 0.06 ${height/2}" rpy="0 0 0"/>
     </joint>
     <joint name="${prefix}vlp16_mount_right_support_joint" type="fixed">
       <parent link="${prefix}vlp16_mount_base_link" />
       <child link="${prefix}vlp16_mount_right_support" />
-      <origin xyz="0 -0.04 ${height/2}" rpy="0 0 0"/>
+      <origin xyz="0 -0.06 ${height/2}" rpy="0 0 0"/>
     </joint>
 
     <xacro:VLP-16 parent="${prefix}vlp16_mount_base_link" topic="${topic}">
