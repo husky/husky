@@ -2,6 +2,11 @@
 Changelog for package husky_base
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* [husky_base] Switched Boost static assert to C++ standard library.
+* Contributors: Tony Baltovski
+
 1.0.2 (2021-11-16)
 ------------------
 * Removed unused parameters.
