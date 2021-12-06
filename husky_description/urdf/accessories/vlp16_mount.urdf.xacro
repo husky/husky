@@ -5,7 +5,8 @@
     <!--
       The VLP16 is mounted to a pair of extrusion rods on top of the main sensor arch
     -->
-    <link name="${prefix}vlp16_mount_base_link">
+    <link name="${prefix}vlp16_mount_base_link" />
+    <link name="${prefix}vlp16_mount_plate">
       <visual>
         <geometry>
           <box size="0.04 0.141 0.0063" />
@@ -60,20 +61,25 @@
     <joint name="${prefix}vlp16_mount_base_link_joint" type="fixed">
       <parent link="${parent_link}" />
       <child link="${prefix}vlp16_mount_base_link" />
-      <origin xyz="0 0 ${height}" rpy="0 0 0"/>
+      <xacro:insert_block name="origin" />
     </joint>
     <joint name="${prefix}vlp16_mount_left_support_joint" type="fixed">
       <parent link="${prefix}vlp16_mount_base_link" />
       <child link="${prefix}vlp16_mount_left_support" />
-      <origin xyz="0 0.06 -${height/2}" rpy="0 0 0"/>
+      <origin xyz="0 0.06 ${height/2}" rpy="0 0 0"/>
     </joint>
     <joint name="${prefix}vlp16_mount_right_support_joint" type="fixed">
       <parent link="${prefix}vlp16_mount_base_link" />
       <child link="${prefix}vlp16_mount_right_support" />
-      <origin xyz="0 -0.06 -${height/2}" rpy="0 0 0"/>
+      <origin xyz="0 -0.06 ${height/2}" rpy="0 0 0"/>
+    </joint>
+    <joint name="${prefix}vlp16_mount_plate_joint" type="fixed">
+      <parent link="${prefix}vlp16_mount_base_link" />
+      <child link="${prefix}vlp16_mount_plate" />
+      <origin xyz="0 0 ${height}" rpy="0 0 0"/>
     </joint>
 
-    <xacro:VLP-16 parent="${prefix}vlp16_mount_base_link" topic="${topic}">
+    <xacro:VLP-16 parent="${prefix}vlp16_mount_plate" topic="${topic}">
       <origin xyz="0 0 0" rpy="0 0 0" />
     </xacro:VLP-16>
   </xacro:macro>
