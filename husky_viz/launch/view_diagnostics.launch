@@ -1,0 +1,5 @@
+<launch>
+  <arg name="config" default="diagnostics" />
+  <node name="rqt_dashboard" pkg="rqt_gui" type="rqt_gui" respawn="false" output="screen"
+    args="--perspective-file $(find husky_viz)/rqt/$(arg config).perspective" />
+</launch>
