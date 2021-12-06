@@ -159,7 +159,7 @@
           <plugin>gazebo_ros2_control/GazeboSystem</plugin>
         </xacro:if>
         <xacro:unless value="$(arg is_sim)">
-<!--           <plugin>husky_base/HuskyHardware</plugin> -->
+          <plugin>husky_base/HuskyHardware</plugin>
           <plugin>fake_components/GenericSystem</plugin>
           <param name="hw_start_duration_sec">2.0</param>
           <param name="hw_stop_duration_sec">3.0</param>
