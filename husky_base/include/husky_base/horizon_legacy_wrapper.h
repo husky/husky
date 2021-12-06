@@ -34,8 +34,7 @@
 
 #include <iostream>
 #include <memory>
-
-#include <boost/static_assert.hpp>
+#include <type_traits>
 
 #include "husky_base/horizon_legacy/clearpath.h"
 
@@ -60,7 +59,7 @@ namespace horizon_legacy
   {
     typedef std::shared_ptr<T> Ptr;
     typedef std::shared_ptr<const T> ConstPtr;
-    BOOST_STATIC_ASSERT_MSG(
+    static_assert(
       (std::is_base_of<clearpath::Message, T>::value),
       "T must be a descendant of clearpath::Message"
     );
