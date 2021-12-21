@@ -13,9 +13,9 @@ husky_velocity_controller:
     left_wheel_names: [ "front_left_wheel_joint", "rear_left_wheel_joint" ]
     right_wheel_names: [ "front_right_wheel_joint", "rear_right_wheel_joint" ]
 
-    wheel_separation: 0.10
-    #wheels_per_side: 1  # actually 2, but both are controlled by 1 signal
-    wheel_radius: 0.015
+    wheel_separation: 0.512  #0.1  # 0.256  # 0.512
+    wheels_per_side: 1  # actually 2, but both are controlled by 1 signal
+    wheel_radius: 0.1651  # 0.015
 
     wheel_separation_multiplier: 1.0
     left_wheel_radius_multiplier: 1.0
