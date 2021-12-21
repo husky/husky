@@ -1,0 +1,209 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <xacro:arg name="laser_enabled" default="false" />
+  <xacro:arg name="laser_xyz" default="$(optenv HUSKY_LMS1XX_XYZ 0.2206 0.0 0.00635)" />
+  <xacro:arg name="laser_rpy" default="$(optenv HUSKY_LMS1XX_RPY 0.0 0.0 0.0)" />
+
+  <xacro:arg name="realsense_enabled" default="false" />
+  <xacro:arg name="realsense_xyz" default="$(optenv HUSKY_REALSENSE_XYZ 0 0 0)" />
+  <xacro:arg name="realsense_rpy" default="$(optenv HUSKY_REALSENSE_RPY 0 0 0)" />
+  <xacro:arg name="realsense_mount" default="$(optenv HUSKY_REALSENSE_MOUNT_FRAME sensor_arch_mount_link)" />
+
+  <xacro:property name="husky_front_bumper_extend" value="$(optenv HUSKY_FRONT_BUMPER_EXTEND 0)" />
+  <xacro:property name="husky_rear_bumper_extend" value="$(optenv HUSKY_REAR_BUMPER_EXTEND 0)" />
+
+  <xacro:arg name="robot_namespace" default="/" />
+  <xacro:arg name="is_sim" default="false" />
+  <xacro:arg name="urdf_extras" default="empty.urdf" />
+
+  <!-- Included URDF/XACRO Files -->
+  <xacro:include filename="$(find husky_description)/urdf/decorations.urdf.xacro" />
+  <xacro:include filename="$(find husky_description)/urdf/wheel.urdf.xacro" />
+
+  <!-- <xacro:include filename="$(find husky_description)/urdf/accessories/intel_realsense.urdf.xacro"/>
+  <xacro:include filename="$(find husky_description)/urdf/accessories/sick_lms1xx_mount.urdf.xacro"/>
+  <xacro:include filename="$(find husky_description)/urdf/accessories/sensor_arch.urdf.xacro"/> -->
+
+  <xacro:property name="M_PI" value="3.14159"/>
+
+  <xacro:macro name="husky" params="prefix">
+
+    <!-- Base Size -->
+    <xacro:property name="base_x_size" value="0.98740000" />
+    <xacro:property name="base_y_size" value="0.57090000" />
+    <xacro:property name="base_z_size" value="0.24750000" />
+
+    <!-- Wheel Mounting Positions -->
+    <xacro:property name="wheelbase" value="0.5120" />
+    <xacro:property name="track" value="0.5708" />
+    <xacro:property name="wheel_vertical_offset" value="0.03282" />
+
+    <!-- Wheel Properties -->
+    <xacro:property name="wheel_length" value="0.1143" />
+    <xacro:property name="wheel_radius" value="0.1651" />
+
+    <!-- Base link is the center of the robot's bottom plate -->
+    <link name="${prefix}base_link">
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="file://$(find husky_description)/meshes/base_link.dae" />
+        </geometry>
+      </visual>
+      <collision>
+        <origin xyz="${( husky_front_bumper_extend - husky_rear_bumper_extend ) / 2.0} 0 ${base_z_size/4}" rpy="0 0 0" />
+        <geometry>
+          <box size="${ base_x_size + husky_front_bumper_extend + husky_rear_bumper_extend } ${base_y_size} ${base_z_size/2}"/>
+        </geometry>
+      </collision>
+      <collision>
+        <origin xyz="0 0 ${base_z_size*3/4-0.01}" rpy="0 0 0" />
+        <geometry>
+          <box size="${base_x_size*4/5} ${base_y_size} ${base_z_size/2-0.02}"/>
+        </geometry>
+      </collision>
+    </link>
+
+    <!-- Base footprint is on the ground under the robot -->
+    <link name="${prefix}base_footprint"/>
+
+    <joint name="${prefix}base_footprint_joint" type="fixed">
+      <origin xyz="0 0 ${wheel_vertical_offset - wheel_radius}" rpy="0 0 0" />
+      <parent link="${prefix}base_link" />
+      <child link="${prefix}base_footprint" />
+    </joint>
+
+    <!-- Inertial link stores the robot's inertial information -->
+    <link name="${prefix}inertial_link">
+      <inertial>
+        <mass value="46.034" />
+        <origin xyz="-0.00065 -0.085 0.062" />
+        <inertia ixx="0.6022" ixy="-0.02364" ixz="-0.1197" iyy="1.7386" iyz="-0.001544" izz="2.0296" />
+      </inertial>
+    </link>
+
+    <joint name="${prefix}inertial_joint" type="fixed">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <parent link="${prefix}base_link" />
+      <child link="${prefix}inertial_link" />
+    </joint>
+
+    <!-- IMU Link is the standard mounting position for the UM6 IMU.-->
+    <!-- Can be modified with environment variables in /etc/ros/setup.bash -->
+    <link name="${prefix}imu_link"/>
+    <joint name="${prefix}imu_joint" type="fixed">
+      <origin xyz="$(optenv HUSKY_IMU_XYZ 0.19 0 0.149)" rpy="$(optenv HUSKY_IMU_RPY 0 -1.5708 3.1416)" />
+      <parent link="${prefix}base_link" />
+      <child link="${prefix}imu_link" />
+    </joint>
+    <gazebo reference="${prefix}imu_link">
+    </gazebo>
+
+    <!-- Husky wheel macros -->
+    <xacro:husky_wheel wheel_prefix="${prefix}front_left">
+      <origin xyz="${wheelbase/2} ${track/2} ${wheel_vertical_offset}" rpy="0 0 0" />
+    </xacro:husky_wheel>
+    <xacro:husky_wheel wheel_prefix="${prefix}front_right">
+      <origin xyz="${wheelbase/2} ${-track/2} ${wheel_vertical_offset}" rpy="0 0 0" />
+    </xacro:husky_wheel>
+    <xacro:husky_wheel wheel_prefix="${prefix}rear_left">
+      <origin xyz="${-wheelbase/2} ${track/2} ${wheel_vertical_offset}" rpy="0 0 0" />
+    </xacro:husky_wheel>
+    <xacro:husky_wheel wheel_prefix="${prefix}rear_right">
+      <origin xyz="${-wheelbase/2} ${-track/2} ${wheel_vertical_offset}" rpy="0 0 0" />
+    </xacro:husky_wheel>
+
+    <xacro:husky_decorate />
+
+    <!-- <xacro:if value="$(arg laser_enabled)">
+
+      <xacro:sick_lms1xx_mount prefix="base"/>
+
+      <xacro:sick_lms1xx frame="base_laser" topic="scan" robot_namespace="$(arg robot_namespace)"/>
+
+      <joint name="laser_mount_joint" type="fixed">
+        <origin xyz="$(arg laser_xyz)" rpy="$(arg laser_rpy)" />
+        <parent link="top_plate_link" />
+        <child link="base_laser_mount" />
+      </joint>
+
+    </xacro:if> -->
+
+    <!--
+      top sensor arch; include this if we have realsense enabled
+      keep this as a property to make it easier to add multiple conditions, should we need
+      the top bar for any additional sensors in the future
+    -->
+    <!-- <xacro:property name="topbar_needed_realsense" value="$(arg realsense_enabled)" />
+    <xacro:if value="${topbar_needed_realsense}">
+      <xacro:sensor_arch prefix="" parent="top_plate_link">
+        <origin xyz="-0.35 0 0.51" rpy="0 0 -3.14"/>
+      </xacro:sensor_arch>
+    </xacro:if> -->
+
+    <!-- add the intel realsense to the topbar if needed -->
+    <!-- <xacro:if value="$(arg realsense_enabled)">
+      <link name="realsense_mountpoint"/>
+      <joint name="realsense_mountpoint_joint" type="fixed">
+        <origin xyz="0 0 0" rpy="0 0 -3.14159" />
+        <parent link="$(arg realsense_mount)"/>
+        <child link="realsense_mountpoint" />
+      </joint>
+      <xacro:intel_realsense_mount prefix="camera" topic="realsense" parent_link="realsense_mountpoint"/>
+    </xacro:if> -->
+
+    <ros2_control name="${prefix}husky_hardware" type="system">
+      <hardware>
+        <xacro:if value="$(arg is_sim)">
+          <plugin>gazebo_ros2_control/GazeboSystem</plugin>
+        </xacro:if>
+        <xacro:unless value="$(arg is_sim)">
+          <plugin>husky_base/HuskyHardware</plugin>
+          <plugin>fake_components/GenericSystem</plugin>
+          <param name="hw_start_duration_sec">2.0</param>
+          <param name="hw_stop_duration_sec">3.0</param>
+          <param name="wheel_diameter">0.3302</param>
+          <param name="max_accel">5.0</param>
+          <param name="max_speed">1.0</param>
+          <param name="polling_timeout">10.0</param>
+          <param name="serial_port">/dev/prolific</param>
+        </xacro:unless>
+      </hardware>
+      <joint name="${prefix}front_left_wheel_joint">
+        <command_interface name="velocity">
+          <param name="min">-1</param>
+          <param name="max">1</param>
+        </command_interface>
+        <state_interface name="position"/>
+        <state_interface name="velocity"/>
+      </joint>
+      <joint name="${prefix}rear_left_wheel_joint">
+        <command_interface name="velocity">
+          <param name="min">-1</param>
+          <param name="max">1</param>
+        </command_interface>
+        <state_interface name="position"/>
+        <state_interface name="velocity"/>
+      </joint>
+      <joint name="${prefix}front_right_wheel_joint">
+        <command_interface name="velocity">
+          <param name="min">-1</param>
+          <param name="max">1</param>
+        </command_interface>
+        <state_interface name="position"/>
+        <state_interface name="velocity"/>
+      </joint>
+      <joint name="${prefix}rear_right_wheel_joint">
+        <command_interface name="velocity">
+          <param name="min">-1</param>
+          <param name="max">1</param>
+        </command_interface>
+        <state_interface name="position"/>
+        <state_interface name="velocity"/>
+      </joint>
+    </ros2_control>
+
+  </xacro:macro>
+
+</robot>

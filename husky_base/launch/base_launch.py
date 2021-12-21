@@ -15,6 +15,11 @@ def generate_launch_description():
             PathJoinSubstitution(
                 [FindPackageShare("husky_description"), "urdf", "husky.urdf.xacro"]
             ),
+            " ",
+            "name:=husky",
+            " ",
+            "prefix:=''",
+            " ",
         ]
     )
     robot_description = {"robot_description": robot_description_content}
@@ -51,7 +56,7 @@ def generate_launch_description():
 
     spawn_husky_velocity_controller = Node(
         package="controller_manager",
-        executable="spawner.py",
+        executable="spawner",
         arguments=["husky_velocity_controller"],
         output="screen",
     )

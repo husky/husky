@@ -15,6 +15,11 @@ def generate_launch_description():
 
     # Launch args
     world_path = LaunchConfiguration('world_path')
+    prefix = LaunchConfiguration('prefix')
+
+    config_husky_velocity_controller = PathJoinSubstitution(
+        [FindPackageShare("husky_control"), "config", "control.yaml"]
+    )
 
     # Get URDF via xacro
     robot_description_content = Command(
@@ -24,21 +29,22 @@ def generate_launch_description():
             PathJoinSubstitution(
                 [FindPackageShare("husky_description"), "urdf", "husky.urdf.xacro"]
             ),
-            " is_sim:=true"
+            " ",
+            "name:=husky",
+            " ",
+            "prefix:=''",
+            " ",
+            "is_sim:=true",
+            " ",
+            "gazebo_controllers:=",
+            config_husky_velocity_controller,
         ]
     )
     robot_description = {"robot_description": robot_description_content}
 
-    config_husky_velocity_controller = PathJoinSubstitution(
-        [FindPackageShare("husky_control"),
-        "config",
-        "control.yaml"],
-    )
-
     spawn_husky_velocity_controller = Node(
         package='controller_manager',
         executable='spawner.py',
-        parameters=[config_husky_velocity_controller],
         arguments=['husky_velocity_controller', '-c', '/controller_manager'],
         output='screen',
     )
@@ -52,7 +58,7 @@ def generate_launch_description():
 
     spawn_joint_state_broadcaster = Node(
         package='controller_manager',
-        executable='spawner',
+        executable='spawner.py',
         arguments=['joint_state_broadcaster', '-c', '/controller_manager'],
         output='screen',
     )
