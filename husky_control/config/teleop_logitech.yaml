@@ -41,18 +41,40 @@
 # D-pad Horiz.     6
 # D-pad Vert.      7
 
-teleop_twist_joy:
-  ros__parameters:
-    axis_linear: 1
-    scale_linear: 0.4
-    scale_linear_turbo: 1.0
-    axis_angular: 0
-    scale_angular: 0.6
-    scale_angular_turbo: 1.2
-    enable_button: 4
-    enable_turbo_button: 5
-joy_node:
-  ros__parameters:
-    deadzone: 0.1
-    autorepeat_rate: 20
-    dev: /dev/input/f710
+/joy_teleop:
+  teleop_twist_joy_node:
+    ros__parameters:
+      axis_angular:
+        pitch: -1
+        roll: -1
+        yaw: 0
+      axis_linear:
+        x: 1
+        y: -1
+        z: -1
+      enable_button: 4
+      enable_turbo_button: 5
+      require_enable_button: true
+      scale_angular:
+        pitch: 0.0
+        roll: 0.0
+        yaw: 0.6
+      scale_angular_turbo:
+        pitch: 0.0
+        roll: 0.0
+        yaw: 1.2
+      scale_linear:
+        x: 0.4
+        y: 0.0
+        z: 0.0
+      scale_linear_turbo:
+        x: 1.0
+        y: 0.0
+        z: 0.0
+      use_sim_time: false
+
+  joy_node:
+    ros__parameters:
+      deadzone: 0.1
+      autorepeat_rate: 20.0
+      dev: /dev/input/f710
