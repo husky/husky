@@ -21,37 +21,92 @@
       </plugin>
     </gazebo>
 
-    <gazebo>
-      <plugin name="$(arg prefix)imu_controller" filename="libhector_gazebo_ros_imu.so">
-        <robotNamespace>$(arg robot_namespace)</robotNamespace>
-        <updateRate>50.0</updateRate>
-        <bodyName>$(arg prefix)base_link</bodyName>
-        <topicName>$(arg prefix)imu/data</topicName>
-        <accelDrift>0.005 0.005 0.005</accelDrift>
-        <accelGaussianNoise>0.005 0.005 0.005</accelGaussianNoise>
-        <rateDrift>0.005 0.005 0.005 </rateDrift>
-        <rateGaussianNoise>0.005 0.005 0.005 </rateGaussianNoise>
-        <headingDrift>0.005</headingDrift>
-        <headingGaussianNoise>0.005</headingGaussianNoise>
-      </plugin>
+    <gazebo reference="$(arg prefix)base_link">
+      <sensor name="imu_sensor" type="imu">
+        <always_on>true</always_on>
+        <update_rate>50</update_rate>
+        <imu>
+          <angular_velocity>
+            <x>
+              <noise type="gaussian">
+                <mean>0.0</mean>
+                <stddev>2e-4</stddev>
+              </noise>
+            </x>
+            <y>
+              <noise type="gaussian">
+                <mean>0.0</mean>
+                <stddev>2e-4</stddev>
+              </noise>
+            </y>
+            <z>
+              <noise type="gaussian">
+                <mean>0.0</mean>
+                <stddev>2e-4</stddev>
+              </noise>
+            </z>
+          </angular_velocity>
+          <linear_acceleration>
+            <x>
+              <noise type="gaussian">
+                <mean>0.0</mean>
+                <stddev>1.7e-2</stddev>
+              </noise>
+            </x>
+            <y>
+              <noise type="gaussian">
+                <mean>0.0</mean>
+                <stddev>1.7e-2</stddev>
+              </noise>
+            </y>
+            <z>
+              <noise type="gaussian">
+                <mean>0.0</mean>
+                <stddev>1.7e-2</stddev>
+              </noise>
+            </z>
+          </linear_acceleration>
+        </imu>
+        <plugin name="imu_controller" filename="libgazebo_ros_imu_sensor.so">
+            <ros>
+                <namespace>$(arg prefix)imu</namespace>
+                <remapping>~/out:=data</remapping>
+            </ros>
+            <initial_orientation_as_reference>false</initial_orientation_as_reference>
+            <frame_name>$(arg prefix)base_link</frame_name>
+        </plugin>
+      </sensor>
     </gazebo>
 
-    <gazebo>
-      <plugin name="$(arg prefix)gps_controller" filename="libhector_gazebo_ros_gps.so">
-        <robotNamespace>$(arg robot_namespace)</robotNamespace>
-        <updateRate>40</updateRate>
-        <bodyName>$(arg prefix)base_link</bodyName>
-        <frameId>$(arg prefix)base_link</frameId>
-        <topicName>navsat/fix</topicName>
-        <velocityTopicName>$(arg prefix)navsat/vel</velocityTopicName>
-        <referenceLatitude>49.9</referenceLatitude>
-        <referenceLongitude>8.9</referenceLongitude>
-        <referenceHeading>0</referenceHeading>
-        <referenceAltitude>0</referenceAltitude>
-        <drift>0.0001 0.0001 0.0001</drift>
-      </plugin>
+    <gazebo reference="$(arg prefix)base_link">
+      <sensor name="gps_sensor" type="gps">
+          <always_on>true</always_on>
+          <update_rate>5.0</update_rate>
+          <gps>
+            <position_sensing>
+              <horizontal>
+                <noise type="gaussian">
+                  <mean>0.0</mean>
+                  <stddev>2e-4</stddev>
+                </noise>
+              </horizontal>
+              <vertical>
+                <noise type="gaussian">
+                  <mean>0.0</mean>
+                  <stddev>2e-4</stddev>
+                </noise>
+              </vertical>
+            </position_sensing>
+          </gps>
+          <plugin name="gps_controller" filename="libgazebo_ros_gps_sensor.so">
+              <ros>
+                  <namespace>$(arg prefix)/gps</namespace>
+                  <remapping>~/out:=fix</remapping>
+              </ros>
+              <frame_name>$(arg prefix)base_link</frame_name>
+          </plugin>
+      </sensor>
     </gazebo>
-
   </xacro:if>
 
   <!-- Optional custom includes. -->
