@@ -42,7 +42,7 @@
 
 namespace
 {
-  const uint8_t LEFT = 0, RIGHT = 1;
+  const uint8_t LEFT = 0, RIGHT = 2;
 }
 
 namespace husky_base
@@ -124,7 +124,7 @@ namespace husky_base
         enc->getTravel(LEFT), enc->getTravel(RIGHT));
       for (auto i = 0u; i < hw_states_position_.size(); i++)
       {
-        double delta = linearToAngular(enc->getTravel(i % 2)) - hw_states_position_[i] - hw_states_position_offset_[i];
+        double delta = linearToAngular(enc->getTravel(i >= 2)) - hw_states_position_[i] - hw_states_position_offset_[i];
 
         // detect suspiciously large readings, possibly from encoder rollover
         if (std::abs(delta) < 1.0f)
@@ -153,7 +153,7 @@ namespace husky_base
       for (auto i = 0u; i < hw_states_velocity_.size(); i++)
       {
 
-        if (i % 2 == LEFT)
+        if (i < 2)
         {
           hw_states_velocity_[i] = linearToAngular(speed->getLeftSpeed());
         }
