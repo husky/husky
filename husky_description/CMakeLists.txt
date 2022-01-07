@@ -1,11 +1,14 @@
 cmake_minimum_required(VERSION 2.8.3)
 project(husky_description)
 
-find_package(catkin REQUIRED COMPONENTS roslaunch)
+find_package(catkin REQUIRED)
 
 catkin_package()
 
-roslaunch_add_file_check(launch)
+if (CATKIN_ENABLE_TESTING)
+  find_package(roslaunch REQUIRED)
+  roslaunch_add_file_check(launch)
+endif()
 
 install(
   DIRECTORY launch meshes urdf
