@@ -26,6 +26,9 @@
   <!-- Spawn controllers -->
   <node name="base_controller_spawner" pkg="controller_manager" type="spawner"
         args="husky_joint_publisher husky_velocity_controller"/>
+  <rosparam param="wheel_radius_multiplier" ns="husky_velocity_controller" subst_value="True">
+        $(optenv HUSKY_WHEEL_MULTIPLIER 1.0)
+  </rosparam>
 
   <!-- Start EKF for localization -->
   <group if="$(arg enable_ekf)" >
