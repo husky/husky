@@ -2,6 +2,12 @@
 Changelog for package husky_control
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Overwrite 'wheel_radius_multiplier' with env. var. HUSKY_WHEEL_MULTIPLIER
+* predict odom->base_link tf to current time
+* Contributors: Ebrahim Shahrivar, Luis Camero
+
 0.4.10 (2021-07-18)
 -------------------
 

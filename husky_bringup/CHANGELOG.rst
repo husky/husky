@@ -2,6 +2,12 @@
 Changelog for package husky_bringup
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Added Hokuyo UST10.
+* Fix the compute_calibration script so it uses the correct name for the magnetic field attribute. Fixes https://github.com/husky/husky/issues/182
+* Contributors: Chris Iverach-Brereton, Luis Camero
+
 0.4.10 (2021-07-18)
 -------------------
 
