@@ -11,7 +11,7 @@ if (CATKIN_ENABLE_TESTING)
 endif()
 
 install(
-  DIRECTORY launch rviz
+  DIRECTORY launch rviz rqt
   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
 )
 
