@@ -100,6 +100,13 @@
     <gazebo reference="${prefix}imu_link">
     </gazebo>
 
+    <link name="${prefix}lidar_link"/>
+    <joint name="${prefix}lidar_joint" type="fixed">
+      <origin xyz="0.375 0 0.321" rpy="0 0 0" />
+      <parent link="${prefix}base_link" />
+      <child link="${prefix}lidar_link" />
+    </joint>
+
     <!-- Husky wheel macros -->
     <xacro:husky_wheel wheel_prefix="${prefix}front_left">
       <origin xyz="${wheelbase/2} ${track/2} ${wheel_vertical_offset}" rpy="0 0 0" />
