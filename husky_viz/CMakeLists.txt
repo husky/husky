@@ -8,7 +8,7 @@ catkin_package()
 roslaunch_add_file_check(launch)
 
 install(
-  DIRECTORY launch rviz
+  DIRECTORY launch rviz rqt
   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
 )
 
