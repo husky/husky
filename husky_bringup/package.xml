@@ -38,6 +38,7 @@
   <run_depend>tf2_ros</run_depend>
   <run_depend>um6</run_depend>
   <run_depend>um7</run_depend>
+  <run_depend>urg_node</run_depend>
   <run_depend>velodyne_pointcloud</run_depend>
 
   <export>

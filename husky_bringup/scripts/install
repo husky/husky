@@ -26,6 +26,9 @@ if os.path.exists('/dev/clearpath/gps'):
 if os.environ.get('HUSKY_LMS1XX_IP') or os.environ.get('HUSKY_LMS1XX_SECONDARY_IP'):
   j.add(package="husky_bringup", glob="launch/lms1xx_config/*")
 
+if os.environ.get('HUSKY_UST10_IP') or os.environ.get('HUSKY_UST10_SECONDARY_IP'):
+  j.add(package="husky_bringup", glob="launch/hokuyo_config/*")
+
 if os.environ.get('HUSKY_LASER_3D_ENABLED'):
   j.add(package="husky_bringup", glob="launch/velodyne_config/*")
 
