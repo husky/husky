@@ -2,8 +2,8 @@
 Changelog for package husky_gazebo
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.4.11 (2022-01-14)
+-------------------
 * Update spawn_husky.launch
   I think the robot spawn should be like this
 * Contributors: Guido Sanchez

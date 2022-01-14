@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package>
   <name>husky_desktop</name>
-  <version>0.4.10</version>
+  <version>0.4.11</version>
   <description>Metapackage for Clearpath Husky visualization software</description>
 
   <maintainer email="tbaltovski@clearpathrobotics.com">Tony Baltovski</maintainer>
