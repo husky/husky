@@ -2,6 +2,9 @@
 Changelog for package husky_bringup
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+
 0.4.11 (2022-01-14)
 -------------------
 * Added Hokuyo UST10.
