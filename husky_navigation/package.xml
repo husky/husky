@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package>
   <name>husky_navigation</name>
-  <version>0.4.11</version>
+  <version>0.4.12</version>
   <description>Autonomous mapping and navigation demos for the Clearpath Husky</description>
 
   <author email="pmukherj@clearpathrobotics.com">Prasenjit Mukherjee</author>

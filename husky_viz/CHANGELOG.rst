@@ -2,8 +2,8 @@
 Changelog for package husky_viz
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.4.12 (2022-01-17)
+-------------------
 * Added view_diagnostics
 * Add rqt directory
 * Added rqt_gui dependencies

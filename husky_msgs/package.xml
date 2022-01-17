@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package>
   <name>husky_msgs</name>
-  <version>0.4.11</version>
+  <version>0.4.12</version>
   <description>Messages for Clearpath Husky</description>
 
   <author email="paul@bovbel.com">Paul Bovbel</author>
