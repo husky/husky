@@ -2,6 +2,11 @@
 Changelog for package husky_gazebo
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* [husky_gazebo] Fixed roslaunch tests.
+* Contributors: Tony Baltovski
+
 0.6.0 (2021-09-28)
 ------------------
 
