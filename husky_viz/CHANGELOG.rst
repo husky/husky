@@ -2,8 +2,8 @@
 Changelog for package husky_viz
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.6.1 (2022-01-18)
+------------------
 * Add rqt directory to CMakeLists
 * Add rqt_gui as run_depend
 * Check launch file only if testing

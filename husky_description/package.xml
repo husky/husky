@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package>
   <name>husky_description</name>
-  <version>0.6.0</version>
+  <version>0.6.1</version>
   <description>Clearpath Husky URDF description</description>
 
   <author email="rgariepy@clearpathrobotics.com">Ryan Gariepy</author>

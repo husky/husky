@@ -2,8 +2,8 @@
 Changelog for package husky_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.6.1 (2022-01-18)
+------------------
 * Fixed error in URDF
 * Added Hokuyo
 * Check launch file only if testing
