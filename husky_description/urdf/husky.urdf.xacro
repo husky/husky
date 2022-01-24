@@ -9,6 +9,11 @@
 
   <xacro:include filename="$(find husky_description)/urdf/husky_macro.urdf.xacro" />
 
+  <xacro:include filename="$(find velodyne_description)/urdf/VLP-16.urdf.xacro"/>
+  <xacro:VLP-16 parent="lidar_link" name="velodyne" topic="/velodyne_points" organize_cloud="false" hz="10" samples="440" gpu="false">
+    <origin xyz="0 0 0" rpy="0 0 0" />
+  </xacro:VLP-16>
+
   <!-- Load husky description -->
   <xacro:husky prefix="$(arg prefix)" />
 
