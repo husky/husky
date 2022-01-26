@@ -2,6 +2,17 @@
 Changelog for package husky_control
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+0.6.1 (2022-01-18)
+------------------
+* Overwrite 'wheel_radius_multiplier' with env. var. HUSKY_WHEEL_MULTIPLIER
+* Check launch file only if testing
+  When building husky_control, husky_description, husky_navigation or
+  husky_viz without tests, CMake fails as it does not find
+  `catkin_run_tests_target` command. This patch adds conditions to fix
+  this problem.
+* predict odom->base_link tf to current time
+* Contributors: Alexandre Iooss, Ebrahim Shahrivar, Luis Camero
+
 0.6.0 (2021-09-28)
 ------------------
 

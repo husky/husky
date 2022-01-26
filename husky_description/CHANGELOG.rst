@@ -2,6 +2,21 @@
 Changelog for package husky_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+0.6.1 (2022-01-18)
+------------------
+* Fixed error in URDF
+* Added Hokuyo
+* Check launch file only if testing
+  When building husky_control, husky_description, husky_navigation or
+  husky_viz without tests, CMake fails as it does not find
+  `catkin_run_tests_target` command. This patch adds conditions to fix
+  this problem.
+* Revert changes to mount_base_link to preserve use of origin argument; instead, simply created an additional plate link that sits between the supports and VLP16
+* Create visual geometry of vlp16_mount_base_link
+* Update mount support dimensions and spacing to better represent real-world measurements
+* [husky_description] Fixed malformed STL warning for top_plate.stl.
+* Contributors: Alexandre Iooss, Luis Camero, Tony Baltovski, jyang-cpr
+
 0.6.0 (2021-09-28)
 ------------------
 

@@ -2,6 +2,15 @@
 Changelog for package husky_navigation
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+0.6.1 (2022-01-18)
+------------------
+* Check launch file only if testing
+  When building husky_control, husky_description, husky_navigation or
+  husky_viz without tests, CMake fails as it does not find
+  `catkin_run_tests_target` command. This patch adds conditions to fix
+  this problem.
+* Contributors: Alexandre Iooss
+
 0.6.0 (2021-09-28)
 ------------------
 
