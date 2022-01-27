@@ -35,10 +35,11 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
 
   <xacro:macro name="husky_decorate">
 
-    <xacro:property name="husky_front_bumper_enable" value="$(optenv HUSKY_FRONT_BUMPER 1)" />
-    <xacro:property name="husky_rear_bumper_enable"  value="$(optenv HUSKY_REAR_BUMPER 1)" />
-    <xacro:property name="husky_front_bumper_extend" value="$(optenv HUSKY_FRONT_BUMPER_EXTEND 0)" />
-    <xacro:property name="husky_rear_bumper_extend"  value="$(optenv HUSKY_REAR_BUMPER_EXTEND 0)" />
+    <xacro:property name="husky_front_bumper_enable"    value="$(optenv HUSKY_FRONT_BUMPER 1)" />
+    <xacro:property name="husky_rear_bumper_enable"     value="$(optenv HUSKY_REAR_BUMPER 1)" />
+    <xacro:property name="husky_front_bumper_extend"    value="$(optenv HUSKY_FRONT_BUMPER_EXTEND 0)" />
+    <xacro:property name="husky_rear_bumper_extend"     value="$(optenv HUSKY_REAR_BUMPER_EXTEND 0)" />
+    <xacro:property name="husky_wibotic_bumper_enable"  value="$(optenv HUSKY_WIBOTIC_BUMPER 0)" />
 
     <!-- Spawn Husky chassis -->
     <link name="top_chassis_link">
@@ -76,13 +77,25 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
 
     <!-- Spawn front bumper link -->
     <xacro:if value="${husky_front_bumper_enable}">
-      <link name="front_bumper_link">
-        <visual>
-          <geometry>
-            <mesh filename="package://husky_description/meshes/bumper.dae" />
-          </geometry>
-        </visual>
-      </link>
+      <xacro:unless value="${husky_wibotic_bumper_enable}">
+        <link name="front_bumper_link">
+          <visual>
+            <geometry>
+              <mesh filename="package://husky_description/meshes/bumper.dae" />
+            </geometry>
+          </visual>
+        </link>
+      </xacro:unless>
+      <xacro:if value="${husky_wibotic_bumper_enable}">
+        <link name="front_bumper_link">
+          <visual>
+            <material name="black"/>
+            <geometry>
+              <mesh filename="package://husky_description/meshes/accessories/wibotic_bumper.stl" />
+            </geometry>
+          </visual>
+        </link>
+      </xacro:if>
 
       <!-- Attach front bumper -->
       <joint name="front_bumper" type="fixed">
