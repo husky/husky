@@ -144,7 +144,7 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
   <link name="imu_link"/>
   <joint name="imu_joint" type="fixed">
     <origin xyz="$(optenv HUSKY_IMU_XYZ 0.19 0 0.149)" rpy="$(optenv HUSKY_IMU_RPY 0 -1.5708 3.1416)" />
-    <parent link="base_link" />
+    <parent link="$(optenv HUSKY_IMU_PARENT base_link)" />
     <child link="imu_link" />
   </joint>
   <gazebo reference="imu_link">
