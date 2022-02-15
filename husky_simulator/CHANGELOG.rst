@@ -2,8 +2,8 @@
 Changelog for package husky_simulator
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.6.2 (2022-02-15)
+------------------
 * Bump CMake version to avoid CMP0048 warning.
 * Contributors: Tony Baltovski
 

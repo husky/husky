@@ -2,8 +2,8 @@
 Changelog for package husky_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.6.2 (2022-02-15)
+------------------
 * Added Wibotic mesh and STL
 * Bump CMake version to avoid CMP0048 warning.
 * Contributors: Luis Camero, Tony Baltovski
