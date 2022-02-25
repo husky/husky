@@ -1,0 +1,9 @@
+frequency: 30
+delay: 3.0
+magnetic_declination_radians: 0.0
+yaw_offset: 1.5708  # IMU reads 0 facing magnetic north, not east
+zero_altitude: true
+broadcast_utm_transform: true
+publish_filtered_gps: true
+use_odometry_yaw: false
+wait_for_datum: false

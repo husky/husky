@@ -35,6 +35,15 @@
     <node pkg="robot_localization" type="ekf_localization_node" name="ekf_localization">
       <rosparam command="load" file="$(find husky_control)/config/localization.yaml" />
     </node>
+
+    <!-- GPS Odometry -->
+    <node pkg="robot_localization" type="navsat_transform_node" name="navsat_transform" clear_params="true" output="screen">
+      <rosparam command="load" file="$(find husky_control)/config/navsat_transform_sim.yaml" />
+      <remap from="/odometry/filtered" to="/odometry/filtered" />
+      <remap from="/gps/fix" to="/navsat/fix" />
+      <remap from="/imu/data" to="/imu/data" />
+    </node>
+    <!-- </group> -->
   </group>
 
   <node pkg="interactive_marker_twist_server" type="marker_server" name="twist_marker_server" output="screen"/>

@@ -150,6 +150,16 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
   <gazebo reference="imu_link">
   </gazebo>
 
+  <!-- GPS Link is the standard mounting position for the GPS-->
+  <link name="gps_link"/>
+  <joint name="gps_joint" type="fixed">
+    <origin xyz="$(optenv HUSKY_GPS_XYZ 0.0 0.0 0.5)" rpy="$(optenv HUSKY_GPS_RPY 0 0 0)" />
+    <parent link="base_link" />
+    <child link="gps_link" />
+  </joint>
+  <gazebo reference="gps_link">
+  </gazebo>
+
   <!-- Husky wheel macros -->
   <xacro:husky_wheel wheel_prefix="front_left">
     <origin xyz="${wheelbase/2} ${track/2} ${wheel_vertical_offset}" rpy="0 0 0" />
@@ -264,13 +274,13 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
   <gazebo>
     <plugin name="gps_controller" filename="libhector_gazebo_ros_gps.so">
       <robotNamespace>$(arg robot_namespace)</robotNamespace>
-      <updateRate>40</updateRate>
-      <bodyName>base_link</bodyName>
-      <frameId>base_link</frameId>
+      <updateRate>40.0</updateRate>
+      <bodyName>gps_link</bodyName>
+      <frameId>gps_link</frameId>
       <topicName>navsat/fix</topicName>
       <velocityTopicName>navsat/vel</velocityTopicName>
-      <referenceLatitude>49.9</referenceLatitude>
-      <referenceLongitude>8.9</referenceLongitude>
+      <referenceLatitude>48.711254</referenceLatitude>
+      <referenceLongitude>2.217765</referenceLongitude>
       <referenceHeading>0</referenceHeading>
       <referenceAltitude>0</referenceAltitude>
       <drift>0.0001 0.0001 0.0001</drift>

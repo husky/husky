@@ -17,8 +17,10 @@ static:
     subscribe_to_updates: true
 
 obstacles_laser:
-    observation_sources: laser
-    laser: {data_type: LaserScan, clearing: true, marking: true, topic: scan, inf_is_valid: true}
+    observation_sources: velodyne
+    velodyne: {sensor_frame: velodyne, data_type: PointCloud2, topic: points, marking: true, clearing: true}
+    realsense: {sensor_frame: camera_realsense_gazebo, data_type: PointCloud2, topic: realsense/depth/color/points, marking: true, clearing: true}
+
 
 inflation:
     inflation_radius: 1.0
