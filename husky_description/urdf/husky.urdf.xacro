@@ -47,11 +47,11 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
   <xacro:arg name="laser_ust10_rear_xyz"      default="$(optenv HUSKY_UST10_SECONDARY_XYZ -0.2206 0.0 0.00635)" />
   <xacro:arg name="laser_ust10_rear_rpy"      default="$(optenv HUSKY_UST10_SECONDARY_RPY 0 0 3.14159)" />
 
-  <xacro:arg name="laser_3d_enabled" default="$(optenv HUSKY_LASER_3D_ENABLED 0)" />
+  <xacro:arg name="laser_3d_enabled" default="$(optenv HUSKY_LASER_3D_ENABLED 1)" />
   <xacro:arg name="laser_3d_xyz" default="$(optenv HUSKY_LASER_3D_XYZ 0 0 0)" />
   <xacro:arg name="laser_3d_rpy" default="$(optenv HUSKY_LASER_3D_RPY 0 0 0)" />
 
-  <xacro:arg name="realsense_enabled" default="$(optenv HUSKY_REALSENSE_ENABLED 0)" />
+  <xacro:arg name="realsense_enabled" default="$(optenv HUSKY_REALSENSE_ENABLED 1)" />
   <xacro:arg name="realsense_xyz" default="$(optenv HUSKY_REALSENSE_XYZ 0 0 0)" />
   <xacro:arg name="realsense_rpy" default="$(optenv HUSKY_REALSENSE_RPY 0 0 0)" />
   <xacro:arg name="realsense_mount" default="$(optenv HUSKY_REALSENSE_MOUNT_FRAME sensor_arch_mount_link)" />

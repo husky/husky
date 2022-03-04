@@ -1,7 +1,7 @@
 map_frame: map
 odom_frame: odom
 base_link_frame: base_link
-world_frame: odom
+world_frame: map
 
 frequency: 30
 sensor_timeout: 0.1
@@ -38,7 +38,7 @@ imu0_config: [false, false, false,
               true, true, true,
               false, false, false,
               true, true, true,
-              false, false, false]
+              true, true, true]
 imu0_nodelay: true
 imu0_differential: false
 imu0_relative: false
