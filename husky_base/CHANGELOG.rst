@@ -2,6 +2,12 @@
 Changelog for package husky_base
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Merge pull request `#191 <https://github.com/husky/husky/issues/191>`_ from StoglRobotics-forks/gazebo-sim-integration-fixes
+  Gazebo sim integration fixes
+* Contributors: Tony Baltovski
+
 1.0.3 (2021-11-30)
 ------------------
 * [husky_base] Switched Boost static assert to C++ standard library.

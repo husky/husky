@@ -2,6 +2,13 @@
 Changelog for package husky_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Update Python launch files suffix from .launch.py to _launch.py to follow standard
+* Merge pull request `#191 <https://github.com/husky/husky/issues/191>`_ from StoglRobotics-forks/gazebo-sim-integration-fixes
+  Gazebo sim integration fixes
+* Contributors: Tony Baltovski, jyang-cpr
+
 1.0.3 (2021-11-30)
 ------------------
 
