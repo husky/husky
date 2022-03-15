@@ -2,8 +2,8 @@
 Changelog for package husky_gazebo
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+1.0.4 (2022-03-15)
+------------------
 * [husky_gazebo] Added controller_manager to gazebo_launch.py.
 * [husky_gazebo] Added gazebo_ros2_control as an exec dep.
 * Merge pull request `#191 <https://github.com/husky/husky/issues/191>`_ from StoglRobotics-forks/gazebo-sim-integration-fixes
