@@ -10,7 +10,7 @@ TrajectoryPlannerROS:
   acc_lim_x: 2.5
   acc_lim_theta:  3.2
 
-  max_vel_x: 1.0
+  max_vel_x: 3.0
   min_vel_x: 0.0
 
   max_vel_theta: 1.0
@@ -57,19 +57,19 @@ DWAPlannerROS:
   acc_lim_y: 0
   acc_lim_th: 3.2
 
-  max_vel_x: 0.5
+  max_vel_x: 3.0
   min_vel_x: 0.0
   max_vel_y: 0
   min_vel_y: 0
 
-  max_vel_trans: 3.0
-  min_vel_trans: 0.1
-  max_vel_theta: 1.0
-  min_vel_theta: 0.2
+  max_trans_vel: 0.5
+  min_trans_vel: 0.1
+  max_rot_vel: 1.0
+  min_rot_vel: 0.2
 
   # Goal Tolerance Parameters
-  yaw_goal_tolerance: 100 #0.15
-  xy_goal_tolerance: 0.25
+  yaw_goal_tolerance: 0.1
+  xy_goal_tolerance: 0.2
   latch_xy_goal_tolerance: false
 
   # # Forward Simulation Parameters
