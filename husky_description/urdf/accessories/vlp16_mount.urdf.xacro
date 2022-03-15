@@ -58,13 +58,8 @@
       <origin xyz="0 -0.04 ${height/2}" rpy="0 0 0"/>
     </joint>
 
-<<<<<<< HEAD
-    <xacro:VLP-16 parent="${prefix}vlp16_mount_base_link" topic="${topic}">
-      <origin xyz="0 0 ${height}" rpy="0 0 0" />
-=======
     <xacro:VLP-16 parent="${prefix}vlp16_mount_plate" topic="${topic}" gpu="true">
       <origin xyz="0 0 0" rpy="0 0 0" />
->>>>>>> c14491e... First commit
     </xacro:VLP-16>
   </xacro:macro>
 </robot>
