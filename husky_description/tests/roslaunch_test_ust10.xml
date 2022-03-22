@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<launch>
+  <param name="robot_description" command="$(find xacro)/xacro '$(find husky_description)/urdf/husky.urdf.xacro'
+    laser_3d_enabled:=true
+    realsense_enabled:=true
+    sensor_arch:=true
+    laser_ust10_front_enabled:=true
+    laser_ust10_rear_enabled:=true
+    tf_prefix:=my_husky_
+    "/>
+
+  <group ns="view_description__">
+    <include file="$(find husky_description)/launch/view_description.launch">
+    </include>
+  </group>
+</launch>

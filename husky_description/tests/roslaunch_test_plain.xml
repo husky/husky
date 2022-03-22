@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<launch>
+  <group ns="load_description__">
+    <include file="$(find husky_description)/launch/description.launch">
+    </include>
+  </group>
+
+  <group ns="view_description__">
+    <include file="$(find husky_description)/launch/view_description.launch">
+    </include>
+  </group>
+</launch>
