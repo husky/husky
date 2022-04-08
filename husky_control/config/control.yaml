@@ -19,9 +19,6 @@ husky_velocity_controller:
   # no need to publish a TF based on encoders alone.
   enable_odom_tf: false
 
-  # Husky hardware provides wheel velocities
-  estimate_velocity_from_position: false
-
   # Wheel separation and radius multipliers
   wheel_separation_multiplier: 1.875 # default: 1.0
   wheel_radius_multiplier    : 1.0 # default: 1.0
