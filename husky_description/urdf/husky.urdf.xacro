@@ -54,7 +54,7 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
   <xacro:arg name="realsense_enabled" default="$(optenv HUSKY_REALSENSE_ENABLED 0)" />
   <xacro:arg name="realsense_xyz" default="$(optenv HUSKY_REALSENSE_XYZ 0 0 0)" />
   <xacro:arg name="realsense_rpy" default="$(optenv HUSKY_REALSENSE_RPY 0 0 0)" />
-  <xacro:arg name="realsense_mount" default="$(optenv HUSKY_REALSENSE_MOUNT_FRAME sensor_arch_mount_link)" />
+  <xacro:arg name="realsense_mount" default="$(optenv HUSKY_REALSENSE_MOUNT_FRAME top_plate_link)" />
 
   <xacro:property name="husky_front_bumper_extend" value="$(optenv HUSKY_FRONT_BUMPER_EXTEND 0)" />
   <xacro:property name="husky_rear_bumper_extend" value="$(optenv HUSKY_REAR_BUMPER_EXTEND 0)" />
@@ -210,10 +210,7 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
     Add the main sensor arch if the user has specifically enabled it, or if a sensor
     requires it for mounting
   -->
-  <xacro:property name="sensorbar_user_enabled"     value="$(arg sensor_arch)" />
-  <xacro:property name="sensorbar_needed_realsense" value="$(arg realsense_enabled)" />
-  <xacro:property name="sensorbar_needed_lidar"     value="$(arg laser_3d_enabled)" />
-  <xacro:if value="${sensorbar_needed_realsense or sensorbar_user_enabled or sensorbar_needed_lidar}">
+  <xacro:if value="$(arg sensor_arch)">
     <xacro:sensor_arch prefix="" parent="top_plate_link" size="$(arg sensor_arch_height)">
         <origin xyz="$(optenv HUSKY_SENSOR_ARCH_OFFSET 0 0 0)" rpy="$(optenv HUSKY_SENSOR_ARCH_RPY 0 0 0)"/>
       </xacro:sensor_arch>
