@@ -3,7 +3,7 @@
   <arg name="usb_port_id"         default=""/>
   <arg name="device_type"         default=""/>
   <arg name="json_file_path"      default=""/>
-  <arg name="camera"              default="realsense"/>
+  <arg name="camera"              default="$(optenv HUSKY_REALSENSE_TOPIC realsense)"/>
   <arg name="tf_prefix"           default="$(arg camera)"/>
   <arg name="external_manager"    default="false"/>
   <arg name="manager"             default="realsense2_camera_manager"/>
