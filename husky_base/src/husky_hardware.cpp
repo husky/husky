@@ -47,6 +47,8 @@ namespace
 
 namespace husky_base
 {
+  using CallbackReturn = rclcpp_lifecycle::node_interfaces::LifecycleNodeInterface::CallbackReturn;
+
   static const std::string HW_NAME = "HuskyHardware";
 
   /**
