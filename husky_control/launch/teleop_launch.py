@@ -1,42 +1,66 @@
-import os
 
-from ament_index_python.packages import get_package_share_directory
-
-import launch
+from launch import LaunchContext, LaunchDescription
 from launch.substitutions import EnvironmentVariable, PathJoinSubstitution
-import launch_ros.actions
+from launch_ros.actions import Node
 from launch_ros.substitutions import FindPackageShare
 
-
 def generate_launch_description():
-    joy_config = launch.substitutions.LaunchConfiguration('joy_config')
-    config_filepath = launch.substitutions.LaunchConfiguration('config_filepath')
+    lc = LaunchContext()
+    joy_type = EnvironmentVariable('CPR_JOY_TYPE', default_value='logitech')
 
-    return launch.LaunchDescription([
-        launch.actions.DeclareLaunchArgument('joy_config', default_value='teleop_logitech'),
-        launch.actions.DeclareLaunchArgument('config_filepath', default_value=[
-            launch.substitutions.TextSubstitution(text=os.path.join(
-                get_package_share_directory('husky_control'), 'config', '')),
-            joy_config, launch.substitutions.TextSubstitution(text='.yaml')]),
 
-        launch_ros.actions.Node(
-            namespace='joy_teleop',
-            package='joy', executable='joy_node', name='joy_node',
-            parameters=[config_filepath]),
-        launch_ros.actions.Node(
-            namespace='joy_teleop',
-            package='teleop_twist_joy', executable='teleop_node',
-            name='teleop_twist_joy_node', parameters=[config_filepath]),
-        launch_ros.actions.Node(
-            package='twist_mux',
-            executable='twist_mux',
-            output='screen',
-            remappings={('/cmd_vel_out', '/husky_velocity_controller/cmd_vel_unstamped')},
-            parameters=[
-                PathJoinSubstitution(
-                    [FindPackageShare("husky_control"), "config", "twist_mux.yaml"]
-                )]
-        ),
-            
-    ])
+    filepath_config_joy = PathJoinSubstitution(
+        [FindPackageShare('husky_control'), 'config', ('teleop_' + joy_type.perform(lc) + '.yaml')]
+    )
+
+    filepath_config_twist_mux = PathJoinSubstitution(
+        [FindPackageShare('husky_control'), 'config', 'twist_mux.yaml']
+    )
+
+    filepath_config_interactive_markers = PathJoinSubstitution(
+        [FindPackageShare('husky_control'), 'config', 'teleop_interactive_markers.yaml']
+    )
+
+
+    node_joy = Node(
+        namespace='joy_teleop',
+        package='joy',
+        executable='joy_node',
+        output='screen',
+        name='joy_node',
+        parameters=[filepath_config_joy]
+    )
+
+    node_teleop_twist_joy = Node(
+        namespace='joy_teleop',
+        package='teleop_twist_joy',
+        executable='teleop_node',
+        output='screen',
+        name='teleop_twist_joy_node',
+        parameters=[filepath_config_joy]
+    )
+
+    node_interactive_marker_twist_server = Node(
+        package='interactive_marker_twist_server',
+        executable='marker_server',
+        name='twist_server_node',
+        remappings={('cmd_vel', 'twist_marker_server/cmd_vel')},
+        parameters=[filepath_config_interactive_markers],
+        output='screen',
+    )
+
+    node_twist_mux = Node(
+        package='twist_mux',
+        executable='twist_mux',
+        output='screen',
+        remappings={('/cmd_vel_out', '/husky_velocity_controller/cmd_vel_unstamped')},
+        parameters=[filepath_config_twist_mux]
+    )
+
+    ld = LaunchDescription()
+    ld.add_action(node_joy)
+    ld.add_action(node_teleop_twist_joy)
+    ld.add_action(node_interactive_marker_twist_server)
+    ld.add_action(node_twist_mux)
+    return ld
 

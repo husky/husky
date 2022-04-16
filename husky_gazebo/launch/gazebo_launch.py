@@ -1,6 +1,7 @@
 from launch import LaunchDescription
-from launch.actions import DeclareLaunchArgument, ExecuteProcess, RegisterEventHandler
+from launch.actions import DeclareLaunchArgument, ExecuteProcess, IncludeLaunchDescription, RegisterEventHandler
 from launch.event_handlers import OnProcessExit
+from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch.substitutions import Command, FindExecutable, LaunchConfiguration, PathJoinSubstitution
 from launch_ros.actions import Node
 from launch_ros.substitutions import FindPackageShare
@@ -108,6 +109,16 @@ def generate_launch_description():
         output='screen',
     )
 
+    # Launch husky_control/control_launch.py which is just robot_localization.
+    launch_husky_control = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource(PathJoinSubstitution(
+        [FindPackageShare("husky_control"), 'launch', 'control_launch.py'])))
+
+    # Launch husky_control/teleop_launch.py which is various ways to tele-op the robot.
+    launch_husky_teleop = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource(PathJoinSubstitution(
+        [FindPackageShare("husky_control"), 'launch', 'teleop_launch.py'])))
+
     ld = LaunchDescription(ARGUMENTS)
     ld.add_action(node_robot_state_publisher)
     ld.add_action(node_control_manager)
@@ -116,5 +127,7 @@ def generate_launch_description():
     ld.add_action(gzserver)
     ld.add_action(gzclient)
     ld.add_action(spawn_robot)
+    ld.add_action(launch_husky_control)
+    ld.add_action(launch_husky_teleop)
 
     return ld

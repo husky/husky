@@ -1,0 +1,7 @@
+twist_server_node:
+  ros__parameters:
+    link_name: base_link
+    robot: husky
+    linear_scale: 1.0
+    max_positive_linear_velocity: 1.0
+    max_negative_linear_velocity: -1.0
