@@ -18,7 +18,28 @@ def generate_launch_description():
         output='screen',
         parameters=[config_husky_ekf],
         )
+
+    config_husky_ekf = PathJoinSubstitution(
+        [FindPackageShare("husky_control"),
+        "config",
+        "localization.yaml"],
+    )
+
+    config_imu_filter = PathJoinSubstitution(
+        [FindPackageShare("husky_control"),
+        "config",
+        "imu_filter.yaml"],
+    )
+    node_imu_filter = Node(
+        package='imu_filter_madgwick',
+        node_executable='imu_filter_madgwick_node',
+        node_name='imu_filter',
+        output='screen',
+        parameters=[config_imu_filter]
+    )
+    
     ld = LaunchDescription()
     ld.add_action(node_ekf)
+    ld.add_action(node_imu_filter)
 
     return ld
