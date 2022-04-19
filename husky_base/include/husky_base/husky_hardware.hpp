@@ -22,6 +22,7 @@ using namespace std::chrono_literals;
 
 namespace husky_base
 {
+using CallbackReturn = rclcpp_lifecycle::node_interfaces::LifecycleNodeInterface::CallbackReturn;
 
 class HuskyHardware : public hardware_interface::SystemInterface
 {
