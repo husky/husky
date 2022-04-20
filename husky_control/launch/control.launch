@@ -49,6 +49,6 @@
   </node>
 
   <!-- Override the default control parameters, see config/empty.yaml for default. -->
-  <rosparam command="load" file="$(arg config_extras)" />
+  <rosparam command="load" file="$(arg config_extras)" subst_value="true" />
 
 </launch>
