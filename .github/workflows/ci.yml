@@ -1,16 +1,20 @@
 name: husky_ci
 
-on: [push, pull_request]
+on: 
+  push:
+    braches: [foxy-devel]
+    pull_request: [foxy-devel]
+    schedule:
+      - cron: '0 4 * * *' # every day at 4 AM (UTC)
 
 jobs:
-
   husky_foxy_ci:
     name: Foxy
     strategy:
       matrix:
         env:
-          - {ROS_DISTRO: foxy, ROS_REPO: main}
           - {ROS_DISTRO: foxy, ROS_REPO: testing}
+          - {ROS_DISTRO: foxy, ROS_REPO: main}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
