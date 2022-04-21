@@ -3,8 +3,6 @@ from launch.substitutions import Command, FindExecutable, PathJoinSubstitution
 from launch_ros.actions import Node
 from launch_ros.substitutions import FindPackageShare
 
-import xacro
-
 
 def generate_launch_description():
     # Get URDF via xacro
@@ -61,10 +59,22 @@ def generate_launch_description():
         output="screen",
     )
 
+    # Launch husky_control/control_launch.py which is just robot_localization.
+    launch_husky_control = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource(PathJoinSubstitution(
+        [FindPackageShare("husky_control"), 'launch', 'control_launch.py'])))
+
+    # Launch husky_control/teleop_launch.py which is various ways to tele-op the robot.
+    launch_husky_teleop = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource(PathJoinSubstitution(
+        [FindPackageShare("husky_control"), 'launch', 'teleop_launch.py'])))
+
     ld = LaunchDescription()
     ld.add_action(node_robot_state_publisher)
     ld.add_action(node_controller_manager)
     ld.add_action(spawn_controller)
     ld.add_action(spawn_husky_velocity_controller)
+    ld.add_action(launch_husky_control)
+    ld.add_action(launch_husky_teleop)
 
     return ld
