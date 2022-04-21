@@ -114,10 +114,11 @@ def generate_launch_description():
         PythonLaunchDescriptionSource(PathJoinSubstitution(
         [FindPackageShare("husky_control"), 'launch', 'control_launch.py'])))
 
-    # Launch husky_control/teleop_launch.py which is various ways to tele-op the robot.
-    launch_husky_teleop = IncludeLaunchDescription(
+    # Launch husky_control/teleop_base_launch.py which is various ways to tele-op
+    # the robot but does not include the joystick. Also, has a twist mux.
+    launch_husky_teleop_base = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(PathJoinSubstitution(
-        [FindPackageShare("husky_control"), 'launch', 'teleop_launch.py'])))
+        [FindPackageShare("husky_control"), 'launch', 'teleop_base_launch.py'])))
 
     ld = LaunchDescription(ARGUMENTS)
     ld.add_action(node_robot_state_publisher)
@@ -128,6 +129,6 @@ def generate_launch_description():
     ld.add_action(gzclient)
     ld.add_action(spawn_robot)
     ld.add_action(launch_husky_control)
-    ld.add_action(launch_husky_teleop)
+    ld.add_action(launch_husky_teleop_base)
 
     return ld
