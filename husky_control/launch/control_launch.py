@@ -19,12 +19,6 @@ def generate_launch_description():
         parameters=[config_husky_ekf],
         )
 
-    config_husky_ekf = PathJoinSubstitution(
-        [FindPackageShare("husky_control"),
-        "config",
-        "localization.yaml"],
-    )
-
     config_imu_filter = PathJoinSubstitution(
         [FindPackageShare("husky_control"),
         "config",
