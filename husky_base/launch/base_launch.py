@@ -56,7 +56,7 @@ def generate_launch_description():
 
     spawn_husky_velocity_controller = Node(
         package="controller_manager",
-        executable="spawner",
+        executable="spawner.py",
         arguments=["husky_velocity_controller"],
         output="screen",
     )
