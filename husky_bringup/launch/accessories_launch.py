@@ -159,26 +159,26 @@ def generate_launch_description():
             ld.add_action(node_velodyne_convert)
 
 
-
+    # This is disabled since nmea_navsat_driver has not been released.
     # Primary GPS Environment Variables
-    primary_gps_enable = EnvironmentVariable('CPR_GPS_LASER', default_value='false')
-    primary_gps_port = EnvironmentVariable('CPR_GPS_PORT', default_value='/dev/clearpath/gps')
-    primary_gps_baud = EnvironmentVariable('CPR_GPS_BAUD', default_value='57600')
-    primary_gps_mount = EnvironmentVariable('CPR_GPS_MOUNT', default_value='gps_link')
+    # primary_gps_enable = EnvironmentVariable('CPR_GPS_LASER', default_value='false')
+    # primary_gps_port = EnvironmentVariable('CPR_GPS_PORT', default_value='/dev/clearpath/gps')
+    # primary_gps_baud = EnvironmentVariable('CPR_GPS_BAUD', default_value='57600')
+    # primary_gps_mount = EnvironmentVariable('CPR_GPS_MOUNT', default_value='gps_link')
 
-    if (primary_gps_enable.perform(lc)) == 'true':
-        node_gps = Node(
-            package='nmea_navsat_driver', 
-            executable='nmea_serial_driver', 
-            name='nmea_serial_driver',
-            output='screen',
-            parameters=[
-                {'port': primary_gps_port},
-                {'baud': primary_gps_baud},
-                {'frame_id': primary_gps_mount}
-            ]
-        )
-        ld.add_action(node_gps)
+    # if (primary_gps_enable.perform(lc)) == 'true':
+    #     node_gps = Node(
+    #         package='nmea_navsat_driver',
+    #         executable='nmea_serial_driver',
+    #         name='nmea_serial_driver',
+    #         output='screen',
+    #         parameters=[
+    #             {'port': primary_gps_port},
+    #             {'baud': primary_gps_baud},
+    #             {'frame_id': primary_gps_mount}
+    #         ]
+    #     )
+    #     ld.add_action(node_gps)
 
 
     # Primary IMU Environment Variables
@@ -191,8 +191,8 @@ def generate_launch_description():
     if (primary_imu_enable.perform(lc)) == 'true':
         if (primary_imu_model.perform(lc) == 'microstrain'):
             node_microstrain_driver = Node(
-                package='microstrain_inertial_driver', 
-                executable='microstrain_inertial_driver_node', 
+                package='microstrain_inertial_driver',
+                executable='microstrain_inertial_driver_node',
                 name='microstrain_inertial_driver_node',
                 output='screen',
                 parameters=[
