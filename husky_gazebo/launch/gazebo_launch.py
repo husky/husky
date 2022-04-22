@@ -43,16 +43,6 @@ def generate_launch_description():
     )
     robot_description = {"robot_description": robot_description_content}
 
-    node_control_manager = Node(
-        package="controller_manager",
-        executable="ros2_control_node",
-        parameters=[robot_description, config_husky_velocity_controller],
-        output={
-            "stdout": "screen",
-            "stderr": "screen",
-        },
-    )
-
     spawn_husky_velocity_controller = Node(
         package='controller_manager',
         executable='spawner.py',
@@ -122,7 +112,6 @@ def generate_launch_description():
 
     ld = LaunchDescription(ARGUMENTS)
     ld.add_action(node_robot_state_publisher)
-    ld.add_action(node_control_manager)
     ld.add_action(spawn_joint_state_broadcaster)
     ld.add_action(diffdrive_controller_spawn_callback)
     ld.add_action(gzserver)
