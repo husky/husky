@@ -6,9 +6,9 @@ from launch_ros.substitutions import FindPackageShare
 
 def generate_launch_description():
     config_husky_ekf = PathJoinSubstitution(
-        [FindPackageShare("husky_control"),
-        "config",
-        "localization.yaml"],
+        [FindPackageShare('husky_control'),
+        'config',
+        'localization.yaml'],
     )
 
     node_ekf = Node(
@@ -20,14 +20,14 @@ def generate_launch_description():
         )
 
     config_imu_filter = PathJoinSubstitution(
-        [FindPackageShare("husky_control"),
-        "config",
-        "imu_filter.yaml"],
+        [FindPackageShare('husky_control'),
+        'config',
+        'imu_filter.yaml'],
     )
     node_imu_filter = Node(
         package='imu_filter_madgwick',
-        node_executable='imu_filter_madgwick_node',
-        node_name='imu_filter',
+        executable='imu_filter_madgwick_node',
+        name='imu_filter',
         output='screen',
         parameters=[config_imu_filter]
     )
