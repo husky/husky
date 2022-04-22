@@ -22,6 +22,7 @@
   <depend>urdf</depend>
   <depend>xacro</depend>
 
+  <exec_depend>gazebo_plugins</exec_depend>
   <exec_depend>gazebo_ros</exec_depend>
   <exec_depend>gazebo_ros2_control</exec_depend>
   <exec_depend>husky_control</exec_depend>

@@ -21,35 +21,32 @@
       </plugin>
     </gazebo>
 
-    <gazebo>
-      <plugin name="$(arg prefix)imu_controller" filename="libhector_gazebo_ros_imu.so">
-        <robotNamespace>$(arg robot_namespace)</robotNamespace>
-        <updateRate>50.0</updateRate>
-        <bodyName>$(arg prefix)base_link</bodyName>
-        <topicName>$(arg prefix)imu/data</topicName>
-        <accelDrift>0.005 0.005 0.005</accelDrift>
-        <accelGaussianNoise>0.005 0.005 0.005</accelGaussianNoise>
-        <rateDrift>0.005 0.005 0.005 </rateDrift>
-        <rateGaussianNoise>0.005 0.005 0.005 </rateGaussianNoise>
-        <headingDrift>0.005</headingDrift>
-        <headingGaussianNoise>0.005</headingGaussianNoise>
-      </plugin>
+    <gazebo reference="$(arg prefix)imu_link">
+      <sensor name="$(arg prefix)imu_sensor" type="imu">
+      <plugin filename="libgazebo_ros_imu_sensor.so" name="$(arg prefix)imu_plugin">
+          <ros>
+            <namespace>$(arg prefix)</namespace>
+            <remapping>~/out:=imu/data_raw</remapping>
+          </ros>
+          <initial_orientation_as_reference>false</initial_orientation_as_reference>
+        </plugin>
+        <always_on>true</always_on>
+        <update_rate>100</update_rate>
+        <visualize>true</visualize>
+      </sensor>
     </gazebo>
 
-    <gazebo>
-      <plugin name="$(arg prefix)gps_controller" filename="libhector_gazebo_ros_gps.so">
-        <robotNamespace>$(arg robot_namespace)</robotNamespace>
-        <updateRate>40</updateRate>
-        <bodyName>$(arg prefix)base_link</bodyName>
-        <frameId>$(arg prefix)base_link</frameId>
-        <topicName>navsat/fix</topicName>
-        <velocityTopicName>$(arg prefix)navsat/vel</velocityTopicName>
-        <referenceLatitude>49.9</referenceLatitude>
-        <referenceLongitude>8.9</referenceLongitude>
-        <referenceHeading>0</referenceHeading>
-        <referenceAltitude>0</referenceAltitude>
-        <drift>0.0001 0.0001 0.0001</drift>
-      </plugin>
+    <gazebo reference="$(arg prefix)gps_link">
+      <sensor name="$(arg prefix)gps_sensor" type="gps">
+      <plugin filename="libgazebo_ros_gps_sensor.so" name="$(arg prefix)gps_plugin">
+          <ros>
+            <namespace>$(arg prefix)</namespace>
+            <remapping>~/out:=gps/data</remapping>
+          </ros>
+        </plugin>
+        <always_on>true</always_on>
+        <update_rate>10</update_rate>
+      </sensor>
     </gazebo>
 
   </xacro:if>

@@ -89,16 +89,24 @@
       <child link="${prefix}inertial_link" />
     </joint>
 
-    <!-- IMU Link is the standard mounting position for the UM6 IMU.-->
+    <!-- IMU Link-->
     <!-- Can be modified with environment variables in /etc/ros/setup.bash -->
     <link name="${prefix}imu_link"/>
     <joint name="${prefix}imu_joint" type="fixed">
-      <origin xyz="$(optenv CPR_IMU_XYZ 0.19 0 0.149)" rpy="$(optenv CPR_IMU_RPY 0 -1.5708 3.1416)" />
+      <origin xyz="$(optenv CPR_IMU_XYZ 0 0 0)" rpy="$(optenv CPR_IMU_RPY 0 0 0)" />
       <parent link="${prefix}base_link" />
       <child link="${prefix}imu_link" />
     </joint>
-    <gazebo reference="${prefix}imu_link">
-    </gazebo>
+
+    <!-- GPS Link-->
+    <!-- Can be modified with environment variables in /etc/ros/setup.bash -->
+    <link name="${prefix}gps_link"/>
+    <joint name="${prefix}gps_joint" type="fixed">
+      <origin xyz="$(optenv CPR_GPS_XYZ 0 0 0)" rpy="$(optenv CPR_GPS_RPY 0 0 0)" />
+      <parent link="${prefix}base_link" />
+      <child link="${prefix}gps_link" />
+    </joint>
+
 
     <!-- Husky wheel macros -->
     <xacro:husky_wheel wheel_prefix="${prefix}front_left">
