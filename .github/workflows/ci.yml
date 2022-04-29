@@ -9,7 +9,7 @@ on:
 
 jobs:
   husky_foxy_testing_ci:
-    name: Foxy
+    name: Foxy Testing
     strategy:
       matrix:
         env:
@@ -20,7 +20,7 @@ jobs:
       - uses: 'ros-industrial/industrial_ci@master'
         env: ${{matrix.env}}
   husky_foxy_main_ci:
-    name: Foxy
+    name: Foxy Main
     strategy:
       matrix:
         env:
