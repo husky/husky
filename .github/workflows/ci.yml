@@ -4,8 +4,8 @@ on:
   push:
     braches: [foxy-devel]
     pull_request: [foxy-devel]
-    schedule:
-      - cron: '0 4 * * *' # every day at 4 AM (UTC)
+  schedule:
+    - cron: '0 4 * * *' # every day at 4 AM (UTC)
 
 jobs:
   husky_foxy_ci:
@@ -17,6 +17,6 @@ jobs:
           - {ROS_DISTRO: foxy, ROS_REPO: main}
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v2
       - uses: 'ros-industrial/industrial_ci@master'
         env: ${{matrix.env}}
