@@ -8,12 +8,22 @@ on:
     - cron: '0 4 * * *' # every day at 4 AM (UTC)
 
 jobs:
-  husky_foxy_ci:
+  husky_foxy_testing_ci:
     name: Foxy
     strategy:
       matrix:
         env:
           - {ROS_DISTRO: foxy, ROS_REPO: testing}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: 'ros-industrial/industrial_ci@master'
+        env: ${{matrix.env}}
+  husky_foxy_main_ci:
+    name: Foxy
+    strategy:
+      matrix:
+        env:
           - {ROS_DISTRO: foxy, ROS_REPO: main}
     runs-on: ubuntu-latest
     steps:
