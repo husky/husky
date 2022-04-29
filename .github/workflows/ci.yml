@@ -3,7 +3,6 @@ name: husky_ci
 on: [push, pull_request]
 
 jobs:
-
   husky_noetic_ci:
     name: Noetic
     strategy:
@@ -11,19 +10,6 @@ jobs:
         env:
           - {ROS_DISTRO: noetic, ROS_REPO: main}
           - {ROS_DISTRO: noetic, ROS_REPO: testing}
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v1
-      - uses: 'ros-industrial/industrial_ci@master'
-        env: ${{matrix.env}}
-
-  husky_melodic_ci:
-    name: Melodic
-    strategy:
-      matrix:
-        env:
-          - {ROS_DISTRO: melodic, ROS_REPO: main}
-          - {ROS_DISTRO: melodic, ROS_REPO: testing}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
