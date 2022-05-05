@@ -1,7 +1,7 @@
 <?xml-model href="http://download.ros.org/schema/package_format2.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="2">
   <name>husky_bringup</name>
-  <version>0.4.4</version>
+  <version>1.0.4</version>
   <description>Clearpath Husky installation and integration package</description>
 
   <author email="mpurvis@clearpathrobotics.com">Mike Purvis</author>
@@ -22,6 +22,7 @@
   <exec_depend>husky_control</exec_depend>
   <exec_depend>husky_description</exec_depend>
   <exec_depend>microstrain_inertial_driver</exec_depend>
+  <!-- nmea_navsat_driver has not been released yet -->
   <!-- <exec_depend>nmea_navsat_driver</exec_depend> -->
   <exec_depend>robot_upstart</exec_depend>
   <exec_depend>urg_node</exec_depend>
