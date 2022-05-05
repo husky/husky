@@ -2,8 +2,8 @@
 Changelog for package husky_control
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+1.0.5 (2022-05-05)
+------------------
 * [husky_control] Fixed deprecated warnings and minor clean up.
 * Split teleop launch into two files since simulation doesn't need actual joystick and will spam warmings.
 * [husky_control] Removed dupilcate config.

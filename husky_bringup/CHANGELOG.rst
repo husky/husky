@@ -2,8 +2,8 @@
 Changelog for package husky_bringup
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+1.0.5 (2022-05-05)
+------------------
 * Updated package versions for un-released packages.
 * [husky_bringup] Disabled gps bringup for now since nmea_navsat_driver isn't released.
 * Initial accessories launch file.

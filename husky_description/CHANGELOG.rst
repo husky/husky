@@ -2,8 +2,8 @@
 Changelog for package husky_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+1.0.5 (2022-05-05)
+------------------
 * Switched to gazebo_plugins for IMU and GPS.
 * [husky_description] Fixed malformed stl.
 * Initial accessories launch file.

@@ -2,7 +2,7 @@
 <?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="3">
   <name>husky_simulator</name>
-  <version>1.0.4</version>
+  <version>1.0.5</version>
   <description>Metapackage for Clearpath Husky simulation software</description>
   <author email="paul@bovbel.com">Paul Bovbel</author>
   <maintainer email="tbaltovski@clearpathrobotics.com">Tony Baltovski</maintainer>
