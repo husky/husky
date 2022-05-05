@@ -2,6 +2,14 @@
 Changelog for package husky_gazebo
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Switched to gazebo_plugins for IMU and GPS.
+* [husky_gazebo] Removed ros2_control_node from gazebo launch.
+* Split teleop launch into two files since simulation doesn't need actual joystick and will spam warmings.
+* Revamped tele-op launch.
+* Contributors: Tony Baltovski
+
 1.0.4 (2022-03-15)
 ------------------
 * [husky_gazebo] Added controller_manager to gazebo_launch.py.

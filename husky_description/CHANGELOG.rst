@@ -2,6 +2,13 @@
 Changelog for package husky_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Switched to gazebo_plugins for IMU and GPS.
+* [husky_description] Fixed malformed stl.
+* Initial accessories launch file.
+* Contributors: Tony Baltovski
+
 1.0.4 (2022-03-15)
 ------------------
 * Update Python launch files suffix from .launch.py to _launch.py to follow standard

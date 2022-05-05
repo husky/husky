@@ -2,6 +2,11 @@
 Changelog for package husky_viz
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Revamped tele-op launch.
+* Contributors: Tony Baltovski
+
 1.0.4 (2022-03-15)
 ------------------
 * Update Python launch files suffix from .launch.py to _launch.py to follow standard

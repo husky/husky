@@ -2,6 +2,12 @@
 Changelog for package husky_robot
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Uncomment dependency on husky_bringup
+  In light of `husky_bringup` being completed and released, it makes sense to re-enable this dependency.
+* Contributors: Joey Yang
+
 1.0.4 (2022-03-15)
 ------------------
 

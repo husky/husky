@@ -2,6 +2,13 @@
 Changelog for package husky_bringup
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Updated package versions for un-released packages.
+* [husky_bringup] Disabled gps bringup for now since nmea_navsat_driver isn't released.
+* Initial accessories launch file.
+* Contributors: Tony Baltovski
+
 0.4.4 (2020-08-13)
 ------------------
 * Set default for optenv HUSKY_MAG_CONFIG

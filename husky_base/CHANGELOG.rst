@@ -2,6 +2,15 @@
 Changelog for package husky_base
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Split teleop launch into two files since simulation doesn't need actual joystick and will spam warmings.
+* [husky_base] Fixed spawner.py bug.
+* [husky_base] Added missing includes for base_launch.py.
+* Revamped tele-op launch.
+* Fix chnaged dependency in rolling.
+* Contributors: Denis Štogl, Tony Baltovski
+
 1.0.4 (2022-03-15)
 ------------------
 * Merge pull request `#191 <https://github.com/husky/husky/issues/191>`_ from StoglRobotics-forks/gazebo-sim-integration-fixes

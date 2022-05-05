@@ -2,6 +2,17 @@
 Changelog for package husky_control
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* [husky_control] Fixed deprecated warnings and minor clean up.
+* Split teleop launch into two files since simulation doesn't need actual joystick and will spam warmings.
+* [husky_control] Removed dupilcate config.
+* [husky_control] Added IMU filter.
+* Revamped tele-op launch.
+* [husky_control] Cleaned up control_launch.py.
+* [husky_control] Re-added interactive_marker_twist_server and sorted depends in-order.
+* Contributors: Tony Baltovski
+
 1.0.4 (2022-03-15)
 ------------------
 * Merge pull request `#191 <https://github.com/husky/husky/issues/191>`_ from StoglRobotics-forks/gazebo-sim-integration-fixes
