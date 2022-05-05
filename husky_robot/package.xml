@@ -15,7 +15,8 @@
   <buildtool_depend>catkin</buildtool_depend>
   <run_depend>husky_bringup</run_depend>
   <run_depend>husky_base</run_depend>
-
+  <run_depend>husky_tests</run_depend>
+  
   <export>
     <metapackage/>
   </export>
