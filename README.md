@@ -1,6 +1,8 @@
 husky
 =====
 
+:warning: **Upgrading to ROS2 may not have the same functionally as ROS**: Contact support at support@clearpathrobotics.com.
+
 Common ROS packages for the Clearpath Husky, useable for both simulation and
 real robot operation.
 
