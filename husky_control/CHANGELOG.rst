@@ -2,8 +2,8 @@
 Changelog for package husky_control
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.6.3 (2022-05-16)
+------------------
 * Enable subst_value when loading config_extras. (`#226 <https://github.com/husky/husky/issues/226>`_)
 * Remove whitespace
 * Re-add base_frame_id and velocity_rolling_window_size

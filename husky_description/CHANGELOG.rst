@@ -2,8 +2,8 @@
 Changelog for package husky_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.6.3 (2022-05-16)
+------------------
 * Added Blackfly
 * Added blackfly description dependancy
 * Realsense will no longer add the Sensor Arch (`#220 <https://github.com/husky/husky/issues/220>`_)
