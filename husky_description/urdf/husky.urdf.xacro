@@ -139,11 +139,11 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
     <child link="inertial_link" />
   </joint>
 
-  <!-- IMU Link is the standard mounting position for the UM6 IMU.-->
+  <!-- IMU Link is the standard mounting position for the UM7 IMU.-->
   <!-- Can be modified with environment variables in /etc/ros/setup.bash -->
   <link name="imu_link"/>
   <joint name="imu_joint" type="fixed">
-    <origin xyz="$(optenv HUSKY_IMU_XYZ 0.19 0 0.149)" rpy="$(optenv HUSKY_IMU_RPY 0 -1.5708 3.1416)" />
+    <origin xyz="$(optenv HUSKY_IMU_XYZ -0.0297 -0.1682 0.0780)" rpy="$(optenv HUSKY_IMU_RPY 0 -1.5708 3.1416)" />
     <parent link="$(optenv HUSKY_IMU_PARENT base_link)" />
     <child link="imu_link" />
   </joint>
