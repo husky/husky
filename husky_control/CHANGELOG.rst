@@ -2,6 +2,17 @@
 Changelog for package husky_control
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Enable subst_value when loading config_extras. (`#226 <https://github.com/husky/husky/issues/226>`_)
+* Remove whitespace
+* Re-add base_frame_id and velocity_rolling_window_size
+* Update DiffDriveController params
+  - Remove `estimate_velocity_from_position: false` because it does not exist as a param in `DiffDriveController`, or anywhere in `ros-controllers`
+  - Remove `base_frame_id: base_link` because the default value of `base_frame_id` is already `base_link`, as per http://wiki.ros.org/diff_drive_controller
+  - Remove `velocity_rolling_window_size: 2` so `velocity_rolling_window_size` can take on the default value of 10. A higher value reduces the amount of noise in the odometry, as per: https://docs.google.com/document/d/1x1HOtLs9Z9jfuKdtSMM_YWOrWM4p08LJVt6vQVohVWI/edit#
+* Contributors: Chris I-B, Joey Yang
+
 0.6.2 (2022-02-15)
 ------------------
 * Bump CMake version to avoid CMP0048 warning.

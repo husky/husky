@@ -2,6 +2,15 @@
 Changelog for package husky_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Added Blackfly
+* Added blackfly description dependancy
+* Realsense will no longer add the Sensor Arch (`#220 <https://github.com/husky/husky/issues/220>`_)
+  * Add parent link env-var to imu
+  * Sensor Arch is only enabled by HUSKY_SENSOR_ARCH, changed default realsense mount frame to
+* Contributors: Luis Camero, luis-camero
+
 0.6.2 (2022-02-15)
 ------------------
 * Added Wibotic mesh and STL
