@@ -2,8 +2,8 @@
 Changelog for package husky_base
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+1.0.6 (2022-05-18)
+------------------
 * Added searching for left and right joints rather than assuming order.
 * Contributors: Tony Baltovski
 
