@@ -48,6 +48,8 @@ namespace
 namespace husky_base
 {
   static const std::string HW_NAME = "HuskyHardware";
+  static const std::string LEFT_CMD_JOINT_NAME = "front_left_wheel_joint";
+  static const std::string RIGHT_CMD_JOINT_NAME = "front_right_wheel_joint";
 
   /**
   * Get current encoder travel offsets from MCU and bias future encoder readings against them
@@ -60,7 +62,7 @@ namespace husky_base
     {
       for (auto i = 0u; i < hw_states_position_offset_.size(); i++)
       {
-        hw_states_position_offset_[i] = linearToAngular(enc->getTravel(i % 2));
+        hw_states_position_offset_[i] = linearToAngular(enc->getTravel(isLeft(info_.joints[i].name)));
       }
     }
     else
@@ -88,8 +90,8 @@ namespace husky_base
 
   void HuskyHardware::writeCommandsToHardware()
   {
-    double diff_speed_left = angularToLinear(hw_commands_[LEFT]);
-    double diff_speed_right = angularToLinear(hw_commands_[RIGHT]);
+    double diff_speed_left = angularToLinear(hw_commands_[left_cmd_joint_index_]);
+    double diff_speed_right = angularToLinear(hw_commands_[right_cmd_joint_index_]);
 
     limitDifferentialSpeed(diff_speed_left, diff_speed_right);
 
@@ -122,9 +124,11 @@ namespace husky_base
         rclcpp::get_logger(HW_NAME),
         "Received linear distance information (L: %f, R: %f)",
         enc->getTravel(LEFT), enc->getTravel(RIGHT));
+
       for (auto i = 0u; i < hw_states_position_.size(); i++)
       {
-        double delta = linearToAngular(enc->getTravel(i % 2)) - hw_states_position_[i] - hw_states_position_offset_[i];
+        double delta = linearToAngular(enc->getTravel(isLeft(info_.joints[i].name)))
+            - hw_states_position_[i] - hw_states_position_offset_[i];
 
         // detect suspiciously large readings, possibly from encoder rollover
         if (std::abs(delta) < 1.0f)
@@ -140,6 +144,11 @@ namespace husky_base
         }
       }
     }
+    else
+    {
+      RCLCPP_ERROR(
+        rclcpp::get_logger(HW_NAME), "Could not get encoder data");
+    }
 
     horizon_legacy::Channel<clearpath::DataDifferentialSpeed>::Ptr speed =
       horizon_legacy::Channel<clearpath::DataDifferentialSpeed>::requestData(polling_timeout_);
@@ -152,8 +161,7 @@ namespace husky_base
 
       for (auto i = 0u; i < hw_states_velocity_.size(); i++)
       {
-
-        if (i % 2 == LEFT)
+        if (isLeft(info_.joints[i].name) == LEFT)
         {
           hw_states_velocity_[i] = linearToAngular(speed->getLeftSpeed());
         }
@@ -163,6 +171,23 @@ namespace husky_base
         }
       }
     }
+        else
+    {
+      RCLCPP_ERROR(
+        rclcpp::get_logger(HW_NAME), "Could not get speed data");
+    }
+  }
+
+  /**
+  * Determines if the joint is left or right based on the joint name
+  */
+  uint8_t HuskyHardware::isLeft(const std::string &str)
+  {
+    if (str.find("left") != std::string::npos)
+    {
+      return LEFT;
+    }
+    return RIGHT;
   }
 
 
@@ -271,6 +296,17 @@ std::vector<hardware_interface::CommandInterface> HuskyHardware::export_command_
   {
     command_interfaces.emplace_back(hardware_interface::CommandInterface(
       info_.joints[i].name, hardware_interface::HW_IF_VELOCITY, &hw_commands_[i]));
+
+    // Detmerine which joints will be used for commands since Husky only has two motors
+    if (info_.joints[i].name == LEFT_CMD_JOINT_NAME)
+    {
+      left_cmd_joint_index_ = i;
+    }
+
+    if (info_.joints[i].name == RIGHT_CMD_JOINT_NAME)
+    {
+      right_cmd_joint_index_ = i;
+    }
   }
 
   return command_interfaces;

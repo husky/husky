@@ -60,6 +60,7 @@ private:
   void writeCommandsToHardware();
   void limitDifferentialSpeed(double &diff_speed_left, double &diff_speed_right);
   void updateJointsFromHardware();
+  uint8_t isLeft(const std::string &str);
 
   // ROS Parameters
   std::string serial_port_;
@@ -69,6 +70,8 @@ private:
   // Store the command for the robot
   std::vector<double> hw_commands_;
   std::vector<double> hw_states_position_, hw_states_position_offset_, hw_states_velocity_;
+
+  uint8_t left_cmd_joint_index_, right_cmd_joint_index_;
 };
 
 }  // namespace husky_base
