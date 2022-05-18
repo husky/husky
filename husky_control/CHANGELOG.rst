@@ -2,6 +2,11 @@
 Changelog for package husky_control
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Added searching for left and right joints rather than assuming order.
+* Contributors: Tony Baltovski
+
 1.0.5 (2022-05-05)
 ------------------
 * [husky_control] Fixed deprecated warnings and minor clean up.

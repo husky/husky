@@ -2,6 +2,11 @@
 Changelog for package husky_base
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Added searching for left and right joints rather than assuming order.
+* Contributors: Tony Baltovski
+
 1.0.5 (2022-05-05)
 ------------------
 * Split teleop launch into two files since simulation doesn't need actual joystick and will spam warmings.
