@@ -1,0 +1,308 @@
+<?xml version="1.0"?>
+<!--
+Software License Agreement (BSD)
+
+\file      mounts.urdf.xacro
+\authors   Luis Camero <lcamero@clearpathrobotics.com>
+\copyright Copyright (c) 2022, Clearpath Robotics, Inc., All rights reserved.
+
+Redistribution and use in source and binary forms, with or without modification, are permitted provided that
+the following conditions are met:
+ * Redistributions of source code must retain the above copyright notice, this list of conditions and the
+   following disclaimer.
+ * Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the
+   following disclaimer in the documentation and/or other materials provided with the distribution.
+ * Neither the name of Clearpath Robotics nor the names of its contributors may be used to endorse or promote
+   products derived from this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WAR-
+RANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, IN-
+DIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT
+OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+  <!-- 
+    Standard Mount: adds link (w/o geometry) at given position
+      - assumes orientation of parent 
+  -->
+  <xacro:macro name="mount" params="name parent x:=0 y:=0 z:=0">
+    <link name="${name}"/>
+    <joint name="${name}_joint" type="fixed">
+      <child link="${name}"/>
+      <parent link="${parent}"/>
+      <origin xyz="${x} ${y} ${z}" rpy="0 0 0"/>
+    </joint>
+  </xacro:macro>
+
+  <!-- 
+    Base Row Mounts: adds standard mounts for row at base level (0) w.r.t base_link
+  -->
+  <xacro:macro name="base_row_mounts" params="row">
+    <xacro:property name="x" value="${0.080 * (8 - row) - 0.2317}"/>
+    <xacro:property name="z" value="0.23385"/>
+    <xacro:mount name="A0${row}" parent="base_link" x="${x}" y="0.24" z="${z}"/>
+    <xacro:mount name="B0${row}" parent="base_link" x="${x}" y="0.16" z="${z}"/>
+    <xacro:mount name="C0${row}" parent="base_link" x="${x}" y="0.08" z="${z}"/>
+    <xacro:mount name="D0${row}" parent="base_link" x="${x}" y="0.00" z="${z}"/>
+    <xacro:mount name="E0${row}" parent="base_link" x="${x}" y="-0.08" z="${z}"/>
+    <xacro:mount name="F0${row}" parent="base_link" x="${x}" y="-0.16" z="${z}"/>
+    <xacro:mount name="G0${row}" parent="base_link" x="${x}" y="-0.24" z="${z}"/>
+  </xacro:macro>
+
+  <!-- 
+    Base Plate Mounts: adds standard mounts for the entire base level (0) w.r.t. base_link 
+  -->
+  <xacro:macro name="base_mounts">
+    <xacro:base_row_mounts row="1"/>
+    <xacro:base_row_mounts row="2"/>
+    <xacro:base_row_mounts row="3"/>
+    <xacro:base_row_mounts row="4"/>
+    <xacro:base_row_mounts row="5"/>
+    <xacro:base_row_mounts row="6"/>
+    <xacro:base_row_mounts row="7"/>
+    <xacro:base_row_mounts row="8"/>
+  </xacro:macro>
+
+  
+  <!-- 
+    Partial Riser Mounts: adds standard mounts for the specified row at the specified level
+      - requires that base_mounts have been added
+      - level (i.e. height) is w.r.t. the base level
+  -->
+  <xacro:macro name="partial_riser_mounts" params="row level">
+    <xacro:mount name="A${level}${row}" parent="A0${row}" z="${level*0.10}"/>
+    <xacro:mount name="B${level}${row}" parent="B0${row}" z="${level*0.10}"/>
+    <xacro:mount name="C${level}${row}" parent="C0${row}" z="${level*0.10}"/>
+    <xacro:mount name="D${level}${row}" parent="D0${row}" z="${level*0.10}"/>
+    <xacro:mount name="E${level}${row}" parent="E0${row}" z="${level*0.10}"/>
+    <xacro:mount name="F${level}${row}" parent="F0${row}" z="${level*0.10}"/>
+    <xacro:mount name="G${level}${row}" parent="G0${row}" z="${level*0.10}"/>
+  </xacro:macro>
+
+  <!--
+    Full Riser Mounts: adds standard mounts for a full riser at the specified level
+  -->
+  <xacro:macro name="full_riser_mounts" params="level">
+    <xacro:partial_riser_mounts row="1" level="${level}"/>
+    <xacro:partial_riser_mounts row="2" level="${level}"/>
+    <xacro:partial_riser_mounts row="3" level="${level}"/>
+    <xacro:partial_riser_mounts row="4" level="${level}"/>
+    <xacro:partial_riser_mounts row="5" level="${level}"/>
+    <xacro:partial_riser_mounts row="6" level="${level}"/>
+    <xacro:partial_riser_mounts row="7" level="${level}"/>
+    <xacro:partial_riser_mounts row="8" level="${level}"/>
+  </xacro:macro>
+
+  <!-- 
+    Riser Leg: standard leg for partial and full risers
+      - 'height' is from parent to the bottom of riser (should substract thickness of riser)
+  -->
+  <xacro:macro name="riser_leg" params="name height parent *origin">
+    <link name="${name}">
+      <visual>
+        <origin xyz="0 0 ${height/2}" rpy="0 0 0"/>
+        <geometry>
+          <box size="0.04 0.02 ${height}"/>
+        </geometry>
+        <material name="dark_grey"/>
+      </visual>
+      <collision>
+        <origin xyz="0 0 ${height/2}" rpy="0 0 0"/>
+        <geometry>
+          <box size="0.04 0.02 ${height}"/>
+        </geometry>
+        <material name="dark_grey"/>
+      </collision>
+    </link>
+    <joint name="${name}_joint" type="fixed">
+      <xacro:insert_block name="origin"/>
+      <child link="${name}"/>
+      <parent link="${parent}"/>
+    </joint>
+  </xacro:macro>
+
+  <!-- 
+    Partial Riser: add row length riser
+      - within PACS grid framework, inputs are level (height) and row
+      - adds legs and mounts
+  -->
+  <xacro:macro name="partial_riser" params="level row">
+    <!-- Infer from Level and Row -->
+    <xacro:property name="prefix" value="riser_partial_${level}${row}"/>
+    <xacro:property name="parent" value="D0${row}"/>
+    <xacro:property name="height" value="${level*0.10}"/>
+    <xacro:property name="thickness" value="0.00635"/>
+    <!-- Partial Riser Plate Link -->
+    <link name="${prefix}">
+      <visual>
+        <geometry>
+          <mesh filename="package://husky_description/meshes/pacs_partial_riser.stl"/>
+        </geometry>
+        <material name="dark_grey"/>
+      </visual>
+      <collision>
+        <origin xyz="0 0 ${thickness/2}" rpy="0 0 0"/>
+        <geometry>
+          <box size="0.11 0.59 ${thickness}"/> 
+        </geometry>
+        <material name="dark_grey"/>
+      </collision>
+    </link>
+    <!-- Partial Riser Plate Joint -->
+    <joint name="${prefix}_joint" type="fixed">
+      <child link="${prefix}"/>
+      <parent link="${parent}"/>
+      <origin xyz="0 0 ${height - thickness}" rpy="0 0 0"/>
+    </joint>
+
+    <!-- Partial Riser Left Leg -->
+    <xacro:riser_leg name="${prefix}_left_leg" height="${height - thickness}" parent="${parent}">
+      <origin xyz="0 -0.27 0" rpy="0 0 0"/>
+    </xacro:riser_leg>
+
+    <!-- Partial Riser Right Leg -->
+    <xacro:riser_leg name="${prefix}_right_leg" height="${height - thickness}" parent="${parent}">
+      <origin xyz="0 0.27 0" rpy="0 0 0"/>
+    </xacro:riser_leg>
+
+    <!-- Partial Riser Mounts -->
+    <xacro:partial_riser_mounts row="${row}" level="${level}"/>
+  </xacro:macro>
+
+  <!-- 
+    Full Riser: add plate sized riser
+      - within PACS grid framework, only input required is 'level' (height)
+      - adds legs and mounts
+  -->
+  <xacro:macro name="full_riser" params="level">
+    <!-- Infer from Level and Row -->
+    <xacro:property name="prefix" value="riser_full_${level}"/>
+    <xacro:property name="front_parent" value="D01"/>
+    <xacro:property name="rear_parent" value="D08"/>
+    <xacro:property name="parent" value="top_plate_link"/>
+    <xacro:property name="height" value="${level*0.10}"/>
+    <xacro:property name="thickness" value="0.00635"/>
+    <!-- Full Riser Plate Link -->
+    <link name="${prefix}">
+      <visual>
+        <geometry>
+          <mesh filename="package://husky_description/meshes/pacs_full_riser.stl"/>
+        </geometry>
+        <material name="dark_grey"/>
+      </visual>
+      <collision>
+        <origin xyz="0 0 ${thickness/2}" rpy="0 0 0"/>
+        <geometry>
+          <box size="0.67 0.59 ${thickness}"/> 
+        </geometry>
+        <material name="dark_grey"/>
+      </collision>
+    </link>
+    <!-- Full Riser Plate Joint -->
+    <joint name="${prefix}_joint" type="fixed">
+      <child link="${prefix}"/>
+      <parent link="${parent}"/>
+      <origin xyz="0 0 ${height}" rpy="0 0 0"/>
+    </joint>
+
+    <!-- Full Riser Front Left Leg -->
+    <xacro:riser_leg name="${prefix}_front_left_leg" height="${height - thickness}" parent="${front_parent}">
+      <origin xyz="0 -0.27 0" rpy="0 0 0"/>
+    </xacro:riser_leg>
+
+    <!-- Full Riser Front Right Leg -->
+    <xacro:riser_leg name="${prefix}_front_right_leg" height="${height - thickness}" parent="${front_parent}">
+      <origin xyz="0 0.27 0" rpy="0 0 0"/>
+    </xacro:riser_leg>
+
+    <!-- Full Riser Front Left Leg -->
+    <xacro:riser_leg name="${prefix}_rear_left_leg" height="${height - thickness}" parent="${rear_parent}">
+      <origin xyz="0 -0.27 0" rpy="0 0 0"/>
+    </xacro:riser_leg>
+
+    <!-- Full Riser Front Right Leg -->
+    <xacro:riser_leg name="${prefix}_rear_right_leg" height="${height - thickness}" parent="${rear_parent}">
+      <origin xyz="0 0.27 0" rpy="0 0 0"/>
+    </xacro:riser_leg>
+
+    <!-- Full Riser Mounts -->
+    <xacro:full_riser_mounts level="${level}"/>
+  </xacro:macro>
+
+
+  <!-- 
+    Partial Riser Generation: macros to facilitate generation of risers based on user settings
+      - <generate_partial_risers>: parses environment variable inputs
+      - <partial_riser_loop>: consumes level and row lists as it generates partial risers
+  -->
+  <!-- Riser For Loop -->
+  <xacro:macro name="partial_riser_loop" params="levels:=^ rows:=^">
+    <xacro:if value="${levels and rows}">
+      <!-- Pop -->
+      <xacro:property name="level" value="${int(levels.pop(0).strip())}"/>
+      <xacro:property name="row" value="${int(rows.pop(0).strip())}"/>
+      <!-- Check Ranges -->
+      <xacro:if value="${level not in python.range(1, 11)}">
+        ${xacro.error(str("Husky partial riser level (" + str(level) + ") is outside permissible range of 1 to 10."))}
+      </xacro:if>
+      <xacro:if value="${row not in python.range(1, 9)}">
+        ${xacro.error(str("Husky partial riser row (" + str(row) + ") is outside permissible range of 1 to 8."))}
+      </xacro:if>
+      <!-- Create Riser -->
+      <xacro:if value="${level in python.range(1, 11) and row in python.range(1, 9)}">
+        <xacro:partial_riser level="${level}" row="${row}"/>
+      </xacro:if>
+      <!-- Recurse -->
+      <xacro:partial_riser_loop levels="${levels}" rows="${rows}"/>
+    </xacro:if>
+  </xacro:macro>
+  
+  <!-- Generate Risers -->
+  <xacro:macro name="generate_partial_risers">
+    <!-- Grab List String from Environment Variables -->
+    <xacro:property name="levels" value="$(optenv HUSKY_PARTIAL_RISER_LEVELS 0)"/>
+    <xacro:property name="rows" value="$(optenv HUSKY_PARTIAL_RISER_ROWS 0)"/>
+    <xacro:if value="${levels != 0 and rows != 0}">
+      <!-- Multi-Input Case -->
+      <xacro:unless value="${python.isinstance(levels, int) or python.isinstance(rows, int)}">
+        <!-- Convert String to List -->
+        <xacro:property name="levels" value="${levels.split(',')}" lazy_eval="false"/>
+        <xacro:property name="rows" value="${rows.split(',')}" lazy_eval="false"/>
+        <xacro:if value="${len(levels) == 1}">
+          <xacro:property name="levels" value="${levels.pop(0).split(' ')}" lazy_eval="false"/>
+        </xacro:if>
+        <xacro:if value="${len(rows) == 1}">
+          <xacro:property name="rows" value="${rows.pop(0).split(' ')}" lazy_eval="false"/>
+        </xacro:if>
+      </xacro:unless>
+      <!-- Single Input Case -->
+      <xacro:if value="${python.isinstance(levels, int) and python.isinstance(rows, int)}">
+        <xacro:property name="levels" value="${[str(levels)]}" lazy_eval="false"/>
+        <xacro:property name="rows" value="${[str(rows)]}" lazy_eval="false"/>
+      </xacro:if>
+      <!-- Check if Same Length -->
+      <xacro:if value="${len(levels) == len(rows)}">
+        <!-- Riser Generation Loop -->
+        <xacro:partial_riser_loop levels="${levels}" rows="${rows}"/>
+      </xacro:if>
+      <xacro:unless value="${len(levels) == len(rows)}">
+        ${xacro.error('List length mismatch: length of LEVELS must match length of ROWS')}
+      </xacro:unless>
+    </xacro:if>
+  </xacro:macro>
+
+  <!-- 
+    Full Riser Generation: add user defined full risers
+      - currently supports only one full riser
+      - currently partial risers cannot be added atop full risers
+  -->
+  <xacro:macro name="generate_full_risers">
+    <xacro:property name="level" value="$(optenv HUSKY_FULL_RISER 0)"/>
+    <xacro:if value="${level > 0}">
+      <xacro:full_riser level="${level}"/>
+    </xacro:if>
+  </xacro:macro>
+</robot>
