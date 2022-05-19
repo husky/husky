@@ -61,4 +61,4 @@ joy_teleop/joy_node:
   ros__parameters:
     deadzone: 0.1
     autorepeat_rate: 20.0
-    device_name: /dev/input/f710
+    dev: /dev/input/f710

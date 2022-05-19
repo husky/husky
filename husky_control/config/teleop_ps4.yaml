@@ -74,4 +74,4 @@ joy_teleop/joy_node:
   ros__parameters:
     deadzone: 0.1
     autorepeat_rate: 20.0
-    device_name: /dev/input/ps4
+    dev: /dev/input/ps4
