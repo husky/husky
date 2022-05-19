@@ -24,16 +24,16 @@ def generate_launch_description():
         'config',
         'imu_filter.yaml'],
     )
-    node_imu_filter = Node(
-        package='imu_filter_madgwick',
-        executable='imu_filter_madgwick_node',
-        name='imu_filter',
-        output='screen',
-        parameters=[config_imu_filter]
-    )
+    # node_imu_filter = Node(
+    #     package='imu_filter_madgwick',
+    #     executable='imu_filter_madgwick_node',
+    #     name='imu_filter',
+    #     output='screen',
+    #     parameters=[config_imu_filter]
+    # )
     
     ld = LaunchDescription()
     ld.add_action(node_ekf)
-    ld.add_action(node_imu_filter)
+    #ld.add_action(node_imu_filter)
 
     return ld
