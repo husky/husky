@@ -2,8 +2,8 @@
 Changelog for package husky_base
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+1.0.7 (2022-05-19)
+------------------
 * Renamed all launch files to *.launch.py.
 * Contributors: Tony Baltovski
 
