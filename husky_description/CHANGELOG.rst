@@ -2,6 +2,9 @@
 Changelog for package husky_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+
 1.0.7 (2022-05-19)
 ------------------
 * Renamed all launch files to *.launch.py.

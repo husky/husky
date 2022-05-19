@@ -2,6 +2,11 @@
 Changelog for package husky_control
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* [husky_control] Disabled imu_filter_madgwick for now.
+* Contributors: Tony Baltovski
+
 1.0.7 (2022-05-19)
 ------------------
 * [husky_control] Fixed joy device param.
