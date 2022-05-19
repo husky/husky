@@ -2,8 +2,8 @@
 Changelog for package husky_control
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+1.0.8 (2022-05-19)
+------------------
 * [husky_control] Disabled imu_filter_madgwick for now.
 * Contributors: Tony Baltovski
 
