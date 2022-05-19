@@ -16,7 +16,7 @@ def generate_launch_description():
     gazebo_launch = PathJoinSubstitution(
         [FindPackageShare("husky_gazebo"),
         "launch",
-        "gazebo_launch.py"],
+        "gazebo.launch.py"],
     )
 
     gazebo_sim = IncludeLaunchDescription(
