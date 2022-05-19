@@ -2,6 +2,12 @@
 Changelog for package husky_control
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* [husky_control] Fixed joy device param.
+* Renamed all launch files to *.launch.py.
+* Contributors: Tony Baltovski
+
 1.0.6 (2022-05-18)
 ------------------
 * Added searching for left and right joints rather than assuming order.
