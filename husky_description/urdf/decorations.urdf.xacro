@@ -50,8 +50,8 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
     <xacro:property name="husky_wibotic_bumper_enable"  value="$(optenv HUSKY_WIBOTIC_BUMPER 0)" />
 
     <!-- Top Plate -->
-    <xacro:property name="pacs_enable"                  value="$(optenv HUSKY_PACS_ENABLE false)"/>
-    <xacro:property name="top_plate_enable"             value="$(optenv HUSKY_TOP_PLATE_ENABLE true)"/>
+    <xacro:property name="pacs_enable"                  value="$(optenv HUSKY_PACS_ENABLED false)"/>
+    <xacro:property name="top_plate_enable"             value="$(optenv HUSKY_TOP_PLATE_ENABLED true)"/>
     <xacro:property name="large_top_plate_enable"       value="$(optenv HUSKY_LARGE_TOP_PLATE false)"/>
     <xacro:property name="user_rail_enable"             value="$(optenv HUSKY_USER_RAIL_ENABLED true)"/>
 
@@ -182,10 +182,10 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
 
     <!--
       TOP PLATE: Spawn and attach user defined top plate.
-                  HUSKY_TOP_PLATE_ENABLE must be set to TRUE to add any kind of top plate.
+                  HUSKY_TOP_PLATE_ENABLED must be set to TRUE to add any kind of top plate.
                   Further customization can be achieved by setting the following variables:
-                    - HUSKY_LARGE_TOP_PLATE_ENABLE: Replace default top plate with large top plate
-                    - HUSKY_PACS_ENABLE: Replace default top plate with PACS top plate (Note: PACS will also disable USER RAIL)
+                    - HUSKY_LARGE_TOP_PLATE_ENABLED: Replace default top plate with large top plate
+                    - HUSKY_PACS_ENABLED: Replace default top plate with PACS top plate (Note: PACS will also disable USER RAIL)
                     - Else, default top plate will be added.
     -->
     <!-- Default Top Plate -->
