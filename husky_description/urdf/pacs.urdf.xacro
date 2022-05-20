@@ -237,6 +237,8 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
     Partial Riser Generation: macros to facilitate generation of risers based on user settings
       - <generate_partial_risers>: parses environment variable inputs
       - <partial_riser_loop>: consumes level and row lists as it generates partial risers
+      - HUSKY_PARTIAL_RISER_LEVELS
+      - HUSKY_PARTIAL_RISER_ROWS
   -->
   <!-- Riser For Loop -->
   <xacro:macro name="partial_riser_loop" params="levels:=^ rows:=^">
@@ -298,9 +300,10 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
     Full Riser Generation: add user defined full risers
       - currently supports only one full riser
       - currently partial risers cannot be added atop full risers
+      - HUSKY_FULL_RISER_LEVEL
   -->
   <xacro:macro name="generate_full_risers">
-    <xacro:property name="level" value="$(optenv HUSKY_FULL_RISER 0)"/>
+    <xacro:property name="level" value="$(optenv HUSKY_FULL_RISER_LEVEL 0)"/>
     <xacro:if value="${level > 0}">
       <xacro:full_riser level="${level}"/>
     </xacro:if>
