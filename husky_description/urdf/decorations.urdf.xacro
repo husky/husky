@@ -34,13 +34,31 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
   <material name="red"><color rgba="1.0 0.0 0.0 1.0" /></material>
 
   <xacro:macro name="husky_decorate">
+    <!--
+      INCLUDES: Importing xacro macros from other files
+    -->
+    <xacro:include filename="$(find husky_description)/urdf/pacs.urdf.xacro"/>
 
+    <!--
+      ENVIRONMENT VARIABLES: Parse environment variables into easy to use xacro:property types
+    -->
+    <!-- Bumpers -->
     <xacro:property name="husky_front_bumper_enable"    value="$(optenv HUSKY_FRONT_BUMPER 1)" />
     <xacro:property name="husky_rear_bumper_enable"     value="$(optenv HUSKY_REAR_BUMPER 1)" />
     <xacro:property name="husky_front_bumper_extend"    value="$(optenv HUSKY_FRONT_BUMPER_EXTEND 0)" />
     <xacro:property name="husky_rear_bumper_extend"     value="$(optenv HUSKY_REAR_BUMPER_EXTEND 0)" />
     <xacro:property name="husky_wibotic_bumper_enable"  value="$(optenv HUSKY_WIBOTIC_BUMPER 0)" />
 
+    <!-- Top Plate -->
+    <xacro:property name="pacs_enable"                  value="$(optenv HUSKY_PACS_ENABLED false)"/>
+    <xacro:property name="top_plate_enable"             value="$(optenv HUSKY_TOP_PLATE_ENABLED true)"/>
+    <xacro:property name="large_top_plate_enable"       value="$(optenv HUSKY_LARGE_TOP_PLATE false)"/>
+    <xacro:property name="user_rail_enable"             value="$(optenv HUSKY_USER_RAIL_ENABLED true)"/>
+
+    <!--
+      CHASSIS: Spawn and attach default chassis.
+               Currently, no customization available.
+    -->
     <!-- Spawn Husky chassis -->
     <link name="top_chassis_link">
       <visual>
@@ -57,24 +75,9 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
       <child link="top_chassis_link" />
     </joint>
 
-    <xacro:if value="$(optenv HUSKY_USER_RAIL_ENABLED true)">
-      <!-- Spawn user rails -->
-      <link name="user_rail_link">
-        <visual>
-          <geometry>
-            <mesh filename="package://husky_description/meshes/user_rail.dae" />
-          </geometry>
-        </visual>
-      </link>
-
-      <!-- Attach user rails to base link -->
-      <joint name="user_rail" type="fixed">
-        <origin xyz="0.272 0 0.245" rpy="0 0 0" />
-        <parent link="base_link" />
-        <child link="user_rail_link" />
-      </joint>
-    </xacro:if>
-
+    <!--
+      BUMPERS: Spawn and attach user defined bumpers
+    -->
     <!-- Spawn front bumper link -->
     <xacro:if value="${husky_front_bumper_enable}">
       <xacro:unless value="${husky_wibotic_bumper_enable}">
@@ -155,79 +158,143 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
       </xacro:if>
     </xacro:if>
 
-    <xacro:if value="$(optenv HUSKY_TOP_PLATE_ENABLED true)">
-      <!-- Spawn the top plate -->
-      <xacro:if value="$(optenv HUSKY_LARGE_TOP_PLATE false)">
-        <link name="top_plate_link">
-          <visual>
-            <origin xyz="0 0 0" rpy="0 0 0" />
-            <geometry>
-              <mesh filename="package://husky_description/meshes/large_top_plate.dae" />
-            </geometry>
-          </visual>
-          <collision>
-            <origin xyz="0 0 0" rpy="0 0 0"/>
-            <geometry>
-              <mesh filename="package://husky_description/meshes/large_top_plate_collision.stl" />
-            </geometry>
-          </collision>
-        </link>
-        <!-- Attach top plate -->
-        <joint name="top_plate_joint" type="fixed">
-          <parent link="base_link" />
-          <child link="top_plate_link"/>
-          <origin xyz="0.0812 0 0.225" rpy="0 0 0"/>
-        </joint>
-        <!-- Top plate front link -->
-        <joint name="top_plate_front_joint" type="fixed">
-          <parent link="top_plate_link" />
-          <child link="top_plate_front_link"/>
-          <origin xyz="0.4125 0 0.00672" rpy="0 0 0"/>
-        </joint>
-        <!-- Top plate rear link-->
-        <joint name="top_plate_rear_joint" type="fixed">
-          <parent link="top_plate_link" />
-          <child link="top_plate_rear_link"/>
-          <origin xyz="-0.4125 0 0.00672" rpy="0 0 0"/>
-        </joint>
-      </xacro:if>
+    <!--
+      USER RAIL: Spawn and attach user rail to robot.
+                 Disabled if PACS is enabled.
+    -->
+    <xacro:if value="${user_rail_enable and not pacs_enable}">
+      <!-- Spawn user rails -->
+      <link name="user_rail_link">
+        <visual>
+          <geometry>
+            <mesh filename="package://husky_description/meshes/user_rail.dae" />
+          </geometry>
+        </visual>
+      </link>
 
-      <xacro:unless value="$(optenv HUSKY_LARGE_TOP_PLATE false)">
-        <link name="top_plate_link">
-          <visual>
-            <origin xyz="0 0 0" rpy="0 0 0" />
-            <geometry>
-              <mesh filename="package://husky_description/meshes/top_plate.dae" />
-            </geometry>
-          </visual>
-          <collision>
-            <origin xyz="0 0 0" rpy="0 0 0"/>
-            <geometry>
-              <mesh filename="package://husky_description/meshes/top_plate.stl" />
-            </geometry>
-          </collision>
-        </link>
-        <!-- Attach top plate -->
-        <joint name="top_plate_joint" type="fixed">
-          <parent link="base_link" />
-          <child link="top_plate_link"/>
-          <origin xyz="0.0812 0 0.245" rpy="0 0 0"/>
-        </joint>
-        <!-- Top plate front link -->
-        <joint name="top_plate_front_joint" type="fixed">
-          <parent link="top_plate_link" />
-          <child link="top_plate_front_link"/>
-          <origin xyz="0.36367 0 0.00639" rpy="0 0 0"/>
-        </joint>
-        <!-- Top plate rear link-->
-        <joint name="top_plate_rear_joint" type="fixed">
-          <parent link="top_plate_link" />
-          <child link="top_plate_rear_link"/>
-          <origin xyz="-0.36633 0 0.00639" rpy="0 0 0"/>
-        </joint>
-      </xacro:unless>
+      <!-- Attach user rails to base link -->
+      <joint name="user_rail" type="fixed">
+        <origin xyz="0.272 0 0.245" rpy="0 0 0" />
+        <parent link="base_link" />
+        <child link="user_rail_link" />
+      </joint>
+    </xacro:if>
+
+    <!--
+      TOP PLATE: Spawn and attach user defined top plate.
+                  HUSKY_TOP_PLATE_ENABLED must be set to TRUE to add any kind of top plate.
+                  Further customization can be achieved by setting the following variables:
+                    - HUSKY_LARGE_TOP_PLATE_ENABLED: Replace default top plate with large top plate
+                    - HUSKY_PACS_ENABLED: Replace default top plate with PACS top plate (Note: PACS will also disable USER RAIL)
+                    - Else, default top plate will be added.
+    -->
+    <!-- Default Top Plate -->
+    <xacro:if value="${top_plate_enable and not large_top_plate_enable and not pacs_enable}">
+      <!-- Spawn default top plate -->
+      <link name="top_plate_link">
+        <visual>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry>
+            <mesh filename="package://husky_description/meshes/top_plate.dae" />
+          </geometry>
+        </visual>
+        <collision>
+          <origin xyz="0 0 0" rpy="0 0 0"/>
+          <geometry>
+            <mesh filename="package://husky_description/meshes/top_plate.stl" />
+          </geometry>
+        </collision>
+      </link>
+      <!-- Attach default top plate -->
+      <joint name="top_plate_joint" type="fixed">
+        <parent link="base_link" />
+        <child link="top_plate_link"/>
+        <origin xyz="0.0812 0 0.245" rpy="0 0 0"/>
+      </joint>
+      <!-- Default top plate front link -->
       <link name="top_plate_front_link"/>
+      <joint name="top_plate_front_joint" type="fixed">
+        <parent link="top_plate_link" />
+        <child link="top_plate_front_link"/>
+        <origin xyz="0.36367 0 0.00639" rpy="0 0 0"/>
+      </joint>
+      <!-- Default top plate rear link-->
       <link name="top_plate_rear_link"/>
+      <joint name="top_plate_rear_joint" type="fixed">
+        <parent link="top_plate_link" />
+        <child link="top_plate_rear_link"/>
+        <origin xyz="-0.36633 0 0.00639" rpy="0 0 0"/>
+      </joint>
+    </xacro:if>
+
+    <!-- Large Top Plate -->
+    <xacro:if value="${top_plate_enable and large_top_plate_enable and not pacs_enable}">
+      <!-- Spawn large top plate -->
+      <link name="top_plate_link">
+        <visual>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry>
+            <mesh filename="package://husky_description/meshes/large_top_plate.dae" />
+          </geometry>
+        </visual>
+        <collision>
+          <origin xyz="0 0 0" rpy="0 0 0"/>
+          <geometry>
+            <mesh filename="package://husky_description/meshes/large_top_plate_collision.stl" />
+          </geometry>
+        </collision>
+      </link>
+      <!-- Attach large top plate -->
+      <joint name="top_plate_joint" type="fixed">
+        <parent link="base_link" />
+        <child link="top_plate_link"/>
+        <origin xyz="0.0812 0 0.225" rpy="0 0 0"/>
+      </joint>
+      <!-- Large top plate front link -->
+      <link name="top_plate_front_link"/>
+      <joint name="top_plate_front_joint" type="fixed">
+        <parent link="top_plate_link" />
+        <child link="top_plate_front_link"/>
+        <origin xyz="0.4125 0 0.00672" rpy="0 0 0"/>
+      </joint>
+      <!-- Large top plate rear link-->
+      <link name="top_plate_rear_link"/>
+      <joint name="top_plate_rear_joint" type="fixed">
+        <parent link="top_plate_link" />
+        <child link="top_plate_rear_link"/>
+        <origin xyz="-0.4125 0 0.00672" rpy="0 0 0"/>
+      </joint>
+    </xacro:if>
+
+    <!-- PACS Top Plate -->
+    <xacro:if value="${top_plate_enable and pacs_enable}"> <!-- PACS takes precedence over large_top_plate -->
+      <!-- Spawn PACS top plate -->
+      <link name="top_plate_link">
+        <visual>
+          <material name="dark_grey"/>
+          <geometry>
+            <mesh filename="package://husky_description/meshes/pacs_top_plate.stl"/>
+          </geometry>
+        </visual>
+        <collision>
+          <material name="dark_grey"/>
+          <origin xyz="0 0 0.00317500531673" rpy="0 0 0"/>
+          <geometry>
+            <box size="0.670000076294 0.590000033379 0.00635001063347"/>
+          </geometry>
+        </collision>
+      </link>
+      <!-- Attach PACS top plate -->
+      <joint name="top_plate_joint" type="fixed">
+        <child link="top_plate_link"/>
+        <parent link="base_link"/>
+        <origin xyz="0.048299998045 0 0.227500006557" rpy="0 0 0"/>
+      </joint>
+      <!-- Add PACS top plate mount links -->
+      <xacro:base_mounts/>
+      <!-- Add PACS top plate extensions-->
+      <xacro:generate_full_risers/>
+      <xacro:generate_partial_risers/>
     </xacro:if>
 
   </xacro:macro>
