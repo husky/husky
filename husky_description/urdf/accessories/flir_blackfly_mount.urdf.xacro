@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+  <xacro:include filename="$(find fath_pivot_mount_description)/urdf/lockmount.urdf.xacro"/>
+  <xacro:include filename="$(find flir_camera_description)/urdf/flir_blackflys.urdf.xacro"/>
+
+  <xacro:macro name="flir_blackfly_mount" params="prefix:=blackfly 
+                                              parent:=top_plate_link 
+                                              mount_enabled:=false
+                                              mount_angle:=${pi/8}
+                                              *origin">
+    <!-- Add Blackfly S -->
+    <xacro:flir_blackflys frame="${prefix}"/>
+    <!-- Add Fath Pivot Mouth-->
+    <xacro:if value="${mount_enabled}">
+      <xacro:fath_pivot_mount prefix="${prefix}_fath_pivot" parent_link="${parent}" angle="${mount_angle}">
+        <xacro:insert_block name="origin"/>
+      </xacro:fath_pivot_mount>
+      <joint name="${prefix}_to_fath_pivot_mount_joint" type="fixed">
+        <child link="${prefix}"/>
+        <parent link="${prefix}_fath_pivot_mount"/>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+      </joint>
+    </xacro:if>
+    <!-- No Mount -->
+    <xacro:unless value="${mount_enabled}">
+      <joint name="${prefix}_mount_joint" type="fixed">
+        <child link="${prefix}"/>
+        <parent link="${parent}"/>
+        <xacro:insert_block name="origin"/>
+      </joint>
+    </xacro:unless>
+  </xacro:macro>
+</robot>
