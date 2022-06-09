@@ -84,7 +84,7 @@ export HUSKY_LMS1XX_RPY='0.0 0.0 0.0'
 ```
 ### Secondary
 ```bash
-export HUSKY_LMS1XX_SECONDARY_ENABLED '0'
+export HUSKY_LMS1XX_SECONDARY_ENABLED='0'
 ```
 #### Launch
 ```bash
@@ -267,16 +267,16 @@ export HUSKY_BLACKFLY_SECONDARY_RPY='0 0 0'
 ## IMU 
 These could be either Microstrain, UM7, or UM6
 ```bash
-export HUSKY_IMU_XYZ '0.19 0 0.149'
-export HUSKY_IMU_RPY '0 -1.5708 3.1416'
-export HUSKY_IMU_PARENT 'base_link'
-export HUSKY_IMU_PORT '/dev/microstrain ' # or '/dev/clearpath/um7' or '/dev/clearpath/um6'
+export HUSKY_IMU_XYZ='0.19 0 0.149'
+export HUSKY_IMU_RPY='0 -1.5708 3.1416'
+export HUSKY_IMU_PARENT='base_link'
+export HUSKY_IMU_PORT='/dev/microstrain ' # or '/dev/clearpath/um7' or '/dev/clearpath/um6'
 # for UM6 and UM7 only
-export HUSKY_MAG_CONFIG find('husky_bringup')+'/config/mag_config_default.yaml'
+export HUSKY_MAG_CONFIG="$(catkin_find 'husky_bringup' --first-only)/config/mag_config_default.yaml"
 ```
 
 ## Navsat 
 ```bash
-export HUSKY_NAVSAT_PORT /dev/clearpath/gps
-export HUSKY_NAVSAT_BAUD 19200
+export HUSKY_NAVSAT_PORT=/dev/clearpath/gps
+export HUSKY_NAVSAT_BAUD=19200
 ```
