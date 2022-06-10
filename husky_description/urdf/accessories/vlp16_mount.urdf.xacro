@@ -79,7 +79,7 @@
       <origin xyz="0 0 ${height}" rpy="0 0 0"/>
     </joint>
 
-    <xacro:VLP-16 parent="${prefix}vlp16_mount_plate" topic="${topic}">
+    <xacro:VLP-16 parent="${prefix}vlp16_mount_plate" topic="${topic}" name="${prefix}velodyne">
       <origin xyz="0 0 0" rpy="0 0 0" />
     </xacro:VLP-16>
   </xacro:macro>
