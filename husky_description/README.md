@@ -53,6 +53,22 @@ export HUSKY_PARTIAL_RISER_LEVELS=0
 export HUSKY_PARTIAL_RISER_ROWS=0
 ```
 
+### Brackets
+Once you have enabled PACS (and any risers), you have a three dimensional grid atop of which you can add brackets.
+There are three types of brackets:
+- **horizontal**: standard bracket, a 10cm x 10cm plate.
+- **horizontal_large**: larger 13cm x 13cm plate.
+- **vertical**: base is same size as standard plate, but has a vertical wall where mounting link is added.
+
+These brackets can be added to any hardpoint (i.e. A01 through G08). In the following environment variables 'A01' is used as an example but it can be swapped for any hardpoint (including those on risers).
+```bash
+export HUSKY_A01_MOUNT_ENABLED='0'
+export HUSKY_A01_MOUNT_TYPE='horizontal' # or 'horizontal_large' or 'vertical'
+export HUSKY_A01_MOUNT_XYZ='0 0 0'
+export HUSKY_A01_MOUNT_RPY='0 0 0'
+export HUSKY_A01_MOUNT_EXTENSION='0' # 20, 40, 60, 80
+```
+
 ## Sensor Arch
 The standard sensor arch can be added using the following environment variables. 
 ```bash
