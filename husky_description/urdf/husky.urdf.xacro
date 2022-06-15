@@ -148,7 +148,7 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
     <parent link="$(arg tf_prefix)base_link" />
     <child link="$(arg tf_prefix)imu_link" />
   </joint>
-  <gazebo reference="imu_link">
+  <gazebo reference="$(arg tf_prefix)imu_link">
   </gazebo>
 
   <!-- Husky wheel macros -->
@@ -251,7 +251,7 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
     <plugin name="imu_controller" filename="libhector_gazebo_ros_imu.so">
       <robotNamespace>$(arg robot_namespace)</robotNamespace>
       <updateRate>50.0</updateRate>
-      <bodyName>base_link</bodyName>
+      <bodyName>$(arg tf_prefix)base_link</bodyName>
       <topicName>imu/data</topicName>
       <accelDrift>0.005 0.005 0.005</accelDrift>
       <accelGaussianNoise>0.005 0.005 0.005</accelGaussianNoise>
@@ -266,8 +266,8 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
     <plugin name="gps_controller" filename="libhector_gazebo_ros_gps.so">
       <robotNamespace>$(arg robot_namespace)</robotNamespace>
       <updateRate>40</updateRate>
-      <bodyName>base_link</bodyName>
-      <frameId>base_link</frameId>
+      <bodyName>$(arg tf_prefix)base_link</bodyName>
+      <frameId>$(arg tf_prefix)base_link</frameId>
       <topicName>navsat/fix</topicName>
       <velocityTopicName>navsat/vel</velocityTopicName>
       <referenceLatitude>49.9</referenceLatitude>
