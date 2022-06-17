@@ -2,8 +2,8 @@
 Changelog for package husky_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.6.4 (2022-06-16)
+------------------
 * Fixes for velodyne prefix
 * PACS Brackets (`#238 <https://github.com/husky/husky/issues/238>`_)
   * Added STL models for brackets
