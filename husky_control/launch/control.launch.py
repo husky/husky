@@ -1,10 +1,13 @@
-from launch import LaunchDescription
-from launch.substitutions import PathJoinSubstitution
+from launch import LaunchContext, LaunchDescription
+from launch.substitutions import EnvironmentVariable, PathJoinSubstitution
 from launch_ros.actions import Node
 from launch_ros.substitutions import FindPackageShare
 
 
 def generate_launch_description():
+    lc = LaunchContext()
+    ld = LaunchDescription()
+
     config_husky_ekf = PathJoinSubstitution(
         [FindPackageShare('husky_control'),
         'config',
@@ -18,22 +21,23 @@ def generate_launch_description():
         output='screen',
         parameters=[config_husky_ekf],
         )
-
-    config_imu_filter = PathJoinSubstitution(
-        [FindPackageShare('husky_control'),
-        'config',
-        'imu_filter.yaml'],
-    )
-    # node_imu_filter = Node(
-    #     package='imu_filter_madgwick',
-    #     executable='imu_filter_madgwick_node',
-    #     name='imu_filter',
-    #     output='screen',
-    #     parameters=[config_imu_filter]
-    # )
-    
-    ld = LaunchDescription()
     ld.add_action(node_ekf)
-    #ld.add_action(node_imu_filter)
+
+    primary_imu_enable = EnvironmentVariable('CPR_IMU', default_value='false')
+
+    if (primary_imu_enable.perform(lc)) == 'true':
+        config_imu_filter = PathJoinSubstitution(
+            [FindPackageShare('husky_control'),
+            'config',
+            'imu_filter.yaml'],
+        )
+        node_imu_filter = Node(
+            package='imu_filter_madgwick',
+            executable='imu_filter_madgwick_node',
+            name='imu_filter',
+            output='screen',
+            parameters=[config_imu_filter]
+        )
+        ld.add_action(node_imu_filter)
 
     return ld
