@@ -330,6 +330,19 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
     </xacro:unless>
   </xacro:if>
 
+  <xacro:if value="$(arg laser_3d_secondary_enabled)">
+    <xacro:if value="$(arg laser_3d_secondary_tower)">
+      <xacro:vlp16_mount prefix="$(arg laser_3d_secondary_prefix)" parent_link="$(arg laser_3d_secondary_parent)" topic="$(arg laser_3d_secondary_topic)">
+        <origin xyz="$(arg laser_3d_secondary_xyz)" rpy="$(arg laser_3d_secondary_rpy)" />
+      </xacro:vlp16_mount>
+    </xacro:if>
+    <xacro:unless value="$(arg laser_3d_secondary_tower)">
+      <xacro:VLP-16 parent="$(arg laser_3d_secondary_parent)" topic="$(arg laser_3d_secondary_topic)" name="$(arg laser_3d_secondary_prefix)velodyne">
+        <origin xyz="$(arg laser_3d_secondary_xyz)" rpy="$(arg laser_3d_secondary_rpy)" />
+      </xacro:VLP-16>
+    </xacro:unless>
+  </xacro:if>
+
   <gazebo>
     <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
       <robotNamespace>$(arg robot_namespace)</robotNamespace>
