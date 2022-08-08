@@ -62,3 +62,13 @@ def bound_lin_vel(lin_vel_cmd):
 def bound_ang_vel(ang_vel_cmd):
     ang_vel_cmd = constrain(ang_vel_cmd, -ANG_VEL_LIMIT, ANG_VEL_LIMIT)
     return ang_vel_cmd
+
+def generate_cmd_vel_msg(lin_vel_cmd, ang_vel_cmd):
+    cmd_vel_msg = Twist()
+    cmd_vel_msg.linear.x  = lin_vel_cmd
+    cmd_vel_msg.linear.y  = 0.0
+    cmd_vel_msg.linear.z  = 0.0
+    cmd_vel_msg.angular.x = 0.0
+    cmd_vel_msg.angular.y = 0.0
+    cmd_vel_msg.angular.z = ang_vel_cmd
+    return cmd_vel_msg
