@@ -15,6 +15,11 @@ if (CATKIN_ENABLE_TESTING)
   roslaunch_add_file_check(launch)
 endif()
 
+catkin_install_python(PROGRAMS
+  scripts/teleop_keyboard.py
+  DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+)
+
 install(DIRECTORY config launch
   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
 )
