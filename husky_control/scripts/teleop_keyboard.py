@@ -107,6 +107,7 @@ if __name__=="__main__":
 
             cmd_vel_msg = generate_cmd_vel_msg(lin_vel, ang_vel)
             cmd_vel_pub.publish(cmd_vel_msg)
+
     except:
         print(error)
 
