@@ -84,3 +84,6 @@ if __name__=="__main__":
 
     lin_vel = 0.0
     ang_vel = 0.0
+
+    try:
+        print(info)
