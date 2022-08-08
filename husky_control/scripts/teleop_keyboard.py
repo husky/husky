@@ -72,3 +72,5 @@ def generate_cmd_vel_msg(lin_vel_cmd, ang_vel_cmd):
     cmd_vel_msg.angular.y = 0.0
     cmd_vel_msg.angular.z = ang_vel_cmd
     return cmd_vel_msg
+
+################################################################################
