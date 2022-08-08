@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+
+<launch>
+
+  <!-- Husky Keyboard Teleoperation -->
+  <node pkg="husky_control" type="teleop_keyboard.py" name="teleop_keyboard" output="screen"/>
+
+</launch>
