@@ -115,3 +115,6 @@ if __name__=="__main__":
         ang_vel = 0.0
         cmd_vel_msg = generate_cmd_vel_msg(lin_vel, ang_vel)
         cmd_vel_pub.publish(cmd_vel_msg)
+
+    if os.name != 'nt':
+        termios.tcsetattr(sys.stdin, termios.TCSADRAIN, settings)
