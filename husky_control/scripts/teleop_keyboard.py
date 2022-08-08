@@ -74,3 +74,7 @@ def generate_cmd_vel_msg(lin_vel_cmd, ang_vel_cmd):
     return cmd_vel_msg
 
 ################################################################################
+
+if __name__=="__main__":
+    if os.name != 'nt':
+        settings = termios.tcgetattr(sys.stdin)
