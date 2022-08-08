@@ -6,7 +6,9 @@ find_package(catkin REQUIRED COMPONENTS
   geometry_msgs
 )
 
-catkin_package()
+catkin_package(
+  CATKIN_DEPENDS rospy geometry_msgs
+)
 
 if (CATKIN_ENABLE_TESTING)
   find_package(roslaunch REQUIRED)
