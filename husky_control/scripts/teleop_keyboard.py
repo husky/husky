@@ -45,3 +45,12 @@ def get_key():
         key = ''
     termios.tcsetattr(sys.stdin, termios.TCSADRAIN, settings)
     return key
+
+def constrain(input, low, high):
+    if input < low:
+      input = low
+    elif input > high:
+      input = high
+    else:
+      input = input
+    return input
