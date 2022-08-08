@@ -33,3 +33,15 @@ NOTE: Press keys within this terminal
 error = """
 ERROR: Communication failed!
 """
+
+def get_key():
+    if os.name == 'nt':
+      return msvcrt.getch()
+    tty.setraw(sys.stdin.fileno())
+    rlist, _, _ = select.select([sys.stdin], [], [], 0.1)
+    if rlist:
+        key = sys.stdin.read(1)
+    else:
+        key = ''
+    termios.tcsetattr(sys.stdin, termios.TCSADRAIN, settings)
+    return key
