@@ -54,3 +54,7 @@ def constrain(input, low, high):
     else:
       input = input
     return input
+
+def bound_lin_vel(lin_vel_cmd):
+    lin_vel_cmd = constrain(lin_vel_cmd, -LIN_VEL_LIMIT, LIN_VEL_LIMIT)
+    return lin_vel_cmd
