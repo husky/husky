@@ -87,3 +87,20 @@ if __name__=="__main__":
 
     try:
         print(info)
+
+        while(1):
+            key = get_key()
+            if key == 'w' :
+                lin_vel = bound_lin_vel(lin_vel + LIN_VEL_STEP)
+            elif key == 's' :
+                lin_vel = bound_lin_vel(lin_vel - LIN_VEL_STEP)
+            elif key == 'a' :
+                ang_vel = bound_ang_vel(ang_vel + ANG_VEL_STEP)
+            elif key == 'd' :
+                ang_vel = bound_ang_vel(ang_vel - ANG_VEL_STEP)
+            elif key == 'x' :
+                lin_vel = 0.0
+                ang_vel = 0.0
+            else:
+                if (key == '\x03'): # CTRL+C
+                    break
