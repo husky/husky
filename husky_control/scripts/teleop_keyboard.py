@@ -78,3 +78,6 @@ def generate_cmd_vel_msg(lin_vel_cmd, ang_vel_cmd):
 if __name__=="__main__":
     if os.name != 'nt':
         settings = termios.tcgetattr(sys.stdin)
+
+    rospy.init_node('husky_teleop_keyboard')
+    cmd_vel_pub = rospy.Publisher('/cmd_vel', Twist, queue_size=10)
