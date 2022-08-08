@@ -104,3 +104,6 @@ if __name__=="__main__":
             else:
                 if (key == '\x03'): # CTRL+C
                     break
+
+            cmd_vel_msg = generate_cmd_vel_msg(lin_vel, ang_vel)
+            cmd_vel_pub.publish(cmd_vel_msg)
