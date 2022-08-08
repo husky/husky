@@ -15,8 +15,10 @@
   <url type="repository">https://github.com/husky/husky</url>
 
   <buildtool_depend>catkin</buildtool_depend>
-  
+
   <build_depend>roslaunch</build_depend>
+  <build_depend>rospy</build_depend>
+  <build_depend>geometry_msgs</build_depend>
 
   <run_depend>husky_description</run_depend>
   <run_depend>interactive_marker_twist_server</run_depend>
