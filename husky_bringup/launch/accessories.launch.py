@@ -160,7 +160,7 @@ def generate_launch_description():
 
 
     # This is disabled since nmea_navsat_driver has not been released.
-    Primary GPS Environment Variables
+    # Primary GPS Environment Variables
     primary_gps_enable = EnvironmentVariable('CPR_GPS_LASER', default_value='false')
     primary_gps_port = EnvironmentVariable('CPR_GPS_PORT', default_value='/dev/clearpath/gps')
     primary_gps_baud = EnvironmentVariable('CPR_GPS_BAUD', default_value='57600')
