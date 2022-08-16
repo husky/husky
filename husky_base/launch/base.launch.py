@@ -81,7 +81,7 @@ def generate_launch_description():
     # Launch husky_bringup/accessories.launch.py which is the sensors commonly used on the Husky.
     launch_husky_accessories = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(PathJoinSubstitution(
-        [FindPackageShare("husky_bringip"), 'launch', 'accessories.launch.py'])))
+        [FindPackageShare("husky_bringup"), 'launch', 'accessories.launch.py'])))
 
 
     ld = LaunchDescription()
