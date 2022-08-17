@@ -1,6 +1,7 @@
+import os
 import yaml
 
-
+import ament_index_python.packages
 from launch import LaunchContext, LaunchDescription
 from launch.substitutions import EnvironmentVariable, PathJoinSubstitution
 from launch_ros.actions import Node
@@ -43,8 +44,8 @@ def generate_launch_description():
     if (secondary_lidar_enable.perform(lc)) == 'true':
         if (secondary_lidar_model.perform(lc) == 'ust10'):
             node_hokuyo2 = Node(
-                package='urg_node', 
-                executable='urg_node_driver', 
+                package='urg_node',
+                executable='urg_node_driver',
                 name='urg_node',
                 output='screen',
                 remappings={('scan', secondary_lidar_topic)},
@@ -71,22 +72,14 @@ def generate_launch_description():
                 "VLP16-velodyne_driver_node-params.yaml"],
             )
 
-            config_velodyne_pointcloud_vlp16 = PathJoinSubstitution(
-                [FindPackageShare("velodyne_pointcloud"),
-                "config",
-                "VLP16-velodyne_convert_node-params.yaml"],
-            )
+            velodyne_pointcloud_dir = ament_index_python.packages.get_package_share_directory('velodyne_pointcloud')
 
-            config_velodyne_pointcloud_vlp16_calibration = PathJoinSubstitution(
-                [FindPackageShare("velodyne_pointcloud"),
-                "params",
-                "VLP16db.yaml"],
-            )
+            velodyne_pointcloud_params_file = os.path.join(velodyne_pointcloud_dir, 'config', 'VLP16-velodyne_convert_node-params.yaml')
 
-            with open(config_velodyne_pointcloud_vlp16, 'r') as f:
+            with open(velodyne_pointcloud_params_file, 'r') as f:
                 config_velodyne_pointcloud_vlp16_params = yaml.safe_load(f)['velodyne_convert_node']['ros__parameters']
-            config_velodyne_pointcloud_vlp16_params['calibration'] = config_velodyne_pointcloud_vlp16_calibration
- 
+            config_velodyne_pointcloud_vlp16_params['calibration'] = os.path.join(velodyne_pointcloud_dir, 'params', 'VLP16db.yaml')
+
             node_velodyne_driver = Node(
                 package='velodyne_driver', 
                 executable='velodyne_driver_node', 
@@ -94,9 +87,17 @@ def generate_launch_description():
                 output='screen',
                 remappings={('scan', primary_lidar_3d_topic)},
                 parameters=[
-                    config_velodyne_driver_vlp16,
                     {'device_ip': primary_lidar_3d_ip},
-                    {'frame_id': primary_lidar_3d_mount}
+                    {'frame_id': primary_lidar_3d_mount},
+                    {'gps_time': false},
+                    {'time_offset': 0.0},
+                    {'enabled': true},
+                    {'read_once': false},
+                    {'read_fast': false},
+                    {'repeat_delay': 0.0},
+                    {'model': VLP16},
+                    {'rpm': 600.0},
+                    {'port': 2368}
                 ]
             )
 
