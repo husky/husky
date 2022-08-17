@@ -89,13 +89,13 @@ def generate_launch_description():
                 parameters=[
                     {'device_ip': primary_lidar_3d_ip},
                     {'frame_id': primary_lidar_3d_mount},
-                    {'gps_time': false},
+                    {'gps_time': 'false'},
                     {'time_offset': 0.0},
-                    {'enabled': true},
-                    {'read_once': false},
-                    {'read_fast': false},
+                    {'enabled': 'true'},
+                    {'read_once': 'false'},
+                    {'read_fast': 'false'},
                     {'repeat_delay': 0.0},
-                    {'model': VLP16},
+                    {'model': 'VLP16'},
                     {'rpm': 600.0},
                     {'port': 2368}
                 ]
