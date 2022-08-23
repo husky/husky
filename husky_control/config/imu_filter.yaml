@@ -1,4 +1,4 @@
-imu_filter_node:
+imu_filter:
   ros__parameters:
     stateless: false
     use_mag: false
