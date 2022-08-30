@@ -66,12 +66,6 @@ def generate_launch_description():
     if (primary_lidar_3d_enable.perform(lc)) == 'true':
         if (primary_lidar_3d_model.perform(lc) == 'vlp16'):
                 
-            config_velodyne_driver_vlp16 = PathJoinSubstitution(
-                [FindPackageShare("velodyne_driver"),
-                "config",
-                "VLP16-velodyne_driver_node-params.yaml"],
-            )
-
             velodyne_pointcloud_dir = ament_index_python.packages.get_package_share_directory('velodyne_pointcloud')
 
             velodyne_pointcloud_params_file = os.path.join(velodyne_pointcloud_dir, 'config', 'VLP16-velodyne_convert_node-params.yaml')
