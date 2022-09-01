@@ -206,7 +206,7 @@ def generate_launch_description():
     if (primary_realsense_enable.perform(lc)) == 'true':
         launch_primary_realsense = IncludeLaunchDescription(
             PythonLaunchDescriptionSource(PathJoinSubstitution(
-            [FindPackageShare("realsense2_camera"), 'launch', 'rs_camera.launch.py'])))
+            [FindPackageShare("realsense2_camera"), 'launch', 'rs_launch.py'])))
         ld.add_action(launch_primary_realsense)
 
     return ld
