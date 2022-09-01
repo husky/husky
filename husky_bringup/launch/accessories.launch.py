@@ -198,5 +198,14 @@ def generate_launch_description():
             )
             ld.add_action(node_microstrain_driver)
 
+    # Primary Realsense Environment Variables
+    primary_realsense_enable = EnvironmentVariable('CPR_REALSENSE', default_value='false')
+
+    if (primary_realsense_enable.perform(lc)) == 'true':
+        launch_primary_realsense = IncludeLaunchDescription(
+            PythonLaunchDescriptionSource(PathJoinSubstitution(
+            [FindPackageShare("realsense2_camera"), 'launch', 'rs_camera.launch.py'])))
+        ld.add_action(launch_primary_realsense)
+
     return ld
 
