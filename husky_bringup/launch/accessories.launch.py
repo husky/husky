@@ -185,29 +185,40 @@ def generate_launch_description():
     primary_imu_baud = EnvironmentVariable('CPR_IMU_BAUD', default_value='115200')
     primary_imu_mount = EnvironmentVariable('CPR_IMU_MOUNT', default_value='imu_link')
 
+ 
+
     if (primary_imu_enable.perform(lc)) == 'true':
         if (primary_imu_model.perform(lc) == 'microstrain'):
-            node_microstrain_driver = Node(
-                package='microstrain_inertial_driver',
-                executable='microstrain_inertial_driver_node',
-                name='microstrain_inertial_driver_node',
-                output='screen',
-                parameters=[
-                    {'port': primary_imu_port},
-                    {'baud': primary_imu_baud},
-                    {'imu_frame_id': primary_imu_mount}
-                ]
+            launch_microstrain = IncludeLaunchDescription(
+                PythonLaunchDescriptionSource(
+                    PathJoinSubstitution(
+                        [FindPackageShare("microstrain_inertial_driver"), 'launch', 'microstrain_launch.py']
+                    )
+                ),
+                launch_arguments={
+                    'port': primary_imu_port,
+                    'baud': primary_imu_baud,
+                    'imu_frame_id': primary_imu_mount,
+                    'configure' : 'true',
+                    'activate' : 'true'
+                }.items()
             )
-            ld.add_action(node_microstrain_driver)
+            ld.add_action(launch_microstrain)
 
     # Primary Realsense Environment Variables
     primary_realsense_enable = EnvironmentVariable('CPR_REALSENSE', default_value='false')
 
     if (primary_realsense_enable.perform(lc)) == 'true':
         launch_primary_realsense = IncludeLaunchDescription(
-            PythonLaunchDescriptionSource(PathJoinSubstitution(
-            [FindPackageShare("realsense2_camera"), 'launch', 'rs_launch.py'])))
+            PythonLaunchDescriptionSource(
+                PathJoinSubstitution(
+                    [FindPackageShare("realsense2_camera"), 'launch', 'rs_launch.py']
+                )
+            )
+        )
         ld.add_action(launch_primary_realsense)
+
+
 
     return ld
 
