@@ -37,7 +37,6 @@
             <image>
               <width>${width}</width>
               <height>${height}</height>
-              <!-- TODO: check what format the Realsense hardware delivers and set this to match! -->
               <format>RGB8</format>
             </image>
             <clip>
