@@ -154,7 +154,7 @@
     <xacro:if value="$(arg realsense_enabled)">
       <link name="realsense_mountpoint"/>
       <joint name="realsense_mountpoint_joint" type="fixed">
-        <origin xyz="0 0 0" rpy="0 0 -3.14159" />
+        <origin xyz="$(arg realsense_xyz)" rpy="$(arg realsense_rpy)" />
         <parent link="$(arg realsense_mount)"/>
         <child link="realsense_mountpoint" />
       </joint>
