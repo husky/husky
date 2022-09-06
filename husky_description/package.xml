@@ -21,6 +21,7 @@
 
   <buildtool_depend>ament_cmake</buildtool_depend>
 
+  <depend>realsense2_description</depend>
   <depend>urdf</depend>
 
   <export>

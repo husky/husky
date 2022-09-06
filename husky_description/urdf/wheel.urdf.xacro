@@ -12,7 +12,7 @@
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
-          <mesh filename="file://$(find husky_description)/meshes/wheel.dae" />
+          <mesh filename="package://husky_description/meshes/wheel.dae" />
         </geometry>
       </visual>
       <collision>

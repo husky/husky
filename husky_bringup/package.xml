@@ -22,8 +22,8 @@
   <exec_depend>husky_control</exec_depend>
   <exec_depend>husky_description</exec_depend>
   <exec_depend>microstrain_inertial_driver</exec_depend>
-  <!-- nmea_navsat_driver has not been released yet -->
-  <!-- <exec_depend>nmea_navsat_driver</exec_depend> -->
+  <exec_depend>nmea_navsat_driver</exec_depend>
+  <exec_depend>realsense2_camera</exec_depend>
   <exec_depend>robot_upstart</exec_depend>
   <exec_depend>urg_node</exec_depend>
   <exec_depend>velodyne_driver</exec_depend>

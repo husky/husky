@@ -23,21 +23,21 @@ def generate_launch_description():
         )
     ld.add_action(node_ekf)
 
-    primary_imu_enable = EnvironmentVariable('CPR_IMU', default_value='false')
+    # primary_imu_enable = EnvironmentVariable('CPR_IMU', default_value='false')
 
-    if (primary_imu_enable.perform(lc)) == 'true':
-        config_imu_filter = PathJoinSubstitution(
-            [FindPackageShare('husky_control'),
-            'config',
-            'imu_filter.yaml'],
-        )
-        node_imu_filter = Node(
-            package='imu_filter_madgwick',
-            executable='imu_filter_madgwick_node',
-            name='imu_filter',
-            output='screen',
-            parameters=[config_imu_filter]
-        )
-        ld.add_action(node_imu_filter)
+    # if (primary_imu_enable.perform(lc)) == 'true':
+    #     config_imu_filter = PathJoinSubstitution(
+    #         [FindPackageShare('husky_control'),
+    #         'config',
+    #         'imu_filter.yaml'],
+    #     )
+    #     node_imu_filter = Node(
+    #         package='imu_filter_madgwick',
+    #         executable='imu_filter_madgwick_node',
+    #         name='imu_filter',
+    #         output='screen',
+    #         parameters=[config_imu_filter]
+    #     )
+    #     ld.add_action(node_imu_filter)
 
     return ld
