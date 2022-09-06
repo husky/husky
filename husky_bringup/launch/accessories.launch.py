@@ -197,10 +197,11 @@ def generate_launch_description():
                 ),
                 launch_arguments={
                     'port': primary_imu_port,
-                    'baud': primary_imu_baud,
+                    'baudrate': primary_imu_baud,
                     'imu_frame_id': primary_imu_mount,
                     'configure' : 'true',
-                    'activate' : 'true'
+                    'activate' : 'true',
+                    'use_enu_frame' : 'true'
                 }.items()
             )
             ld.add_action(launch_microstrain)
