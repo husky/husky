@@ -42,7 +42,7 @@
 
 namespace
 {
-  const uint8_t LEFT = 0, RIGHT = 1;
+  const uint8_t LEFT = 0, RIGHT = 2;
 }
 
 namespace husky_base
