@@ -1,14 +1,9 @@
 cmake_minimum_required(VERSION 3.0.2)
 project(husky_control)
 
-find_package(catkin REQUIRED COMPONENTS
-  rospy
-  geometry_msgs
-)
+find_package(catkin REQUIRED)
 
-catkin_package(
-  CATKIN_DEPENDS rospy geometry_msgs
-)
+catkin_package()
 
 if (CATKIN_ENABLE_TESTING)
   find_package(roslaunch REQUIRED)
