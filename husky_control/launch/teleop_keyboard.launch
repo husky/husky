@@ -2,7 +2,7 @@
 
 <launch>
 
-  <!-- Husky Keyboard Teleoperation -->
-  <node pkg="husky_control" type="teleop_keyboard.py" name="teleop_keyboard" output="screen"/>
+  <!-- teleop_twist_keyboard -->
+  <node pkg="teleop_twist_keyboard" type="teleop_twist_keyboard.py" name="teleop" output="screen"/>
 
 </launch>
