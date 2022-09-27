@@ -2,7 +2,7 @@
 Changelog for package husky_control
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-0.6.5 (2022-08-08)
+0.6.5 (2022-09-26)
 ------------------
 * Add keyboard teleoperation functionality.
 * Contributors: Tinker Twins (Chinmay Samak & Tanmay Samak)
