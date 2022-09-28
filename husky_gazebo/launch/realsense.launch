@@ -1,5 +1,3 @@
-<?xml version="1.0"?>
-
 <launch>
   <!-- Include poincloud_to_laserscan if simulated realsense is attached -->
   <node pkg="pointcloud_to_laserscan" type="pointcloud_to_laserscan_node" name="realsense_to_laserscan" output="screen">
