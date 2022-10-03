@@ -365,8 +365,8 @@ process[master]: started with pid [3664977]
       <frameId>base_link</frameId>
       <topicName>navsat/fix</topicName>
       <velocityTopicName>navsat/vel</velocityTopicName>
-      <referenceLatitude>49.9</referenceLatitude>
-      <referenceLongitude>8.9</referenceLongitude>
+      <referenceLatitude>$(optenv DATUM_LAT 49.9)</referenceLatitude>
+      <referenceLongitude>$(optenv DATUM_LON 8.9)</referenceLongitude>
       <referenceHeading>0</referenceHeading>
       <referenceAltitude>0</referenceAltitude>
       <drift>0.0001 0.0001 0.0001</drift>

@@ -2,6 +2,26 @@
 Changelog for package husky_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+0.6.4 (2022-06-16)
+------------------
+* Fixes for velodyne prefix
+* PACS Brackets (`#238 <https://github.com/husky/husky/issues/238>`_)
+  * Added STL models for brackets
+  * Added brackets to URDF
+  * Added bracket environment variables
+* Fixed issues with find
+* Added README with all Environment Variables
+* Duplicate URDF for every standard sensor
+* Added fath pivot mount as dependency
+* Added URDF of Blackfly on top of fath_pivot_mount
+* Added prefix to name parameter to differentiate between primary and secondary
+* Changed ENABLE to ENABLED
+* Changed HUSKY_FULL_RISER to HUSKY_FULL_RISER_LEVEL
+* Added PACS top plate and mounts to decorations
+* Added PACS urdf definitions
+* Added PACS meshes
+* Contributors: Luis Camero, luis-camero
+
 0.6.3 (2022-05-16)
 ------------------
 * Added Blackfly
