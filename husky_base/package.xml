@@ -27,6 +27,7 @@
   <depend>std_srvs</depend>
   <depend>tf2</depend>
   <depend>tf2_ros</depend>
+  <depend>xacro</depend>
 
   <export>
     <build_type>ament_cmake</build_type>
