@@ -32,6 +32,7 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
   <!-- LMS1XX Laser Primary and Secondary -->
   <xacro:arg name="laser_enabled"           default="$(optenv HUSKY_LMS1XX_ENABLED 0)" />
   <xacro:arg name="laser_topic"             default="$(optenv HUSKY_LMS1XX_TOPIC front/scan)"/>
+  <xacro:arg name="laser_tower"             default="$(optenv HUSKY_LMS1XX_TOWER 1)"/>
   <xacro:arg name="laser_prefix"            default="$(optenv HUSKY_LMS1XX_PREFIX front)"/>
   <xacro:arg name="laser_parent"            default="$(optenv HUSKY_LMS1XX_PARENT top_plate_link)"/>
   <xacro:arg name="laser_xyz"               default="$(optenv HUSKY_LMS1XX_XYZ 0.2206 0.0 0.00635)" />
@@ -39,6 +40,7 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
 
   <xacro:arg name="laser_secondary_enabled" default="$(optenv HUSKY_LMS1XX_SECONDARY_ENABLED 0)" />
   <xacro:arg name="laser_secondary_topic"   default="$(optenv HUSKY_LMS1XX_SECONDARY_TOPIC rear/scan)"/>
+  <xacro:arg name="laser_secondary_tower"   default="$(optenv HUSKY_LMS1XX_SECONDARY_TOWER 1)"/>
   <xacro:arg name="laser_secondary_prefix"  default="$(optenv HUSKY_LMS1XX_SECONDARY_PREFIX rear)"/>
   <xacro:arg name="laser_secondary_parent"  default="$(optenv HUSKY_LMS1XX_SECONDARY_PARENT top_plate_link)"/>
   <xacro:arg name="laser_secondary_xyz"     default="$(optenv HUSKY_LMS1XX_SECONDARY_XYZ -0.2206 0.0 0.00635)" />
@@ -238,25 +240,14 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
     SICK LMS1XX Priamry and Secondary Laser Scans
   -->
   <xacro:if value="$(arg laser_enabled)">
-    <xacro:sick_lms1xx_mount prefix="$(arg laser_prefix)"/>
-    <xacro:sick_lms1xx frame="$(arg laser_prefix)_laser" topic="$(arg laser_topic)" robot_namespace="$(arg robot_namespace)"/>
-
-    <joint name="$(arg laser_prefix)_laser_mount_joint" type="fixed">
-      <origin xyz="$(arg laser_xyz)" rpy="$(arg laser_rpy)" />
-      <parent link="$(arg laser_parent)" />
-      <child link="$(arg laser_prefix)_laser_mount" />
-    </joint>
+    <xacro:sick_lms1xx_mount prefix="$(arg laser_prefix)" parent="$(arg laser_parent)" topic="$(arg laser_topic)" robot_namespace="$(arg robot_namespace)" tower="$(arg laser_tower)">
+      <origin xyz="$(arg laser_xyz)" rpy="$(arg laser_rpy)"/>
+    </xacro:sick_lms1xx_mount>
   </xacro:if>
-
   <xacro:if value="$(arg laser_secondary_enabled)">
-    <xacro:sick_lms1xx_mount prefix="$(arg laser_secondary_prefix)"/>
-    <xacro:sick_lms1xx frame="$(arg laser_secondary_prefix)_laser" topic="$(arg laser_secondary_topic)" robot_namespace="$(arg robot_namespace)"/>
-
-    <joint name="$(arg laser_secondary_prefix)_laser_mount_joint" type="fixed">
-      <origin xyz="$(arg laser_secondary_xyz)" rpy="$(arg laser_secondary_rpy)" />
-      <parent link="$(arg laser_secondary_parent)" />
-      <child link="$(arg laser_secondary_prefix)_laser_mount" />
-    </joint>
+    <xacro:sick_lms1xx_mount prefix="$(arg laser_secondary_prefix)" parent="$(arg laser_secondary_parent)" topic="$(arg laser_secondary_topic)" robot_namespace="$(arg robot_namespace)" tower="$(arg laser_secondary_tower)">
+      <origin xyz="$(arg laser_secondary_xyz)" rpy="$(arg laser_secondary_rpy)"/>
+    </xacro:sick_lms1xx_mount>
   </xacro:if>
 
   <!--
@@ -326,6 +317,19 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
     <xacro:unless value="$(arg laser_3d_tower)">
       <xacro:VLP-16 parent="$(arg laser_3d_parent)" topic="$(arg laser_3d_topic)" name="$(arg laser_3d_prefix)velodyne">
         <origin xyz="$(arg laser_3d_xyz)" rpy="$(arg laser_3d_rpy)" />
+      </xacro:VLP-16>
+    </xacro:unless>
+  </xacro:if>
+
+  <xacro:if value="$(arg laser_3d_secondary_enabled)">
+    <xacro:if value="$(arg laser_3d_secondary_tower)">
+      <xacro:vlp16_mount prefix="$(arg laser_3d_secondary_prefix)" parent_link="$(arg laser_3d_secondary_parent)" topic="$(arg laser_3d_secondary_topic)">
+        <origin xyz="$(arg laser_3d_secondary_xyz)" rpy="$(arg laser_3d_secondary_rpy)" />
+      </xacro:vlp16_mount>
+    </xacro:if>
+    <xacro:unless value="$(arg laser_3d_secondary_tower)">
+      <xacro:VLP-16 parent="$(arg laser_3d_secondary_parent)" topic="$(arg laser_3d_secondary_topic)" name="$(arg laser_3d_secondary_prefix)velodyne">
+        <origin xyz="$(arg laser_3d_secondary_xyz)" rpy="$(arg laser_3d_secondary_rpy)" />
       </xacro:VLP-16>
     </xacro:unless>
   </xacro:if>
