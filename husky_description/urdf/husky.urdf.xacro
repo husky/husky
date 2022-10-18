@@ -366,7 +366,7 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
       <velocityTopicName>navsat/vel</velocityTopicName>
       <referenceLatitude>$(optenv GAZEBO_WORLD_LAT 49.9)</referenceLatitude>
       <referenceLongitude>$(optenv GAZEBO_WORLD_LON 8.9)</referenceLongitude>
-      <referenceHeading>0</referenceHeading>
+      <referenceHeading>90</referenceHeading>
       <referenceAltitude>0</referenceAltitude>
       <drift>0.0001 0.0001 0.0001</drift>
     </plugin>
