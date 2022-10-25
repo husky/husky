@@ -20,7 +20,7 @@
 
     <!-- Keyboard teleoperation -->
     <node pkg="teleop_twist_keyboard" type="teleop_twist_keyboard.py" name="teleop_twist_kb" if="$(arg keyboard)" output="screen" />
-    
+
   </group>
 
 </launch>
