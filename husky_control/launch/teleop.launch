@@ -6,20 +6,18 @@
   <arg name="keyboard" default="true" />
 
   <group ns="teleop">
-
+    <!-- Joystick teleoperation -->
     <group unless="$(optenv HUSKY_LOGITECH 0)" >
       <rosparam command="load" file="$(find husky_control)/config/teleop_ps4.yaml" />
     </group>
-
     <group if="$(optenv HUSKY_LOGITECH 0)" >
       <rosparam command="load" file="$(find husky_control)/config/teleop_logitech.yaml" />
       <param name="joy_node/dev" value="$(arg joy_dev)" />
     </group>
-
     <node pkg="joy" type="joy_node" name="joy_node" if="$(arg joystick)" />
-
     <node pkg="teleop_twist_joy" type="teleop_node" name="teleop_twist_joy"/>
 
+    <!-- Keyboard teleoperation -->
     <node pkg="teleop_twist_keyboard" type="teleop_twist_keyboard.py" name="teleop_twist_kb" if="$(arg keyboard)" />
   </group>
 
