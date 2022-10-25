@@ -5,7 +5,7 @@
   <arg name="joystick" default="true" />
   <arg name="keyboard" default="true" />
 
-  <group ns="joy_teleop">
+  <group ns="teleop">
 
     <group unless="$(optenv HUSKY_LOGITECH 0)" >
       <rosparam command="load" file="$(find husky_control)/config/teleop_ps4.yaml" />
