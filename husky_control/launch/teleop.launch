@@ -16,10 +16,10 @@
       <param name="joy_node/dev" value="$(arg joy_dev)" />
     </group>
     <node pkg="joy" type="joy_node" name="joy_node" if="$(arg joystick)" />
-    <node pkg="teleop_twist_joy" type="teleop_node" name="teleop_twist_joy" />
+    <node pkg="teleop_twist_joy" type="teleop_node" name="teleop_twist_joy" if="$(arg joystick)" output="screen" />
 
     <!-- Keyboard teleoperation -->
-    <node pkg="teleop_twist_keyboard" type="teleop_twist_keyboard.py" name="teleop_twist_kb" if="$(arg keyboard)" />
+    <node pkg="teleop_twist_keyboard" type="teleop_twist_keyboard.py" name="teleop_twist_kb" if="$(arg keyboard)" output="screen" />
   
   </group>
 
