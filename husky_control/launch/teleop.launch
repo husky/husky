@@ -3,7 +3,7 @@
 
   <arg name="joy_dev" default="$(optenv HUSKY_JOY_DEVICE /dev/input/js0)" />
   <arg name="joystick" default="true" />
-  <arg name="keyboard" default="true" />
+  <arg name="keyboard" default="false" />
 
   <group ns="joy_teleop" if="$(arg joystick)">
     <group unless="$(optenv HUSKY_LOGITECH 0)" >
