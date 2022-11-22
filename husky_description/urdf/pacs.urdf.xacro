@@ -312,6 +312,117 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
     </xacro:if>
   </xacro:macro>
 
+  <!-- 
+    Post Quad: adds four posts in a rectangular configuration
+  -->
+    <xacro:macro name="quad_post" params="parent prefix length width height radius:=0.006 *origin">
+    <link name="${prefix}">
+      <!-- Top Left -->
+      <visual>
+        <material name="light_grey"/>
+        <origin xyz="${length/2} ${width/2} ${height/2}"/>
+        <geometry>
+          <cylinder radius="${radius}" length="${height}"/>
+        </geometry>
+      </visual>
+      <collision>
+        <material name="light_grey"/>
+        <origin xyz="${length/2} ${width/2} ${height/2}"/>
+        <geometry>
+          <cylinder radius="${radius}" length="${height}"/>
+        </geometry>
+      </collision>
+
+      <!-- Top Right -->
+      <visual>
+        <material name="light_grey"/>
+        <origin xyz="${length/2} ${-width/2} ${height/2}"/>
+        <geometry>
+          <cylinder radius="${radius}" length="${height}"/>
+        </geometry>
+      </visual>
+      <collision>
+        <material name="light_grey"/>
+        <origin xyz="${length/2} ${-width/2} ${height/2}"/>
+        <geometry>
+          <cylinder radius="${radius}" length="${height}"/>
+        </geometry>
+      </collision>
+
+      <!-- Bottom Left -->
+      <visual>
+        <material name="light_grey"/>
+        <origin xyz="${-length/2} ${width/2} ${height/2}"/>
+        <geometry>
+          <cylinder radius="${radius}" length="${height}"/>
+        </geometry>
+      </visual>
+      <collision>
+        <material name="light_grey"/>
+        <origin xyz="${-length/2} ${width/2} ${height/2}"/>
+        <geometry>
+          <cylinder radius="${radius}" length="${height}"/>
+        </geometry>
+      </collision>
+
+      <!-- Bottom Right -->
+      <visual>
+        <material name="light_grey"/>
+        <origin xyz="${-length/2} ${-width/2} ${height/2}"/>
+        <geometry>
+          <cylinder radius="${radius}" length="${height}"/>
+        </geometry>
+      </visual>
+      <collision>
+        <material name="light_grey"/>
+        <origin xyz="${-length/2} ${-width/2} ${height/2}"/>
+        <geometry>
+          <cylinder radius="${radius}" length="${height}"/>
+        </geometry>
+      </collision>
+    </link>
+    <joint name="${prefix}_joint" type="fixed">
+      <child link="${prefix}"/>
+      <parent link="${parent}"/>
+      <xacro:insert_block name="origin"/>
+    </joint>
+  </xacro:macro>
+
+  <!--
+    Bracket Extension: adds extension posts for brackets
+  -->
+  <xacro:macro name="bracket_extension" params="name height xyz rpy">
+    <!-- Extension Standoffs -->
+    <xacro:quad_post parent="${name}" prefix="${name}_extension" length="0.08" width="0.08" height="${height}" radius="0.004">
+      <origin xyz="${xyz}" rpy="${rpy}"/>
+    </xacro:quad_post>
+  </xacro:macro>
+
+  <!--
+    Bracket Generic: adds generic bracket
+  -->
+  <xacro:macro name="bracket_generic" params="name mesh x y z *origin">
+    <link name="${name}_mount">
+      <visual>
+        <material name="dark_grey"/>
+        <geometry>
+          <mesh filename="${mesh}" />
+        </geometry>
+      </visual>
+      <collision>
+        <origin xyz="0 0 ${-z/2}" rpy="0 0 0"/>
+        <geometry>
+          <box size="${x} ${y} ${z}"/>
+        </geometry>
+      </collision>
+    </link>
+    <joint name="${name}_mount_joint" type="fixed">
+      <child link="${name}_mount"/>
+      <parent link="${name}"/>
+      <xacro:insert_block name="origin"/>
+    </joint>
+  </xacro:macro>
+
   <!--
     Brackets: add user defined bracket per mount name (i.e. A01)
       - adds extension to increase height of bracket (HUSKY_A01_BRACKET_EXTENSION 0). (e.g. 20, 40, 60, 80)
@@ -320,134 +431,46 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
   -->
   <xacro:macro name="bracket" params="name">
     <!-- Check to Add Bracket -->
-    <xacro:property name="bracket_enabled"        value="$(optenv HUSKY_${name}_BRACKET_ENABLED 0)"/>
-    <xacro:property name="bracket_type"           value="$(optenv HUSKY_${name}_BRACKET_TYPE horizontal)"/>
-    <xacro:property name="bracket_xyz"            value="$(optenv HUSKY_${name}_BRACKET_XYZ 0 0 0)"/>
-    <xacro:property name="bracket_rpy"            value="$(optenv HUSKY_${name}_BRACKET_RPY 0 0 0)"/>
-    <xacro:property name="bracket_extension"      value="$(optenv HUSKY_${name}_BRACKET_EXTENSION 0)"/> <!-- 20, 40, 60, 80-->
+    <xacro:property name="name_upper"             value="${name.upper()}"/>
+    <xacro:property name="bracket_enabled"        value="$(optenv HUSKY_${name_upper}_BRACKET_ENABLED 0)"/>
+    <xacro:property name="bracket_type"           value="$(optenv HUSKY_${name_upper}_BRACKET_TYPE horizontal)"/>
+    <xacro:property name="bracket_xyz"            value="$(optenv HUSKY_${name_upper}_BRACKET_XYZ 0 0 0)"/>
+    <xacro:property name="bracket_rpy"            value="$(optenv HUSKY_${name_upper}_BRACKET_RPY 0 0 0)"/>
+    <xacro:property name="bracket_extension"      value="$(optenv HUSKY_${name_upper}_BRACKET_EXTENSION 0)"/>
     <xacro:property name="bracket_parent"         value="${name}"/>
     <xacro:property name="bracket_extension_xyz"  value="${bracket_xyz}"/>
     <xacro:property name="bracket_extension_rpy"  value="${bracket_rpy}"/>
+
     <xacro:if value="${bracket_enabled}">
-      <!-- Extension -->
-      <xacro:if value="${bracket_extension == 20 or
-                          bracket_extension == 40 or
-                          bracket_extension == 60 or
-                          bracket_extension == 80}">
-        <!-- Add extension -->
-        <link name="${name}_extension">
-          <visual>
-            <material name="light_grey"/>
-            <geometry>
-              <mesh filename="package://husky_description/meshes/bracket_extension_${bracket_extension}.stl"/>
-            </geometry>
-          </visual>
-          <collision>
-            <origin xyz="0 0 ${bracket_extension/2000}" rpy="0 0 0"/>
-            <geometry>
-              <box size="0.09 0.09 ${bracket_extension/1000}"/>
-            </geometry>
-          </collision>
-        </link>
-        <joint name="${name}_extension_joint" type="fixed">
-          <child link="${name}_extension"/>
-          <parent link="${name}"/>
-          <origin xyz="${bracket_extension_xyz}" rpy="${bracket_extension_rpy}"/>
-        </joint>
-        <!-- Update bracket position values -->
-        <xacro:property name="bracket_xyz"      value="0 0 ${bracket_extension/1000}"/>
-        <xacro:property name="bracket_rpy"      value="0 0 0"/>
-        <xacro:property name="bracket_parent"   value="${name}_extension" lazy_eval="false"/>
-      </xacro:if>
-      <xacro:unless value="${bracket_extension == 0 or
-                              bracket_extension == 20 or
-                              bracket_extension == 40 or
-                              bracket_extension == 60 or
-                              bracket_extension == 80}">
-        ${xacro.error(str("Bracket extension (" + str(bracket_enabled) + ") can only be 0, 20, 40, 60, 80 mm."))}
-      </xacro:unless>
       <!-- Horizontal -->
       <xacro:if value="${bracket_type == 'horizontal'}">
-        <link name="${name}_mount"/>
-        <link name="${name}_bracket">
-          <visual>
-            <material name="dark_grey"/>
-            <geometry>
-              <mesh filename="package://husky_description/meshes/bracket_horizontal.stl" />
-            </geometry>
-          </visual>
-          <collision>
-            <origin xyz="0 0 0.005065" rpy="0 0 0"/>
-            <geometry>
-              <box size="0.09 0.09 0.01013"/>
-            </geometry>
-          </collision>
-        </link>
-        <joint name="${name}_bracket_joint" type="fixed">
-          <child link="${name}_bracket"/>
-          <parent link="${bracket_parent}"/>
-          <origin xyz="${bracket_xyz}" rpy="${bracket_rpy}"/>
-        </joint>
-        <joint name="${name}_mount_joint" type="fixed">
-          <child link="${name}_mount"/>
-          <parent link="${name}_bracket"/>
-          <origin xyz="0 0 0.010125" rpy="0 0 0"/>
-        </joint>
+        <xacro:property name="mesh_x" value="0.09"/>
+        <xacro:property name="mesh_y" value="0.09"/>
+        <xacro:property name="mesh_z" value="0.010125"/>
+        <xacro:property name="mesh_thickness" value="0.010125"/>
+        <xacro:property name="mesh" value="package://husky_description/meshes/bracket_horizontal.stl"/>
       </xacro:if>
       <!-- Horizontal Large -->
       <xacro:if value="${bracket_type == 'horizontal_large'}">
-        <link name="${name}_mount"/>
-        <link name="${name}_bracket">
-          <visual>
-            <material name="dark_grey"/>
-            <geometry>
-              <mesh filename="package://husky_description/meshes/bracket_horizontal_large.stl" />
-            </geometry>
-          </visual>
-          <collision>
-            <origin xyz="0 0 0.0032" rpy="0 0 0"/>
-            <geometry>
-              <box size="0.16 0.16 0.0064"/>
-            </geometry>
-          </collision>
-        </link>
-        <joint name="${name}_bracket_joint" type="fixed">
-          <child link="${name}_bracket"/>
-          <parent link="${bracket_parent}"/>
-          <origin xyz="${bracket_xyz}" rpy="${bracket_rpy}"/>
-        </joint>
-        <joint name="${name}_mount_joint" type="fixed">
-          <child link="${name}_mount"/>
-          <parent link="${name}_bracket"/>
-          <origin xyz="0 0 0.00635" rpy="0 0 0"/>
-        </joint>
+        <xacro:property name="mesh_x" value="0.16"/>
+        <xacro:property name="mesh_y" value="0.16"/>
+        <xacro:property name="mesh_z" value="0.00635"/>
+        <xacro:property name="mesh_thickness" value="0.00635"/>
+        <xacro:property name="mesh" value="package://husky_description/meshes/bracket_horizontal_large.stl"/>
       </xacro:if>
       <!-- Vertical -->
       <xacro:if value="${bracket_type == 'vertical'}">
-        <link name="${name}_mount"/>
-        <link name="${name}_bracket">
-          <visual>
-            <material name="dark_grey"/>
-            <geometry>
-              <mesh filename="package://husky_description/meshes/bracket_vertical.stl" />
-            </geometry>
-          </visual>
-          <collision>
-            <origin xyz="0.005 0 0.071" rpy="0 0 0"/>
-            <geometry>
-              <box size="0.1 0.09 0.142"/>
-            </geometry>
-          </collision>
-        </link>
-        <joint name="${name}_bracket_joint" type="fixed">
-          <child link="${name}_bracket"/>
-          <parent link="${bracket_parent}"/>
-          <origin xyz="${bracket_xyz}" rpy="${bracket_rpy}"/>
-        </joint>
-        <joint name="${name}_mount_joint" type="fixed">
-          <child link="${name}_mount"/>
-          <parent link="${name}_bracket"/>
-          <origin xyz="0.0518 0 0.097" rpy="0 -${pi/2} 0"/>
+        <xacro:property name="mesh_x" value="0.1"/>
+        <xacro:property name="mesh_y" value="0.1"/>
+        <xacro:property name="mesh_z" value="0.1419"/>
+        <xacro:property name="mesh_thickness" value="0.010125"/>
+        <xacro:property name="mesh" value="package://husky_description/meshes/bracket_vertical.stl"/>
+        <!-- Vertical Mount -->
+        <link name="${name}_vertical_mount"/>
+        <joint name="${name}_vertical_mount_joint" type="fixed">
+          <child link="${name}_vertical_mount"/>
+          <parent link="${name}_mount"/>
+          <origin xyz="0.0518 0 0.086875" rpy="0 -${pi/2} 0"/>
         </joint>
       </xacro:if>
       <xacro:unless value="${bracket_type == 'vertical' or
@@ -455,6 +478,29 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
                               bracket_type == 'horizontal_large'}">
         ${xacro.error(str("Bracket type (" + str(bracket_enabled) + ") does not exist. Select between 'vertical', 'horizontal', or 'horizontal_large'"))}
       </xacro:unless>
+      <!-- Extension -->
+      <xacro:if value="${bracket_extension > 0}">
+        <xacro:bracket_extension name="${name}" height="${bracket_extension/1000 - mesh_thickness}" xyz="${bracket_extension_xyz}" rpy="${bracket_extension_rpy}"/>
+        <!-- Update bracket position values -->
+        <xacro:property name="bracket_xyz"      value="${bracket_xyz.split(' ')[0]} ${bracket_xyz.split(' ')[1]} ${float(bracket_xyz.split(' ')[2]) + float(bracket_extension/1000)}" lazy_eval="false"/>
+        <xacro:property name="bracket_rpy"      value="0 0 0"/>
+        <xacro:property name="bracket_parent"   value="${name}_extension" lazy_eval="false"/>
+      </xacro:if>
+      <xacro:if value="${bracket_extension == 0}">
+        <xacro:property name="bracket_x" value="${bracket_xyz.split(' ')[0]}" lazy_eval="false"/>
+        <xacro:property name="bracket_y" value="${bracket_xyz.split(' ')[1]}" lazy_eval="false"/>
+        <xacro:property name="bracket_z" value="${float(bracket_xyz.split(' ')[2]) + float(mesh_thickness)}" lazy_eval="false"/>
+        <xacro:property name="bracket_xyz" value="${bracket_x} ${bracket_y} ${bracket_z}" lazy_eval="false"/>
+      </xacro:if>
+      <xacro:unless value="${bracket_extension >= 0}">
+        ${xacro.error(str("Bracket extension (" + str(bracket_extension) + ") can only be 0 mm to 80 mm."))}
+      </xacro:unless>
+
+      <!-- Add the Bracket-->
+      <xacro:bracket_generic name="${name}" mesh="${mesh}" x="${mesh_x}" y="${mesh_y}" z="${mesh_z}">
+        <origin xyz="${bracket_xyz}" rpy="${bracket_rpy}"/>
+      </xacro:bracket_generic>
     </xacro:if>
   </xacro:macro>
+
 </robot>
