@@ -2,8 +2,8 @@
 Changelog for package husky_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.4.13 (2022-11-25)
+-------------------
 * Added Wibotic mesh and STL
 * Contributors: Luis Camero
 

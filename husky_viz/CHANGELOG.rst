@@ -2,8 +2,8 @@
 Changelog for package husky_viz
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.4.13 (2022-11-25)
+-------------------
 * Fixed all scan topics to use front/scan.
 * Contributors: Tony Baltovski
 

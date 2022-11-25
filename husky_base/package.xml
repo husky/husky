@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package>
   <name>husky_base</name>
-  <version>0.4.12</version>
+  <version>0.4.13</version>
   <description>Clearpath Husky robot driver</description>
 
   <author email="mpurvis@clearpathrobotics.com">Mike Purvis</author>
