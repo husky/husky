@@ -2,6 +2,12 @@
 Changelog for package husky_bringup
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Add HUSKY_REALSENSE_TOPIC envar for choosing prefix namespace for all realsense topics
+* Update realsense launch file based on changes from realsense2_camera
+* Contributors: Joey Yang
+
 0.4.12 (2022-01-17)
 -------------------
 

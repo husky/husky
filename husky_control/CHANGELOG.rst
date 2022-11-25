@@ -2,6 +2,14 @@
 Changelog for package husky_control
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Fixed all scan topics to use front/scan.
+* Remove whitespace
+* Merge pull request `#217 <https://github.com/husky/husky/issues/217>`_ from husky/jyang-cpr-patch-1
+  Update DiffDriveController params
+* Contributors: Joey Yang, Tony Baltovski
+
 0.4.12 (2022-01-17)
 -------------------
 
