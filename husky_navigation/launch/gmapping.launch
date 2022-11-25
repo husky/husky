@@ -25,7 +25,7 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
 -->
 <launch>
 
-  <arg name="scan_topic" default="$(eval optenv('HUSKY_LASER_TOPIC', 'scan'))" />
+  <arg name="scan_topic" default="$(eval optenv('HUSKY_LASER_TOPIC', 'front/scan'))" />
 
   <node pkg="gmapping" type="slam_gmapping" name="slam_gmapping">
     <rosparam>
