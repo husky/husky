@@ -2,6 +2,54 @@
 Changelog for package husky_control
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Fixed all scan topics to use front/scan.
+* Disable keyboard input by default; on a normal robot this is launched by the systemd job, where there will never be any keyboard input.
+* Separate the keyboard teleop to a separate topic, add the new topic to the twist_mux
+* Move the keyboard teleop launch into the main teleop file, add an arg to optionally disable it
+* Update package.xml
+* Update CHANGELOG.rst
+* Update CMakeLists.txt
+* Update package.xml
+* Update CHANGELOG.rst
+* Update teleop_keyboard.launch
+* Update CMakeLists.txt
+* Remove scripts
+* Update CHANGELOG.rst
+* Update teleop_keyboard.launch
+* Create teleop_keyboard.launch
+* Update CMakeLists.txt
+* Update CMakeLists.txt
+* Update CMakeLists.txt
+* Update package.xml
+* Update package.xml
+* Update package.xml
+* Update package.xml
+* Update teleop_keyboard.py
+* Update teleop_keyboard.py
+* Update teleop_keyboard.py
+* Update teleop_keyboard.py
+* Update teleop_keyboard.py
+* Update teleop_keyboard.py
+* Update teleop_keyboard.py
+* Update teleop_keyboard.py
+* Update teleop_keyboard.py
+* Update teleop_keyboard.py
+* Update teleop_keyboard.py
+* Update teleop_keyboard.py
+* Update teleop_keyboard.py
+* Update teleop_keyboard.py
+* Update teleop_keyboard.py
+* Update teleop_keyboard.py
+* Update teleop_keyboard.py
+* Update teleop_keyboard.py
+* Update teleop_keyboard.py
+* Create teleop_keyboard.py
+* Update LICENSE
+* Create LICENSE
+* Contributors: Chris Iverach-Brereton, Tinker Twins, Tony Baltovski
+
 0.6.4 (2022-06-16)
 ------------------
 

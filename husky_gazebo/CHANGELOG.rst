@@ -2,6 +2,13 @@
 Changelog for package husky_gazebo
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Add XML decleration to realsense.launch
+* Update realsense.launch
+* Update realsense.launch
+* Contributors: Tinker Twins
+
 0.6.4 (2022-06-16)
 ------------------
 

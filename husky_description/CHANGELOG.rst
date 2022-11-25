@@ -2,6 +2,19 @@
 Changelog for package husky_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Removed old bracket
+* Updated brackets
+* Change the reference heading of the GPS plugin to be east so the coordinate system is ENU
+* Rename DATUM\_* to GAZEBO_WORLD\_*. We're separating the datum from the world's origin, and this keeps envars from clobbering each other
+* LMS1XX Tower EnvVar (`#250 <https://github.com/husky/husky/issues/250>`_)
+  * Added second velodyne description
+  * Added environment variable to remove the LMS1XX mount
+  * Removed console output
+* Use DATUM_LAT and DATUM_LON envars to override the default reference lat/lon for the Gazebo GPS plugin. This addresses a compatibility issue with outdoor nav simulations
+* Contributors: Chris Iverach-Brereton, Luis Camero, luis-camero
+
 0.6.4 (2022-06-16)
 ------------------
 * Fixes for velodyne prefix

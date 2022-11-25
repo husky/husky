@@ -2,6 +2,12 @@
 Changelog for package husky_navigation
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Fixed all scan topics to use front/scan.
+* [husky_navigation] Updated DWAPlannerROS to use non-deprecated parameters.
+* Contributors: Tony Baltovski
+
 0.6.4 (2022-06-16)
 ------------------
 
