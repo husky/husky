@@ -2,7 +2,7 @@ from_sim:
   topics:
     - topic: joint_states
       type: sensor_msgs/JointState
-    - topic: scan
+    - topic: front/scan
       type: sensor_msgs/LaserScan
     - topic: husky_velocity_controller/odom
       type: nav_msgs/Odometry
