@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package>
   <name>husky_viz</name>
-  <version>0.6.4</version>
+  <version>0.6.5</version>
   <description>Visualization configuration for Clearpath Husky</description>
 
   <author email="rgariepy@clearpathrobotics.com">Ryan Gariepy</author>

@@ -2,8 +2,8 @@
 Changelog for package husky_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.6.5 (2022-11-25)
+------------------
 * Removed old bracket
 * Updated brackets
 * Change the reference heading of the GPS plugin to be east so the coordinate system is ENU

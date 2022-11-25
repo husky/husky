@@ -2,8 +2,8 @@
 Changelog for package husky_control
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.6.5 (2022-11-25)
+------------------
 * Fixed all scan topics to use front/scan.
 * Disable keyboard input by default; on a normal robot this is launched by the systemd job, where there will never be any keyboard input.
 * Separate the keyboard teleop to a separate topic, add the new topic to the twist_mux
