@@ -26,7 +26,7 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
 <launch>
 
   <arg name="use_map_topic" default="true"/>
-  <arg name="scan_topic" default="scan" />
+  <arg name="scan_topic" default="front/scan" />
 
   <node pkg="amcl" type="amcl" name="amcl">
     <param name="use_map_topic" value="$(arg use_map_topic)"/>
