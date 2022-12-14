@@ -4,7 +4,7 @@ rolling_window: false
 
 plugins: 
 - {name: external,            type: "costmap_2d::StaticLayer"}
-- {name: explore_boundary,    type: "frontier_exploration::BoundedExploreLayer"}
+- {name: polygon_layer,       type: "polygon_layer::PolygonLayer"}
 #Can disable sensor layer if gmapping is fast enough to update scans
 - {name: obstacles_laser,     type: "costmap_2d::ObstacleLayer"}
 - {name: inflation,           type: "costmap_2d::InflationLayer"}
