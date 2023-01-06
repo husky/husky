@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 
-<robot xmlns:xacro="http://ros.org/wiki/xacro" name="$(arg name)">
+<robot xmlns:xacro="http://ros.org/wiki/xacro" name="husky">
   <!-- robot name parameter -->
-  <xacro:arg name="name" default="" />
+  <!-- <xacro:arg name="name" default="" /> -->
 
   <xacro:arg name="prefix" default="" />
   <xacro:arg name="gazebo_controllers" default="$(find husky_control)/config/control.yaml" />
