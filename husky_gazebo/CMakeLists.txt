@@ -12,7 +12,7 @@ install(
 )
 
 install(
-  FILES launch/husky_empty_world.launch
+  FILES launch/empty_world.launch
         launch/husky_playpen.launch
         launch/playpen.launch
         launch/realsense.launch
@@ -22,7 +22,7 @@ install(
 
 if (CATKIN_ENABLE_TESTING)
   find_package(roslaunch REQUIRED)
-  roslaunch_add_file_check(launch/husky_empty_world.launch)
+  roslaunch_add_file_check(launch/empty_world.launch)
   roslaunch_add_file_check(launch/husky_playpen.launch)
   roslaunch_add_file_check(launch/playpen.launch)
   roslaunch_add_file_check(launch/realsense.launch)
