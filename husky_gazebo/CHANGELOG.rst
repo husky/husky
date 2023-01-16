@@ -2,6 +2,12 @@
 Changelog for package husky_gazebo
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Merge pull request `#270 <https://github.com/husky/husky/issues/270>`_ from husky/rename-empty-world
+* Rename husky_empty_world.launch to empty_world.launch to make it consistent with other platforms
+* Contributors: Chris Iverach-Brereton, Tony Baltovski
+
 0.6.5 (2022-11-25)
 ------------------
 * Add XML decleration to realsense.launch
