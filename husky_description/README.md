@@ -26,19 +26,29 @@ export HUSKY_WIBOTIC_BUMPER=0
 ```
 
 ## Top Plate
-By default, the standard plate is added atop the user rail. This top plate can be swapped for a larger top plate. 
+By default, the standard plate is added atop the user rail. This top plate can be swapped for a larger top plate.
+
+**Standard Plate:**
 ```bash
 export HUSKY_TOP_PLATE_ENABLED=1
 export HUSKY_LARGE_TOP_PLATE=0
 export HUSKY_USER_RAIL_ENABLED=1
 ```
 
+**Large Top Plate:**
+```bash
+export HUSKY_TOP_PLATE_ENABLED=1
+export HUSKY_LARGE_TOP_PLATE=1
+export HUSKY_USER_RAIL_ENABLED=0
+```
+
+
 ## PACS
 The PACS system overwrites the previous top plate and user rail with a custom top plate with preset locations. 
 There are 56 standard locations organized in a grid, from A01 to G08 (where A through G define the columns, while 1 through 8 define the rows. The middle value is the height level. Additional levels can be added using risers).
 ```bash
 # Enable to use swap to PACS top plate
-export HUSKY_PACS_ENABLED=0
+export HUSKY_PACS_ENABLED=1
 ```
 
 ### Risers
@@ -48,9 +58,9 @@ Partial risers span a row of the plate. Multiple can be added. \
 To add multiple, enter a list of **LEVELS** and **ROWS**. These lists must be of the same length. The **LEVELS** list defines the height of each riser; while, the **ROWS** list defines the row of each riser. \
 
 ```bash
-export HUSKY_FULL_RISER_LEVEL=0
-export HUSKY_PARTIAL_RISER_LEVELS=0
-export HUSKY_PARTIAL_RISER_ROWS=0
+export HUSKY_FULL_RISER_LEVEL=1 # 10cm increment
+export HUSKY_PARTIAL_RISER_LEVELS="1 5" # List of levels, 10cm and 50cm
+export HUSKY_PARTIAL_RISER_ROWS="1 8" # List of rows, first row (at 10 cm), second row (at 50 cm)
 ```
 
 ### Brackets
@@ -62,177 +72,178 @@ There are three types of brackets:
 
 These brackets can be added to any hardpoint (i.e. A01 through G08). In the following environment variables 'A01' is used as an example but it can be swapped for any hardpoint (including those on risers).
 ```bash
-export HUSKY_A01_MOUNT_ENABLED='0'
+export HUSKY_A01_MOUNT_ENABLED=1
 export HUSKY_A01_MOUNT_TYPE='horizontal' # or 'horizontal_large' or 'vertical'
 export HUSKY_A01_MOUNT_XYZ='0 0 0'
 export HUSKY_A01_MOUNT_RPY='0 0 0'
-export HUSKY_A01_MOUNT_EXTENSION='0' # 20, 40, 60, 80
+export HUSKY_A01_MOUNT_EXTENSION='0' # distance from surface of plate/riser to surface of bracket
 ```
 
 ## Sensor Arch
 The standard sensor arch can be added using the following environment variables. 
 ```bash
-export HUSKY_SENSOR_ARCH='0'
+export HUSKY_SENSOR_ARCH=1
 export HUSKY_SENSOR_ARCH_HEIGHT='510' # or 300
 export HUSKY_SENSOR_ARCH_OFFSET='0 0 0'
 export HUSKY_SENSOR_ARCH_RPY='0 0 0'
 ```
 
 # Husky Payloads
-The following environment variables, serve to add the standard sensors to the Husky URDF
+The following environment variable provide a system to add standard sensors to the Husky URDF. \
+Every sensor has three types of environment variables: 
+1. **Enable**: these will add the sensor to the URDF and start the launch file. 
+2. **Launch**: these correspond to parameters exclusively in the launch file.
+3. **Description**: these correspond to parameters excluvesively in the URDF. 
 
 ## SICK LMS1XX Laser
-### Primary
+#### Primary
 ```bash
-export HUSKY_LMS1XX_ENABLED='false'
+export HUSKY_LMS1XX_ENABLED=1
 ```
-#### Launch
+###### Launch
 ```bash
 export HUSKY_LMS1XX_TOPIC='front/scan'
 export HUSKY_LMS1XX_IP='192.168.131.20'
 ```
-#### Description
+###### Description
 ```bash
 export HUSKY_LMS1XX_PREFIX='front'
 export HUSKY_LMS1XX_PARENT='top_plate_link'
-export HUSKY_LMS1XX_XYZ='0.2206 0.0 0.00635'
-export HUSKY_LMS1XX_RPY='0.0 0.0 0.0'
+export HUSKY_LMS1XX_XYZ='0.2206 0.0 0.00635' # standard offset when parent is 'top_plate_link'
+export HUSKY_LMS1XX_RPY='0.0 0.0 0.0' # standard orientation when parent is 'top_plate_link'
 ```
-### Secondary
+#### Secondary
 ```bash
-export HUSKY_LMS1XX_SECONDARY_ENABLED='0'
+export HUSKY_LMS1XX_SECONDARY_ENABLED=1
 ```
-#### Launch
+###### Launch
 ```bash
 export HUSKY_LMS1XX_SECONDARY_TOPIC='rear/scan'
 export HUSKy_LMS1XX_SECONDARY_IP='192.168.131.21'
 ```
-#### Description
+###### Description
 ```bash
 export HUSKY_LMS1XX_SECONDARY_PREFIX='rear'
 export HUSKY_LMS1XX_SECONDARY_PARENT='top_plate_link'
-export HUSKY_LMS1XX_SECONDARY_XYZ='-0.2206 0.0 0.00635'
-export HUSKY_LMS1XX_SECONDARY_RPY='0.0 0.0 3.14159'
+export HUSKY_LMS1XX_SECONDARY_XYZ='-0.2206 0.0 0.00635' # standard offset when parent is 'top_plate_link'
+export HUSKY_LMS1XX_SECONDARY_RPY='0.0 0.0 3.14159' # standard orientation when parent is 'top_plate_link'
 ```
 ## Hokuyo UST10
-### Front
+#### Front
 ```bash
-export HUSKY_UST10_ENABLED='0'
+export HUSKY_UST10_ENABLED=1
 ```
-#### Launch
+###### Launch
 ```bash
 export HUSKY_UST10_TOPIC='front/scan'
 export HUSKY_UST10_IP='192.168.131.20'
 ```
-#### Description
+###### Description
 ```bash
 export HUSKY_UST10_PREFIX='front'
 export HUSKY_UST10_PARENT='top_plate_link'
-export HUSKY_UST10_XYZ='0.2206 0.0 0.00635'
+export HUSKY_UST10_XYZ='0.2206 0.0 0.00635' # standard offset when parent is 'top_plate_link'
 export HUSKY_UST10_RPY='0 0 0'
 ```
-### Rear
+#### Rear
 ```bash
-export HUSKY_UST10_SECONDARY_ENABLED='0'
+export HUSKY_UST10_SECONDARY_ENABLED=1
 ```
-#### Launch
+###### Launch
 ```bash
 export HUSKY_UST10_SECONDARY_TOPIC='rear/scan'
 export HUSKY_UST10_SECONDARY_IP='192.168.131.21'
 ```
-#### Description
+###### Description
 ```bash
 export HUSKY_UST10_SECONDARY_PREFIX='rear'
 export HUSKY_UST10_SECONDARY_PARENT='top_plate_link'
-export HUSKY_UST10_SECONDARY_XYZ='-0.2206 0.0 0.00635'
-export HUSKY_UST10_SECONDARY_RPY='0 0 3.14159'
+export HUSKY_UST10_SECONDARY_XYZ='-0.2206 0.0 0.00635' # standard offset when parent is 'top_plate_link'
+export HUSKY_UST10_SECONDARY_RPY='0 0 3.14159' # standard orientation when parent is 'top_plate_link'
 ```
 
 ## Velodyne VLP16
-### Primary
+#### Primary
 ```bash
-export HUSKY_LASER_3D_ENABLED='0'
+export HUSKY_LASER_3D_ENABLED=1
 ```
-#### Launch
+###### Launch
 ```bash
 export HUSKY_LASER_3D_TOPIC='points'
 export HUSKY_LASER_3D_HOST='192.168.131.20'
 ```
-#### Description
+###### Description
 ```bash
-export HUSKY_LASER_3D_TOWER='1'
+export HUSKY_LASER_3D_TOWER=1
 export HUSKY_LASER_3D_PREFIX=''
 export HUSKY_LASER_3D_PARENT='top_plate_link'
 export HUSKY_LASER_3D_XYZ='0 0 0'
 export HUSKY_LASER_3D_RPY='0 0 0'
 ```
-### Secondary
+#### Secondary
 ```bash
-export HUSKY_LASER_3D_SECONDARY_ENABLED='0'
+export HUSKY_LASER_3D_SECONDARY_ENABLED=1
 ```
-#### Launch
+###### Launch
 ```bash
 export HUSKY_LASER_3D_SECONDARY_HOST='192.168.131.21'
 export HUSKY_LASER_3D_SECONDARY_TOPIC='secondary_points'
 ```
-#### Description
+###### Description
 ```bash
-export HUSKY_LASER_3D_SECONDARY_TOWER='1'
+export HUSKY_LASER_3D_SECONDARY_TOWER=1
 export HUSKY_LASER_3D_SECONDARY_PREFIX='secondary_'
 export HUSKY_LASER_3D_SECONDARY_PARENT='top_plate_link'
 export HUSKY_LASER_3D_SECONDARY_XYZ='0 0 0'
-export HUSKY_LASER_3D_SECONDARY_RPY='0 0 -3.1415'
+export HUSKY_LASER_3D_SECONDARY_RPY='0 0 -3.1415' # standard orientation to face backwards
 ```
 ## Intel Realsense
-### Primary
+#### Primary
 ```bash
-export HUSKY_REALSENSE_ENABLED='0'
+export HUSKY_REALSENSE_ENABLED=1
 ```
-#### Launch
+###### Launch
 ```bash
-export HUSKY_REALSENSE_TOPIC='realsense'
 export HUSKY_REALSENSE_SERIAL='0'
 export HUSKY_REALSENSE_TOPIC='realsense'
-export HUSKY_REALSENSE_POINTCLOUD_ENABLED='true'
-export HUSKY_REALSENSE_DEPTH_ENABLED='true'
+export HUSKY_REALSENSE_POINTCLOUD_ENABLED=1
+export HUSKY_REALSENSE_DEPTH_ENABLED=1
 export HUSKY_REALSENSE_DEPTH_FRAMERATE='30'
 export HUSKY_REALSENSE_DEPTH_HEIGHT='480'
 export HUSKY_REALSENSE_DEPTH_WIDTH='640'
-export HUSKY_REALSENSE_COLOR_ENABLED='true'
+export HUSKY_REALSENSE_COLOR_ENABLED=1
 export HUSKY_REALSENSE_COLOR_FRAMERATE='30'
 export HUSKY_REALSENSE_COLOR_HEIGHT='480'
 export HUSKY_REALSENSE_COLOR_WIDTH='640'
 export HUSKY_REALSENSE_PREFIX=camera
 ```
-#### Description
+###### Description
 ```bash
 export HUSKY_REALSENSE_PREFIX='camera'
 export HUSKY_REALSENSE_PARENT='top_plate_link'
 export HUSKY_REALSENSE_XYZ='0 0 0'
 export HUSKY_REALSENSE_RPY='0 0 0'
 ```
-### Secondary
+#### Secondary
 ```bash
-export HUSKY_REALSENSE_SECONDARY_ENABLED='0'
+export HUSKY_REALSENSE_SECONDARY_ENABLED=1
 ```
-#### Launch
+###### Launch
 ```bash
-export HUSKY_REALSENSE_SECONDARY_TOPIC='realsense_secondary'
-export HUSKY_REALSENSE_SECONDARY_ENABLED='0'
 export HUSKY_REALSENSE_SECONDARY_SERIAL='0'
 export HUSKY_REALSENSE_SECONDARY_TOPIC='realsense_secondary'
-export HUSKY_REALSENSE_SECONDARY_POINTCLOUD_ENABLED='1'
-export HUSKY_REALSENSE_DEPTH_ENABLED='1'
+export HUSKY_REALSENSE_SECONDARY_POINTCLOUD_ENABLED=1
+export HUSKY_REALSENSE_DEPTH_ENABLED=1
 export HUSKY_REALSENSE_DEPTH_FRAMERATE='30'
 export HUSKY_REALSENSE_DEPTH_HEIGHT='480'
 export HUSKY_REALSENSE_DEPTH_WIDTH='640'
-export HUSKY_REALSENSE_COLOR_ENABLED='true'
+export HUSKY_REALSENSE_COLOR_ENABLED=1
 export HUSKY_REALSENSE_COLOR_FRAMERATE='30'
 export HUSKY_REALSENSE_COLOR_HEIGHT='480'
 export HUSKY_REALSENSE_COLOR_WIDTH='640'
 export HUSKY_REALSENSE_SECONDARY_PREFIX='secondary_camera'
 ```
-#### Description
+###### Description
 ```bash
 export HUSKY_REALSENSE_SECONDARY_PREFIX='camera_secondary'
 export HUSKY_REALSENSE_SECONDARY_PARENT='top_plate_link'
@@ -240,40 +251,40 @@ export HUSKY_REALSENSE_SECONDARY_XYZ='0 0 0'
 export HUSKY_REALSENSE_SECONDARY_RPY='0 0 0'
 ```
 ## Flir Blackfly S
-### Primary
+#### Primary
 ```bash
-export HUSKY_BLACKFLY='0'
+export HUSKY_BLACKFLY=1
 ```
-#### Launch
+###### Launch
 ```bash
 export HUSKY_BLACKFLY_SERIAL='0'
 export HUSKY_BLACKFLY_DEVICE='USB3'
 export HUSKY_BLACKFLY_ENCODING='BayerRG8'
 export HUSKY_BLACKFLY_FRAMERATE='30'
 ```
-#### Description
+###### Description
 ```bash
-export HUSKY_BLACKFLY_MOUNT_ENABLED='1'
+export HUSKY_BLACKFLY_MOUNT_ENABLED=1
 export HUSKY_BLACKFLY_MOUNT_ANGLE='0'
 export HUSKY_BLACKFLY_PREFIX='blackfly'
 export HUSKY_BLACKFLY_PARENT='top_plate_link'
 export HUSKY_BLACKFLY_XYZ='0 0 0'
 export HUSKY_BLACKFLY_RPY='0 0 0'
 ```
-### Secondary
+#### Secondary
 ```bash
-export HUSKY_BLACKFLY_SECONDARY='0'
+export HUSKY_BLACKFLY_SECONDARY=1
 ```
-#### Launch
+###### Launch
 ```bash
 export HUSKY_BLACKFLY_SECONDARY_SERIAL='0'
 export HUSKY_BLACKFLY_SECONDARY_DEVICE='USB3'
 export HUSKY_BLACKFLY_SECONDARY_ENCODING='BayerRG8'
 export HUSKY_BLACKFLY_SECONDARY_FRAMERATE='30'
 ```
-#### Description
+###### Description
 ```bash
-export HUSKY_BLACKFLY_SECONDARY_MOUNT_ENABLED='1'
+export HUSKY_BLACKFLY_SECONDARY_MOUNT_ENABLED=1
 export HUSKY_BLACKFLY_SECONDARY_MOUNT_ANGLE='0'
 export HUSKY_BLACKFLY_SECONDARY_PREFIX='blackfly_secondary'
 export HUSKY_BLACKFLY_SECONDARY_PARENT='top_plate_link'
