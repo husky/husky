@@ -89,8 +89,8 @@ export HUSKY_SENSOR_ARCH_RPY='0 0 0'
 ```
 
 # Husky Payloads
-The following environment variables, serve to add the standard sensors to the Husky URDF. \
-Every sensor has three type of environment variables: 
+The following environment variable provide a system to add standard sensors to the Husky URDF. \
+Every sensor has three types of environment variables: 
 1. **Enable**: these will add the sensor to the URDF and start the launch file. 
 2. **Launch**: these correspond to parameters exclusively in the launch file.
 3. **Description**: these correspond to parameters excluvesively in the URDF. 
