@@ -80,18 +80,23 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
 
   <!-- Realsense Camera Primary and Secondary -->
   <xacro:arg name="realsense_enabled"             default="$(optenv HUSKY_REALSENSE_ENABLED 0)" />
+  <xacro:arg name="realsense_model"               default="$(optenv HUSKY_REALSENSE_MODEL d435)"/>
   <xacro:arg name="realsense_topic"               default="$(optenv HUSKY_REALSENSE_TOPIC realsense)" />
   <xacro:arg name="realsense_prefix"              default="$(optenv HUSKY_REALSENSE_PREFIX camera)" />
   <xacro:arg name="realsense_parent"              default="$(optenv HUSKY_REALSENSE_PARENT top_plate_link)" />
   <xacro:arg name="realsense_xyz"                 default="$(optenv HUSKY_REALSENSE_XYZ 0 0 0)" />
   <xacro:arg name="realsense_rpy"                 default="$(optenv HUSKY_REALSENSE_RPY 0 0 0)" />
+  <xacro:property name="realsense_model"          value="$(arg realsense_model)"/>
 
   <xacro:arg name="realsense_secondary_enabled"   default="$(optenv HUSKY_REALSENSE_SECONDARY_ENABLED 0)" />
+  <xacro:arg name="realsense_secondary_model"     default="$(optenv HUSKY_REALSENSE_SECONDARY_MODEL d435)"/>
   <xacro:arg name="realsense_secondary_topic"     default="$(optenv HUSKY_REALSENSE_SECONDARY_TOPIC realsense_secondary)" />
   <xacro:arg name="realsense_secondary_prefix"    default="$(optenv HUSKY_REALSENSE_SECONDARY_PREFIX camera_secondary)" />
   <xacro:arg name="realsense_secondary_parent"    default="$(optenv HUSKY_REALSENSE_SECONDARY_PARENT top_plate_link)" />
   <xacro:arg name="realsense_secondary_xyz"       default="$(optenv HUSKY_REALSENSE_SECONDARY_XYZ 0 0 0)" />
   <xacro:arg name="realsense_secondary_rpy"       default="$(optenv HUSKY_REALSENSE_SECONDARY_RPY 0 0 0)" />
+  <xacro:property name="realsense_secondary_model" value="$(arg realsense_secondary_model)"/>
+
 
   <!-- BlackflyS Camera Primary and Secondary -->
   <xacro:arg name="blackfly_enabled"                  default="$(optenv HUSKY_BLACKFLY 0)"/>
@@ -266,24 +271,37 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
   </xacro:if>
 
   <!-- Intel Realsense Primary and Secondary -->
+  <xacro:if value="${realsense_model == 'd435'}">
+    <xacro:include filename="$(find realsense2_description)/urdf/_d435.urdf.xacro" />
+  </xacro:if>
+  <xacro:if value="${realsense_model == 'd435i'}">
+    <xacro:include filename="$(find realsense2_description)/urdf/_d435i.urdf.xacro" />
+  </xacro:if>
+  <xacro:if value="${realsense_model == 'd415'}">
+    <xacro:include filename="$(find realsense2_description)/urdf/_d415.urdf.xacro" />
+  </xacro:if>
+  <xacro:if value="${realsense_model == 'd455'}">
+    <xacro:include filename="$(find realsense2_description)/urdf/_d435.urdf.xacro" />
+  </xacro:if>
+
   <xacro:if value="$(arg realsense_enabled)">
-    <link name="$(arg realsense_prefix)_realsense_mountpoint"/>
-    <joint name="$(arg realsense_prefix)_realsense_mountpoint_joint" type="fixed">
-      <origin xyz="$(arg realsense_xyz)" rpy="$(arg realsense_rpy)" />
-      <parent link="$(arg realsense_parent)"/>
-      <child link="$(arg realsense_prefix)_realsense_mountpoint" />
-    </joint>
-    <xacro:intel_realsense_mount prefix="$(arg realsense_prefix)" topic="$(arg realsense_topic)" parent_link="$(arg realsense_prefix)_realsense_mountpoint"/>
+    <xacro:realsense_sensor rs_model="$(arg realsense_model)"
+                            prefix="$(arg realsense_prefix)"
+                            parent="$(arg realsense_parent)"
+                            topic="$(arg realsense_topic)"
+                            include="0">
+      <origin xyz="$(arg realsense_xyz)" rpy="$(arg realsense_rpy)"/>
+    </xacro:realsense_sensor>
   </xacro:if>
 
   <xacro:if value="$(arg realsense_secondary_enabled)">
-    <link name="$(arg realsense_secondary_prefix)_realsense_mountpoint"/>
-    <joint name="$(arg realsense_secondary_prefix)_realsense_mountpoint_joint" type="fixed">
-      <origin xyz="$(arg realsense_secondary_xyz)" rpy="$(arg realsense_secondary_rpy)" />
-      <parent link="$(arg realsense_secondary_parent)"/>
-      <child link="$(arg realsense_secondary_prefix)_realsense_mountpoint" />
-    </joint>
-    <xacro:intel_realsense_mount prefix="$(arg realsense_secondary_prefix)" topic="$(arg realsense_secondary_topic)" parent_link="$(arg realsense_secondary_prefix)_realsense_mountpoint"/>
+    <xacro:realsense_sensor rs_model="$(arg realsense_secondary_model)"
+                            prefix="$(arg realsense_secondary_prefix)"
+                            parent="$(arg realsense_secondary_parent)"
+                            topic="$(arg realsense_secondary_topic)"
+                            include="0">
+      <origin xyz="$(arg realsense_secondary_xyz)" rpy="$(arg realsense_secondary_rpy)"/>
+    </xacro:realsense_sensor>
   </xacro:if>
 
   <!-- BlackflyS Camera Primary and Secondary -->

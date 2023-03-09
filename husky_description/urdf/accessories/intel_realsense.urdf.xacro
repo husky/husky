@@ -1,105 +1,296 @@
 <?xml version="1.0"?>
+<!--
+  The realsense2_description package doesn't natively support simulation, so this
+  file is a wrapper or the realsense2_description macro that also uses the kinect
+  gazebo plugin to simulate data from the camera
+-->
+
+<!-- IMPORTANT NOTE FOR MULTIPLE REALSENSES:
+  As of Sept. 2022, due to limitations with the 'realsense2_description' package 
+  (see realsense2_description/urdf/_materials.xacro.urdf):
+    1. the include parameter must be set to FALSE, and
+    2. the following files must be included in the parent xacro file that will 
+        include this one:
+  '''
+  <xacro:if value="${rs_model == 'd435'}">
+    <xacro:include filename="$(find realsense2_description)/urdf/_d435.urdf.xacro" />
+  </xacro:if>
+  <xacro:if value="${rs_model == 'd435i'}">
+    <xacro:include filename="$(find realsense2_description)/urdf/_d435i.urdf.xacro" />
+  </xacro:if>
+  <xacro:if value="${rs_model == 'd415'}">
+    <xacro:include filename="$(find realsense2_description)/urdf/_d415.urdf.xacro" />
+  </xacro:if>
+  <xacro:if value="${rs_model == 'd455'}">
+    <xacro:include filename="$(find realsense2_description)/urdf/_d435.urdf.xacro" />
+  </xacro:if>
+  '''
+  Multiple inclusions of any of these files (even when namespaced), will define
+  the materials at a global level, violating uniqueness property of xacro materials.
+  Therefore, it is not possible at this time to have different models of Realsense 
+  cameras on the same URDF, without modifying the `realsense2_description` package.
+ -->
 <robot xmlns:xacro="http://ros.org/wiki/xacro">
-  <xacro:macro name="intel_realsense_mount" params="prefix topic parent_link">
-
-    <xacro:macro name="intel_realsense" params="
-               frame:=realsense          topic:=realsense
-               h_fov:=1.5184351666666667 v_fov:=1.0122901111111111
-               min_range:=0.105          max_range:=8.0
-               width:=640                height:=480
+  <xacro:macro name="realsense_sensor" params="
+               rs_model:=d435
+               prefix:=front
+               parent:=front_mount
+               topic:=realsense
+               width:=680
+               height:=480
                update_rate:=30
-               robot_namespace:=/">
+               include:=1
+               *origin">
 
-      <!-- this link is the origin for the camera's data -->
-      <link name="${frame}" />
+    <xacro:if value="${include}">
+      <xacro:if value="${rs_model == 'd435'}">
+        <xacro:include filename="$(find realsense2_description)/urdf/_d435.urdf.xacro" />
+      </xacro:if>
+      <xacro:if value="${rs_model == 'd435i'}">
+        <xacro:include filename="$(find realsense2_description)/urdf/_d435i.urdf.xacro" />
+      </xacro:if>
+      <xacro:if value="${rs_model == 'd415'}">
+        <xacro:include filename="$(find realsense2_description)/urdf/_d415.urdf.xacro" />
+      </xacro:if>
+      <xacro:if value="${rs_model == 'd455'}">
+        <xacro:include filename="$(find realsense2_description)/urdf/_d435.urdf.xacro" />
+      </xacro:if>
+    </xacro:if>
 
-      <!--
-        The gazebo plugin aligns the depth data with the Z axis, with X=left and Y=up
-        ROS expects the depth data along the X axis, with Y=left and Z=up
-        This link only exists to give the gazebo plugin the correctly-oriented frame
-      -->
-      <link name="${frame}_gazebo" />
-      <joint name="${frame}_gazebo_joint" type="fixed">
-        <parent link="${frame}"/>
-        <child link="${frame}_gazebo"/>
-        <origin xyz="0.0 0 0" rpy="-1.5707963267948966 0 -1.5707963267948966"/>
-      </joint>
+    <xacro:macro name="realsense_gazebo" params="
+              prefix=front              model=d4
+              frame:=realsense          topic:=realsense
+              h_fov:=1.5184351666666667 v_fov:=1.0122901111111111
+              min_range:=0.105          max_range:=8.0
+              width:=640                height:=480
+              update_rate:=30
+              robot_namespace:=/">
 
-      <gazebo reference="${frame}">
-        <turnGravityOff>true</turnGravityOff>
-        <sensor type="depth" name="${prefix}_realsense_depth">
-          <update_rate>${update_rate}</update_rate>
-          <camera>
-            <!-- 75x65 degree FOV for the depth sensor -->
-            <horizontal_fov>${h_fov}</horizontal_fov>
-            <vertical_fov>${v_fov}</vertical_fov>
+     <!--
+       The gazebo plugin aligns the depth data with the Z axis, with X=left and Y=up
+       ROS expects the depth data along the X axis, with Y=left and Z=up
+       This link only exists to give the gazebo plugin the correctly-oriented frame
+     -->
+     <link name="${frame}_gazebo" />
+     <joint name="${frame}_gazebo_joint" type="fixed">
 
-            <image>
-              <width>${width}</width>
-              <height>${height}</height>
-              <!-- TODO: check what format the Realsense hardware delivers and set this to match! -->
-              <format>RGB_INT8</format>
-            </image>
-            <clip>
-              <!-- give the color sensor a maximum range of 50m so that the simulation renders nicely -->
-              <near>0.01</near>
-              <far>50.0</far>
-            </clip>
-          </camera>
-          <plugin name="kinect_controller" filename="libgazebo_ros_openni_kinect.so">
-            <baseline>0.2</baseline>
-            <alwaysOn>true</alwaysOn>
-            <updateRate>${update_rate}</updateRate>
-            <cameraName>${topic}</cameraName>
-            <imageTopicName>color/image_raw</imageTopicName>
-            <cameraInfoTopicName>color/camera_info</cameraInfoTopicName>
-            <depthImageTopicName>depth/image_rect_raw</depthImageTopicName>
-            <depthImageInfoTopicName>depth/camera_info</depthImageInfoTopicName>
-            <pointCloudTopicName>depth/color/points</pointCloudTopicName>
-            <frameName>${frame}_gazebo</frameName>
-            <pointCloudCutoff>${min_range}</pointCloudCutoff>
-            <pointCloudCutoffMax>${max_range}</pointCloudCutoffMax>
-            <distortionK1>0.00000001</distortionK1>
-            <distortionK2>0.00000001</distortionK2>
-            <distortionK3>0.00000001</distortionK3>
-            <distortionT1>0.00000001</distortionT1>
-            <distortionT2>0.00000001</distortionT2>
-            <CxPrime>0</CxPrime>
-            <Cx>0</Cx>
-            <Cy>0</Cy>
-            <focalLength>0</focalLength>
-            <hackBaseline>0</hackBaseline>
-          </plugin>
-        </sensor>
-      </gazebo>
+       <parent link="${frame}"/>
+       <child link="${frame}_gazebo"/>
+       <origin xyz="0.0 0 0" rpy="-1.5707963267948966 0 -1.5707963267948966"/>
+     </joint>
+
+     <gazebo reference="${frame}">
+       <turnGravityOff>true</turnGravityOff>
+       <sensor type="depth" name="${prefix}_realsense_depth">
+         <update_rate>${update_rate}</update_rate>
+         <camera>
+           <!-- 75x65 degree FOV for the depth sensor -->
+           <horizontal_fov>${h_fov}</horizontal_fov>
+           <vertical_fov>${v_fov}</vertical_fov>
+
+           <image>
+             <width>${width}</width>
+             <height>${height}</height>
+             <!-- TODO: check what format the Realsense hardware delivers and set this to match! -->
+             <format>RGB8</format>
+           </image>
+           <clip>
+             <!-- give the color sensor a maximum range of 50m so that the simulation renders nicely -->
+             <near>0.01</near>
+             <far>50.0</far>
+           </clip>
+         </camera>
+         <plugin name="kinect_controller" filename="libgazebo_ros_openni_kinect.so">
+           <baseline>0.2</baseline>
+           <alwaysOn>true</alwaysOn>
+           <updateRate>${update_rate}</updateRate>
+           <cameraName>${topic}</cameraName>
+           <imageTopicName>color/image_raw</imageTopicName>
+           <cameraInfoTopicName>color/camera_info</cameraInfoTopicName>
+           <depthImageTopicName>depth/image_rect_raw</depthImageTopicName>
+           <depthImageInfoTopicName>depth/camera_info</depthImageInfoTopicName>
+           <pointCloudTopicName>depth/color/points</pointCloudTopicName>
+           <frameName>${frame}_gazebo</frameName>
+           <pointCloudCutoff>${min_range}</pointCloudCutoff>
+           <pointCloudCutoffMax>${max_range}</pointCloudCutoffMax>
+           <distortionK1>0.00000001</distortionK1>
+           <distortionK2>0.00000001</distortionK2>
+           <distortionK3>0.00000001</distortionK3>
+           <distortionT1>0.00000001</distortionT1>
+           <distortionT2>0.00000001</distortionT2>
+           <CxPrime>0</CxPrime>
+           <Cx>0</Cx>
+           <Cy>0</Cy>
+           <focalLength>0</focalLength>
+           <hackBaseline>0</hackBaseline>
+         </plugin>
+       </sensor>
+     </gazebo>
     </xacro:macro>
 
-    <link name="${prefix}_realsense_lens">
-      <visual>
-        <!--
-          the model's origin is in the middle & it's rotated to lie in
-          the optical standard with X left, Y up, and Z forward
-        -->
-        <origin xyz="0.0115 0 0.0100" rpy="1.570796 0 1.570796" />
-        <geometry>
-          <!-- Origin of this mesh is the base of the bracket. -->
-          <mesh filename="package://realsense2_description/meshes/d415.stl" />
-        </geometry>
-        <material name="white" />
-      </visual>
-    </link>
+    <xacro:if value="${rs_model == 'd435'}">
+      <xacro:sensor_d435 parent="${parent}"
+                        name="${prefix}_realsense">
+        <xacro:insert_block name="origin"/>
+      </xacro:sensor_d435>
 
-    <joint type="fixed" name="${prefix}_realsense_lens_joint">
-      <origin xyz="0 0 0" rpy="0 0 0" />
-      <parent link="${parent_link}" />
-      <child link="${prefix}_realsense_lens" />
-    </joint>
-    <joint type="fixed" name="${prefix}_realsense_joint">
-      <origin xyz="0.025 0 0" rpy="0 0 0" />
-      <parent link="${prefix}_realsense_lens" />
-      <child link="${prefix}_realsense" />
-    </joint>
+      <xacro:realsense_gazebo
+         prefix="${prefix}"
+         frame="${prefix}_realsense_link"
+         topic="${topic}"
+         h_fov="1.5184351666666667"
+         v_fov="1.0122901111111111"
+         min_range="0.105"
+         max_range="8.0"
+         width="${width}"
+         height="${height}"
+         update_rate="${update_rate}" />
+    </xacro:if>
 
-    <xacro:intel_realsense frame="${prefix}_realsense" topic="${topic}"/>
+    <xacro:if value="${rs_model == 'd435i'}">
+      <xacro:sensor_d435i parent="${parent}"
+                          name="${prefix}_realsense">
+        <xacro:insert_block name="origin"/>
+      </xacro:sensor_d435i>
+
+      <xacro:realsense_gazebo
+         prefix="${prefix}"
+         frame="${prefix}_realsense_link"
+         topic="${topic}"
+         h_fov="1.5184351666666667"
+         v_fov="1.0122901111111111"
+         min_range="0.105"
+         max_range="8.0"
+         width="${width}"
+         height="${height}"
+         update_rate="${update_rate}" />
+
+      <!--
+        Add the IMU plugin
+        The realsense2_camera driver splits the accelerometer and gyroscope data
+        across 2 topics: accel and gyro
+      -->
+      <gazebo>
+        <plugin name="d435_accel" filename="libhector_gazebo_ros_imu.so">
+          <robotNamespace>/</robotNamespace>
+          <updateRate>30.0</updateRate>
+          <bodyName>${prefix}_realsense_link</bodyName>
+          <topicName>${topic}/accel/sample</topicName>
+          <accelDrift>0.005 0.005 0.005</accelDrift>
+          <accelGaussianNoise>0.005 0.005 0.005</accelGaussianNoise>
+          <rateDrift>0.005 0.005 0.005 </rateDrift>
+          <rateGaussianNoise>0.005 0.005 0.005 </rateGaussianNoise>
+          <headingDrift>0.005</headingDrift>
+          <headingGaussianNoise>0.005</headingGaussianNoise>
+        </plugin>
+        <plugin name="d435_gyro" filename="libhector_gazebo_ros_imu.so">
+          <robotNamespace>/</robotNamespace>
+          <updateRate>30.0</updateRate>
+          <bodyName>${prefix}_realsense_link</bodyName>
+          <topicName>${topic}/gyro/sample</topicName>
+          <accelDrift>0.005 0.005 0.005</accelDrift>
+          <accelGaussianNoise>0.005 0.005 0.005</accelGaussianNoise>
+          <rateDrift>0.005 0.005 0.005 </rateDrift>
+          <rateGaussianNoise>0.005 0.005 0.005 </rateGaussianNoise>
+          <headingDrift>0.005</headingDrift>
+          <headingGaussianNoise>0.005</headingGaussianNoise>
+        </plugin>
+      </gazebo>
+    </xacro:if>
+
+    <xacro:if value="${rs_model == 'd415'}">
+      <xacro:sensor_d415 parent="${parent}"
+                         name="${prefix}_realsense">
+        <xacro:insert_block name="origin"/>
+      </xacro:sensor_d415>
+
+      <xacro:realsense_gazebo
+         prefix="${prefix}"
+         frame="${prefix}_realsense_link"
+         topic="${topic}"
+         h_fov="1.1344640137963142"
+         v_fov="0.6981317007977318"
+         min_range="0.3"
+         max_range="5.0"
+         width="${width}"
+         height="${height}"
+         update_rate="${update_rate}" />
+    </xacro:if>
+
+    <xacro:if value="${rs_model == 'd455'}">
+      <!-- TODO: not officially supported yet. Use the D435 mesh for now, even though it's the wrong size -->
+      <xacro:sensor_d435 parent="${parent}"
+                         name="${prefix}_realsense">
+        <xacro:insert_block name="origin"/>
+      </xacro:sensor_d435>
+
+      <xacro:realsense_gazebo
+         prefix="${prefix}"
+         frame="${prefix}_realsense_link"
+         topic="${topic}"
+         h_fov="1.5009831567151233"
+         v_fov="0.9948376736367678"
+         min_range="0.5"
+         max_range="20.0"
+         width="${width}"
+         height="${height}"
+         update_rate="${update_rate}" />
+    </xacro:if>
+
+    <xacro:if value="${rs_model == 'l515'}">
+      <!--
+        TODO: not officially supported yet.
+        Because the camera is a radically different shape, rather than use the D435 or D415 mesh, create
+        the shape of the sensor manually.  This will be a rough approximation only
+      -->
+      <link name="${prefix}_realsense_bottom_screw_frame">
+        <visual>
+          <origin xyz="0 0 0.0305" rpy="0 ${PI/2} 0"/>
+          <geometry>
+            <cylinder radius="0.0305" length="0.026" />
+          </geometry>
+          <material name="white">
+            <color rgba="1 1 1 1" />
+          </material>
+        </visual>
+        <gazebo>
+          <gravity>0</gravity>
+        </gazebo>
+      </link>
+      <link name="${prefix}_realsense_link">
+        <visual>
+          <origin xyz="0.001 0 0" rpy="0 ${PI/2} 0"/>
+          <geometry>
+            <cylinder radius="0.0295" length="0.026"/>
+          </geometry>
+          <material name="black" />
+        </visual>
+        <gazebo>
+          <gravity>0</gravity>
+        </gazebo>
+      </link>
+      <joint type="fixed" name="${prefix}_realsense_ring_to_lens">
+        <parent link="${prefix}_realsense_bottom_screw_frame" />
+        <child link="${prefix}_realsense_link" />
+        <origin xyz="0 0 0.0305" rpy="0 0 0" />
+      </joint>
+      <joint type="fixed" name="${prefix}_realsense_mount_joint">
+        <parent link="${parent}" />
+        <child link="${prefix}_realsense_bottom_screw_frame" />
+        <origin xyz="0 0 0.004" rpy="0 0 0" />
+      </joint>
+
+      <xacro:realsense_gazebo
+         prefix="${prefix}"
+         frame="${prefix}_realsense_link"
+         topic="${topic}"
+         h_fov="1.2217304763960306"
+         v_fov="0.9599310885968813"
+         min_range="0.25"
+         max_range="9.0"
+         width="${width}"
+         height="${height}"
+         update_rate="${update_rate}" />
+    </xacro:if>
   </xacro:macro>
 </robot>
