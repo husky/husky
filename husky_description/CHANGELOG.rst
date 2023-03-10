@@ -2,8 +2,8 @@
 Changelog for package husky_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.6.7 (2023-03-10)
+------------------
 * Fixed Realsense URDF
 * Update README.md
 * Cleared up launch from description variables

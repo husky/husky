@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package>
   <name>husky_control</name>
-  <version>0.6.6</version>
+  <version>0.6.7</version>
   <description>Clearpath Husky controller configurations</description>
 
   <author email="paul@bovbel.com">Paul Bovbel</author>
