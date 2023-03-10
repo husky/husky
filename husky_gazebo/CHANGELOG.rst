@@ -2,6 +2,9 @@
 Changelog for package husky_gazebo
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+
 0.6.6 (2023-01-16)
 ------------------
 * Merge pull request `#270 <https://github.com/husky/husky/issues/270>`_ from husky/rename-empty-world

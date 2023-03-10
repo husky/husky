@@ -2,6 +2,15 @@
 Changelog for package husky_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Fixed Realsense URDF
+* Update README.md
+* Cleared up launch from description variables
+* Changed 'true' and '1' to 1
+* Switched all enables to true
+* Contributors: luis-camero
+
 0.6.6 (2023-01-16)
 ------------------
 
