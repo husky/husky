@@ -297,7 +297,7 @@ std::vector<hardware_interface::CommandInterface> HuskyHardware::export_command_
     command_interfaces.emplace_back(hardware_interface::CommandInterface(
       info_.joints[i].name, hardware_interface::HW_IF_VELOCITY, &hw_commands_[i]));
 
-    // Detmerine which joints will be used for commands since Husky only has two motors
+    // Determine which joints will be used for commands since Husky only has two motors
     if (info_.joints[i].name == LEFT_CMD_JOINT_NAME)
     {
       left_cmd_joint_index_ = i;
