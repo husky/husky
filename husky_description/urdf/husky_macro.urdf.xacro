@@ -48,7 +48,7 @@
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
-          <mesh filename="file://$(find husky_description)/meshes/base_link.dae" />
+          <mesh filename="package://husky_description/meshes/base_link.dae" />
         </geometry>
       </visual>
       <collision>
