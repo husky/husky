@@ -20,13 +20,14 @@
 
   <buildtool_depend>catkin</buildtool_depend>
   <build_depend>roslaunch</build_depend>
+  <run_depend>cpr_onav_description</run_depend>
   <run_depend>fath_pivot_mount_description</run_depend>
   <run_depend>flir_camera_description</run_depend>
+  <run_depend>lms1xx</run_depend>
   <run_depend>realsense2_description</run_depend>
   <run_depend>urdf</run_depend>
-  <run_depend>xacro</run_depend>
-  <run_depend>lms1xx</run_depend>
   <run_depend>velodyne_description</run_depend>
+  <run_depend>xacro</run_depend>
 
   <export>
   </export>
