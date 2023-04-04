@@ -143,7 +143,8 @@ def generate_launch_description():
                 executable='velodyne_convert_node',
                 output='screen',
                 remappings={('velodyne_points', primary_lidar_3d_topic)},
-                parameters=[config_velodyne_pointcloud_vlp16_param
+                parameters=[config_velodyne_pointcloud_vlp16_param]
+            )
 
             ld.add_action(node_velodyne_driver)
             ld.add_action(node_velodyne_convert)
