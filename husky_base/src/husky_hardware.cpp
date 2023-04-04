@@ -30,6 +30,7 @@
 */
 
 #include "husky_base/husky_hardware.hpp"
+#include "husky_base/husky_status.hpp"
 
 #include <chrono>
 #include <cmath>
@@ -44,6 +45,30 @@ namespace
 {
   const uint8_t LEFT = 0, RIGHT = 1;
 }
+
+namespace
+{
+  const int UNDERVOLT_ERROR = 18;
+  const int UNDERVOLT_WARN = 19;
+  const int OVERVOLT_ERROR = 30;
+  const int OVERVOLT_WARN = 29;
+  const int DRIVER_OVERTEMP_ERROR = 50;
+  const int DRIVER_OVERTEMP_WARN = 30;
+  const int MOTOR_OVERTEMP_ERROR = 80;
+  const int MOTOR_OVERTEMP_WARN = 70;
+  const double LOWPOWER_ERROR = 0.2;
+  const double LOWPOWER_WARN = 0.3;
+  const int CONTROLFREQ_WARN = 90;
+  const unsigned int SAFETY_TIMEOUT = 0x1;
+  const unsigned int SAFETY_LOCKOUT = 0x2;
+  const unsigned int SAFETY_ESTOP = 0x8;
+  const unsigned int SAFETY_CCI = 0x10;
+  const unsigned int SAFETY_PSU = 0x20;
+  const unsigned int SAFETY_CURRENT = 0x40;
+  const unsigned int SAFETY_WARN = (SAFETY_TIMEOUT | SAFETY_CCI | SAFETY_PSU);
+  const unsigned int SAFETY_ERROR = (SAFETY_LOCKOUT | SAFETY_ESTOP | SAFETY_CURRENT);
+}  // namespace
+
 
 namespace husky_base
 {
@@ -179,6 +204,72 @@ namespace husky_base
   }
 
   /**
+  * Pull latest status date from MCU.
+  */
+  void HuskyHardware::readStatusFromHardware()
+  {
+
+    auto safety_status =
+      horizon_legacy::Channel<clearpath::DataSafetySystemStatus>::requestData(polling_timeout_);
+    if (safety_status)
+    {
+      uint16_t flags = safety_status->getFlags();
+      status_msg_.timeout = (flags & SAFETY_TIMEOUT) > 0;
+      status_msg_.lockout = (flags & SAFETY_LOCKOUT) > 0;
+      status_msg_.e_stop = (flags & SAFETY_ESTOP) > 0;
+      status_msg_.ros_pause = (flags & SAFETY_CCI) > 0;
+      status_msg_.no_battery = (flags & SAFETY_PSU) > 0;
+      status_msg_.current_limit = (flags & SAFETY_CURRENT) > 0;
+    }
+    else
+    {
+      RCLCPP_ERROR(
+        rclcpp::get_logger(HW_NAME), "Could not get safety_status");
+    }
+
+    auto power_status =
+      horizon_legacy::Channel<clearpath::DataPowerSystem>::requestData(polling_timeout_);
+    if (power_status)
+    {
+      status_msg_.charge_estimate = power_status->getChargeEstimate(0);
+      status_msg_.capacity_estimate = power_status->getCapacityEstimate(0);
+    }
+    else
+    {
+      RCLCPP_ERROR(
+        rclcpp::get_logger(HW_NAME), "Could not get power_status");
+    }
+
+    auto system_status =
+      horizon_legacy::Channel<clearpath::DataSystemStatus>::requestData(polling_timeout_);
+    if (system_status)
+    {
+      status_msg_.uptime = system_status->getUptime();
+
+      status_msg_.battery_voltage = system_status->getVoltage(0);
+      status_msg_.left_driver_voltage = system_status->getVoltage(1);
+      status_msg_.right_driver_voltage = system_status->getVoltage(2);
+
+      status_msg_.mcu_and_user_port_current = system_status->getCurrent(0);
+      status_msg_.left_driver_current = system_status->getCurrent(1);
+      status_msg_.right_driver_current = system_status->getCurrent(2);
+
+      status_msg_.left_driver_temp = system_status->getTemperature(0);
+      status_msg_.right_driver_temp = system_status->getTemperature(1);
+      status_msg_.left_motor_temp = system_status->getTemperature(2);
+      status_msg_.right_motor_temp = system_status->getTemperature(3);
+    }
+    else
+    {
+      RCLCPP_ERROR(
+        rclcpp::get_logger(HW_NAME), "Could not get system_status");
+    }
+
+    status_node_->publish_status(status_msg_);
+  }
+
+
+  /**
   * Determines if the joint is left or right based on the joint name
   */
   uint8_t HuskyHardware::isLeft(const std::string &str)
@@ -214,6 +305,8 @@ hardware_interface::return_type HuskyHardware::configure(
   polling_timeout_ = std::stod(info_.hardware_parameters["polling_timeout"]);
 
   serial_port_ = info_.hardware_parameters["serial_port"];
+
+  status_node_ = std::make_shared<husky_status::HuskyStatus>();
 
   RCLCPP_INFO(rclcpp::get_logger(HW_NAME), "Port: %s", serial_port_.c_str());
   horizon_legacy::connect(serial_port_);
@@ -353,6 +446,18 @@ hardware_interface::return_type HuskyHardware::read()
   updateJointsFromHardware();
 
   RCLCPP_DEBUG(rclcpp::get_logger(HW_NAME), "Joints successfully read!");
+
+  // This will run at 10Hz but status data is only needed at 1Hz.
+  static int i = 0;
+  if (i <= 10)
+  {
+    i++;
+  }
+  else
+  {
+    readStatusFromHardware();
+    i = 0;
+  }
 
   return hardware_interface::return_type::OK;
 }
