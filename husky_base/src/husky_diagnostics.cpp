@@ -54,6 +54,7 @@ namespace
   const unsigned int SAFETY_ERROR = (SAFETY_LOCKOUT | SAFETY_ESTOP | SAFETY_CURRENT);
 }  // namespace
 
+
 namespace husky_base
 {
 
