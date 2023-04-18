@@ -2,6 +2,13 @@
 Changelog for package husky_bringup
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* [husky_bringup] Fixed bug in accessories launch.
+* Added realsense accessory, updated velodyne accessories.
+* Moved accessories launch into base launch and removed from robot_upstart install.
+* Contributors: Tony Baltovski
+
 1.0.8 (2022-05-19)
 ------------------
 

@@ -2,6 +2,9 @@
 Changelog for package husky_simulator
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+
 1.0.8 (2022-05-19)
 ------------------
 

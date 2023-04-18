@@ -2,6 +2,11 @@
 Changelog for package husky_gazebo
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* [husky_gazebo] Added GAZEBO_MODEL_PATH to gazebo launch to get meshes.
+* Contributors: Tony Baltovski
+
 1.0.8 (2022-05-19)
 ------------------
 
