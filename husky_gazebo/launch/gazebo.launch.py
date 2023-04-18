@@ -56,7 +56,7 @@ def generate_launch_description():
 
     spawn_husky_velocity_controller = Node(
         package='controller_manager',
-        executable='spawner.py',
+        executable='spawner',
         arguments=['husky_velocity_controller', '-c', '/controller_manager'],
         output='screen',
     )
@@ -70,7 +70,7 @@ def generate_launch_description():
 
     spawn_joint_state_broadcaster = Node(
         package='controller_manager',
-        executable='spawner.py',
+        executable='spawner',
         arguments=['joint_state_broadcaster', '-c', '/controller_manager'],
         output='screen',
     )

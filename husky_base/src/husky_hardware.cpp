@@ -191,17 +191,16 @@ namespace husky_base
   }
 
 
-hardware_interface::return_type HuskyHardware::configure(
-  const hardware_interface::HardwareInfo & info)
+hardware_interface::CallbackReturn HuskyHardware::on_init(const hardware_interface::HardwareInfo & info)
 {
-  if (configure_default(info) != hardware_interface::return_type::OK)
+  if (hardware_interface::SystemInterface::on_init(info) != hardware_interface::CallbackReturn::SUCCESS)
   {
-    return hardware_interface::return_type::ERROR;
+    return hardware_interface::CallbackReturn::ERROR;
   }
 
   RCLCPP_INFO(rclcpp::get_logger(HW_NAME), "Name: %s", info_.name.c_str());
 
-  RCLCPP_INFO(rclcpp::get_logger(HW_NAME), "Number of Joints %u", info_.joints.size());
+  RCLCPP_INFO(rclcpp::get_logger(HW_NAME), "Number of Joints %zu", info_.joints.size());
 
   hw_states_position_.resize(info_.joints.size(), std::numeric_limits<double>::quiet_NaN());
   hw_states_position_offset_.resize(info_.joints.size(), std::numeric_limits<double>::quiet_NaN());
@@ -227,9 +226,9 @@ hardware_interface::return_type HuskyHardware::configure(
     {
       RCLCPP_FATAL(
         rclcpp::get_logger(HW_NAME),
-        "Joint '%s' has %d command interfaces found. 1 expected.", joint.name.c_str(),
+        "Joint '%s' has %zu command interfaces found. 1 expected.", joint.name.c_str(),
         joint.command_interfaces.size());
-      return hardware_interface::return_type::ERROR;
+      return hardware_interface::CallbackReturn::ERROR;
     }
 
     if (joint.command_interfaces[0].name != hardware_interface::HW_IF_VELOCITY)
@@ -238,26 +237,26 @@ hardware_interface::return_type HuskyHardware::configure(
         rclcpp::get_logger(HW_NAME),
         "Joint '%s' have %s command interfaces found. '%s' expected.", joint.name.c_str(),
         joint.command_interfaces[0].name.c_str(), hardware_interface::HW_IF_VELOCITY);
-      return hardware_interface::return_type::ERROR;
+      return hardware_interface::CallbackReturn::ERROR;
     }
 
     if (joint.state_interfaces.size() != 2)
     {
       RCLCPP_FATAL(
         rclcpp::get_logger(HW_NAME),
-        "Joint '%s' has %d state interface. 2 expected.", joint.name.c_str(),
+        "Joint '%s' has %zu state interface. 2 expected.", joint.name.c_str(),
         joint.state_interfaces.size());
-      return hardware_interface::return_type::ERROR;
+      return hardware_interface::CallbackReturn::ERROR;
     }
 
     if (joint.state_interfaces[0].name != hardware_interface::HW_IF_POSITION)
     {
       RCLCPP_FATAL(
         rclcpp::get_logger(HW_NAME),
-        "Joint '%s' have '%s' as first state interface. '%s' and '%s' expected.",
+        "Joint '%s' have '%s' as first state interface. '%s' expected.",
         joint.name.c_str(), joint.state_interfaces[0].name.c_str(),
         hardware_interface::HW_IF_POSITION);
-      return hardware_interface::return_type::ERROR;
+      return hardware_interface::CallbackReturn::ERROR;
     }
 
     if (joint.state_interfaces[1].name != hardware_interface::HW_IF_VELOCITY)
@@ -266,12 +265,11 @@ hardware_interface::return_type HuskyHardware::configure(
         rclcpp::get_logger(HW_NAME),
         "Joint '%s' have '%s' as second state interface. '%s' expected.", joint.name.c_str(),
         joint.state_interfaces[1].name.c_str(), hardware_interface::HW_IF_VELOCITY);
-      return hardware_interface::return_type::ERROR;
+      return hardware_interface::CallbackReturn::ERROR;
     }
   }
 
-  status_ = hardware_interface::status::CONFIGURED;
-  return hardware_interface::return_type::OK;
+  return hardware_interface::CallbackReturn::SUCCESS;
 }
 
 std::vector<hardware_interface::StateInterface> HuskyHardware::export_state_interfaces()
@@ -312,7 +310,7 @@ std::vector<hardware_interface::CommandInterface> HuskyHardware::export_command_
   return command_interfaces;
 }
 
-hardware_interface::return_type HuskyHardware::start()
+hardware_interface::CallbackReturn HuskyHardware::on_activate(const rclcpp_lifecycle::State & /*previous_state*/)
 {
   RCLCPP_INFO(rclcpp::get_logger(HW_NAME), "Starting ...please wait...");
 
@@ -328,25 +326,21 @@ hardware_interface::return_type HuskyHardware::start()
     }
   }
 
-  status_ = hardware_interface::status::STARTED;
-
   RCLCPP_INFO(rclcpp::get_logger(HW_NAME), "System Successfully started!");
 
-  return hardware_interface::return_type::OK;
+  return hardware_interface::CallbackReturn::SUCCESS;
 }
 
-hardware_interface::return_type HuskyHardware::stop()
+hardware_interface::CallbackReturn HuskyHardware::on_deactivate(const rclcpp_lifecycle::State & /*previous_state*/)
 {
   RCLCPP_INFO(rclcpp::get_logger(HW_NAME), "Stopping ...please wait...");
 
-  status_ = hardware_interface::status::STOPPED;
-
   RCLCPP_INFO(rclcpp::get_logger(HW_NAME), "System successfully stopped!");
 
-  return hardware_interface::return_type::OK;
+  return hardware_interface::CallbackReturn::SUCCESS;
 }
 
-hardware_interface::return_type HuskyHardware::read()
+hardware_interface::return_type HuskyHardware::read(const rclcpp::Time & /*time*/, const rclcpp::Duration & /*period*/)
 {
   RCLCPP_DEBUG(rclcpp::get_logger(HW_NAME), "Reading from hardware");
 
@@ -357,7 +351,7 @@ hardware_interface::return_type HuskyHardware::read()
   return hardware_interface::return_type::OK;
 }
 
-hardware_interface::return_type HuskyHardware::write()
+hardware_interface::return_type HuskyHardware::write(const rclcpp::Time & /*time*/, const rclcpp::Duration & /*period*/)
 {
   RCLCPP_DEBUG(rclcpp::get_logger(HW_NAME), "Writing to hardware");
 

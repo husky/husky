@@ -1,6 +1,6 @@
 controller_manager:
   ros__parameters:
-    update_rate: 10  # Hz
+    update_rate: 10 # Hz
 
     joint_state_broadcaster:
       type: joint_state_broadcaster/JointStateBroadcaster
@@ -10,12 +10,12 @@ controller_manager:
 
 husky_velocity_controller:
   ros__parameters:
-    left_wheel_names: [ "front_left_wheel_joint", "rear_left_wheel_joint" ]
-    right_wheel_names: [ "front_right_wheel_joint", "rear_right_wheel_joint" ]
+    left_wheel_names: ["front_left_wheel_joint", "rear_left_wheel_joint"]
+    right_wheel_names: ["front_right_wheel_joint", "rear_right_wheel_joint"]
 
-    wheel_separation: 0.512  #0.1  # 0.256  # 0.512
-    wheels_per_side: 1  # actually 2, but both are controlled by 1 signal
-    wheel_radius: 0.1651  # 0.015
+    wheel_separation: 0.512 #0.1  # 0.256  # 0.512
+    wheels_per_side: 1 # actually 2, but both are controlled by 1 signal
+    wheel_radius: 0.1651 # 0.015
 
     wheel_separation_multiplier: 1.0
     left_wheel_radius_multiplier: 1.0
@@ -24,7 +24,7 @@ husky_velocity_controller:
     publish_rate: 50.0
     odom_frame_id: odom
     base_frame_id: base_link
-    pose_covariance_diagonal : [0.001, 0.001, 0.001, 0.001, 0.001, 0.01]
+    pose_covariance_diagonal: [0.001, 0.001, 0.001, 0.001, 0.001, 0.01]
     twist_covariance_diagonal: [0.001, 0.001, 0.001, 0.001, 0.001, 0.01]
 
     open_loop: false

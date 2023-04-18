@@ -2,29 +2,29 @@ name: husky_ci
 
 on: 
   push:
-    braches: [foxy-devel]
-    pull_request: [foxy-devel]
+    braches: [galactic-devel]
+    pull_request: [galactic-devel]
   schedule:
     - cron: '0 4 * * *' # every day at 4 AM (UTC)
 
 jobs:
-  husky_foxy_testing_ci:
-    name: Foxy Testing
+  husky_galactic_testing_ci:
+    name: Galactic Testing
     strategy:
       matrix:
         env:
-          - {ROS_DISTRO: foxy, ROS_REPO: testing}
+          - {ROS_DISTRO: galactic, ROS_REPO: testing}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - uses: 'ros-industrial/industrial_ci@master'
         env: ${{matrix.env}}
-  husky_foxy_main_ci:
-    name: Foxy Main
+  husky_galactic_main_ci:
+    name: Galactic Main
     strategy:
       matrix:
         env:
-          - {ROS_DISTRO: foxy, ROS_REPO: main}
+          - {ROS_DISTRO: galactic, ROS_REPO: main}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
