@@ -2,8 +2,8 @@
 Changelog for package husky_base
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+1.0.9 (2023-04-18)
+------------------
 * [husky_base] Added status topic publishing.
 * [husky_base] Fixed typo.
 * [husky_base] Added xacro as dep.
