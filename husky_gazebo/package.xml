@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package format="2">
   <name>husky_gazebo</name>
-  <version>0.6.7</version>
+  <version>0.6.8</version>
   <description>Clearpath Husky Simulator bringup</description>
 
   <author email="rgariepy@clearpathrobotics.com">Ryan Gariepy</author>
