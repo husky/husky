@@ -130,6 +130,10 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
   <xacro:arg name="urdf_extras"     default="$(optenv HUSKY_URDF_EXTRAS empty.urdf)" />
   <xacro:arg name="cpr_urdf_extras" default="$(optenv CPR_URDF_EXTRAS empty.urdf)" />
 
+  <!-- OutdoorNav -->
+  <xacro:arg name="outdoornav_enabled"       default="$(optenv OUTDOORNAV_ENABLED 0)" />
+  <xacro:arg name="outdoornav_configuration" default="$(optenv OUTDOORNAV_CONFIGURATION standard)" />
+
   <!-- Included URDF/XACRO Files -->
   <xacro:include filename="$(find husky_description)/urdf/accessories/hokuyo_ust10.urdf.xacro" />
   <xacro:include filename="$(find husky_description)/urdf/accessories/intel_realsense.urdf.xacro"/>
@@ -354,6 +358,12 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
         <origin xyz="$(arg laser_3d_secondary_xyz)" rpy="$(arg laser_3d_secondary_rpy)" />
       </xacro:VLP-16>
     </xacro:unless>
+  </xacro:if>
+
+  <!-- OutdoorNav URDF Config -->
+  <xacro:if value="$(arg outdoornav_enabled)">
+    <xacro:include filename="$(find cpr_onav_description)/urdf/outdoornav_description.urdf.xacro" />
+    <xacro:outdoornav_sensors outdoornav_configuration="$(arg outdoornav_configuration)" />
   </xacro:if>
 
   <gazebo>
