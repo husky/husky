@@ -2,6 +2,13 @@
 Changelog for package husky_control
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+1.0.9 (2023-04-18)
+------------------
+* Added realsense accessory, updated velodyne accessories.
+* Change namespaces to match imu_filter name defined in control.launch.py
+* [husky_control] Only launch the IMU filter if the IMU envar is set to true.
+* Contributors: Georg Jäger, Tony Baltovski
+
 1.0.8 (2022-05-19)
 ------------------
 * [husky_control] Disabled imu_filter_madgwick for now.

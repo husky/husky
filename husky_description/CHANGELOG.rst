@@ -2,6 +2,12 @@
 Changelog for package husky_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+1.0.9 (2023-04-18)
+------------------
+* [husky_description] Made serial_port an arg and reduced polling time.
+* Added realsense accessory, updated velodyne accessories.
+* Contributors: Tony Baltovski
+
 1.0.8 (2022-05-19)
 ------------------
 
