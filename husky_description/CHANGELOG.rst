@@ -2,6 +2,15 @@
 Changelog for package husky_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* change envvars to use a configuraiton string
+* fix alphabtical order of dependencies
+* add onav description dependency
+* modified envvar and args to match format of file
+* added urdf for outdoornav
+* Contributors: José Mastrangelo
+
 0.6.8 (2023-05-04)
 ------------------
 * Only Included Realsense if Enabled
