@@ -2,8 +2,8 @@
 Changelog for package husky_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.6.9 (2023-05-19)
+------------------
 * change envvars to use a configuraiton string
 * fix alphabtical order of dependencies
 * add onav description dependency
