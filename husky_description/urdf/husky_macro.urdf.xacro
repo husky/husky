@@ -24,7 +24,7 @@
   <xacro:include filename="$(find husky_description)/urdf/wheel.urdf.xacro" />
 
   <xacro:include filename="$(find husky_description)/urdf/accessories/intel_realsense.urdf.xacro"/>
-  <!-- <xacro:include filename="$(find husky_description)/urdf/accessories/sick_lms1xx_mount.urdf.xacro"/> -->
+  <xacro:include filename="$(find husky_description)/urdf/accessories/sick_lms1xx_mount.urdf.xacro"/>
   <xacro:include filename="$(find husky_description)/urdf/accessories/sensor_arch.urdf.xacro"/>
 
   <xacro:property name="M_PI" value="3.14159"/>
@@ -126,7 +126,7 @@
 
     <xacro:husky_decorate />
 
-    <!-- <xacro:if value="$(arg laser_enabled)">
+    <xacro:if value="$(arg laser_enabled)">
 
       <xacro:sick_lms1xx_mount prefix="base"/>
 
@@ -138,7 +138,7 @@
         <child link="base_laser_mount" />
       </joint>
 
-    </xacro:if> -->
+    </xacro:if>
 
     <!--
       top sensor arch; include this if we have realsense enabled

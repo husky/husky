@@ -4,3 +4,8 @@
 CATKIN_IGNORE
 
 *.pyc
+
+build/
+install/
+log/
+
