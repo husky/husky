@@ -1,0 +1,8 @@
+prefix=/home/kaijun/Documents/husky_autonomous/catkin_ws/install
+
+Name: ouster_ros
+Description: Description of ouster_ros
+Version: 0.8.3
+Cflags: -I${prefix}/include -I/usr/include/eigen3
+Libs: -L${prefix}/lib -louster_ros
+Requires: roscpp message_runtime std_msgs sensor_msgs geometry_msgs

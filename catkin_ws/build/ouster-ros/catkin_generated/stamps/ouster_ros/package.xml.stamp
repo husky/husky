@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<package format="3">
+  <name>ouster_ros</name>
+  <version>0.8.3</version>
+  <description>Ouster ROS driver</description>
+  <maintainer email="oss@ouster.io">ouster developers</maintainer>
+  <license file="LICENSE">BSD</license>
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <depend>roscpp</depend>
+  <depend>std_msgs</depend>
+  <depend>sensor_msgs</depend>
+  <depend>geometry_msgs</depend>
+  <depend>tf2_ros</depend>
+  <depend>pcl_ros</depend>
+  <depend>pcl_conversions</depend>
+
+  <build_depend>boost</build_depend>
+  <build_depend>nodelet</build_depend>
+  <build_depend>libjsoncpp-dev</build_depend>
+  <build_depend>eigen</build_depend>
+  <build_depend>message_generation</build_depend>
+  <build_depend>tf2_eigen</build_depend>
+  <build_depend>libpcl-all-dev</build_depend>
+  <build_depend>curl</build_depend>
+  <build_depend>spdlog</build_depend>
+  
+  <exec_depend>nodelet</exec_depend>
+  <exec_depend>libjsoncpp</exec_depend>
+  <exec_depend>message_runtime</exec_depend>
+  <exec_depend>topic_tools</exec_depend>
+  <exec_depend>curl</exec_depend>
+  <exec_depend>spdlog</exec_depend>
+
+  <test_depend>gtest</test_depend>
+
+  <export>
+    <nodelet plugin="${prefix}/nodelets_os.xml"/>
+  </export>
+</package>

@@ -1,0 +1,1 @@
+/usr/bin/c++ -fPIC -O3 -DNDEBUG  -shared -Wl,-soname,libgmock_main.so -o ../lib/libgmock_main.so CMakeFiles/gmock_main.dir/src/gmock_main.cc.o  -Wl,-rpath,/home/kaijun/Documents/husky_autonomous/catkin_ws/build/gtest/lib ../lib/libgmock.so ../lib/libgtest.so -lpthread 
