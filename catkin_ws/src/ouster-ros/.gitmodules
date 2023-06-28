@@ -1,0 +1,3 @@
+[submodule "ouster-sdk"]
+	path = ouster-sdk
+	url = https://github.com/ouster-lidar/ouster_example.git

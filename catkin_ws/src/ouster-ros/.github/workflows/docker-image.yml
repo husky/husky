@@ -1,0 +1,29 @@
+name: ouster-ros
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        ros_distro:
+          - melodic
+          - noetic
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          submodules: true
+      - name: Build the Docker image
+        run: |
+          docker build .                                    \
+            --build-arg ROS_DISTRO=${{ matrix.ros_distro }} \
+            --file Dockerfile                               \
+            --tag ouster-ros-${{ matrix.ros_distro }}:$(date +%s)

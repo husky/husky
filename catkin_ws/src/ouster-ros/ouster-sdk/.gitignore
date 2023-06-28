@@ -1,0 +1,12 @@
+__pycache__/
+python/build/
+python/dist/
+python/.tox/
+python/**/*.egg-info/
+python/**/*.so
+python/**/*.dll
+python/**/*.pyd
+
+# visual studio
+.vs/
+out/
