@@ -1,0 +1,3 @@
+[submodule "catkin_ws/src/catkin_ws/src/ouster-ros"]
+	path = catkin_ws/src/catkin_ws/src/ouster-ros
+	url = https://github.com/ouster-lidar/ouster-ros.git
