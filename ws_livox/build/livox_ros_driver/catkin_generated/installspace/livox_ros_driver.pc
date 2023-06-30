@@ -1,8 +1,0 @@
-prefix=/home/kaijun/Documents/husky_autonomous/ws_livox/install
-
-Name: livox_ros_driver
-Description: Description of livox_ros_driver
-Version: 2.0.0
-Cflags: -I${prefix}/include
-Libs: -L${prefix}/lib 
-Requires: roscpp rospy std_msgs message_runtime pcl_ros
