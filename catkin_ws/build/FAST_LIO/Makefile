@@ -295,6 +295,21 @@ _fast_lio_generate_messages_check_deps_Pose6D/fast:
 .PHONY : _fast_lio_generate_messages_check_deps_Pose6D/fast
 
 # Convenience name for target.
+FAST_LIO/CMakeFiles/livox_ros_driver_generate_messages_nodejs.dir/rule:
+	cd /home/kaijun/Documents/husky_autonomous/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 FAST_LIO/CMakeFiles/livox_ros_driver_generate_messages_nodejs.dir/rule
+.PHONY : FAST_LIO/CMakeFiles/livox_ros_driver_generate_messages_nodejs.dir/rule
+
+# Convenience name for target.
+livox_ros_driver_generate_messages_nodejs: FAST_LIO/CMakeFiles/livox_ros_driver_generate_messages_nodejs.dir/rule
+
+.PHONY : livox_ros_driver_generate_messages_nodejs
+
+# fast build rule for target.
+livox_ros_driver_generate_messages_nodejs/fast:
+	cd /home/kaijun/Documents/husky_autonomous/catkin_ws/build && $(MAKE) -f FAST_LIO/CMakeFiles/livox_ros_driver_generate_messages_nodejs.dir/build.make FAST_LIO/CMakeFiles/livox_ros_driver_generate_messages_nodejs.dir/build
+.PHONY : livox_ros_driver_generate_messages_nodejs/fast
+
+# Convenience name for target.
 FAST_LIO/CMakeFiles/tf2_msgs_generate_messages_nodejs.dir/rule:
 	cd /home/kaijun/Documents/husky_autonomous/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 FAST_LIO/CMakeFiles/tf2_msgs_generate_messages_nodejs.dir/rule
 .PHONY : FAST_LIO/CMakeFiles/tf2_msgs_generate_messages_nodejs.dir/rule
@@ -460,6 +475,21 @@ fast_lio_geneus/fast:
 .PHONY : fast_lio_geneus/fast
 
 # Convenience name for target.
+FAST_LIO/CMakeFiles/livox_ros_driver_generate_messages_cpp.dir/rule:
+	cd /home/kaijun/Documents/husky_autonomous/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 FAST_LIO/CMakeFiles/livox_ros_driver_generate_messages_cpp.dir/rule
+.PHONY : FAST_LIO/CMakeFiles/livox_ros_driver_generate_messages_cpp.dir/rule
+
+# Convenience name for target.
+livox_ros_driver_generate_messages_cpp: FAST_LIO/CMakeFiles/livox_ros_driver_generate_messages_cpp.dir/rule
+
+.PHONY : livox_ros_driver_generate_messages_cpp
+
+# fast build rule for target.
+livox_ros_driver_generate_messages_cpp/fast:
+	cd /home/kaijun/Documents/husky_autonomous/catkin_ws/build && $(MAKE) -f FAST_LIO/CMakeFiles/livox_ros_driver_generate_messages_cpp.dir/build.make FAST_LIO/CMakeFiles/livox_ros_driver_generate_messages_cpp.dir/build
+.PHONY : livox_ros_driver_generate_messages_cpp/fast
+
+# Convenience name for target.
 FAST_LIO/CMakeFiles/topic_tools_generate_messages_eus.dir/rule:
 	cd /home/kaijun/Documents/husky_autonomous/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 FAST_LIO/CMakeFiles/topic_tools_generate_messages_eus.dir/rule
 .PHONY : FAST_LIO/CMakeFiles/topic_tools_generate_messages_eus.dir/rule
@@ -488,6 +518,21 @@ topic_tools_generate_messages_cpp: FAST_LIO/CMakeFiles/topic_tools_generate_mess
 topic_tools_generate_messages_cpp/fast:
 	cd /home/kaijun/Documents/husky_autonomous/catkin_ws/build && $(MAKE) -f FAST_LIO/CMakeFiles/topic_tools_generate_messages_cpp.dir/build.make FAST_LIO/CMakeFiles/topic_tools_generate_messages_cpp.dir/build
 .PHONY : topic_tools_generate_messages_cpp/fast
+
+# Convenience name for target.
+FAST_LIO/CMakeFiles/livox_ros_driver_generate_messages_lisp.dir/rule:
+	cd /home/kaijun/Documents/husky_autonomous/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 FAST_LIO/CMakeFiles/livox_ros_driver_generate_messages_lisp.dir/rule
+.PHONY : FAST_LIO/CMakeFiles/livox_ros_driver_generate_messages_lisp.dir/rule
+
+# Convenience name for target.
+livox_ros_driver_generate_messages_lisp: FAST_LIO/CMakeFiles/livox_ros_driver_generate_messages_lisp.dir/rule
+
+.PHONY : livox_ros_driver_generate_messages_lisp
+
+# fast build rule for target.
+livox_ros_driver_generate_messages_lisp/fast:
+	cd /home/kaijun/Documents/husky_autonomous/catkin_ws/build && $(MAKE) -f FAST_LIO/CMakeFiles/livox_ros_driver_generate_messages_lisp.dir/build.make FAST_LIO/CMakeFiles/livox_ros_driver_generate_messages_lisp.dir/build
+.PHONY : livox_ros_driver_generate_messages_lisp/fast
 
 # Convenience name for target.
 FAST_LIO/CMakeFiles/std_srvs_generate_messages_lisp.dir/rule:
@@ -983,6 +1028,21 @@ dynamic_reconfigure_generate_messages_py: FAST_LIO/CMakeFiles/dynamic_reconfigur
 dynamic_reconfigure_generate_messages_py/fast:
 	cd /home/kaijun/Documents/husky_autonomous/catkin_ws/build && $(MAKE) -f FAST_LIO/CMakeFiles/dynamic_reconfigure_generate_messages_py.dir/build.make FAST_LIO/CMakeFiles/dynamic_reconfigure_generate_messages_py.dir/build
 .PHONY : dynamic_reconfigure_generate_messages_py/fast
+
+# Convenience name for target.
+FAST_LIO/CMakeFiles/livox_ros_driver_generate_messages_eus.dir/rule:
+	cd /home/kaijun/Documents/husky_autonomous/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 FAST_LIO/CMakeFiles/livox_ros_driver_generate_messages_eus.dir/rule
+.PHONY : FAST_LIO/CMakeFiles/livox_ros_driver_generate_messages_eus.dir/rule
+
+# Convenience name for target.
+livox_ros_driver_generate_messages_eus: FAST_LIO/CMakeFiles/livox_ros_driver_generate_messages_eus.dir/rule
+
+.PHONY : livox_ros_driver_generate_messages_eus
+
+# fast build rule for target.
+livox_ros_driver_generate_messages_eus/fast:
+	cd /home/kaijun/Documents/husky_autonomous/catkin_ws/build && $(MAKE) -f FAST_LIO/CMakeFiles/livox_ros_driver_generate_messages_eus.dir/build.make FAST_LIO/CMakeFiles/livox_ros_driver_generate_messages_eus.dir/build
+.PHONY : livox_ros_driver_generate_messages_eus/fast
 
 # Convenience name for target.
 FAST_LIO/CMakeFiles/nav_msgs_generate_messages_nodejs.dir/rule:
@@ -1510,6 +1570,21 @@ nodelet_generate_messages_nodejs/fast:
 .PHONY : nodelet_generate_messages_nodejs/fast
 
 # Convenience name for target.
+FAST_LIO/CMakeFiles/livox_ros_driver_generate_messages_py.dir/rule:
+	cd /home/kaijun/Documents/husky_autonomous/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 FAST_LIO/CMakeFiles/livox_ros_driver_generate_messages_py.dir/rule
+.PHONY : FAST_LIO/CMakeFiles/livox_ros_driver_generate_messages_py.dir/rule
+
+# Convenience name for target.
+livox_ros_driver_generate_messages_py: FAST_LIO/CMakeFiles/livox_ros_driver_generate_messages_py.dir/rule
+
+.PHONY : livox_ros_driver_generate_messages_py
+
+# fast build rule for target.
+livox_ros_driver_generate_messages_py/fast:
+	cd /home/kaijun/Documents/husky_autonomous/catkin_ws/build && $(MAKE) -f FAST_LIO/CMakeFiles/livox_ros_driver_generate_messages_py.dir/build.make FAST_LIO/CMakeFiles/livox_ros_driver_generate_messages_py.dir/build
+.PHONY : livox_ros_driver_generate_messages_py/fast
+
+# Convenience name for target.
 FAST_LIO/CMakeFiles/bond_generate_messages_nodejs.dir/rule:
 	cd /home/kaijun/Documents/husky_autonomous/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 FAST_LIO/CMakeFiles/bond_generate_messages_nodejs.dir/rule
 .PHONY : FAST_LIO/CMakeFiles/bond_generate_messages_nodejs.dir/rule
@@ -1729,6 +1804,7 @@ help:
 	@echo "... fast_lio_generate_messages_eus"
 	@echo "... fast_lio_gencpp"
 	@echo "... _fast_lio_generate_messages_check_deps_Pose6D"
+	@echo "... livox_ros_driver_generate_messages_nodejs"
 	@echo "... tf2_msgs_generate_messages_nodejs"
 	@echo "... tf2_msgs_generate_messages_lisp"
 	@echo "... actionlib_generate_messages_py"
@@ -1740,8 +1816,10 @@ help:
 	@echo "... topic_tools_generate_messages_nodejs"
 	@echo "... topic_tools_generate_messages_lisp"
 	@echo "... fast_lio_geneus"
+	@echo "... livox_ros_driver_generate_messages_cpp"
 	@echo "... topic_tools_generate_messages_eus"
 	@echo "... topic_tools_generate_messages_cpp"
+	@echo "... livox_ros_driver_generate_messages_lisp"
 	@echo "... std_srvs_generate_messages_lisp"
 	@echo "... std_srvs_generate_messages_eus"
 	@echo "... roscpp_generate_messages_eus"
@@ -1776,6 +1854,7 @@ help:
 	@echo "... std_msgs_generate_messages_lisp"
 	@echo "... actionlib_msgs_generate_messages_eus"
 	@echo "... dynamic_reconfigure_generate_messages_py"
+	@echo "... livox_ros_driver_generate_messages_eus"
 	@echo "... nav_msgs_generate_messages_nodejs"
 	@echo "... sensor_msgs_generate_messages_cpp"
 	@echo "... pcl_msgs_generate_messages_cpp"
@@ -1812,6 +1891,7 @@ help:
 	@echo "... std_msgs_generate_messages_nodejs"
 	@echo "... nodelet_generate_messages_lisp"
 	@echo "... nodelet_generate_messages_nodejs"
+	@echo "... livox_ros_driver_generate_messages_py"
 	@echo "... bond_generate_messages_nodejs"
 	@echo "... std_srvs_generate_messages_nodejs"
 	@echo "... nodelet_generate_messages_py"

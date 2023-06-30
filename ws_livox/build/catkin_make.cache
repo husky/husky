@@ -1,0 +1,2 @@
+livox_ros_driver
+-DCATKIN_DEVEL_PREFIX=/home/kaijun/Documents/husky_autonomous/ws_livox/devel -DCMAKE_INSTALL_PREFIX=/home/kaijun/Documents/husky_autonomous/ws_livox/install -G Unix Makefiles

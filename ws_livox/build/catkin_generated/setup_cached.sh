@@ -1,0 +1,13 @@
+#!/usr/bin/env sh
+# generated from catkin/python/catkin/environment_cache.py
+
+# based on a snapshot of the environment before and after calling the setup script
+# it emulates the modifications of the setup script without recurring computations
+
+# new environment variables
+
+# modified environment variables
+export CMAKE_PREFIX_PATH="/home/kaijun/Documents/husky_autonomous/ws_livox/devel:$CMAKE_PREFIX_PATH"
+export PWD='/home/kaijun/Documents/husky_autonomous/ws_livox/build'
+export ROSLISP_PACKAGE_DIRECTORIES='/home/kaijun/Documents/husky_autonomous/ws_livox/devel/share/common-lisp'
+export ROS_PACKAGE_PATH="/home/kaijun/Documents/husky_autonomous/ws_livox/src:$ROS_PACKAGE_PATH"

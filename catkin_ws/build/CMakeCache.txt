@@ -852,7 +852,7 @@ jsoncpp_DIR:PATH=/usr/lib/x86_64-linux-gnu/cmake/jsoncpp
 lib:FILEPATH=/opt/ros/noetic/lib/librospack.so
 
 //The directory containing a CMake configuration file for livox_ros_driver.
-livox_ros_driver_DIR:PATH=livox_ros_driver_DIR-NOTFOUND
+livox_ros_driver_DIR:PATH=/home/kaijun/Documents/husky_autonomous/ws_livox/devel/share/livox_ros_driver/cmake
 
 //The directory containing a CMake configuration file for message_filters.
 message_filters_DIR:PATH=/opt/ros/noetic/share/message_filters/cmake
