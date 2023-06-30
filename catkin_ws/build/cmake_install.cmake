@@ -131,6 +131,7 @@ endif()
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
   include("/home/kaijun/Documents/husky_autonomous/catkin_ws/build/gtest/cmake_install.cmake")
+  include("/home/kaijun/Documents/husky_autonomous/catkin_ws/build/FAST_LIO/cmake_install.cmake")
   include("/home/kaijun/Documents/husky_autonomous/catkin_ws/build/ouster-ros/cmake_install.cmake")
 
 endif()

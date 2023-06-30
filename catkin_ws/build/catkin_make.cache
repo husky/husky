@@ -1,2 +1,2 @@
-ouster-ros
--DCMAKE_BUILD_TYPE=Release -DCATKIN_DEVEL_PREFIX=/home/kaijun/Documents/husky_autonomous/catkin_ws/devel -DCMAKE_INSTALL_PREFIX=/home/kaijun/Documents/husky_autonomous/catkin_ws/install -G Unix Makefiles
+FAST_LIO:ouster-ros
+-DCATKIN_DEVEL_PREFIX=/home/kaijun/Documents/husky_autonomous/catkin_ws/devel -DCMAKE_INSTALL_PREFIX=/home/kaijun/Documents/husky_autonomous/catkin_ws/install -G Unix Makefiles
