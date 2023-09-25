@@ -5,12 +5,15 @@
   <!-- <xacro:arg name="name" default="" /> -->
 
   <xacro:arg name="prefix" default="" />
+  <xacro:arg name="is_sim" default="false" />
+  <xacro:arg name="use_mock_hardware" default="false" />
+
   <xacro:arg name="gazebo_controllers" default="$(find husky_control)/config/control.yaml" />
 
   <xacro:include filename="$(find husky_description)/urdf/husky_macro.urdf.xacro" />
 
   <!-- Load husky description -->
-  <xacro:husky prefix="$(arg prefix)" />
+  <xacro:husky prefix="$(arg prefix)" is_sim="$(arg is_sim)" use_mock_hardware="$(arg use_mock_hardware)" />
 
 
   <xacro:if value="$(arg is_sim)">
