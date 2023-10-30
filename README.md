@@ -1,7 +1,7 @@
 husky
 =====
 
-:warning: **Upgrading to ROS2 may not have the same functionally as ROS**: Contact support at support@clearpathrobotics.com.
+:warning: **For ROS 2 Humble, this repository is no longer used.  Please visit [clearpath_common](https://github.com/clearpathrobotics/clearpath_common).  Check the [documentation](https://docs.clearpathrobotics.com/docs/ros/) for more details including supported sensors.**
 
 Common ROS packages for the Clearpath Husky, useable for both simulation and
 real robot operation.
