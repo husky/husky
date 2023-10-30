@@ -14,7 +14,6 @@
   <xacro:property name="husky_rear_bumper_extend" value="$(optenv HUSKY_REAR_BUMPER_EXTEND 0)" />
 
   <xacro:arg name="robot_namespace" default="/" />
-  <xacro:arg name="is_sim" default="false" />
   <xacro:arg name="urdf_extras" default="$(optenv CPR_URDF_EXTRAS empty.urdf)" />
 
   <!-- Included URDF/XACRO Files -->
@@ -27,7 +26,7 @@
 
   <xacro:property name="M_PI" value="3.14159"/>
 
-  <xacro:macro name="husky" params="prefix">
+  <xacro:macro name="husky" params="prefix is_sim use_mock_hardware">
 
     <!-- Base Size -->
     <xacro:property name="base_x_size" value="0.98740000" />
@@ -163,14 +162,15 @@
 
     <ros2_control name="${prefix}husky_hardware" type="system">
       <hardware>
-        <xacro:if value="$(arg is_sim)">
+        <xacro:if value="${is_sim}">
           <plugin>gazebo_ros2_control/GazeboSystem</plugin>
         </xacro:if>
-        <xacro:unless value="$(arg is_sim)">
+        <xacro:if value="${use_mock_hardware}">
+          <plugin>mock_components/GenericSystem</plugin>
+          <param name="calculate_dynamics">true</param>
+        </xacro:if>
+        <xacro:unless value="${is_sim or use_mock_hardware}">
           <plugin>husky_base/HuskyHardware</plugin>
-          <plugin>fake_components/GenericSystem</plugin>
-          <param name="hw_start_duration_sec">2.0</param>
-          <param name="hw_stop_duration_sec">3.0</param>
           <param name="wheel_diameter">0.3302</param>
           <param name="max_accel">5.0</param>
           <param name="max_speed">1.0</param>
