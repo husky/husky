@@ -12,6 +12,9 @@ husky_velocity_controller:
   cmd_vel_timeout: 0.25
   velocity_rolling_window_size: 2
 
+  # Publish final output cmd_vel to /husky_velocity_controller/cmd_vel_out
+  publish_cmd: true
+
   # Base frame_id
   base_frame_id: base_link
 
