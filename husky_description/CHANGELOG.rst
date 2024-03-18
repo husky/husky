@@ -2,8 +2,8 @@
 Changelog for package husky_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.6.10 (2024-03-18)
+-------------------
 * Add simplified collision geometry to the URDF
 * Contributors: Chris Iverach-Brereton
 
