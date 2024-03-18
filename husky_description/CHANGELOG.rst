@@ -2,6 +2,11 @@
 Changelog for package husky_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Add simplified collision geometry to the URDF
+* Contributors: Chris Iverach-Brereton
+
 0.6.9 (2023-05-19)
 ------------------
 * change envvars to use a configuraiton string

@@ -2,6 +2,12 @@
 Changelog for package husky_control
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Mod: Set 'publish_cmd' param to true in husky_control/config
+  - With this change the diff drive controller will output the final cmd_vel to /husky_velocity_controller/cmd_vel_out after any filters are applied (e.g., speed/acceleration limits).
+* Contributors: Stephen Phillips
+
 0.6.9 (2023-05-19)
 ------------------
 
