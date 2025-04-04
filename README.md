@@ -42,3 +42,19 @@ Simulator ROS packages for the Clearpath Husky.
  - husky_gazebo : Gazebo plugin definitions and extensions to the robot URDF.
 
 For Husky instructions and tutorials, please see http://wiki.ros.org/Robots/Husky
+
+husky_docker
+===========
+##### Prerequisites
+- Docker
+- VSCode
+- Remote Development Extension by Microsoft (Inside VSCode)
+##### To enter the container
+- Open Command Pallete with `Ctrl+Shift+P`
+- Select **Dev Containers: Reopen in Container**
+- Use `Build WS` button to build workspace
+- Launch
+   ```
+   sudo chmod +777 /dev/ttyUSB0
+   roslaunch husky_base base.launch 
+   ```

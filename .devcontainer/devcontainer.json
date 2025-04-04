@@ -1,0 +1,67 @@
+{
+    "name": "Husky Development on AMD64/x86",
+    "image": "ghcr.io/rtarun1/husky_base:latest",
+    "privileged": true,
+    "workspaceMount": "source=${localWorkspaceFolder},target=/home/user/catkin_ws/src,type=bind",
+    "workspaceFolder": "/home/user/catkin_ws/src",
+    "customizations": {
+        
+        "vscode": {
+            "settings": {
+                "actionButtons": {
+                    "defaultColor": "#ff0034",
+                    "loadNpmCommands": false,
+                    "reloadButton": "♻️",
+                    "commands": [
+                        {
+                            "name": "Build WS",
+                            "cwd": "/home/user/catkin_ws",
+                            "color": "green",
+                            "singleInstance": true,
+                            "command": "source /opt/ros/noetic/setup.bash && catkin_make && source devel/setup.bash"
+                        }
+                    ]
+                }
+            },
+            "extensions": [
+                "althack.ament-task-provider",
+                "betwo.b2-catkin-tools",
+                "DotJoshJohnson.xml",
+                "ms-azuretools.vscode-docker",
+                "ms-iot.vscode-ros",
+                "ms-python.python",
+                "ms-vscode.cpptools",
+                "redhat.vscode-yaml",
+                "seunlanlege.action-buttons",
+                "smilerobotics.urdf",
+                "streetsidesoftware.code-spell-checker",
+                "twxs.cmake",
+                "yzhang.markdown-all-in-one",
+                "zachflower.uncrustify",
+                "akhail.save-typing"
+            ]
+        }
+    },
+    "containerEnv": {
+        "DISPLAY": "${localEnv:DISPLAY}",
+        "WAYLAND_DISPLAY": "${localEnv:WAYLAND_DISPLAY}",
+        "XDG_RUNTIME_DIR": "${localEnv:XDG_RUNTIME_DIR}",
+        "PULSE_SERVER": "${localEnv:PULSE_SERVER}",
+        "QT_X11_NO_MITSHM": "1",
+        "LIBGL_ALWAYS_SOFTWARE": "1"
+    },
+    "runArgs": [
+        // "--gpus=all",
+        "--cap-add=SYS_NICE",
+        "--ulimit=rtprio=99",
+        "--ulimit=rttime=-1",
+        "--ulimit=memlock=8428281856",
+        "--cap-add=all",
+        "--security-opt=seccomp:unconfined",
+        "--security-opt=apparmor:unconfined",
+        "--volume=/dev:/dev",
+        "--net=host",
+        "--ipc=host"
+    ],
+    "postStartCommand": "sudo chown -R user:user /home/user/catkin_ws /run"
+}
